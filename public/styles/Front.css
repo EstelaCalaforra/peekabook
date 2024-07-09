@@ -1,0 +1,21 @@
+.front p {
+    color: black;
+    font-family: "Playwrite MX", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.quote {
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    width: 50rem;
+    background-image: url(../../src/assets/design-space-paper-textured-background.jpg);
+}
+
+.front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
