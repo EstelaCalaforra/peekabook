@@ -25,20 +25,20 @@ const customTheme = createTheme({
 
 function App() {
 
-  const [backendData, setBackendData] = useState({ books: [] });
+  const [backendData, setBackendData] = useState([{}]);
    // fetch the backend API
    useEffect(() => {
     const fetchData = async () => {
       try {
         console.log("hola2");
-        const response = await axios.get('http://localhost:5000/api', {
-          headers: {
-            'Accept': 'application/json',
-          }
-        });
+        const response = await axios.get('http://localhost:5000/api');
         console.log(response);
         console.log(response.data);
+        console.log(" Length: ", response.data.length);
         setBackendData(response.data);
+        console.log("backendData: ", backendData)
+        console.log(typeof(backendData));
+        console.log(typeof [{}]);
       } catch (error) {
         console.log(error);
       }
@@ -52,11 +52,11 @@ function App() {
     <div>
       <ThemeProvider theme={customTheme}>
         <Header />
-        {(typeof backendData.books === 'undefined' || backendData.books.length === 0) ? (
+        {(typeof backendData === 'undefined' || backendData.length === 0) ? (
           <p>Loading...</p>
         ) : (
-          backendData.books.map((book, index) => (
-            <p key={index}>{book}</p>
+          backendData.map((book, index) => (
+            <p key={index}>{book.title}</p>
           ))
         )}
         <Front />

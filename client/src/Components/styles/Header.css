@@ -1,5 +1,5 @@
 header {
-  background-color: whitesmoke;
+  background-color: rgb(97, 88, 82);
   font-family: "Playwrite MX", ccursive;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -34,7 +34,7 @@ header {
   
   .header a { 
     text-decoration: none; 
-    color: black;
+    color: whitesmoke;
   } 
   .header a:hover {
     color: #774336;

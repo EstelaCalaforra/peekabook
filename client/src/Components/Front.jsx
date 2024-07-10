@@ -1,8 +1,9 @@
 import bookPages from '../assets/book-pages.gif'
 import divider from '../assets/set-hand-drawn-ornaments.png'
 import Button from '@mui/material/Button';
-import './styles/Front.css'
-
+import './styles/Front.css';
+import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 function Front() {
   
@@ -16,8 +17,8 @@ function Front() {
           </div>
         </div>
         <div className='front-buttons'>
-        <Button variant="contained">See library</Button>
-        <Button variant="contained">Add new book</Button>
+          <Button variant="contained">See library</Button>
+          <Button variant="contained">Add new book</Button>
         </div>
       </div>
     );
