@@ -1,5 +1,5 @@
 header {
-  background-color: white;
+  background-color: whitesmoke;
   font-family: "Playwrite MX", ccursive;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -51,4 +51,11 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
+  }
+
+  .search-icon {
+    height: 1.4em;
+    padding: 0em;
+    will-change: filter;
+    transition: filter 300ms;
   }

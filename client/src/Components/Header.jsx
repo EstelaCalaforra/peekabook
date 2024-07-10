@@ -1,6 +1,6 @@
-import '../../public/styles/Header.css'
+import './styles/Header.css'
 import ImportContactsIcon from '@mui/icons-material/ImportContacts'
-import SearchIcon from '@mui/icons-material/Search'
+import searchIcon from '../assets/search-icon.svg'
 import bookLogo from '../assets/book-logo.png'
 import TextField from '@mui/material/TextField'
 
@@ -21,7 +21,8 @@ function Header() {
                     </nav>
                 </div>
                 <div className='search-field'>
-                    <SearchIcon themeColor="light"/>
+                    <img src={searchIcon} alt="Seacrh Icon" className="search-icon" />
+
                     <TextField id="outlined-basic" label="Search" variant="outlined" autoComplete='off'/>
                 </div>
             </div>

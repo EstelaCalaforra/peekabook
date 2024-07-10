@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from "./Header"
 import Footer from "./Footer"
 import Front from './Front'
-import '../../public/styles/App.css'
+import './styles/App.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import axios from "axios";
 
 const customTheme = createTheme({
   palette: {
@@ -24,14 +25,44 @@ const customTheme = createTheme({
 
 function App() {
 
+  const [backendData, setBackendData] = useState({ books: [] });
+   // fetch the backend API
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log("hola2");
+        const response = await axios.get('http://localhost:5000/api', {
+          headers: {
+            'Accept': 'application/json',
+          }
+        });
+        console.log(response);
+        console.log(response.data);
+        setBackendData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    console.log("hola1");
+    fetchData();
+  }, []);
+
   return (
-    <>
+    <div>
       <ThemeProvider theme={customTheme}>
         <Header />
+        {(typeof backendData.books === 'undefined' || backendData.books.length === 0) ? (
+          <p>Loading...</p>
+        ) : (
+          backendData.books.map((book, index) => (
+            <p key={index}>{book}</p>
+          ))
+        )}
         <Front />
         <Footer />
       </ThemeProvider>
-    </>
+    </div>
   )
 }
 
