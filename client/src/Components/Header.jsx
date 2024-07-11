@@ -1,8 +1,8 @@
-import './styles/Header.css'
-import ImportContactsIcon from '@mui/icons-material/ImportContacts'
-import searchIcon from '../assets/search-icon.svg'
-import bookLogo from '../assets/icon-whitesmoke-book.svg'
-import TextField from '@mui/material/TextField'
+import './styles/Header.css';
+import ImportContactsIcon from '@mui/icons-material/ImportContacts';
+import searchIcon from '../assets/search-icon.svg';
+import bookLogo from '../assets/icon-whitesmoke-book.svg';
+import TextField from '@mui/material/TextField';
 
 
 function Header() {
@@ -14,20 +14,19 @@ function Header() {
                     <img src={bookLogo} alt="Company Logo" className="logo" />
                     <nav>
                         <ul>
+                            <li><a href="/">Home</a></li> 
                             <li><a href="/about">About</a></li>
-                            <li><a href="/services">Services</a></li>
-                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="/library">Library</a></li>
                         </ul>
                     </nav>
                 </div>
+                
                 <div className='search-field'>
-                    <img src={searchIcon} alt="Seacrh Icon" className="search-icon" />
-
-                    <TextField id="outlined-basic" label="Search" variant="outlined" autoComplete='off'/>
+                    {/* <img src={searchIcon} alt="Seacrh Icon" className="search-icon" /> */}
+                    <TextField id="outlined-basic" label="Search" variant="outlined" autoComplete='off' color="primary" focused />
                 </div>
             </div>
-        </header>
-        
+        </header>        
     );
 }
 

@@ -11,10 +11,13 @@ const db = new pg.Client({
     user: "postgres",
     host: "localhost",
     database: "booklist",
-    password: "estelacodes",
+    // password: "estelacodes",
+    password: "administrador",
     port: 5432,
 });
 db.connect();
+
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -23,11 +26,12 @@ let order_by = "recency";
 
 async function getBooks(order_by) {
     try {
-        let selectQuery = "SELECT book.id, title, name, rating, review, img_path FROM book INNER JOIN author ON book.id = author.id INNER JOIN review ON book.id = review.id"
-        // en realidad se puede mejorar metiendolo directamente en la linea de arriba
-        if (order_by === "rating") {
-          selectQuery = selectQuery + " ORDER BY rating";
-        }
+        // let selectQuery = "SELECT book.id, title, name, rating, review, img_path FROM book INNER JOIN author ON book.id = author.id INNER JOIN review ON book.id = review.id"
+        // // en realidad se puede mejorar metiendolo directamente en la linea de arriba
+        // if (order_by === "rating") {
+        //   selectQuery = selectQuery + " ORDER BY rating";
+        // }
+        let selectQuery = "SELECT id, title, author, rating, review, img_path FROM book"
         const result = await db.query(selectQuery);
         const books = result.rows;
         console.log(books);
@@ -43,6 +47,10 @@ app.get("/api", async (req, res) => {
     res.json(bookData); //our backend API that will
     //be fetched from the frontend
 })
+
+// app.get("http://localhost:5173/library", async (req, res) => {
+//   res.send("Library page.");
+// })
 
 app.listen(port, function (err) {
     if (err) console.log(err);

@@ -1,0 +1,60 @@
+.about-container img {
+    height: 400px;
+    width: 300px;
+    border-radius: 25px;
+    border: #85644d solid;
+    transition: transform .2s;
+}
+.about-container img:hover {
+    transform: scale(1.05);
+}
+
+h2 {
+    margin: 0px;
+    color: #3f3230;;
+    font-family: "Playwrite MX", ccursive;
+    font-size: 1.8em;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 50px;
+    color: whitesmoke;
+}
+
+.about-my-library-container, .about-myself-container, .about-my-sons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.about-myself, .about-my-library, .about-my-sons {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    align-content: center;
+    background-color: #c4af9d;
+    padding: 10px;
+    margin: 0px;
+    border-radius: 25px;
+    border: #85644d solid;
+    width: 300px;
+}
+.about-myself p, .about-my-library p, .about-my-sons p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.socials-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
