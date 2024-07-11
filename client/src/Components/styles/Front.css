@@ -1,5 +1,5 @@
 .front p {
-    color: black;
+    color: #3f3230;
     font-family: "Playwrite MX", cursive;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -11,14 +11,19 @@
     flex-direction: column;
     border-radius: 25px;
     width: 50rem;
-    background-color: rgb(221, 213, 203);
-    /* background-image: url(../../src/assets/design-space-paper-textured-background.jpg); */
+    background-color: #c4af9d;
+    background-image: url(../../assets/paper-vintage.png);
 }
 
 .front {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+    /* position: absolute;
+    left: 25%;
+    top: 20%; */
 }
 
 .front-buttons {

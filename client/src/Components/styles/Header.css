@@ -1,5 +1,5 @@
 header {
-  background-color: rgb(97, 88, 82);
+  background-color: #3f3230;
   font-family: "Playwrite MX", ccursive;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -37,7 +37,7 @@ header {
     color: whitesmoke;
   } 
   .header a:hover {
-    color: #774336;
+    color: #85644d;
   }
   
   .search-field {

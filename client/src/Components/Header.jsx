@@ -1,7 +1,7 @@
 import './styles/Header.css'
 import ImportContactsIcon from '@mui/icons-material/ImportContacts'
 import searchIcon from '../assets/search-icon.svg'
-import bookLogo from '../assets/book-logo.png'
+import bookLogo from '../assets/icon-whitesmoke-book.svg'
 import TextField from '@mui/material/TextField'
 
 

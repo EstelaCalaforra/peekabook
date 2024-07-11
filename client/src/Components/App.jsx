@@ -52,13 +52,13 @@ function App() {
     <div>
       <ThemeProvider theme={customTheme}>
         <Header />
-        {(typeof backendData === 'undefined' || backendData.length === 0) ? (
+        {/* {(typeof backendData === 'undefined' || backendData.length === 0) ? (
           <p>Loading...</p>
         ) : (
           backendData.map((book, index) => (
             <p key={index}>{book.title}</p>
           ))
-        )}
+        )} */}
         <Front />
         <Footer />
       </ThemeProvider>
