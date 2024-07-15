@@ -1,10 +1,10 @@
 header {
-  background-color: #3f3230;
-  font-family: "Playwrite MX", ccursive;
-  font-optical-sizing: auto;
-  font-weight: 400;
+  background-color: whitesmoke;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
   font-style: normal;
   width: 100%;
+  /* border-bottom: #b09c87 2px solid; */
 }
 .header {
     margin: 0; /*t/r/b/l*/
@@ -22,7 +22,7 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 30px;
     list-style-type: none;
     margin-block-start: 0em;
     margin-block-end: 0em;
@@ -34,7 +34,7 @@ header {
   
   .header a { 
     text-decoration: none; 
-    color: whitesmoke;
+    color: #3f3230;
   } 
   .header a:hover {
     color: #85644d;
@@ -59,3 +59,7 @@ header {
     will-change: filter;
     transition: filter 300ms;
   }
+
+  .logo {
+    
+  } 

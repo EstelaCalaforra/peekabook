@@ -16,13 +16,13 @@ import {
 const customTheme = createTheme({
   palette: {
     primary: {
-      main: '#F5F5F5',
-      light: '#F5F5F5',
-      dark: '#F5F5F5',
+      main: '#85644d',
+      light: '#ceab8c',
+      dark: '#3f3230',
       contrastText: '#F5F5F5'
     },
     secondary: {
-      main: '#F5F5F5',
+      main: '#b09c87',
       light: '#F5F5F5',
       dark: '#F5F5F5',
       contrastText: '#F5F5F5',

@@ -20,9 +20,8 @@ body {
   flex-direction: column;
   min-width: 300px;
   min-height: 100vh;
-  background-color: white;
-  background-color: #a38b75;
-  background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png");
+  background-color: whitesmoke; 
+  /* background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png"); */
 }
 
 h1 {

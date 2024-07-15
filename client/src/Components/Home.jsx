@@ -10,24 +10,35 @@ function Home() {
   const [backendData, setBackendData] = useState([{}]);
    // fetch the backend API
    useEffect(() => {
-    const fetchData = async () => {
+    const fetchBackendData = async () => {
       try {
-        console.log("hola2");
         const response = await axios.get('http://localhost:5000/api');
-        console.log(response);
-        console.log(response.data);
-        console.log(" Length: ", response.data.length);
         setBackendData(response.data);
-        console.log("backendData: ", backendData)
-        console.log(typeof(backendData));
-        console.log(typeof [{}]);
       } catch (error) {
         console.log(error);
       }
     };
-  
-    console.log("hola1");
-    fetchData();
+    fetchBackendData();
+  }, []);
+
+  const [quoteData, setQuoteData] = useState({quote: "", author: "", book: ""});
+   // fetch the backend API
+   useEffect(() => {
+    const fetchQuoteData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/get-random-quote');
+        setQuoteData({
+          ...quoteData,
+          quote: response.data.quote,
+          author: response.data.author,
+          book: response.data.book,
+        });
+        console.log(quoteData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchQuoteData();
   }, []);
 
   return (
@@ -43,14 +54,17 @@ function Home() {
           <img src={bookPages}></img>
           <div>
             <div className='quote'>
-              <p>El misterio de la vida no es un problema a resolver, sino una realidad a experimentar.</p>
-              <p>Dune, Frank Herbert</p>
+              <p>{quoteData.quote}</p>
+              <p>{quoteData.author} &#40;{quoteData.book}&#41;</p>
             </div>
           </div>
           <div className='front-buttons'>
-            <Button variant="contained">See library</Button>
-            <Button variant="contained">Add new book</Button>
+            <Button variant="contained">START YOUR LIBRARY</Button>
           </div>
+          <div className='sign-in'>
+              <p>¿Already a member?</p>
+              <p><a>Sign in</a></p>
+            </div>
         </div>
     </div>
   )
