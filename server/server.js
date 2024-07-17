@@ -51,15 +51,33 @@ async function getQuote() {
         console.log(error);
       }
 }
+//get bestseller books
+async function getBestsellers() {
+  try {  
+    const params = {
+      "api-key": "WdGDKFTLRAMvyfPT3LVHZAAUiEaImG0W",
+    } 
+    const response = await axios.get("https://api.nytimes.com/svc/books/v3/lists/overview.json", { params: params });
+    const best_sellers = response.data;
+    return best_sellers;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 app.get("/get-random-quote", async (req, res) => {
     const quoteData = await getQuote();
     res.json(quoteData);
 })
 
+app.get("/get-bestsellers", async (req, res) => {
+  const bestSellers = await getBestsellers();
+  // console.log(bestSellers);
+  res.json(bestSellers);
+})
+
 app.get("/api", async (req, res) => {
     const bookData = await getBooks(order_by);
-    // console.log(bookData);
     res.json(bookData); //our backend API that will
     //be fetched from the frontend
 })
