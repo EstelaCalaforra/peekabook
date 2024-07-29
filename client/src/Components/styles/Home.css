@@ -1,14 +1,18 @@
 .container {
     display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: space-between;
 }
 
 .column {
+    display: flex;
     flex-direction: column;
-    flex: 1; /* Esto hace que las columnas tengan el mismo ancho */
     padding: 10px;
     /* border: 1px solid #ccc; */
     margin: 5px;
     border-radius: 5px;
+    align-items: center;
 }
 
 .row {
@@ -25,36 +29,35 @@
 
 .front .quote {
     /* background-color: rgb(212, 192, 164); */
-    background-image: url(../../assets/paper-vintage.png);
-    padding-right: 20px;
-    padding-left: 20px;
+    /* background-image: url(../../assets/note-paper.png); */
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center;
+    padding-right: 50px;
+    padding-left: 50px;
     color: #3f3230;
     font-family: "Baskervville", serif;
     font-weight: 400;
+    gap: 10px;
 }
 
 .front .quote p {
     font-size: large;
-}
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-top: 0;
 
-.quote > div {
-    /* background-color: rgb(243, 233, 220); */
-    /* background-size: contain;
-    background-image: url(../../assets/badge-rectangular-ornament-frame-by-Vexels.png); */
-    border-radius: 10px;
-    padding: 2px;
 }
-
 
 .front .bestsellers {
     color: #3f3230;
     font-family: "Baskervville", serif;
     font-weight: 400;
-    
 }
 
 .front .miniature {
     height: 100px;
+    width: 100px;
 }
 
 .front .bestsellers .miniature {
@@ -65,4 +68,13 @@
 
 .front .sign-in {
     color: black;
+}
+
+.shelf {
+    width: 50vw;
+}
+
+.bestsellers-shelf {
+    margin-bottom: 0;
+    padding-bottom: 0;
 }

@@ -16,15 +16,13 @@
 body {
   padding: 0px;
   margin: 0;
-  /* display: grid;
-  place-content: center;
-  grid-template-rows: auto 1fr auto; */
   display: flex;
   flex-direction: column;
   min-width: 300px;
   min-height: 100vh;
   background-color: whitesmoke; 
   /* background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png"); */
+  justify-content: space-between;
 }
 
 h1 {
@@ -62,4 +60,8 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+a:hover {
+  color: #ceab8c;
 }

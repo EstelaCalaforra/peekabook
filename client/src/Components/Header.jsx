@@ -1,8 +1,8 @@
-import './styles/Header.css';
-import ImportContactsIcon from '@mui/icons-material/ImportContacts';
-import searchIcon from '../assets/search-icon.svg';
-import bookLogo from '../assets/logo-pick.png';
-import TextField from '@mui/material/TextField';
+import './styles/Header.css'
+// import ImportContactsIcon from '@mui/icons-material/ImportContacts'
+// import searchIcon from '../assets/search-icon.svg'
+import bookLogo from '../assets/logo-pick.png'
+import TextField from '@mui/material/TextField'
 
 
 function Header() {
@@ -19,8 +19,8 @@ function Header() {
                 <nav>
                     <ul>
                         <li><a href="/">Home</a></li> 
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/library">Library</a></li>
+                        <li><a href="/bookshelf">Bookshelf</a></li>
+                        {/* <li><a href="/library">Library</a></li> */}
                     </ul>
                 </nav>
             </div>
@@ -33,4 +33,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default Header
