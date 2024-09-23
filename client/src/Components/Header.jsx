@@ -1,36 +1,62 @@
 import './styles/Header.css'
-// import ImportContactsIcon from '@mui/icons-material/ImportContacts'
-// import searchIcon from '../assets/search-icon.svg'
-import bookLogo from '../assets/logo-pick.png'
-import TextField from '@mui/material/TextField'
+import bookLogo from '../assets/peekabook-logo.png'
+import { useId, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { BookSearchContext } from '../context/bookSearchContext'
+import { useBookSearch } from '../hooks/useBookSearch'
 
+export function Header () {
+  const { bookQuery, setBookQuery } = useContext(BookSearchContext)
+  const { setBooksGoogleAPI } = useBookSearch()
 
-function Header() {
+  // const dropdownSearchId = useId()
+  const searchBookFormId = useId()
+  const searchBookInputId = useId()
 
-    // const TextFieldProps = {
-    //     color: 'text.primary' | 'inherit', // default text.primary
-    //     accentColor: 'primary' | 'secondary', // default primary
-    //   }
+  const navigate = useNavigate()
 
-    return (
-        <header>
-            <div className='img-and-nav'>
-                <img src={bookLogo} alt="Company Logo" className="logo" />
-                <nav>
-                    <ul>
-                        <li><a href="/">Home</a></li> 
-                        <li><a href="/bookshelf">Bookshelf</a></li>
-                        {/* <li><a href="/library">Library</a></li> */}
-                    </ul>
-                </nav>
-            </div>
-            
-            <div className='search-field'>
-                {/* <img src={searchIcon} alt="Seacrh Icon" className="search-icon" /> */}
-                <TextField id="outlined-basic" label="Search" variant="outlined" autoComplete='off' color="secondary" focused />
-            </div>
-        </header>        
-    );
+  function handleSubmit (event) {
+    event.preventDefault()
+    setBooksGoogleAPI(bookQuery)
+    navigate('/book-info')
+  }
+
+  function handleChange (event) {
+    const newBookQuery = event.target.value
+    setBookQuery(newBookQuery)
+  }
+
+  return (
+    <header>
+
+      <img src={bookLogo} alt='Company Logo' className='logo' />
+      <nav>
+        <ul>
+          <li><a href='/'>Home</a></li>
+          <li><a href='/bookshelf'>Bookshelf</a></li>
+        </ul>
+      </nav>
+
+      <form id={searchBookFormId} onSubmit={handleSubmit} className='header-form'>
+        <input id={searchBookInputId} type='text' onChange={handleChange} value={bookQuery} placeholder='Search book...' />
+        {/* <div id={dropdownSearchId} className='dropdown-content'>
+          {loading
+            ? (
+              <p>Loading...</p>
+              )
+            : (
+              <ul>
+                {responseBooks.map((result) => (
+                  <li key={result.id}>
+                    <h3>{result.volumeInfo.title}</h3>
+                    <p>{result.volumeInfo.authors[0]}</p>
+                  </li>
+                ))}
+              </ul>
+              )}
+        </div> */}
+
+      </form>
+    </header>
+  )
 }
-
-export default Header

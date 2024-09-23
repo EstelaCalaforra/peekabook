@@ -1,0 +1,908 @@
+{
+"kind": "books#volumes",
+"totalItems": 1185,
+"items": [
+  {
+    "kind": "books#volume",
+    "id": "6zvBDQAAQBAJ",
+    "etag": "MxqPawau2j8",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/6zvBDQAAQBAJ",
+    "volumeInfo": {
+      "title": "EL CONDE DE MONTECRISTO",
+      "authors": [
+        "Alexandre Dumas"
+      ],
+      "publisher": "Ediciones AKAL",
+      "publishedDate": "2016-12-16",
+      "description": "El conde de Montecristo (1844) es, en principio, la historia de una venganza. Edmond Dantès es un joven marino que, en el día de su compromiso con la bella Mercedes, es víctima de un complot y encarcelado en el castillo de If, de donde no deberá salir jamás. Gracias al abate Faria, a quien conoce en la prisión, adquiere una educación y averigua la existencia de un maravilloso tesoro escondido en la isla de Montecristo. Fingiendo su muerte, logra escapar de la fortaleza y se enrola con unos piratas en busca de una fabulosa fortuna. Su siguiente objetivo, convertido ya en un rico y poderoso noble, será llevar a cabo la más despìadada venganza nunca imaginada. Se trata de una sólida novela de aventuras, con una rica y compleja trama y multitud de personajes, a través de los que Dumas se adentra en las pasiones más profundas del ser humano, en su codicia y en sus ansias de poder, pero en la que también se habla de amor, lealtad y justicia.",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_13",
+          "identifier": "9788446043188"
+        },
+        {
+          "type": "ISBN_10",
+          "identifier": "8446043181"
+        }
+      ],
+      "readingModes": {
+        "text": true,
+        "image": true
+      },
+      "pageCount": 1262,
+      "printType": "BOOK",
+      "categories": [
+        "Fiction"
+      ],
+      "averageRating": 5,
+      "ratingsCount": 1,
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": true,
+      "contentVersion": "1.2.2.0.preview.3",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=6zvBDQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=6zvBDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      },
+      "language": "es",
+      "previewLink": "http://books.google.es/books?id=6zvBDQAAQBAJ&printsec=frontcover&dq=montecristo&hl=&cd=1&source=gbs_api",
+      "infoLink": "https://play.google.com/store/books/details?id=6zvBDQAAQBAJ&source=gbs_api",
+      "canonicalVolumeLink": "https://play.google.com/store/books/details?id=6zvBDQAAQBAJ"
+    },
+    "saleInfo": {
+      "country": "ES",
+      "saleability": "FOR_SALE",
+      "isEbook": true,
+      "listPrice": {
+        "amount": 12.99,
+        "currencyCode": "EUR"
+      },
+      "retailPrice": {
+        "amount": 12.99,
+        "currencyCode": "EUR"
+      },
+      "buyLink": "https://play.google.com/store/books/details?id=6zvBDQAAQBAJ&rdid=book-6zvBDQAAQBAJ&rdot=1&source=gbs_api",
+      "offers": [
+        {
+          "finskyOfferType": 1,
+          "listPrice": {
+            "amountInMicros": 12990000,
+            "currencyCode": "EUR"
+          },
+          "retailPrice": {
+            "amountInMicros": 12990000,
+            "currencyCode": "EUR"
+          },
+          "giftable": true
+        }
+      ]
+    },
+    "accessInfo": {
+      "country": "ES",
+      "viewability": "PARTIAL",
+      "embeddable": true,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.es/books/download/EL_CONDE_DE_MONTECRISTO-sample-epub.acsm?id=6zvBDQAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+      },
+      "pdf": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.es/books/download/EL_CONDE_DE_MONTECRISTO-sample-pdf.acsm?id=6zvBDQAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=6zvBDQAAQBAJ&hl=&source=gbs_api",
+      "accessViewStatus": "SAMPLE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "El conde de Montecristo (1844) es, en principio, la historia de una venganza."
+    }
+  },
+  {
+    "kind": "books#volume",
+    "id": "cxga0AEACAAJ",
+    "etag": "2RV483prZCA",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/cxga0AEACAAJ",
+    "volumeInfo": {
+      "title": "El Conde de Montecristo (Edición Conmemorativa)",
+      "authors": [
+        "Alexandre Dumas"
+      ],
+      "publisher": "Penguin Clasicos",
+      "publishedDate": "2024-02-20",
+      "description": "La gran novela de aventuras, amor y venganza del siglo XIX Introducción de Jean-Yves Tadié, profesor emérito de la Universidad de La Sorbona Traducción de E. V Edmundo Dantés, un joven marinero que siempre ha llevado una vida tranquila, solo desea casarse con la hermosa Mercedes. Pero sus planes se malogran cuando su mejor amigo, Fernando, le traiciona vilmente para conquistar a su prometida. Edmundo vivirá una larga pesadilla de trece años mientras cumple una condena injusta en la siniestra prisión del castillo de If. Obsesionado por su inesperado destino, dejará de lado sus convicciones para urdir la venganza perfecta. El conde de Montecristo es uno de los clásicos más populares y trepidantes de todos los tiempos. La presente edición contiene las dos partes que componen la obra, así como una magistral introducción de Jean-Yves Tadié, catedrático emérito de la Universidad de La Sorbona.",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_10",
+          "identifier": "8491054561"
+        },
+        {
+          "type": "ISBN_13",
+          "identifier": "9788491054566"
+        }
+      ],
+      "readingModes": {
+        "text": false,
+        "image": false
+      },
+      "pageCount": 0,
+      "printType": "BOOK",
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": false,
+      "contentVersion": "preview-1.0.0",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=cxga0AEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=cxga0AEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+      },
+      "language": "es",
+      "previewLink": "http://books.google.es/books?id=cxga0AEACAAJ&dq=montecristo&hl=&cd=2&source=gbs_api",
+      "infoLink": "http://books.google.es/books?id=cxga0AEACAAJ&dq=montecristo&hl=&source=gbs_api",
+      "canonicalVolumeLink": "https://books.google.com/books/about/El_Conde_de_Montecristo_Edici%C3%B3n_Conmemo.html?hl=&id=cxga0AEACAAJ"
+    },
+    "saleInfo": {
+      "country": "ES",
+      "saleability": "NOT_FOR_SALE",
+      "isEbook": false
+    },
+    "accessInfo": {
+      "country": "ES",
+      "viewability": "NO_PAGES",
+      "embeddable": false,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": false
+      },
+      "pdf": {
+        "isAvailable": false
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=cxga0AEACAAJ&hl=&source=gbs_api",
+      "accessViewStatus": "NONE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "La historia épica de sufrimiento y retribución de Dumas, inspirada en un caso real de encarcelamiento injusto, fue un gran éxito popular cuando se publicó por primera vez en la década de 1840."
+    }
+  },
+  {
+    "kind": "books#volume",
+    "id": "nqJjDwAAQBAJ",
+    "etag": "bxw39QP5+n4",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/nqJjDwAAQBAJ",
+    "volumeInfo": {
+      "title": "El conde de Montecristo",
+      "subtitle": "texto completo, con índice activo",
+      "authors": [
+        "Alexandre Dumas"
+      ],
+      "publisher": "e-artnow",
+      "publishedDate": "2013-11-27",
+      "description": "Edmond Dantès, a young sailor, is falsely accused of treason and imprisoned in a dungeon for fourteen years. A fellow prisoner tells him where to find treasure buried on a Mediterranean island called Monte Cristo. On Dantès's escape, he acquires the treasure, gives himself the name Count of Monte Cristo, and ruthlessly goes about the slow destruction of his enemies.",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_13",
+          "identifier": "9788026803386"
+        },
+        {
+          "type": "ISBN_10",
+          "identifier": "8026803388"
+        }
+      ],
+      "readingModes": {
+        "text": true,
+        "image": true
+      },
+      "pageCount": 1321,
+      "printType": "BOOK",
+      "categories": [
+        "Fiction"
+      ],
+      "averageRating": 2,
+      "ratingsCount": 1,
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": true,
+      "contentVersion": "1.4.3.0.preview.3",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=nqJjDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=nqJjDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      },
+      "language": "es",
+      "previewLink": "http://books.google.es/books?id=nqJjDwAAQBAJ&printsec=frontcover&dq=montecristo&hl=&cd=3&source=gbs_api",
+      "infoLink": "https://play.google.com/store/books/details?id=nqJjDwAAQBAJ&source=gbs_api",
+      "canonicalVolumeLink": "https://play.google.com/store/books/details?id=nqJjDwAAQBAJ"
+    },
+    "saleInfo": {
+      "country": "ES",
+      "saleability": "FOR_SALE",
+      "isEbook": true,
+      "listPrice": {
+        "amount": 1.99,
+        "currencyCode": "EUR"
+      },
+      "retailPrice": {
+        "amount": 1.99,
+        "currencyCode": "EUR"
+      },
+      "buyLink": "https://play.google.com/store/books/details?id=nqJjDwAAQBAJ&rdid=book-nqJjDwAAQBAJ&rdot=1&source=gbs_api",
+      "offers": [
+        {
+          "finskyOfferType": 1,
+          "listPrice": {
+            "amountInMicros": 1990000,
+            "currencyCode": "EUR"
+          },
+          "retailPrice": {
+            "amountInMicros": 1990000,
+            "currencyCode": "EUR"
+          },
+          "giftable": true
+        }
+      ]
+    },
+    "accessInfo": {
+      "country": "ES",
+      "viewability": "PARTIAL",
+      "embeddable": true,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.es/books/download/El_conde_de_Montecristo-sample-epub.acsm?id=nqJjDwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+      },
+      "pdf": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.es/books/download/El_conde_de_Montecristo-sample-pdf.acsm?id=nqJjDwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=nqJjDwAAQBAJ&hl=&source=gbs_api",
+      "accessViewStatus": "SAMPLE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "Edmond Dantès, a young sailor, is falsely accused of treason and imprisoned in a dungeon for fourteen years."
+    }
+  },
+  {
+    "kind": "books#volume",
+    "id": "tE-xwf2OAbQC",
+    "etag": "1nTMbDnbuYA",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/tE-xwf2OAbQC",
+    "volumeInfo": {
+      "title": "Para leer El Conde de Montecristo",
+      "authors": [
+        "Luis Benítez"
+      ],
+      "publisher": "Ediciones LEA",
+      "description": "Si bien El Conde de Montecristo fue escrito por Alejandro Dumas padre en 1844 y han pasado 162 años desde entonces, a lo largo de todo este tiempo el terrible y dramático protagonista de esta historia no sólo no ha sido olvidado, sino que ha estado siempre presente en la imaginación y la fantasía de las sucesivas generaciones de lectores. Atravesando todo el siglo XX y también lo que va del XXI, la terrible odisea vivida por Edmundo Dantés, el prisionero del castillo de If que huye de su calabozo para volver bajo la figura del enigmático conde de Montecristo y vengarse de quienes arruinaron su vida, no ha perdido nada de su encanto y todavía más, se ha enriquecido... En efecto: la radiofonía, el cine y la televisión, inventos que Dumas no llegó a conocer, no sólo no sepultaron con nuevos personajes a Dantés, sino que reforzaron su presencia en nuestra imaginación con nuevas versiones. Sin duda, Alejandro Dumas –sabiéndolo o no– dio en una clave principal de nuestras fantasías y temores: el de la destrucción de la felicidad que imaginamos para nosotros mismos, por un golpe del destino que de ninguna forma esperamos.",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_13",
+          "identifier": "9789876346405"
+        },
+        {
+          "type": "ISBN_10",
+          "identifier": "9876346407"
+        }
+      ],
+      "readingModes": {
+        "text": true,
+        "image": true
+      },
+      "pageCount": 116,
+      "printType": "BOOK",
+      "categories": [
+        "Fiction"
+      ],
+      "averageRating": 5,
+      "ratingsCount": 1,
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": true,
+      "contentVersion": "1.2.2.0.preview.3",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=tE-xwf2OAbQC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=tE-xwf2OAbQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      },
+      "language": "es",
+      "previewLink": "http://books.google.es/books?id=tE-xwf2OAbQC&printsec=frontcover&dq=montecristo&hl=&cd=4&source=gbs_api",
+      "infoLink": "https://play.google.com/store/books/details?id=tE-xwf2OAbQC&source=gbs_api",
+      "canonicalVolumeLink": "https://play.google.com/store/books/details?id=tE-xwf2OAbQC"
+    },
+    "saleInfo": {
+      "country": "ES",
+      "saleability": "FOR_SALE",
+      "isEbook": true,
+      "listPrice": {
+        "amount": 3.79,
+        "currencyCode": "EUR"
+      },
+      "retailPrice": {
+        "amount": 3.6,
+        "currencyCode": "EUR"
+      },
+      "buyLink": "https://play.google.com/store/books/details?id=tE-xwf2OAbQC&rdid=book-tE-xwf2OAbQC&rdot=1&source=gbs_api",
+      "offers": [
+        {
+          "finskyOfferType": 1,
+          "listPrice": {
+            "amountInMicros": 3790000,
+            "currencyCode": "EUR"
+          },
+          "retailPrice": {
+            "amountInMicros": 3600000,
+            "currencyCode": "EUR"
+          },
+          "giftable": true
+        }
+      ]
+    },
+    "accessInfo": {
+      "country": "ES",
+      "viewability": "PARTIAL",
+      "embeddable": true,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.es/books/download/Para_leer_El_Conde_de_Montecristo-sample-epub.acsm?id=tE-xwf2OAbQC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+      },
+      "pdf": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.es/books/download/Para_leer_El_Conde_de_Montecristo-sample-pdf.acsm?id=tE-xwf2OAbQC&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=tE-xwf2OAbQC&hl=&source=gbs_api",
+      "accessViewStatus": "SAMPLE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "Si bien El Conde de Montecristo fue escrito por Alejandro Dumas padre en 1844 y han pasado 162 años desde entonces, a lo largo de todo este tiempo el terrible y dramático protagonista de esta historia no sólo no ha sido olvidado, sino ..."
+    }
+  },
+  {
+    "kind": "books#volume",
+    "id": "2lbAEAAAQBAJ",
+    "etag": "YcMM7yo+hAU",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/2lbAEAAAQBAJ",
+    "volumeInfo": {
+      "title": "El conde de Montecristo",
+      "authors": [
+        "Alexander Dumas"
+      ],
+      "publisher": "CASTALIA",
+      "publishedDate": "2023-06-17",
+      "description": "Naufragios, mazmorras, fugas, ejecuciones, asesinatos, traiciones, envenenamientos, suplantaciones de personalidad, un niñó enterrado vivo, una joven resucitada, catacumbas, contrabandistas, bandoleros, tesoros, amoríos, reveses de la fortuna, golpes de teatro..., todos estos elementos y más recrean una atmósfera irreal, extraordinaria, fantástica, a la medida del superhombre que se mueve en ella. Y todo ello arropado en una novela de costumbres, digna de medirse con las contemporáneas de Balzac. Eso es: El conde de Montecristo. Pero, además, toda la obra gira en torno a una idea moral: El mal debe ser castigado. El conde, desde esa altura que le da la sabiduría, la riqueza y el manejo de los hilos de la trama, se erige en \"la mano de Dios\", para repartir premios y castigos y vengar su juventud y su amor destrozados. A veces, cuando hace milagros para salvar al justo de la muerte, el lector se sobrecoge de emoción. Otras, cuando asesta los implacables hachazos de la venganza, nos sentimos estremecidos. En definitiva, una novela que nos atrapa de principio a fin. Una lectura indispensable, en todos los sentidos. Nuestra edición: Una edición completa de \"El conde de Montecristo\" con letra de tamaño legible no baja de las 1300 páginas. Evidentemente esta edición de 675 páginas es una edición abreviada, sin modificación alguna del texto escrito por Dumas, prescindiendo de algunos episodios en los que el autor se recrea en el personaje del conde y de algunos diálogos que el autor introduce teniendo en cuenta de que le pagaban cada línea a tres francos (una cantidad exorbitante comparada con el pago a los periodistas de prestigio de la época). Consecuentemente, el libro que tiene el lector entre sus manos es la traducción de una parte del texto original, manteniendo la continuidad del texto, sin digresiones innecesarias para la comprensión y disfrute de la trama, evitando diálogos supérfluos y descripciones repetidas a lo largo de la obra para que no distraigan al lector del asunto principal.",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_13",
+          "identifier": "9788497409216"
+        },
+        {
+          "type": "ISBN_10",
+          "identifier": "8497409213"
+        }
+      ],
+      "readingModes": {
+        "text": true,
+        "image": true
+      },
+      "pageCount": 605,
+      "printType": "BOOK",
+      "categories": [
+        "Fiction"
+      ],
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": false,
+      "contentVersion": "1.3.2.0.preview.3",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=2lbAEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=2lbAEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      },
+      "language": "es",
+      "previewLink": "http://books.google.es/books?id=2lbAEAAAQBAJ&printsec=frontcover&dq=montecristo&hl=&cd=5&source=gbs_api",
+      "infoLink": "https://play.google.com/store/books/details?id=2lbAEAAAQBAJ&source=gbs_api",
+      "canonicalVolumeLink": "https://play.google.com/store/books/details?id=2lbAEAAAQBAJ"
+    },
+    "saleInfo": {
+      "country": "ES",
+      "saleability": "FOR_SALE",
+      "isEbook": true,
+      "listPrice": {
+        "amount": 6.99,
+        "currencyCode": "EUR"
+      },
+      "retailPrice": {
+        "amount": 6.99,
+        "currencyCode": "EUR"
+      },
+      "buyLink": "https://play.google.com/store/books/details?id=2lbAEAAAQBAJ&rdid=book-2lbAEAAAQBAJ&rdot=1&source=gbs_api",
+      "offers": [
+        {
+          "finskyOfferType": 1,
+          "listPrice": {
+            "amountInMicros": 6990000,
+            "currencyCode": "EUR"
+          },
+          "retailPrice": {
+            "amountInMicros": 6990000,
+            "currencyCode": "EUR"
+          },
+          "giftable": true
+        }
+      ]
+    },
+    "accessInfo": {
+      "country": "ES",
+      "viewability": "PARTIAL",
+      "embeddable": true,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.es/books/download/El_conde_de_Montecristo-sample-epub.acsm?id=2lbAEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+      },
+      "pdf": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.es/books/download/El_conde_de_Montecristo-sample-pdf.acsm?id=2lbAEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=2lbAEAAAQBAJ&hl=&source=gbs_api",
+      "accessViewStatus": "SAMPLE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "Y todo ello arropado en una novela de costumbres, digna de medirse con las contemporáneas de Balzac. Eso es: El conde de Montecristo. Pero, además, toda la obra gira en torno a una idea moral: El mal debe ser castigado."
+    }
+  },
+  {
+    "kind": "books#volume",
+    "id": "EFfjCQAAQBAJ",
+    "etag": "bMU7j5dvE4c",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/EFfjCQAAQBAJ",
+    "volumeInfo": {
+      "title": "El conde de Montecristo",
+      "authors": [
+        "Alejandro Dumas"
+      ],
+      "publisher": "Editorial Verbum",
+      "publishedDate": "2015-06-15",
+      "description": "Edmundo Dantés llega al puerto de Marsella en 1815 a bordo del barco El faraón. Es un marino joven y exitoso que despierta los celos de sus enemigos. Enamorado de Mercedes, desea casarse con ella. Pero no sabe y no presiente que la envidia lo circunda en silencio... La trampa está cerca. Traicionado en su inocencia, acusado de ser un agente bonapartista, lo encarcelan sin juicio previo en la isla de If, lugar del que nadie sale vivo. Catorce años de su vida transcurren en esa prisión desoladora donde tendrá la suerte de encontrarse con el abate Faria, un hombre culto y sabio, que le abrirá las puertas del conocimiento, le mostrará quienes y por qué lo han traicionado y le dará la clave para escapar. El misterioso Conde de Montecristo aparecerá para desquitarse con sus enemigos. Aventura e historia se alían en un abordaje apasionante de temas como la justicia, la venganza y el perdón.",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_13",
+          "identifier": "9788490741986"
+        },
+        {
+          "type": "ISBN_10",
+          "identifier": "8490741980"
+        }
+      ],
+      "readingModes": {
+        "text": false,
+        "image": true
+      },
+      "pageCount": 918,
+      "printType": "BOOK",
+      "categories": [
+        "Fiction"
+      ],
+      "averageRating": 5,
+      "ratingsCount": 1,
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": true,
+      "contentVersion": "0.1.0.0.preview.1",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=EFfjCQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=EFfjCQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      },
+      "language": "es",
+      "previewLink": "http://books.google.es/books?id=EFfjCQAAQBAJ&printsec=frontcover&dq=montecristo&hl=&cd=6&source=gbs_api",
+      "infoLink": "https://play.google.com/store/books/details?id=EFfjCQAAQBAJ&source=gbs_api",
+      "canonicalVolumeLink": "https://play.google.com/store/books/details?id=EFfjCQAAQBAJ"
+    },
+    "saleInfo": {
+      "country": "ES",
+      "saleability": "FOR_SALE",
+      "isEbook": true,
+      "listPrice": {
+        "amount": 8.99,
+        "currencyCode": "EUR"
+      },
+      "retailPrice": {
+        "amount": 8.54,
+        "currencyCode": "EUR"
+      },
+      "buyLink": "https://play.google.com/store/books/details?id=EFfjCQAAQBAJ&rdid=book-EFfjCQAAQBAJ&rdot=1&source=gbs_api",
+      "offers": [
+        {
+          "finskyOfferType": 1,
+          "listPrice": {
+            "amountInMicros": 8990000,
+            "currencyCode": "EUR"
+          },
+          "retailPrice": {
+            "amountInMicros": 8540000,
+            "currencyCode": "EUR"
+          },
+          "giftable": true
+        }
+      ]
+    },
+    "accessInfo": {
+      "country": "ES",
+      "viewability": "PARTIAL",
+      "embeddable": true,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": false
+      },
+      "pdf": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.es/books/download/El_conde_de_Montecristo-sample-pdf.acsm?id=EFfjCQAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=EFfjCQAAQBAJ&hl=&source=gbs_api",
+      "accessViewStatus": "SAMPLE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "El misterioso Conde de Montecristo aparecerá para desquitarse con sus enemigos. Aventura e historia se alían en un abordaje apasionante de temas como la justicia, la venganza y el perdón."
+    }
+  },
+  {
+    "kind": "books#volume",
+    "id": "-nOREAAAQBAJ",
+    "etag": "otw0q4+UcEs",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/-nOREAAAQBAJ",
+    "volumeInfo": {
+      "title": "El conde de Montecristo / The Count of Montecristo",
+      "authors": [
+        "Alexandre Dumas"
+      ],
+      "publisher": "National Geographic Books",
+      "publishedDate": "2017-01-31",
+      "description": "Nominada por los estadounidenses como una de las 100 mejores novelas en la serie de PBS The Great American Read Grandes Clásicos Literatura Random House nos brinda esta magnífica edición de una novela de enorme poder de sugestión, a través de la figura del hombre solitario que, tras sobrevivir a una vil traición, regresa para hacer justicia. El conde de Montecristo es uno de los clásicos más populares de todos los tiempos. Desde su publicación, en 1844, no ha dejado de seducir al gran público con la inolvidable historia de su protagonista. Edmond Dantés es un joven marinero, honrado y cándido, que lleva una existencia tranquila. Quiere casarse con la hermosa Mercedes, pero su vida se verá arruinada cuando su mejor amigo, Ferdinand, deseoso de conquistar a su prometida, le traicione vilmente. Condenado a cumplir una condena que no merece en la siniestra prisión del castillo de If, Edmond vivirá una larga pesadilla de trece años. Obsesionado por su inesperado destino, dejará de lado sus convicciones en torno al bien y al mal, y se dedicará a tramar la venganza perfecta. Historia transida de densidad moral y cívica, El conde de Montecristo es, hoy como ayer, una novela amena, iluminadora y fascinante en sus múltiples dimensiones. ENGLISH DESCRIPTION Nominated as one of America’s best-loved novels by PBS’s The Great American Read Thrown in prison for a crime he has not committed, Edmond Dantes is confined to the grim fortress of If. There he learns of a great hoard of treasure hidden on the Isle of Monte Cristo and he becomes determined not only to escape, but also to unearth the treasure and use it to plot the destruction of the three men responsible for his incarceration. Dumas' epic tale of suffering and retribution, inspired by a real-life case of wrongful imprisonment, was a huge popular success when it was first serialized in the 1840s. Robin Buss's lively English translation is complete and unabridged, and remains faithful to the style of Dumas's original. This edition includes an introduction, explanatory notes and suggestions for further reading.",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_13",
+          "identifier": "9788491052425"
+        },
+        {
+          "type": "ISBN_10",
+          "identifier": "8491052429"
+        }
+      ],
+      "readingModes": {
+        "text": true,
+        "image": false
+      },
+      "pageCount": 0,
+      "printType": "BOOK",
+      "categories": [
+        "Fiction"
+      ],
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": false,
+      "contentVersion": "preview-1.0.0",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=-nOREAAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=-nOREAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+      },
+      "language": "es",
+      "previewLink": "http://books.google.es/books?id=-nOREAAAQBAJ&dq=montecristo&hl=&cd=7&source=gbs_api",
+      "infoLink": "http://books.google.es/books?id=-nOREAAAQBAJ&dq=montecristo&hl=&source=gbs_api",
+      "canonicalVolumeLink": "https://books.google.com/books/about/El_conde_de_Montecristo_The_Count_of_Mon.html?hl=&id=-nOREAAAQBAJ"
+    },
+    "saleInfo": {
+      "country": "ES",
+      "saleability": "NOT_FOR_SALE",
+      "isEbook": false
+    },
+    "accessInfo": {
+      "country": "ES",
+      "viewability": "NO_PAGES",
+      "embeddable": false,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": false
+      },
+      "pdf": {
+        "isAvailable": false
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=-nOREAAAQBAJ&hl=&source=gbs_api",
+      "accessViewStatus": "NONE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "Robin Buss&#39;s lively English translation is complete and unabridged, and remains faithful to the style of Dumas&#39;s original. This edition includes an introduction, explanatory notes and suggestions for further reading."
+    }
+  },
+  {
+    "kind": "books#volume",
+    "id": "BK_jDwAAQBAJ",
+    "etag": "nXoglbV1KzY",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/BK_jDwAAQBAJ",
+    "volumeInfo": {
+      "title": "El conde de Montecristo Tomo I",
+      "authors": [
+        "Alejandro Dumas "
+      ],
+      "publisher": "El Cid Editor",
+      "publishedDate": "2017-01-10",
+      "description": "El conde de Montecristo es una sólida novela de aventuras. Naufragios, mazmorras, fugas, ejecuciones, asesinatos, traiciones, envenenamientos, suplantaciones de personalidad, un niño enterrado vivo, una joven resucitada, catacumbas, contrabandistas, bandoleros...todo para crear una atmósfera irreal, extraordinaria, fantástica, a la medida del superhombre que se mueve en ella.",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_13",
+          "identifier": "9781449263232"
+        },
+        {
+          "type": "ISBN_10",
+          "identifier": "1449263232"
+        }
+      ],
+      "readingModes": {
+        "text": true,
+        "image": true
+      },
+      "pageCount": 289,
+      "printType": "BOOK",
+      "categories": [
+        "Fiction"
+      ],
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": false,
+      "contentVersion": "preview-1.0.0",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=BK_jDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=BK_jDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      },
+      "language": "es",
+      "previewLink": "http://books.google.es/books?id=BK_jDwAAQBAJ&printsec=frontcover&dq=montecristo&hl=&cd=8&source=gbs_api",
+      "infoLink": "https://play.google.com/store/books/details?id=BK_jDwAAQBAJ&source=gbs_api",
+      "canonicalVolumeLink": "https://play.google.com/store/books/details?id=BK_jDwAAQBAJ"
+    },
+    "saleInfo": {
+      "country": "ES",
+      "saleability": "FOR_SALE",
+      "isEbook": true,
+      "listPrice": {
+        "amount": 11.51,
+        "currencyCode": "EUR"
+      },
+      "retailPrice": {
+        "amount": 11.51,
+        "currencyCode": "EUR"
+      },
+      "buyLink": "https://play.google.com/store/books/details?id=BK_jDwAAQBAJ&rdid=book-BK_jDwAAQBAJ&rdot=1&source=gbs_api",
+      "offers": [
+        {
+          "finskyOfferType": 1,
+          "listPrice": {
+            "amountInMicros": 11510000,
+            "currencyCode": "EUR"
+          },
+          "retailPrice": {
+            "amountInMicros": 11510000,
+            "currencyCode": "EUR"
+          },
+          "giftable": true
+        }
+      ]
+    },
+    "accessInfo": {
+      "country": "ES",
+      "viewability": "PARTIAL",
+      "embeddable": true,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": true
+      },
+      "pdf": {
+        "isAvailable": true
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=BK_jDwAAQBAJ&hl=&source=gbs_api",
+      "accessViewStatus": "SAMPLE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "El conde de Montecristo es una sólida novela de aventuras."
+    }
+  },
+  {
+    "kind": "books#volume",
+    "id": "C3O6rQEACAAJ",
+    "etag": "hrTg9CmamO8",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/C3O6rQEACAAJ",
+    "volumeInfo": {
+      "title": "El Conde de Montecristo",
+      "authors": [
+        "Alejandro Dumas",
+        "Raul Bracho"
+      ],
+      "publisher": "CreateSpace",
+      "publishedDate": "2014-11-19",
+      "description": "El conde de Montecristo (Le comte de Monte-Cristo) es una novela de aventuras clásica de Alexandre Dumas padre y Auguste Maquet. Éste último no figuró en los títulos de la obra ya que Alexandre Dumas pagó una elevada suma de dinero para que así fuera. Maquet era un colaborador muy activo en las novelas de Dumas, llegó a escribir obras enteras que Dumas reescribió más tarde. Esta obra se suele considerar como el mejor trabajo de Dumas, y a menudo se incluye en las listas de las mejores novelas de todos los tiempos. El libro se terminó de escribir en 1844, y fue publicado en una serie de 18 partes durante los dos años siguientes.",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_10",
+          "identifier": "1503301478"
+        },
+        {
+          "type": "ISBN_13",
+          "identifier": "9781503301474"
+        }
+      ],
+      "readingModes": {
+        "text": false,
+        "image": false
+      },
+      "pageCount": 504,
+      "printType": "BOOK",
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": false,
+      "contentVersion": "preview-1.0.0",
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=C3O6rQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=C3O6rQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+      },
+      "language": "es",
+      "previewLink": "http://books.google.es/books?id=C3O6rQEACAAJ&dq=montecristo&hl=&cd=9&source=gbs_api",
+      "infoLink": "http://books.google.es/books?id=C3O6rQEACAAJ&dq=montecristo&hl=&source=gbs_api",
+      "canonicalVolumeLink": "https://books.google.com/books/about/El_Conde_de_Montecristo.html?hl=&id=C3O6rQEACAAJ"
+    },
+    "saleInfo": {
+      "country": "ES",
+      "saleability": "NOT_FOR_SALE",
+      "isEbook": false
+    },
+    "accessInfo": {
+      "country": "ES",
+      "viewability": "NO_PAGES",
+      "embeddable": false,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": false
+      },
+      "pdf": {
+        "isAvailable": false
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=C3O6rQEACAAJ&hl=&source=gbs_api",
+      "accessViewStatus": "NONE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "El conde de Montecristo (Le comte de Monte-Cristo) es una novela de aventuras clásica de Alexandre Dumas padre y Auguste Maquet. Éste último no figuró en los títulos de la obra ya que Alexandre Dumas pagó una elevada suma de dinero ..."
+    }
+  },
+  {
+    "kind": "books#volume",
+    "id": "eOwODQAAQBAJ",
+    "etag": "RhImxmL+n1Y",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/eOwODQAAQBAJ",
+    "volumeInfo": {
+      "title": "El conde de Montecristo (Los mejores clásicos)",
+      "subtitle": "con introducción de un profesor emérito de la Universidad de la Sorbona",
+      "authors": [
+        "Alexandre Dumas"
+      ],
+      "publisher": "PENGUIN CLÁSICOS",
+      "publishedDate": "2016-10-20",
+      "description": "La gran novela de aventuras, amor y venganza del siglo XIX Introducción de Jean-Yves Tadié, profesor emérito de la Universidad de La Sorbona Traducción de E. V Edmundo Dantés, un joven marinero que siempre ha llevado una vida tranquila, solo desea casarse con la hermosa Mercedes. Pero sus planes se malogran cuando su mejor amigo, Fernando, le traiciona vilmente para conquistar a su prometida. Edmundo vivirá una larga pesadilla de trece años mientras cumple una condena injusta en la siniestra prisión del castillo de If. Obsesionado por su inesperado destino, dejará de lado sus convicciones para urdir la venganza perfecta. El conde de Montecristo es uno de los clásicos más populares y trepidantes de todos los tiempos. La presente edición contiene las dos partes que componen la obra, así como una magistral introducción de Jean-Yves Tadié, catedrático emérito de la Universidad de La Sorbona.",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_13",
+          "identifier": "9788491053446"
+        },
+        {
+          "type": "ISBN_10",
+          "identifier": "8491053441"
+        }
+      ],
+      "readingModes": {
+        "text": true,
+        "image": true
+      },
+      "pageCount": 1692,
+      "printType": "BOOK",
+      "categories": [
+        "Fiction"
+      ],
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": true,
+      "contentVersion": "1.10.8.0.preview.3",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=eOwODQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=eOwODQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      },
+      "language": "es",
+      "previewLink": "http://books.google.es/books?id=eOwODQAAQBAJ&printsec=frontcover&dq=montecristo&hl=&cd=10&source=gbs_api",
+      "infoLink": "https://play.google.com/store/books/details?id=eOwODQAAQBAJ&source=gbs_api",
+      "canonicalVolumeLink": "https://play.google.com/store/books/details?id=eOwODQAAQBAJ"
+    },
+    "saleInfo": {
+      "country": "ES",
+      "saleability": "FOR_SALE",
+      "isEbook": true,
+      "listPrice": {
+        "amount": 8.99,
+        "currencyCode": "EUR"
+      },
+      "retailPrice": {
+        "amount": 8.54,
+        "currencyCode": "EUR"
+      },
+      "buyLink": "https://play.google.com/store/books/details?id=eOwODQAAQBAJ&rdid=book-eOwODQAAQBAJ&rdot=1&source=gbs_api",
+      "offers": [
+        {
+          "finskyOfferType": 1,
+          "listPrice": {
+            "amountInMicros": 8990000,
+            "currencyCode": "EUR"
+          },
+          "retailPrice": {
+            "amountInMicros": 8540000,
+            "currencyCode": "EUR"
+          },
+          "giftable": true
+        }
+      ]
+    },
+    "accessInfo": {
+      "country": "ES",
+      "viewability": "PARTIAL",
+      "embeddable": true,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
+      "epub": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.es/books/download/El_conde_de_Montecristo_Los_mejores_cl%C3%A1-sample-epub.acsm?id=eOwODQAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+      },
+      "pdf": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.es/books/download/El_conde_de_Montecristo_Los_mejores_cl%C3%A1-sample-pdf.acsm?id=eOwODQAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=eOwODQAAQBAJ&hl=&source=gbs_api",
+      "accessViewStatus": "SAMPLE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "La gran novela de aventuras, amor y venganza del siglo XIX Introducción de Jean-Yves Tadié, profesor emérito de la Universidad de La Sorbona Traducción de E. V Edmundo Dantés, un joven marinero que siempre ha llevado una vida tranquila ..."
+    }
+  }
+]
+}

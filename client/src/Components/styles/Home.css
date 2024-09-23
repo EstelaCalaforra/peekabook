@@ -1,32 +1,3 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    justify-content: space-between;
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    /* border: 1px solid #ccc; */
-    margin: 5px;
-    border-radius: 5px;
-    align-items: center;
-}
-
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.center {
-    align-content: center;
-}
-
 .front .quote {
     /* background-color: rgb(212, 192, 164); */
     /* background-image: url(../../assets/note-paper.png); */
@@ -70,11 +41,16 @@
     color: black;
 }
 
-.shelf {
-    width: 50vw;
+.home-shelf {
+    width: 80dvb;
 }
 
 .bestsellers-shelf {
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
+.title {
+    font-weight: bold
+}
+

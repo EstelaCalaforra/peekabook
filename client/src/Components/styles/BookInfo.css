@@ -1,0 +1,40 @@
+.page {
+    margin: 20px;
+}
+
+.books-info {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   
+    width: 100%;
+    gap: 32px;
+  }
+
+.bookinfo-cover {
+    width: 80px;
+    height: 120px;
+    border-radius: 10px;
+    margin-top: 16px;
+}
+
+.book {
+    text-align: center;
+  }
+  
+.book h2, .book h3, .book p {
+    margin: 0;
+}
+
+h2, p {
+    color: #3f3230;
+    font-family: "Baskervville", serif;
+    font-weight: 400;
+}
+
+strong {
+    color: #3f3230;
+}
