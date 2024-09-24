@@ -7,13 +7,16 @@ export function BookSearchProvider ({ children }) {
   const allBooksResults = bookInfoResults.items
   const [bookSearch, setBookSearch] = useState(allBooksResults)
   const [bookQuery, setBookQuery] = useState('')
+  const [bookId, setBookId] = useState(0)
 
   return (
     <BookSearchContext.Provider value={{
       bookSearch,
       bookQuery,
       setBookQuery,
-      setBookSearch
+      setBookSearch,
+      bookId,
+      setBookId
     }}
     >
       {children}

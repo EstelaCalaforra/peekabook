@@ -21,7 +21,6 @@ export function Bookshelf () {
 
   return (
     <>
-      <h2>Your Bookshelf</h2>
       <div className='row'>
         <div className='column'>
           <h3>Romance</h3>

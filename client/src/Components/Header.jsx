@@ -1,5 +1,5 @@
 import './styles/Header.css'
-import bookLogo from '../assets/peekabook-logo.png'
+import bookLogo from '../assets/other-logo.png'
 import { useId, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
@@ -18,7 +18,7 @@ export function Header () {
   function handleSubmit (event) {
     event.preventDefault()
     setBooksGoogleAPI(bookQuery)
-    navigate('/book-info')
+    navigate('/book-search')
   }
 
   function handleChange (event) {

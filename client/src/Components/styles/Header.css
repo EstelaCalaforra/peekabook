@@ -1,5 +1,5 @@
 header {
-  background-color: rgb(243, 233, 220);
+  background-color: #3f3230;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   font-style: normal;
@@ -29,7 +29,8 @@ header ul {
   
 header a { 
   text-decoration: none; 
-  color: #3f3230;
+  color: whitesmoke;
+  ;
 } 
 header a:hover {
   color: #85644d;
@@ -58,7 +59,7 @@ header a:hover {
 }
 
 .logo {
-  width: 10rem;
+  width: 8rem;
   margin-left: 10px;
 } 
 

@@ -1,9 +1,10 @@
+import './styles/App.css'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { Home } from './Home'
 import { Bookshelf } from './Bookshelf'
-import { BookInfo } from './BookInfo'
-import './styles/App.css'
+import { BookFindPage } from './BookFindPage'
+import { IndividualBookPage } from './IndividualBookPage'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { BookSearchProvider } from '../context/bookSearchContext'
 import {
@@ -39,7 +40,8 @@ function App () {
             <Routes>
               <Route exact path='/' element={<Home />} />
               <Route path='/bookshelf' element={<Bookshelf />} />
-              <Route path='/book-info' element={<BookInfo />} />
+              <Route path='/book-search' element={<BookFindPage />} />
+              <Route path='/ind-book' element={<IndividualBookPage />} />
             </Routes>
             <Footer />
           </ThemeProvider>

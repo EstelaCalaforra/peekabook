@@ -32,9 +32,23 @@
 h2, p {
     color: #3f3230;
     font-family: "Baskervville", serif;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 strong {
     color: #3f3230;
+}
+
+.button {
+    margin-top: 10px;
+    /* display: block; */
+    background: #c7baa2;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: #3f3230;
+    font-weight: bold;
+    line-height: 20px;
+    border: 2px solid #3f3230;
+    text-decoration: none
 }
