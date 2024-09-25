@@ -20,7 +20,7 @@ body {
   flex-direction: column;
   min-width: 300px;
   min-height: 100vh;
-  background-color: whitesmoke; 
+  background-color: antiquewhite; 
   /* background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png"); */
   justify-content: space-between;
 }

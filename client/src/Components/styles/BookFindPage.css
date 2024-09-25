@@ -1,5 +1,5 @@
 .page {
-    margin: 20px;
+    margin: 40px;
 }
 
 .books-info {
@@ -8,47 +8,88 @@
     padding: 0;
   
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
    
     width: 100%;
     gap: 32px;
   }
 
 .bookinfo-cover {
-    width: 80px;
-    height: 120px;
+    height: 250px;
+    width: 150px;
     border-radius: 10px;
     margin-top: 16px;
+    border: 2px solid #3f3230;
 }
 
 .book {
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    
+    /* align-items: center; */
+    /* justify-content: space-between; */
+
+    gap: 10px;
   }
-  
-.book h2, .book h3, .book p {
-    margin: 0;
+
+.bookinfo-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    /* padding-top: 10px; */
+    /* margin-bottom: 5px; */
 }
 
-h2, p {
+.bookinfo-title-author {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.book h2 {
     color: #3f3230;
     font-family: "Baskervville", serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+p.bookfindpage-author {
+    font-family: "Baskervville", serif;
+    font-size: 16px;
     font-weight: 300;
 }
 
-strong {
+p.bookfindpage-description {
+    text-align: justify;
+    text-justify: inter-word;
     color: #3f3230;
+    font-family: "Baskervville", serif;
+    font-size: 14px;
+    font-weight: 300;
 }
 
 .button {
-    margin-top: 10px;
-    /* display: block; */
-    background: #c7baa2;
+    /* margin-top: 10px; */
+    background-color:#ceab8c;
     padding: 10px;
     text-align: center;
     border-radius: 5px;
     color: #3f3230;
     font-weight: bold;
-    line-height: 20px;
-    border: 2px solid #3f3230;
-    text-decoration: none
+    line-height: 12px;
+    border: 1px solid #3f3230;
+    text-decoration: none;
+    width: 70px;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.button:hover {
+    color: antiquewhite;
+}
+
+.bookinfo-five-stars-icon {
+    width: 100px;
 }

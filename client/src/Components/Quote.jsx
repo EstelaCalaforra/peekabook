@@ -5,7 +5,7 @@ export function Quote () {
 
   return (
     <div className='quote column'>
-      <h3 className='title'>Daily quote</h3>
+      {/* <h3 className='title'>Daily quote</h3> */}
       <div>
         {loadingQuoteData
           ? (

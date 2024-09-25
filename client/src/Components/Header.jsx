@@ -1,5 +1,6 @@
 import './styles/Header.css'
 import bookLogo from '../assets/other-logo.png'
+import userIcon from '../assets/user-icon.png'
 import { useId, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
@@ -28,15 +29,15 @@ export function Header () {
 
   return (
     <header>
-
-      <img src={bookLogo} alt='Company Logo' className='logo' />
-      <nav>
-        <ul>
-          <li><a href='/'>Home</a></li>
-          <li><a href='/bookshelf'>Bookshelf</a></li>
-        </ul>
-      </nav>
-
+      <div className='row'>
+        <img src={bookLogo} alt='Company Logo' className='logo' />
+        <nav>
+          <ul>
+            <li><a href='/'>Home</a></li>
+            <li><a href='/bookshelf'>Bookshelf</a></li>
+          </ul>
+        </nav>
+      </div>
       <form id={searchBookFormId} onSubmit={handleSubmit} className='header-form'>
         <input id={searchBookInputId} type='text' onChange={handleChange} value={bookQuery} placeholder='Search book...' />
         {/* <div id={dropdownSearchId} className='dropdown-content'>
@@ -55,8 +56,8 @@ export function Header () {
               </ul>
               )}
         </div> */}
-
       </form>
+      <img src={userIcon} alt='Company Logo' className='user-icon' />
     </header>
   )
 }

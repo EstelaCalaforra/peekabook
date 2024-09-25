@@ -1,6 +1,7 @@
 import Button from '@mui/material/Button'
 import './styles/Home.css'
 import Shelf from '../assets/shelf.png'
+import Divider from '../assets/botanical-divider-crop.png'
 import { useBestSellers } from '../hooks/useBestSellers'
 import { Quote } from './Quote'
 
@@ -11,7 +12,10 @@ export function Home () {
     <div>
       <div className='front container'>
         <div className='column'>
-          <Quote />
+          <div className='column'>
+            <Quote />
+            <img className='home-divider' src={Divider} />
+          </div>
           <div className='bestsellers column'>
             <h3 className='title'>Weekly Bestsellers</h3>
             <div className='column'>

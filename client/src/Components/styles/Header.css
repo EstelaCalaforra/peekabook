@@ -9,6 +9,7 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  gap: 20px
   /* padding: 0px 20px 0px 20px; */
 }
 
@@ -51,30 +52,29 @@ header a:hover {
   justify-content: center;
 }
 
-.search-icon {
-  height: 1.4em;
-  padding: 0em;
-  will-change: filter;
-  transition: filter 300ms;
+.user-icon  {
+  height: 50px;
+  padding: 10px;
 }
 
 .logo {
-  width: 8rem;
+  width: 100px;
   margin-left: 10px;
-} 
+}
 
 input[type=text] {
   font-family: "Libre Baskerville", serif;
-  float: right;
-  padding: 6px;
+  /* float: right; */
+  padding: 10px;
   border: 2px solid #85644d;
-  margin-top: 8px;
+  border-radius: 5px;
+  /* margin-top: 8px;
   margin-bottom: 8px;
   margin-right: 16px;
-  margin-right: 10px;
-  font-size: 14px;
-  background-color:whitesmoke;
-  color:#3f3230
+  margin-right: 10px; */
+  font-size: 12px;
+  background-color: whitesmoke;
+  color: #3f3230;
 }
 
 input:focus::-webkit-input-placeholder 

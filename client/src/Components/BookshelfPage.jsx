@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import './styles/Bookshelf.css'
+import './styles/BookshelfPage.css'
 import axios from 'axios'
 import Shelf from '../assets/shelf.png'
 
-export function Bookshelf () {
+export function BookshelfPage () {
   // fetch the get-bookshelf route (database)
   const [bookshelfData, setBookshelfData] = useState([{}])
   useEffect(() => {

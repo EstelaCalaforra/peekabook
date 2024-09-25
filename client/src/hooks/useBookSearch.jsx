@@ -4,7 +4,7 @@ import { BookSearchContext } from '../context/bookSearchContext'
 
 export function useBookSearch () {
   const [loading, setLoading] = useState(true)
-  const { bookSearch, setBookSearch } = useContext(BookSearchContext)
+  const { setBookSearch } = useContext(BookSearchContext)
 
   async function fetchBooksGoogleAPI (bookQuery) {
     try {
