@@ -4,7 +4,7 @@ import { BookSearchContext } from '../context/bookSearchContext'
 
 export function useBookSearch () {
   const [loading, setLoading] = useState(true)
-  const { setBookSearch } = useContext(BookSearchContext)
+  const { setBookSearch, bookSearch, bookId } = useContext(BookSearchContext)
 
   async function fetchBooksGoogleAPI (bookQuery) {
     try {
@@ -22,9 +22,16 @@ export function useBookSearch () {
     }
   }
 
+  function findIndexById (array, id) {
+    const findedIndex = array.findIndex(elemento => elemento.id === id)
+    return findedIndex
+  }
+
+  const findedIndex = findIndexById(bookSearch, bookId)
+
   async function setBooksGoogleAPI (bookQuery) {
     await fetchBooksGoogleAPI(bookQuery)
   }
 
-  return { setBooksGoogleAPI }
+  return { setBooksGoogleAPI, findedIndex }
 }

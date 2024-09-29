@@ -1,7 +1,7 @@
 import './styles/App.css'
 import { Header } from './Header'
 import { Footer } from './Footer'
-import { Home } from './Home'
+import { HomePage } from './HomePage'
 import { BookshelfPage } from './BookshelfPage'
 import { BookFindPage } from './BookFindPage'
 import { IndividualBookPage } from './IndividualBookPage'
@@ -38,7 +38,7 @@ function App () {
           <ThemeProvider theme={customTheme}>
             <Header />
             <Routes>
-              <Route exact path='/' element={<Home />} />
+              <Route exact path='/' element={<HomePage />} />
               <Route path='/bookshelf' element={<BookshelfPage />} />
               <Route path='/book-search' element={<BookFindPage />} />
               <Route path='/ind-book' element={<IndividualBookPage />} />

@@ -1,0 +1,57 @@
+.homepage {
+    color: #3f3230;
+}
+.homepage .quote {
+    /* background-color: rgb(212, 192, 164); */
+    /* background-image: url(../../assets/note-paper.png); */
+    /* background-repeat: no-repeat; */
+    /* background-size: 40%; */
+    /* background-position: center; */
+    padding-right: 50px;
+    padding-left: 50px;
+    font-weight: 400;
+    gap: 10px;
+    font-size: large;
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.homepage .bestsellers {
+    font-weight: 400;
+}
+
+.homepage .miniature {
+    height: 100px;
+    width: 100px;
+}
+
+.homepage .bestsellers .miniature {
+    width: 100px;
+    height: 160px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.homepage .bestsellers .miniature:hover {
+    transform: scale(1.1); 
+}
+
+.homepage .home-shelf {
+    width: 80dvb;
+}
+
+.homepage .divider {
+    width: 40dvb;
+}
+
+.homepage .bestsellers-shelf {
+    margin-bottom: 0;
+    padding-bottom: 0;
+
+}
+
+.homepage .title {
+    font-weight: bold
+}
+

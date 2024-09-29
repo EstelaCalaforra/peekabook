@@ -14,8 +14,8 @@ const db = new pg.Client({
   user: 'postgres',
   host: 'localhost',
   database: 'booklist',
-  // password: 'estelacodes',
-  password: 'administrador',
+  password: 'estelacodes',
+  // password: 'administrador',
   port: 5432
 })
 db.connect()
@@ -27,9 +27,9 @@ app.use(bodyParser.json())
 // get books
 async function getBooks () {
   try {
-    // const selectQuery = 'SELECT book.id, title, name, tags, rating, review, img_path FROM book INNER JOIN author ON book.id = author.id INNER JOIN review ON book.id = review.id'
+    const selectQuery = 'SELECT book.id, title, name, tags, rating, review, img_path FROM book INNER JOIN author ON book.id = author.id INNER JOIN review ON book.id = review.id'
     // en realidad se puede mejorar metiendolo directamente en la linea de arriba
-    const selectQuery = 'SELECT id, title, author, rating, review, img_path, tags FROM book'
+    // const selectQuery = 'SELECT id, title, author, rating, review, img_path, tags FROM book'
     const result = await db.query(selectQuery)
     const books = result.rows
     return books

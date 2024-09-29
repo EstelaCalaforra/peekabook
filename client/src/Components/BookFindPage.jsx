@@ -7,14 +7,14 @@ import FiveStarsRatingIcon from '../assets/five-stars-rating.png'
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function BookFindPage () {
-  function obtenerPrimeros80Caracteres (texto) {
+  function obtenerPrimeros80Caracteres (text) {
     // Verificamos si la longitud del texto es mayor a 20
-    if (texto.length > 80) {
+    if (text.length > 80) {
       // Si es mayor, devolvemos solo los primeros 20 caracteres
-      return texto.substring(0, 80) + '...'
+      return text.substring(0, 80) + '...'
     } else {
       // Si es menor o igual a 20, devolvemos el texto tal cual
-      return texto
+      return text
     }
   }
 

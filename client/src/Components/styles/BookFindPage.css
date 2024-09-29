@@ -1,11 +1,14 @@
 .page {
+    height: 100%;
     margin: 40px;
+    color: #3f3230;
 }
 
 .books-info {
     list-style: none;
     margin: 0;
     padding: 0;
+    padding-bottom: 40px;
   
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -15,8 +18,8 @@
   }
 
 .bookinfo-cover {
-    height: 250px;
-    width: 150px;
+    height: 256px;
+    /* width: 160px; */
     border-radius: 10px;
     margin-top: 16px;
     border: 2px solid #3f3230;
@@ -48,15 +51,12 @@
 }
 
 .book h2 {
-    color: #3f3230;
-    font-family: "Baskervville", serif;
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 0;
 }
 
 p.bookfindpage-author {
-    font-family: "Baskervville", serif;
     font-size: 16px;
     font-weight: 300;
 }
@@ -64,8 +64,6 @@ p.bookfindpage-author {
 p.bookfindpage-description {
     text-align: justify;
     text-justify: inter-word;
-    color: #3f3230;
-    font-family: "Baskervville", serif;
     font-size: 14px;
     font-weight: 300;
 }

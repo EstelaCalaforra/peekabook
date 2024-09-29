@@ -1,13 +1,14 @@
 import { createContext, useState } from 'react'
-import bookInfoResults from '../mocks/bookInfoResults.json'
+// import bookInfoResults from '../mocks/bookInfoResults.json'
 
 export const BookSearchContext = createContext()
 
 export function BookSearchProvider ({ children }) {
-  const allBooksResults = bookInfoResults.items
-  const [bookSearch, setBookSearch] = useState(allBooksResults)
+  // const allBooksResults = bookInfoResults.items
+  const [bookSearch, setBookSearch] = useState([])
   const [bookQuery, setBookQuery] = useState('')
   const [bookId, setBookId] = useState(0)
+  const [bookIndex, setBookIndex] = useState(0)
 
   return (
     <BookSearchContext.Provider value={{
@@ -16,7 +17,9 @@ export function BookSearchProvider ({ children }) {
       setBookQuery,
       setBookSearch,
       bookId,
-      setBookId
+      setBookId,
+      bookIndex,
+      setBookIndex
     }}
     >
       {children}

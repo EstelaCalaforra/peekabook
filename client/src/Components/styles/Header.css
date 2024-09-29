@@ -34,7 +34,7 @@ header a {
   ;
 } 
 header a:hover {
-  color: #85644d;
+  color: #ceab8c;
 }
 
 .header-form {
@@ -53,7 +53,7 @@ header a:hover {
 }
 
 .user-icon  {
-  height: 50px;
+  height: 40px;
   padding: 10px;
 }
 
@@ -74,13 +74,21 @@ input[type=text] {
   margin-right: 10px; */
   font-size: 12px;
   background-color: whitesmoke;
+  width: 20dvw;
   color: #3f3230;
 }
 
 input:focus::-webkit-input-placeholder 
 {
-    color: transparent;
+  color: #3f3230;
+  background-color: whitesmoke
 }
+
+/* input:internal-autofill-selected {
+  background-image: none !important;
+  background-color: rgb(232, 240, 254) !important;
+  color: #3f3230 !important;
+} */
 
 /* .dropdown-content {
   background-color: #f9f9f9;

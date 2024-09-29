@@ -1,3 +1,86 @@
-p {
-    color: black;
+.individual-book-page {
+    color: #3f3230;
+    margin: 50px;
+    text-align: justify;
+}
+
+.individual-book-page a {
+    text-decoration: none;
+    width: 80px;
+    font-size: medium;
+    cursor: pointer;
+}
+
+.individual-book-page h1 {
+    margin: 0;
+    /* margin-block-start: 0;
+    margin-block-end: 0; */
+}
+
+.individual-book-page h2 {
+    font-weight: 600;
+    margin: 0;
+}
+
+.individual-book-page p {
+    margin: 0;
+}
+
+.individual-book-page-row {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: flex-start;
+    gap: 32px;
+    /* flex-wrap: wrap; */
+}
+
+.individual-book-page-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.individual-book-page .divider {
+    width: 200px;
+}
+
+.individual-book-page .cover {
+    height: 256px;
+    border: 2px solid #3f3230;
+    border-radius: 5px;
+}
+
+.individual-book-page .button {
+    width: 100px;
+}
+
+.individual-book-page .button .buy {
+    width: 130px;
+}
+
+.similar-books {
+    margin-top: 20px;
+    padding-bottom: 40px;
+}
+
+.similar-books .individual-book-page-row {
+    flex-wrap: wrap;
+}
+
+.similar-books h2 {
+    margin-bottom: 10px;
+
+}
+
+.similar-books .cover {
+    height: 128px;
+}
+
+.similar-books a:hover {
+    filter: brightness(50%);
 }
