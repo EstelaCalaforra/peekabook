@@ -55,3 +55,15 @@
     font-weight: bold
 }
 
+.homepage .login {
+    color: #3f3230;
+}
+
+p > a {
+    color: #85644d;
+    text-decoration: none;
+}
+
+.button {
+    width: 200px;
+}

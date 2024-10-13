@@ -1,7 +1,7 @@
 import './styles/Header.css'
 import bookLogo from '../assets/other-logo.png'
 import userIcon from '../assets/user-icon.png'
-import { useId, useContext } from 'react'
+import { useId, useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
 import { useBookSearch } from '../hooks/useBookSearch'
@@ -25,6 +25,18 @@ export function Header () {
   function handleChange (event) {
     const newBookQuery = event.target.value
     setBookQuery(newBookQuery)
+  }
+
+  const [showPopup, setShowPopup] = useState(false)
+
+  // Función para manejar el mouse sobre el logo
+  const handleMouseEnter = () => {
+    setShowPopup(true)
+  }
+
+  // Función para manejar cuando el mouse sale del logo
+  const handleMouseLeave = () => {
+    setShowPopup(false)
   }
 
   return (
@@ -57,7 +69,15 @@ export function Header () {
               )}
         </div> */}
       </form>
-      <img src={userIcon} alt='Company Logo' className='user-icon' />
+      <div className=''>
+        <img src={userIcon} alt='Company Logo' onMouseEnter={handleMouseEnter} className='user-icon' />
+        {showPopup && (
+          <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='header-popup-login'>
+            <a href='/login' className=''>Log in</a>
+          </div>
+        )}
+      </div>
+
     </header>
   )
 }

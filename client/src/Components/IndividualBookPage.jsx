@@ -1,5 +1,5 @@
 import './styles/IndividualBookPage.css'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
 import { useBookSearch } from '../hooks/useBookSearch'
@@ -8,16 +8,14 @@ import Divider from '../assets/botanical-divider-crop.png'
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function IndividualBookPage () {
-  const { bookSearch, bookId, setBookId } = useContext(BookSearchContext)
+  const { bookSearch, bookId, setBookId, categories } = useContext(BookSearchContext)
 
   console.log('bookSearch in IndividualBookPage', bookSearch)
   console.log('bookId in IndividualBookPage', bookId)
 
   const { findedIndex } = useBookSearch()
-  // console.log('bookIndex in IndividualBookPage', bookIndex)
-  console.log('findedIndex in IndividualBookPage', findedIndex)
-  // setBookIndex(findedIndex)
-  console.log('bookSearch[findedIndex].volumeInfo.title', bookSearch[findedIndex].volumeInfo.title)
+  console.log({ findedIndex })
+  console.log(bookSearch[findedIndex].volumeInfo.title)
   const bookInList = typeof findedIndex === 'number'
 
   const navigate = useNavigate()
@@ -29,12 +27,41 @@ export function IndividualBookPage () {
     navigate('/ind-book')
   }
 
+  const [added, setAdded] = useState(false)
+  function handleClickAddToShelves () {
+    const isAdded = added
+    setAdded(!isAdded)
+    if (isAdded === false) openPopup()
+  }
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const openPopup = () => setIsPopupOpen(true)
+  const closePopup = () => setIsPopupOpen(false)
+
   return (
     <div className='individual-book-page'>
       <section className='individual-book-page-row'>
         <div className='individual-book-page-column'>
           <img className='cover' src={bookInList ? bookSearch[findedIndex].volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl : 'Loading cover...'} />
-          <a className='button'>Add to shelves</a>
+          <a className={`button ${added ? 'added' : ''}`} onClick={handleClickAddToShelves}>{added ? 'On shelves' : 'Add to shelves'}</a>
+          {isPopupOpen && (
+            <div className='popup-overlay'>
+              <div className='popup-content'>
+                <fieldset>
+                  <legend>Choose the shelves:</legend>
+                  {categories.map((category) => {
+                    return (
+                      <div key={category}>
+                        <input type='checkbox' id={category} name={category} />
+                        <label htmlFor={category}>{category}</label>
+                      </div>
+                    )
+                  })}
+                </fieldset>
+                <button className='popup-button' onClick={closePopup}>Add</button>
+              </div>
+            </div>
+          )}
           <a className='button buy'>Buy on Amazon</a>
         </div>
         <div className='individual-book-page-column'>

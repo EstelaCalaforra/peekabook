@@ -3,15 +3,22 @@ import cors from 'cors'
 import pg from 'pg'
 import bodyParser from 'body-parser'
 import axios from 'axios'
+import * as dotenv from 'dotenv'
+import bcrypt from 'bcrypt'
+
 // import { getBooks, getBookCover } from "./functions.js";
 
 // important consts
 const app = express()
 const port = 5000
 
+const saltRounds = 10
+
+dotenv.config()
+
 // database
 const db = new pg.Client({
-  user: 'postgres',
+  user: process.env.DB_USER,
   host: 'localhost',
   database: 'booklist',
   password: 'estelacodes',
@@ -23,6 +30,60 @@ db.connect()
 // middleware
 app.use(cors())
 app.use(bodyParser.json())
+
+// signup
+app.post('/signup', async (req, res) => {
+  const { email, password } = req.body
+
+  try {
+    // check if user exists
+    const userExists = await db.query('SELECT * FROM users WHERE email = $1', [email])
+
+    if (userExists.rows.length > 0) {
+      return res.json({ success: false, message: 'User already exists' })
+    }
+
+    // insert new user with hashed password
+    bcrypt.hash(password, saltRounds, async (err, hash) => {
+      await db.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, hash])
+      res.json({ success: true, message: err })
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ success: false, message: 'Server error' })
+  }
+})
+
+// login
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body
+
+  try {
+    // consult to the database
+    const result = await db.query(
+      'SELECT * FROM users WHERE email = $1',
+      [email]
+    )
+
+    if (result.rows.length > 0) {
+      // user found, check if hashed password matches form password
+      const hashedPassword = result.rows[0].password
+      bcrypt.compare(password, hashedPassword, async (_err, same) => {
+        if (same) {
+          res.json({ success: true, message: 'Login successful!' })
+        } else {
+          res.json({ success: false, message: 'Wrong password. Please try again.' })
+        }
+      })
+    } else {
+      // user not found
+      res.json({ success: false, message: 'Invalid email. Please try again.' })
+    }
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ success: false, message: 'Server error' })
+  }
+})
 
 // get books
 async function getBooks () {

@@ -9,6 +9,7 @@ export function BookSearchProvider ({ children }) {
   const [bookQuery, setBookQuery] = useState('')
   const [bookId, setBookId] = useState(0)
   const [bookIndex, setBookIndex] = useState(0)
+  const [categories, setCategories] = useState([])
 
   return (
     <BookSearchContext.Provider value={{
@@ -19,7 +20,9 @@ export function BookSearchProvider ({ children }) {
       bookId,
       setBookId,
       bookIndex,
-      setBookIndex
+      setBookIndex,
+      categories,
+      setCategories
     }}
     >
       {children}

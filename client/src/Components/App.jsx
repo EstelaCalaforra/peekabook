@@ -7,6 +7,9 @@ import { BookFindPage } from './BookFindPage'
 import { IndividualBookPage } from './IndividualBookPage'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { BookSearchProvider } from '../context/bookSearchContext'
+import { LoginPage } from './LoginPage'
+import { SignUpPage } from './SignUpPage'
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -42,6 +45,8 @@ function App () {
               <Route path='/bookshelf' element={<BookshelfPage />} />
               <Route path='/book-search' element={<BookFindPage />} />
               <Route path='/ind-book' element={<IndividualBookPage />} />
+              <Route path='/login' element={<LoginPage />} />
+              <Route path='/signup' element={<SignUpPage />} />
             </Routes>
             <Footer />
           </ThemeProvider>

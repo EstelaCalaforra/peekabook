@@ -1,18 +1,30 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import './styles/BookshelfPage.css'
 import axios from 'axios'
 import Shelf from '../assets/shelf.png'
 import RightArrow from '../assets/right-arrow.png'
 import Divider from '../assets/botanical-divider-crop.png'
+import { BookSearchContext } from '../context/bookSearchContext'
 
 export function BookshelfPage () {
   // fetch the get-bookshelf route (database)
   const [bookshelfData, setBookshelfData] = useState([{}])
+  const { setCategories } = useContext(BookSearchContext)
+
+  async function getCategories (response) {
+    console.log(response)
+    const allCategories = (response).map((element) => element.tags)
+    return allCategories
+  }
+
   useEffect(() => {
     const fetchBookshelfData = async () => {
       try {
         const response = await axios.get('http://localhost:5000/get-bookshelf')
         setBookshelfData(response.data)
+        const allCategories = await getCategories(response.data)
+        setCategories(allCategories)
+        console.log({ allCategories })
       } catch (error) {
         console.log(error)
       }

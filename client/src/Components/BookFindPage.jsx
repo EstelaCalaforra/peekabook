@@ -3,28 +3,19 @@ import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
 import FiveStarsRatingIcon from '../assets/five-stars-rating.png'
+import { getFirst80Characters } from '../services/getFirst80Characters'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function BookFindPage () {
-  function obtenerPrimeros80Caracteres (text) {
-    // Verificamos si la longitud del texto es mayor a 20
-    if (text.length > 80) {
-      // Si es mayor, devolvemos solo los primeros 20 caracteres
-      return text.substring(0, 80) + '...'
-    } else {
-      // Si es menor o igual a 20, devolvemos el texto tal cual
-      return text
-    }
-  }
 
   const { bookSearch, setBookId } = useContext(BookSearchContext)
-  console.log('bookSearch in BookFindPage', bookSearch)
+  console.log({bookSearch})
   const navigate = useNavigate()
 
   function handleClick (event, id) {
     event.preventDefault()
-    console.log('bookId in BookFindPage', id)
+    console.log({id})
     setBookId(id)
     navigate('/ind-book')
   }
@@ -39,11 +30,11 @@ export function BookFindPage () {
               <div className='bookinfo-title-author'>
                 <h2>{book.volumeInfo?.title || 'No title available'}</h2>
                 <p className='bookfindpage-author'>
-                  {book.volumeInfo?.authors[0] || 'Unknown author.'}
+                  {book.volumeInfo?.authors?.[0] || 'Unknown author.'}
                 </p>
                 <img className='bookinfo-five-stars-icon' src={FiveStarsRatingIcon} />
                 <p className='bookfindpage-description'>
-                  {book.volumeInfo?.description ? obtenerPrimeros80Caracteres(book.volumeInfo?.description) : 'No description available.'}
+                  {book.volumeInfo?.description ? getFirst80Characters(book.volumeInfo?.description) : 'No description available.'}
                 </p>
               </div>
               <a onClick={(event) => handleClick(event, book.id)} className='button'>Read more</a>
