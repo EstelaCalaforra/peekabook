@@ -59,11 +59,16 @@
     color: #3f3230;
 }
 
-p > a {
+.homepage p > a {
     color: #85644d;
     text-decoration: none;
 }
 
-.button {
-    width: 200px;
+.homepage p > a:hover {
+    color: #ddbfa9;
+
+}
+
+.homepage .button {
+    width: 160px;
 }

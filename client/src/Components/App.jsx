@@ -7,14 +7,11 @@ import { BookFindPage } from './BookFindPage'
 import { IndividualBookPage } from './IndividualBookPage'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { BookSearchProvider } from '../context/bookSearchContext'
+import { AuthProvider } from '../context/AuthContext'
+import { ProtectedRoute } from '../services/ProtectedRoute'
 import { LoginPage } from './LoginPage'
 import { SignUpPage } from './SignUpPage'
-
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 const customTheme = createTheme({
   palette: {
@@ -38,18 +35,22 @@ function App () {
     <div>
       <Router>
         <BookSearchProvider>
-          <ThemeProvider theme={customTheme}>
-            <Header />
-            <Routes>
-              <Route exact path='/' element={<HomePage />} />
-              <Route path='/bookshelf' element={<BookshelfPage />} />
-              <Route path='/book-search' element={<BookFindPage />} />
-              <Route path='/ind-book' element={<IndividualBookPage />} />
-              <Route path='/login' element={<LoginPage />} />
-              <Route path='/signup' element={<SignUpPage />} />
-            </Routes>
-            <Footer />
-          </ThemeProvider>
+          <AuthProvider>
+            <ThemeProvider theme={customTheme}>
+              <Header />
+              <Routes>
+                {/* Public Routes */}
+                <Route exact path='/' element={<HomePage />} />
+                <Route path='/book-search' element={<BookFindPage />} />
+                <Route path='/ind-book' element={<IndividualBookPage />} />
+                <Route path='/login' element={<LoginPage />} />
+                <Route path='/signup' element={<SignUpPage />} />
+                {/* Protected Routes */}
+                <Route path='/bookshelf' element={<ProtectedRoute> <BookshelfPage /> </ProtectedRoute>} />
+              </Routes>
+              <Footer />
+            </ThemeProvider>
+          </AuthProvider>
         </BookSearchProvider>
       </Router>
     </div>

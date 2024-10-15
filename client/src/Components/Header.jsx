@@ -52,22 +52,6 @@ export function Header () {
       </div>
       <form id={searchBookFormId} onSubmit={handleSubmit} className='header-form'>
         <input id={searchBookInputId} type='text' onChange={handleChange} value={bookQuery} placeholder='Search book...' />
-        {/* <div id={dropdownSearchId} className='dropdown-content'>
-          {loading
-            ? (
-              <p>Loading...</p>
-              )
-            : (
-              <ul>
-                {responseBooks.map((result) => (
-                  <li key={result.id}>
-                    <h3>{result.volumeInfo.title}</h3>
-                    <p>{result.volumeInfo.authors[0]}</p>
-                  </li>
-                ))}
-              </ul>
-              )}
-        </div> */}
       </form>
       <div className=''>
         <img src={userIcon} alt='Company Logo' onMouseEnter={handleMouseEnter} className='user-icon' />

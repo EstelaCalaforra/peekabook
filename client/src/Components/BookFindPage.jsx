@@ -8,14 +8,13 @@ import { getFirst80Characters } from '../services/getFirst80Characters'
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function BookFindPage () {
-
   const { bookSearch, setBookId } = useContext(BookSearchContext)
-  console.log({bookSearch})
+  console.log({ bookSearch })
   const navigate = useNavigate()
 
   function handleClick (event, id) {
     event.preventDefault()
-    console.log({id})
+    console.log({ id })
     setBookId(id)
     navigate('/ind-book')
   }

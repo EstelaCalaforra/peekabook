@@ -9,11 +9,15 @@ export function useBookSearch () {
   async function fetchBooksGoogleAPI (bookQuery) {
     try {
       const params = {
-        q: bookQuery
+        q: bookQuery,
+        orderBy: 'relevance',
+        printType: 'books',
+        langRestrict: 'en',
+        maxResults: 10
       }
       const response = await axios.get('https://www.googleapis.com/books/v1/volumes', { params })
       const { items } = response.data
-      console.log('items', items)
+      console.log({ items })
       setBookSearch(items)
       setLoading(false)
     } catch (error) {

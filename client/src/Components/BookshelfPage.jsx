@@ -5,11 +5,14 @@ import Shelf from '../assets/shelf.png'
 import RightArrow from '../assets/right-arrow.png'
 import Divider from '../assets/botanical-divider-crop.png'
 import { BookSearchContext } from '../context/bookSearchContext'
+import { AuthContext } from '../context/AuthContext'
 
 export function BookshelfPage () {
   // fetch the get-bookshelf route (database)
   const [bookshelfData, setBookshelfData] = useState([{}])
   const { setCategories } = useContext(BookSearchContext)
+  const { isAuthenticated } = useContext(AuthContext)
+  console.log({ isAuthenticated })
 
   async function getCategories (response) {
     console.log(response)

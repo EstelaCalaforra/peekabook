@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 export function SignUpPage () {
   const [email, setEmail] = useState('')
@@ -8,6 +9,7 @@ export function SignUpPage () {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
+  const { setIsAuthenticated } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -29,6 +31,8 @@ export function SignUpPage () {
 
     if (data.success) {
       setMessage('Signup successful! Please log in.')
+      setIsAuthenticated(true)
+      console.log('authenticated: true')
       navigate('/bookshelf')
     } else {
       setError(data.message || 'Signup failed')

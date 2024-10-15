@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 import './styles/LoginPage.css' // Archivo de estilos
 
 export function LoginPage () {
@@ -8,6 +9,7 @@ export function LoginPage () {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
+  const { isAuthenticated, setIsAuthenticated } = useAuth()
 
   // handle the info submitted in the form
   const handleSubmit = async (e) => {
@@ -26,6 +28,8 @@ export function LoginPage () {
     if (data.success) { // there's a field in the json response called success (true or false)
       setMessage('Login successful! Redirecting...')
       setError('')
+      setIsAuthenticated(true)
+      console.log({ isAuthenticated })
       setTimeout(() => { navigate('/bookshelf') }, 2000)
     } else {
       setMessage('')
