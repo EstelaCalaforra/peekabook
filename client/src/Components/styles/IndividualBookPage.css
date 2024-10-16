@@ -83,11 +83,13 @@
 
 .similar-books .cover {
     height: 128px;
+    width: 90px;
 }
 
 .similar-books a:hover {
     filter: brightness(50%);
 }
+
 
 .popup-overlay {
     position: fixed;
@@ -123,4 +125,14 @@ cursor: pointer;
   
 .popup-buttonbutton:hover {
 background-color: #0056b3;
+}
+
+.popup-content .individual-book-page-row {
+    align-items: center;
+} 
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }

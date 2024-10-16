@@ -9,7 +9,7 @@ export function LoginPage () {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
-  const { isAuthenticated, setIsAuthenticated } = useAuth()
+  const { isAuthenticated, setIsAuthenticated, setUserId } = useAuth()
 
   // handle the info submitted in the form
   const handleSubmit = async (e) => {
@@ -24,9 +24,11 @@ export function LoginPage () {
     })
 
     const data = await response.json()
+    console.log(data)
 
     if (data.success) { // there's a field in the json response called success (true or false)
       setMessage('Login successful! Redirecting...')
+      setUserId(data.userId)
       setError('')
       setIsAuthenticated(true)
       console.log({ isAuthenticated })

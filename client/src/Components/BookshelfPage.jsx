@@ -10,7 +10,7 @@ import { AuthContext } from '../context/AuthContext'
 export function BookshelfPage () {
   // fetch the get-bookshelf route (database)
   const [bookshelfData, setBookshelfData] = useState([{}])
-  const { setCategories } = useContext(BookSearchContext)
+  const { categories, setCategories } = useContext(BookSearchContext)
   const { isAuthenticated } = useContext(AuthContext)
   console.log({ isAuthenticated })
 
@@ -36,113 +36,32 @@ export function BookshelfPage () {
   }, [])
 
   return (
-    <>
-      <div className='bookshelf-shelves'>
-        <div className='bookshelf-column'>
-          <h3>Romance</h3>
-          <img src={Divider} className='bookshelf-divider' />
-          <div className='bookshelf-row'>
-            {(typeof bookshelfData === 'undefined' || bookshelfData.length === 0)
-              ? (
-                <p>Loading...</p>
-                )
-              : (
-                  bookshelfData.map((book) => (
-                    book.tags === 'Romance' ? <img className='bookshelf-cover' key={book.id} src={book.img_path} /> : null
-                  ))
-                )}
-            <img src={RightArrow} className='bookshelf-arrow' />
-          </div>
-          <img src={Shelf} className='bookshelf-shelf' />
+    <div className='bookshelf-shelves'>
+  {[...new Set(categories)].map((category) => {
+    // Filtrar los libros que pertenecen a la categoría actual
+    const booksInCategory = bookshelfData.filter((book) => book.tags === category);
+
+    // Si no hay libros en la categoría, no renderizar nada
+    if (booksInCategory.length === 0) {
+      return null;
+    }
+
+    return (
+      <div key={category} className='bookshelf-column'>
+        <h3>{category}</h3>
+        <img src={Divider} className='bookshelf-divider' />
+        <div className='bookshelf-row'>
+          {booksInCategory.map((book) => (
+            <a key={book.id} href='/ind-book'>
+              <img className='bookshelf-cover' src={book.img_path} />
+            </a>
+          ))}
+          <img src={RightArrow} className='bookshelf-arrow' />
         </div>
-        <div className='bookshelf-column'>
-          <h3>Nonfiction</h3>
-          <img src={Divider} className='bookshelf-divider' />
-          <div className='bookshelf-row'>
-            {(typeof bookshelfData === 'undefined' || bookshelfData.length === 0)
-              ? (
-                <p>Loading...</p>
-                )
-              : (
-                  bookshelfData.map((book) => (
-                    book.tags === 'Nonfiction' ? <img className='bookshelf-cover' key={book.id} src={book.img_path} /> : null
-                  ))
-                )}
-            <img src={RightArrow} className='bookshelf-arrow' />
-          </div>
-          <img src={Shelf} className='bookshelf-shelf' />
-        </div>
-        <div className='bookshelf-column'>
-          <h3>Fantasy</h3>
-          <img src={Divider} className='bookshelf-divider' />
-          <div className='bookshelf-row'>
-            {(typeof bookshelfData === 'undefined' || bookshelfData.length === 0)
-              ? (
-                <p>Loading...</p>
-                )
-              : (
-                  bookshelfData.map((book) => (
-                    book.tags === 'Fantasy' ? <img className='bookshelf-cover' key={book.id} src={book.img_path} /> : null
-                  ))
-                )}
-            <img src={RightArrow} className='bookshelf-arrow' />
-          </div>
-          <img src={Shelf} className='bookshelf-shelf' />
-        </div>
-        <div className='bookshelf-column'>
-          <h3>Sci-Fi</h3>
-          <img src={Divider} className='bookshelf-divider' />
-          <div className='bookshelf-row'>
-            {(typeof bookshelfData === 'undefined' || bookshelfData.length === 0)
-              ? (
-                <p>Loading...</p>
-                )
-              : (
-                  bookshelfData.map((book) => (
-                    book.tags === 'Sci-Fi' ? <img className='bookshelf-cover' key={book.id} src={book.img_path} /> : null
-                  ))
-                )}
-            <img src={RightArrow} className='bookshelf-arrow' />
-          </div>
-          <img src={Shelf} className='bookshelf-shelf' />
-        </div>
-        <div className='bookshelf-column'>
-          <h3>Historical</h3>
-          <img src={Divider} className='bookshelf-divider' />
-          <div className='bookshelf-row'>
-            {(typeof bookshelfData === 'undefined' || bookshelfData.length === 0)
-              ? (
-                <p>Loading...</p>
-                )
-              : (
-                  bookshelfData.map((book) => (
-                    book.tags === 'Historical' ? <img className='bookshelf-cover' key={book.id} src={book.img_path} /> : null
-                  ))
-                )}
-            <img src={RightArrow} className='bookshelf-arrow' />
-          </div>
-          <img src={Shelf} className='bookshelf-shelf' />
-        </div>
-        <div className='bookshelf-column'>
-          <div>
-            <h3>Contemporary</h3>
-            <img src={Divider} className='bookshelf-divider' />
-          </div>
-          <div className='bookshelf-row'>
-            {(typeof bookshelfData === 'undefined' || bookshelfData.length === 0)
-              ? (
-                <p>Loading...</p>
-                )
-              : (
-                  bookshelfData.map((book) => (
-                    book.tags === 'Contemporary' ? <img className='bookshelf-cover' key={book.id} src={book.img_path} /> : null
-                  ))
-                )}
-            <img src={RightArrow} className='bookshelf-arrow' />
-          </div>
-          <img src={Shelf} className='bookshelf-shelf' />
-        </div>
+        <img src={Shelf} className='bookshelf-shelf' />
       </div>
-    </>
+    );
+  })}
+</div>
   )
 }

@@ -3,10 +3,11 @@ import axios from 'axios'
 import { BookSearchContext } from '../context/bookSearchContext'
 
 export function useBookSearch () {
-  const [loading, setLoading] = useState(true)
+  const [setLoading] = useState(true)
   const { setBookSearch, bookSearch, bookId } = useContext(BookSearchContext)
 
   async function fetchBooksGoogleAPI (bookQuery) {
+    
     try {
       const params = {
         q: bookQuery,
@@ -17,7 +18,6 @@ export function useBookSearch () {
       }
       const response = await axios.get('https://www.googleapis.com/books/v1/volumes', { params })
       const { items } = response.data
-      console.log({ items })
       setBookSearch(items)
       setLoading(false)
     } catch (error) {

@@ -9,7 +9,7 @@ export function SignUpPage () {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
-  const { setIsAuthenticated } = useAuth()
+  const { setIsAuthenticated, setUserId } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -30,7 +30,10 @@ export function SignUpPage () {
     const data = await response.json()
 
     if (data.success) {
-      setMessage('Signup successful! Please log in.')
+      setMessage('Signup successful! Login and redirecting...')
+      const loggedUser = data.userId
+      console.log({ loggedUser })
+      setUserId(data.userId)
       setIsAuthenticated(true)
       console.log('authenticated: true')
       navigate('/bookshelf')

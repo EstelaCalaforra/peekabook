@@ -21,8 +21,8 @@ const db = new pg.Client({
   user: process.env.DB_USER,
   host: 'localhost',
   database: 'booklist',
-  password: 'estelacodes',
-  // password: 'administrador',
+  // password: 'estelacodes',
+  password: 'administrador',
   port: 5432
 })
 db.connect()
@@ -45,8 +45,8 @@ app.post('/signup', async (req, res) => {
 
     // insert new user with hashed password
     bcrypt.hash(password, saltRounds, async (err, hash) => {
-      await db.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, hash])
-      res.json({ success: true, message: err })
+      const response = await db.query('INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id', [email, hash])
+      res.json({ success: true, message: err, userId: response.rows[0].id })
     })
   } catch (error) {
     console.error(error)
@@ -70,7 +70,7 @@ app.post('/login', async (req, res) => {
       const hashedPassword = result.rows[0].password
       bcrypt.compare(password, hashedPassword, async (_err, same) => {
         if (same) {
-          res.json({ success: true, message: 'Login successful!' })
+          res.json({ success: true, message: 'Login successful!', userId: result.rows[0].id })
         } else {
           res.json({ success: false, message: 'Wrong password. Please try again.' })
         }
@@ -85,12 +85,76 @@ app.post('/login', async (req, res) => {
   }
 })
 
+// add to books read
+app.post('/api/user-books', async (req, res) => {
+  const { user_id, book_id, read_date, review, category } = req.body;
+
+  if (!user_id || !book_id) {
+      return res.status(400).json({ error: 'user_id and book_id are required.' });
+  }
+
+  try {
+      const result = await db.query(
+          'INSERT INTO users_books (user_id, book_id, read_date, review) VALUES ($1, $2, $3) ON CONFLICT (user_id, book_id) DO NOTHING',
+          [user_id, book_id, read_date || new Date(), review ]
+      );
+
+      res.status(201).json({ message: 'Book added suscessfully.' });
+  } catch (error) {
+      console.error('Error adding book to shelves:', error);
+      res.status(500).json({ error: 'Error adding book to shelves.' });
+  }
+});
+
+// Función para buscar un libro en la base de datos (revisar)
+async function buscarLibroEnBD(isbn) {
+  const query = 'SELECT * FROM libros WHERE isbn = $1';
+  const res = await client.query(query, [isbn]);
+  return res.rows[0];
+}
+
+// Función para guardar un libro en la base de datos (revisar)
+async function guardarLibroEnBD(libro) {
+  const query = 'INSERT INTO libros (titulo, autor, isbn, descripcion) VALUES ($1, $2, $3, $4)';
+  const values = [libro.title, libro.author, libro.isbn, libro.description];
+  await client.query(query, values);
+}
+
+// Función principal para obtener un libro (revisar)
+async function obtenerLibro(isbn) {
+  try {
+    // Conectar a la base de datos
+    await client.connect();
+
+    // Verificar si el libro ya está en la base de datos
+    let libro = await buscarLibroEnBD(isbn);
+    if (libro) {
+      console.log('Libro encontrado en la base de datos:', libro);
+    } else {
+      // Si no está en la base de datos, buscar en la API de Google Books
+      libro = await buscarLibroEnGoogleBooks(isbn);
+      if (libro) {
+        console.log('Libro encontrado en Google Books:', libro);
+        // Guardar el libro en la base de datos para futuras consultas
+        await guardarLibroEnBD(libro);
+      } else {
+        console.log('No se encontró el libro en Google Books.');
+      }
+    }
+  } catch (err) {
+    console.error('Error al obtener el libro:', err);
+  } finally {
+    // Cerrar la conexión a la base de datos
+    await client.end();
+  }
+}
+
 // get books
 async function getBooks () {
   try {
-    const selectQuery = 'SELECT book.id, title, name, tags, rating, review, img_path FROM book INNER JOIN author ON book.id = author.id INNER JOIN review ON book.id = review.id'
+    // const selectQuery = 'SELECT book.id, title, name, tags, rating, review, img_path FROM book INNER JOIN author ON book.id = author.id INNER JOIN review ON book.id = review.id'
     // en realidad se puede mejorar metiendolo directamente en la linea de arriba
-    // const selectQuery = 'SELECT id, title, author, rating, review, img_path, tags FROM book'
+    const selectQuery = 'SELECT id, title, author, rating, review, img_path, tags FROM books'
     const result = await db.query(selectQuery)
     const books = result.rows
     return books
@@ -152,18 +216,18 @@ async function getBookCover (books) {
     }
   })
 }
-// get book from google API
-async function getBooksFromGoogleAPI () {
-  try {
-    const params = {
-      q: 'count'
-    }
-    const response = await axios.get('https://www.googleapis.com/books/v1/volumes', { params })
-    const bookInfo = response.data
-    return bookInfo
-  } catch (error) {
-    console.log(error)
-  }
+
+// Función para buscar un libro en la API de Google Books (revisar)
+async function buscarLibroEnGoogleBooks(isbn) {
+  const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+  const response = await axios.get(url);
+  const libro = response.data.items ? response.data.items[0].volumeInfo : null;
+  return libro ? {
+    title: libro.title,
+    author: libro.authors ? libro.authors.join(', ') : 'Autor desconocido',
+    isbn: isbn,
+    description: libro.description || 'Sin descripción disponible',
+  } : null;
 }
 
 app.get('/get-random-quote', async (req, res) => {

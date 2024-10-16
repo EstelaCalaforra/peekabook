@@ -4,11 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
 import { useBookSearch } from '../hooks/useBookSearch'
 import Divider from '../assets/botanical-divider-crop.png'
+import { useAuth } from '../context/AuthContext'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function IndividualBookPage () {
   const { bookSearch, bookId, setBookId, categories } = useContext(BookSearchContext)
+  const { isAuthenticated } = useAuth()
+  console.log({ isAuthenticated })
 
   console.log('bookSearch in IndividualBookPage', bookSearch)
   console.log('bookId in IndividualBookPage', bookId)
@@ -21,18 +24,42 @@ export function IndividualBookPage () {
   const navigate = useNavigate()
 
   function handleClick (event, id) {
-    event.preventDefault()
-    console.log('bookId in BookFindPage', id)
-    setBookId(id)
-    navigate('/ind-book')
+      event.preventDefault()
+      console.log('bookId in BookFindPage', id)
+      setBookId(id)
+      navigate('/ind-book')  
   }
 
   const [added, setAdded] = useState(false)
   function handleClickAddToShelves () {
-    const isAdded = added
-    setAdded(!isAdded)
-    if (isAdded === false) openPopup()
+    console.log({ isAuthenticated })
+    if (isAuthenticated) {
+      const isAdded = added
+      setAdded(!isAdded)
+      if (isAdded === false) openPopup()
+    } else {
+      navigate('/login')
+    } 
   }
+
+  // Función para añadir un libro a los leídos
+  async function addBookToShelves({ userId, bookId, category, date_read }) {
+    const response = await fetch('/api/user-books', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            user_id: userId,
+            book_id: bookId,
+        })
+    })
+    if (response.ok) {
+        console.log('Libro añadido a los leídos.');
+    } else {
+        console.error('Error al añadir el libro a los leídos.');
+    }
+}
 
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const openPopup = () => setIsPopupOpen(true)
@@ -47,16 +74,20 @@ export function IndividualBookPage () {
           {isPopupOpen && (
             <div className='popup-overlay'>
               <div className='popup-content'>
-                <fieldset>
+                <fieldset className=''>
                   <legend>Choose the shelves:</legend>
                   {categories.map((category) => {
                     return (
-                      <div key={category}>
-                        <input type='checkbox' id={category} name={category} />
-                        <label htmlFor={category}>{category}</label>
-                      </div>
+                        <div className='individual-book-page-row' key={category}>
+                          <input type='checkbox' id={category} name={category} />
+                          <label htmlFor={category}>{category}</label>
+                        </div>
                     )
                   })}
+                  <div className='individual-book-page-row'>
+                    <p>+</p>
+                    <p>Add new category</p>
+                  </div>
                 </fieldset>
                 <button className='popup-button' onClick={closePopup}>Add</button>
               </div>

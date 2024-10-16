@@ -76,12 +76,11 @@ input[type=text] {
   font-size: 12px;
   background-color: whitesmoke;
   width: 20dvw;
-  color: #3f3230;
 }
 
 input:focus::-webkit-input-placeholder 
 {
-  color: #3f3230;
+  color: whitesmoke;
   background-color: whitesmoke
 }
 

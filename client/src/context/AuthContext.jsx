@@ -6,7 +6,7 @@ export const AuthContext = createContext()
 // Context Provider
 export function AuthProvider ({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-
+  const [userId, setUserId]  = useState('')
   const login = () => setIsAuthenticated(true)
   const logout = () => setIsAuthenticated(false)
 
@@ -15,7 +15,9 @@ export function AuthProvider ({ children }) {
       isAuthenticated,
       setIsAuthenticated,
       login,
-      logout
+      logout,
+      userId,
+      setUserId
     }}
     >
       {children}
