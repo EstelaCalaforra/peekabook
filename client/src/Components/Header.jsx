@@ -4,11 +4,13 @@ import userIcon from '../assets/user-icon.png'
 import { useId, useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
+import { useAuth } from '../context/AuthContext'
 import { useBookSearch } from '../hooks/useBookSearch'
 
 export function Header () {
   const { bookQuery, setBookQuery } = useContext(BookSearchContext)
   const { setBooksGoogleAPI } = useBookSearch()
+  const { userId } = useAuth()
 
   // const dropdownSearchId = useId()
   const searchBookFormId = useId()
@@ -46,7 +48,7 @@ export function Header () {
         <nav>
           <ul>
             <li><a href='/'>Home</a></li>
-            <li><a href='/bookshelf'>Bookshelf</a></li>
+            <li><a href={userId ? '/bookshelf/' + userId : '/login'}>Bookshelf</a></li>
           </ul>
         </nav>
       </div>

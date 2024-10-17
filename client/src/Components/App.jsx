@@ -46,7 +46,7 @@ function App () {
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/signup' element={<SignUpPage />} />
                 {/* Protected Routes */}
-                <Route path='/bookshelf' element={<ProtectedRoute> <BookshelfPage /> </ProtectedRoute>} />
+                <Route path='/bookshelf/:id' element={<ProtectedRoute> <BookshelfPage /> </ProtectedRoute>} />
               </Routes>
               <Footer />
             </ThemeProvider>

@@ -20,6 +20,7 @@ export function BookshelfPage () {
     return allCategories
   }
 
+  // fetch books in database first time the component is rendered
   useEffect(() => {
     const fetchBookshelfData = async () => {
       try {

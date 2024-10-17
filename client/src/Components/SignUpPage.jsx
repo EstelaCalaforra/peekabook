@@ -36,7 +36,7 @@ export function SignUpPage () {
       setUserId(data.userId)
       setIsAuthenticated(true)
       console.log('authenticated: true')
-      navigate('/bookshelf')
+      navigate('/bookshelf/' + data.userId)
     } else {
       setError(data.message || 'Signup failed')
     }

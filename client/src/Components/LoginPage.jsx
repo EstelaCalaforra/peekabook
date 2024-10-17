@@ -32,7 +32,7 @@ export function LoginPage () {
       setError('')
       setIsAuthenticated(true)
       console.log({ isAuthenticated })
-      setTimeout(() => { navigate('/bookshelf') }, 2000)
+      setTimeout(() => { navigate('/bookshelf/' + data.userId) }, 2000)
     } else {
       setMessage('')
       setError(data.message || 'Login failed. Please try again.') // there's a field in the json response called message
