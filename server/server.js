@@ -20,9 +20,9 @@ dotenv.config()
 const db = new pg.Client({
   user: process.env.DB_USER,
   host: 'localhost',
-  database: 'booklist',
-  // password: 'estelacodes',
-  password: 'administrador',
+  database: 'pickabook',
+  password: 'estelacodes',
+  // password: 'administrador',
   port: 5432
 })
 db.connect()
@@ -85,95 +85,56 @@ app.post('/login', async (req, res) => {
   }
 })
 
-// post to books read
-app.post('/api/add-books/user:id', async (req, res) => {
-  const { userId, bookId, readDate, review, categoriesSelected } = req.body
+// post book to database from user
+app.post('/api/add-books/user/:id', async (req, res) => {
+  const postFormInfo = req.body
+  const { userId, book } = req.body
+  // console.log({ postFormInfo })
+  // console.log({ userId })
+  // console.log({ book })
 
-  if (!userId || !bookId) {
-    return res.status(400).json({ error: 'userId and bookId are required.' })
-  }
-
-  // insert into table books
   try {
-    const result = await db.query(
-      'INSERT INTO books (user_id, book_id, read_date, review) VALUES ($1, $2, $3) ON CONFLICT (user_id, book_id) DO NOTHING',
-      [userId, bookId, readDate || new Date(), review]
-    )
-
-    res.status(201).json({ success: true, message: 'Book added suscessfully.' })
+    // insert book into books table
+    const response = await db.query('INSERT INTO books (title, cover) VALUES ($1, $2) RETURNING id', [book.title, book.cover])
+    const bookId = response.rows[0].id
+    // insert user and book into user_books table
+    try {
+      const response = await db.query('INSERT INTO user_books (user_id, book_id, read_date) VALUES ($1, $2, $3)', [userId, bookId, book.readDate])
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ success: false, message: 'Server error' })
+    }
   } catch (error) {
-    console.error('Error adding book to shelves:', error)
-    res.status(500).json({ success: false, error: 'Error adding book to shelves.' })
-  }
-
-  // insert into relational table users_books
-  try {
-    const result = await db.query(
-      'INSERT INTO users_books (user_id, book_id, read_date, review) VALUES ($1, $2, $3) ON CONFLICT (user_id, book_id) DO NOTHING',
-      [userId, bookId, readDate || new Date(), review]
-    )
-
-    res.status(201).json({ message: 'Book added suscessfully.' })
-  } catch (error) {
-    console.error('Error adding book to shelves:', error)
-    res.status(500).json({ success: false, error: 'Error adding book to shelves.' })
+    console.log(error)
+    res.status(500).json({ success: false, message: 'Server error' })
   }
 })
 
-// Función para buscar un libro en la base de datos (revisar)
-async function buscarLibroEnBD (isbn) {
-  const query = 'SELECT * FROM libros WHERE isbn = $1'
-  const res = await client.query(query, [isbn])
-  return res.rows[0]
-}
+// post book to database from search query if not already on it
+app.post('/api/add-books/', async (req, res) => {
+  const { bookData } = req.body
+  console.log({ bookData })
 
-// Función para guardar un libro en la base de datos (revisar)
-async function guardarLibroEnBD (libro) {
-  const query = 'INSERT INTO libros (titulo, autor, isbn, descripcion) VALUES ($1, $2, $3, $4)'
-  const values = [libro.title, libro.author, libro.isbn, libro.description]
-  await client.query(query, values)
-}
-
-// Función principal para obtener un libro (revisar)
-async function obtenerLibro (isbn) {
   try {
-    // Conectar a la base de datos
-    await client.connect()
-
-    // Verificar si el libro ya está en la base de datos
-    let libro = await buscarLibroEnBD(isbn)
-    if (libro) {
-      console.log('Libro encontrado en la base de datos:', libro)
-    } else {
-      // Si no está en la base de datos, buscar en la API de Google Books
-      libro = await buscarLibroEnGoogleBooks(isbn)
-      if (libro) {
-        console.log('Libro encontrado en Google Books:', libro)
-        // Guardar el libro en la base de datos para futuras consultas
-        await guardarLibroEnBD(libro)
-      } else {
-        console.log('No se encontró el libro en Google Books.')
-      }
-    }
-  } catch (err) {
-    console.error('Error al obtener el libro:', err)
-  } finally {
-    // Cerrar la conexión a la base de datos
-    await client.end()
+    // insert book into books table
+    const response = await db.query('INSERT INTO books (title, cover, id_api) VALUES ($1, $2) RETURNING id', [bookData.title, bookData.cover, bookData.id])
+    console.log(response.data)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ success: false, message: 'Server error' })
   }
-}
+})
 
 // get books from database
 async function getBooks () {
   try {
-    // const selectQuery = 'SELECT book.id, title, name, tags, rating, review, img_path FROM book INNER JOIN author ON book.id = author.id INNER JOIN review ON book.id = review.id'
-    // en realidad se puede mejorar metiendolo directamente en la linea de arriba
-    const selectQuery = 'SELECT id, title, author, rating, review, img_path, tags FROM books'
+    const selectQuery = 'SELECT b.title, a.fullname AS author, c.name AS category, b.cover, b.id_api FROM books b JOIN book_authors ba ON b.id = ba.book_id JOIN authors a ON ba.author_id = a.id JOIN book_categories bc ON b.id = bc.book_id JOIN categories c ON bc.category_id = c.id'
     const result = await db.query(selectQuery)
     const books = result.rows
+    console.log({ books })
     return books
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -215,10 +176,7 @@ async function getBookCover (books) {
             q: book.title + '+inauthor:' + book.author // book.name at homeDB
           }
         })
-        // console.log(response);
-        // console.log(response.data.items[0].volumeInfo)
         imgPath = response.data.items[0].volumeInfo.imageLinks.smallThumbnail
-        // console.log(imgPath)
         try {
           await db.query('UPDATE book SET img_path=$1 WHERE id=$2', [imgPath, book.id])
         } catch (err) {
@@ -231,21 +189,6 @@ async function getBookCover (books) {
   })
 }
 
-// Función para buscar un libro en la API de Google Books (revisar)
-async function buscarLibroEnGoogleBooks (isbn) {
-  const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`
-  const response = await axios.get(url)
-  const libro = response.data.items ? response.data.items[0].volumeInfo : null
-  return libro
-    ? {
-        title: libro.title,
-        author: libro.authors ? libro.authors.join(', ') : 'Autor desconocido',
-        isbn,
-        description: libro.description || 'Sin descripción disponible'
-      }
-    : null
-}
-
 app.get('/get-random-quote', async (req, res) => {
   const quoteData = await getQuote()
   res.json(quoteData)
@@ -253,20 +196,17 @@ app.get('/get-random-quote', async (req, res) => {
 
 app.get('/get-books-google-api', async (req, res) => {
   const books = await getBooksFromGoogleAPI()
-  // console.log(books);
   res.json(books)
 })
 
 app.get('/get-bestsellers', async (req, res) => {
   const bestSellers = await getBestsellers()
-  // console.log(bestSellers);
   res.json(bestSellers)
 })
 
 app.get('/get-bookshelf', async (req, res) => {
   const bookshelf = await getBooks()
   await getBookCover(bookshelf)
-  console.log(bookshelf)
   res.json(bookshelf)
 })
 

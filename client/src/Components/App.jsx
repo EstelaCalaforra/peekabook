@@ -42,7 +42,7 @@ function App () {
                 {/* Public Routes */}
                 <Route exact path='/' element={<HomePage />} />
                 <Route path='/book-search' element={<BookFindPage />} />
-                <Route path='/ind-book' element={<IndividualBookPage />} />
+                <Route path='/ind-book/:id' element={<IndividualBookPage />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/signup' element={<SignUpPage />} />
                 {/* Protected Routes */}

@@ -1,5 +1,5 @@
 import './styles/IndividualBookPage.css'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
 import { useBookSearch } from '../hooks/useBookSearch'
@@ -9,7 +9,7 @@ import { useAuth } from '../context/AuthContext'
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function IndividualBookPage () {
-  const { bookSearch, bookId, setBookId, categories } = useContext(BookSearchContext)
+  const { bookSearch, setBookId, bookId, categories } = useContext(BookSearchContext)
   const { isAuthenticated, userId } = useAuth()
   const [categoriesSelected, setCategoriesSelected] = useState([])
   const [error, setError] = useState('')
@@ -22,25 +22,32 @@ export function IndividualBookPage () {
 
   function handleClick (event, id) {
     event.preventDefault()
-    console.log('bookId in BookFindPage', id)
     setBookId(id)
-    navigate('/ind-book')
+    navigate('/ind-book/' + id)
   }
 
   async function handleAdd (event) {
     event.preventDefault()
     console.log('Checkboxes selected:', categoriesSelected)
+    const book = {
+      id: bookId,
+      title: bookInList ? bookSearch[findedIndex].volumeInfo.title : null,
+      author: bookInList ? bookSearch[findedIndex].volumeInfo.authors[0] : null,
+      categories: categoriesSelected,
+      description: bookInList ? bookSearch[findedIndex].volumeInfo.description : null,
+      cover: bookInList ? bookSearch[findedIndex].volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl : null,
+      readDate: new Date()
+    }
 
-    const response = await fetch('/api/add-books/user' + userId, {
+    const response = await fetch('http://localhost:5000/api/add-books/user/' + userId, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ userId, bookId, readDate: new Date(), review: '', categoriesSelected }) // apis handle data in json format
+      body: JSON.stringify({ userId, book }) // apis handle data in json format
     })
 
     const data = await response.json()
-    console.log(data)
 
     if (data.success) { // there's a field in the json response called success (true or false)
       setMessage('Added successful! Redirecting...')
@@ -58,13 +65,12 @@ export function IndividualBookPage () {
     if (checked) {
       setCategoriesSelected([...categoriesSelected, value])
     } else {
-      setCategoriesSelected(categoriesSelected.filter(opcion => opcion !== value))
+      setCategoriesSelected(categoriesSelected.filter(option => option !== value))
     }
   }
 
   const [added, setAdded] = useState(false)
   function handleClickAddToShelves () {
-    console.log({ isAuthenticated })
     if (isAuthenticated) {
       const isAdded = added
       setAdded(!isAdded)
@@ -74,37 +80,18 @@ export function IndividualBookPage () {
     }
   }
 
-  const node = useRef()
-  function handleClickOutsideClick (event) {
-    if (node && node.current && !node.current.contains(event.target)) {
-      console.log('Clicked outside.')
-    }
-  }
+  // const node = useRef()
+  // function handleClickOutsideClick (event) {
+  //   if (node && node.current && !node.current.contains(event.target)) {
+  //     console.log('Clicked outside.')
+  //   }
+  // }
 
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutsideClick)
+  // useEffect(() => {
+  //   document.addEventListener('click', handleClickOutsideClick)
 
-    return () => document.removeEventListener('click', handleClickOutsideClick)
-  }, [])
-
-  // Función para añadir un libro a los leídos
-  async function addBookToShelves ({ userId, bookId, category, date_read }) {
-    const response = await fetch('/api/user-books', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user_id: userId,
-        book_id: bookId
-      })
-    })
-    if (response.ok) {
-      console.log('Libro añadido a los leídos.')
-    } else {
-      console.error('Error al añadir el libro a los leídos.')
-    }
-  }
+  //   return () => document.removeEventListener('click', handleClickOutsideClick)
+  // }, [])
 
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const openPopup = () => setIsPopupOpen(true)
@@ -119,9 +106,9 @@ export function IndividualBookPage () {
           {isPopupOpen && (
             <div className='popup-overlay'>
               <div className='popup-content'>
-                <form action='' method='post' onSubmit={handleAdd}>
+                <form action={'http://localhost:5000/api/add-books/user/' + userId} method='post' onSubmit={handleAdd}>
                   {/* trying to make the popup close when clicking outside */}
-                  <fieldset className='' ref={node}>
+                  <fieldset className=''>
                     <legend>Choose the shelves:</legend>
                     {categories.map((category, key) => {
                       return (

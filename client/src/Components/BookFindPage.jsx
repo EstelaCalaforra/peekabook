@@ -1,5 +1,5 @@
 import './styles/BookFindPage.css'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
 import FiveStarsRatingIcon from '../assets/five-stars-rating.png'
@@ -9,26 +9,14 @@ import axios from 'axios'
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function BookFindPage () {
-
-  const checkIfInfoOnDatabase = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/get-bookshelf')
-      console.log(response.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  checkIfInfoOnDatabase()
-
   const { bookSearch, setBookId } = useContext(BookSearchContext)
   console.log({ bookSearch })
   const navigate = useNavigate()
 
   function handleClick (event, id) {
     event.preventDefault()
-    console.log({ id })
     setBookId(id)
-    navigate('/ind-book')
+    navigate('/ind-book/' + id)
   }
 
   return (
