@@ -2,13 +2,11 @@ import express from 'express'
 import cors from 'cors'
 import pg from 'pg'
 import bodyParser from 'body-parser'
-import axios from 'axios'
 import * as dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
+import { getBestsellers, getBooksDB, getQuote, getBooksGoogleAPI } from './functions.js'
 
-// import { getBooks, getBookCover } from "./functions.js";
-
-// important consts
+// Important consts
 const app = express()
 const port = 5000
 
@@ -16,7 +14,7 @@ const saltRounds = 10
 
 dotenv.config()
 
-// database
+// Database
 const db = new pg.Client({
   user: process.env.DB_USER,
   host: 'localhost',
@@ -27,11 +25,11 @@ const db = new pg.Client({
 })
 db.connect()
 
-// middleware
+// Middleware
 app.use(cors())
 app.use(bodyParser.json())
 
-// signup
+// Signup
 app.post('/signup', async (req, res) => {
   const { email, password } = req.body
 
@@ -54,7 +52,7 @@ app.post('/signup', async (req, res) => {
   }
 })
 
-// login
+// Login
 app.post('/login', async (req, res) => {
   const { email, password } = req.body
 
@@ -85,13 +83,9 @@ app.post('/login', async (req, res) => {
   }
 })
 
-// post book to database from user
+// Add book to user (database)
 app.post('/api/add-books/user/:id', async (req, res) => {
-  const postFormInfo = req.body
   const { userId, book } = req.body
-  // console.log({ postFormInfo })
-  // console.log({ userId })
-  // console.log({ book })
 
   try {
     // insert book into books table
@@ -110,92 +104,68 @@ app.post('/api/add-books/user/:id', async (req, res) => {
   }
 })
 
-// post book to database from search query if not already on it
-app.post('/api/add-books/', async (req, res) => {
+// Add book search results to database if not already on it (database)
+app.post('/api/add-results-to-db', async (req, res) => {
   const { bookData } = req.body
-  console.log({ bookData })
 
   try {
-    // insert book into books table
-    const response = await db.query('INSERT INTO books (title, cover, id_api) VALUES ($1, $2) RETURNING id', [bookData.title, bookData.cover, bookData.id])
-    console.log(response.data)
+    // Insert book into books table
+    const bResponse = await db.query(
+      'INSERT INTO books (title, cover, id_api) VALUES ($1, $2, $3) RETURNING id',
+      [bookData.title, bookData.cover, bookData.id]
+    )
+    const bookId = bResponse.rows[0].id
+
+    // Insert or retrieve author id
+    for (const authorName of bookData.authors) {
+      try {
+        // Verify if author already exists in authors table
+        let aResponse = await db.query(
+          'SELECT id FROM authors WHERE fullname = $1',
+          [authorName]
+        )
+        let authorId
+        if (aResponse.rows.length > 0) {
+          // If author exists use their id
+          authorId = aResponse.rows[0].id
+        } else {
+          // If author doesn't exists insert name and retrieve their id
+          aResponse = await db.query(
+            'INSERT INTO authors (fullname) VALUES ($1) RETURNING id',
+            [authorName]
+          )
+          authorId = aResponse.rows[0].id
+        }
+
+        // Insertar relación en la tabla book_authors
+        await db.query(
+          'INSERT INTO book_authors (book_id, author_id) VALUES ($1, $2)',
+          [bookId, authorId]
+        )
+      } catch (error) {
+        console.log('Error al manejar el autor:', error)
+        return res.status(500).json({ success: false, message: 'Server error al manejar autor' })
+      }
+    }
+
+    // Si todo sale bien
+    res.status(200).json({ success: true, message: 'Libro y autores insertados correctamente' })
   } catch (error) {
-    console.log(error)
-    res.status(500).json({ success: false, message: 'Server error' })
+    console.log('Error al insertar en books:', error)
+    res.status(500).json({ success: false, message: 'Server error al insertar libro' })
   }
 })
 
-// get books from database
-async function getBooks () {
-  try {
-    const selectQuery = 'SELECT b.title, a.fullname AS author, c.name AS category, b.cover, b.id_api FROM books b JOIN book_authors ba ON b.id = ba.book_id JOIN authors a ON ba.author_id = a.id JOIN book_categories bc ON b.id = bc.book_id JOIN categories c ON bc.category_id = c.id'
-    const result = await db.query(selectQuery)
-    const books = result.rows
-    console.log({ books })
-    return books
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-// get random quote from OnRender API
-async function getQuote () {
-  try {
-    const response = await axios.get('https://recite.onrender.com/api/v1/random')
-    const quote = response.data
-    return quote
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-// get bestseller books from NYTimes API
-async function getBestsellers () {
-  try {
-    const params = {
-      'api-key': 'WdGDKFTLRAMvyfPT3LVHZAAUiEaImG0W'
-    }
-    const response = await axios.get('https://api.nytimes.com/svc/books/v3/lists/overview.json', { params })
-    const bestSellers = response.data
-    return bestSellers
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-// get book covers from Google API
-async function getBookCover (books) {
-  const API_URL = 'https://www.googleapis.com'
-  let imgPath = ''
-
-  books.forEach(async book => {
-    if (book.img_path === null) {
-      try {
-        const response = await axios.get(API_URL + '/books/v1/volumes', {
-          params: {
-            q: book.title + '+inauthor:' + book.author // book.name at homeDB
-          }
-        })
-        imgPath = response.data.items[0].volumeInfo.imageLinks.smallThumbnail
-        try {
-          await db.query('UPDATE book SET img_path=$1 WHERE id=$2', [imgPath, book.id])
-        } catch (err) {
-          console.log(err)
-        }
-      } catch (error) {
-        console.error(error)
-      }
-    }
-  })
-}
-
+// Recite API (external api)
 app.get('/get-random-quote', async (req, res) => {
   const quoteData = await getQuote()
   res.json(quoteData)
 })
 
+// Google Books API (external api)
 app.get('/get-books-google-api', async (req, res) => {
-  const books = await getBooksFromGoogleAPI()
+  const { bookQuery } = req.query
+  const books = await getBooksGoogleAPI({ bookQuery })
   res.json(books)
 })
 
@@ -205,15 +175,13 @@ app.get('/get-bestsellers', async (req, res) => {
 })
 
 app.get('/get-bookshelf', async (req, res) => {
-  const bookshelf = await getBooks()
-  await getBookCover(bookshelf)
+  const bookshelf = await getBooksDB({ db })
   res.json(bookshelf)
 })
 
 app.get('/api', async (req, res) => {
-  const bookData = await getBooks()
-  res.json(bookData) // our backend API that will
-  // be fetched from the frontend
+  const bookData = await getBooksDB()
+  res.json(bookData)
 })
 
 app.listen(port, function (err) {

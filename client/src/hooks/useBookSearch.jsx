@@ -11,55 +11,80 @@ export function useBookSearch () {
   async function addToDatabase (bookSearch) {
     try {
       const response = await axios.get('http://localhost:5000/get-bookshelf')
-      const consult = response.data
+      const consult = response.data // Lista de libros en la base de datos
       console.log({ consult })
       console.log({ bookSearch })
 
-      // Cambia el forEach por un for...of
-      for (const book of bookSearch) {
-        // Usa === para comparación
-        if (book.id !== response.data.id_api) {
-          const bookData = {
-            id: book.id,
-            title: book.volumeInfo.title,
-            author: book.volumeInfo.authors[0],
-            description: book.volumeInfo.description,
-            cover: book.volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl
-          }
+      // Filtra los libros que no están en la base de datos
+      const booksToAdd = bookSearch.filter(book =>
+        !consult.some(dbBook => dbBook.id_api === book.id)
+      )
 
-          // Ahora puedes usar await aquí
-          const addResponse = await fetch('http://localhost:5000/api/add-books/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ bookData }) // apis handle data in json format
-          })
-
-          // Puedes manejar la respuesta de la API aquí si es necesario
-          const result = await addResponse.json()
-          console.log({ result }) // Muestra el resultado de la inserción si es necesario
+      // Crea un array de promesas para añadir libros en paralelo
+      const addPromises = booksToAdd.map(async (book) => {
+        const bookData = {
+          id: book.id,
+          title: book.volumeInfo.title,
+          pubYear: book.volumeInfo.publishedDate ? book.volumeInfo.publishedDate : null,
+          authors: book.volumeInfo.authors ? book.volumeInfo.authors : 'Unknown Author',
+          description: book.volumeInfo.description || 'No description available',
+          cover: book.volumeInfo.imageLinks?.smallThumbnail || defaultImageUrl
         }
-      }
+        console.log({ bookData })
+
+        // Inserta el libro en la base de datos
+        const addResponse = await fetch('http://localhost:5000/api/add-results-to-db', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ bookData })
+        })
+
+        const result = await addResponse.json()
+        console.log({ result })
+        return result
+      })
+
+      // Ejecuta todas las promesas en paralelo
+      const results = await Promise.all(addPromises)
+      console.log('Libros añadidos:', results)
     } catch (error) {
       console.log(error)
     }
   }
 
   async function fetchBooksGoogleAPI (bookQuery) {
+  //   try {
+  //     const params = {
+  //       q: bookQuery,
+  //       orderBy: 'relevance',
+  //       printType: 'books',
+  //       langRestrict: 'en',
+  //       maxResults: 10
+  //     }
+  //     const response = await axios.get('https://www.googleapis.com/books/v1/volumes', { params })
+  //     const { items } = response.data
+  //     setBookSearch(items)
+  //     setLoading(false)
+  //     console.log({ bookSearch })
+  //     addToDatabase(items)
+  //   } catch (error) {
+  //     console.log(error)
+  //     setLoading(false)
+  //   }
+  // }
     try {
-      const params = {
-        q: bookQuery,
-        orderBy: 'relevance',
-        printType: 'books',
-        langRestrict: 'en',
-        maxResults: 10
-      }
-      const response = await axios.get('https://www.googleapis.com/books/v1/volumes', { params })
-      const { items } = response.data
+      const response = await axios.get('http://localhost:5000/get-books-google-api', {
+        params: {
+          bookQuery
+        }
+      })
+      console.log(response.data)
+      const items = response.data
       setBookSearch(items)
       setLoading(false)
-      console.log({ bookSearch })
+      console.log({ items })
       addToDatabase(items)
     } catch (error) {
       console.log(error)

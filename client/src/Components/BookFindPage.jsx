@@ -10,7 +10,6 @@ const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this i
 
 export function BookFindPage () {
   const { bookSearch, setBookId } = useContext(BookSearchContext)
-  console.log({ bookSearch })
   const navigate = useNavigate()
 
   function handleClick (event, id) {
