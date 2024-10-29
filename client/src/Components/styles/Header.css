@@ -9,8 +9,7 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 20px
-  /* padding: 0px 20px 0px 20px; */
+  gap: 20px;
 }
 
 header ul {
@@ -63,31 +62,43 @@ header a:hover {
   margin-left: 10px;
 }
 
+.header .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.header .column {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 input[type=text] {
   font-family: "Libre Baskerville", serif;
-  /* float: right; */
   padding: 10px;
   border: 2px solid #85644d;
   border-radius: 5px;
-  /* margin-top: 8px;
-  margin-bottom: 8px;
-  margin-right: 16px;
-  margin-right: 10px; */
   font-size: 12px;
   background-color: whitesmoke;
   width: 20dvw;
+  color:#3f3230;
 }
 
-input:focus::-webkit-input-placeholder 
-{
-  color: whitesmoke;
-  background-color: whitesmoke
+input[type=text]:focus {
+  color:#3f3230;
+  background-color: whitesmoke;
 }
 
 .header-popup-login {
   position: absolute;
   top: 7%;
-  left: 87%; 
+  left: 80%; 
   /* transform: translateX(-50%); */
   background-color: #333;
   color: #fff;

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import './styles/SignUpPage.css'
 
 export function SignUpPage () {
   const [email, setEmail] = useState('')
@@ -43,40 +44,43 @@ export function SignUpPage () {
   }
 
   return (
-    <div style={{ maxWidth: '300px', margin: '0 auto', padding: '20px' }}>
-      <h2>Sign Up</h2>
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input
-            type='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Confirm Password:</label>
-          <input
-            type='password'
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type='submit'>Sign Up</button>
-      </form>
+    <div className='signup-page'>
+      <div className='signup-container'>
+        <h2 className='signup-h2'>⋆ ˚｡⋆ Sign Up ⋆ ˚｡⋆</h2>
+        {message && <p style={{ color: 'green' }}>{message}</p>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <form className='signup-form' onSubmit={handleSubmit}>
+          <div>
+            <label>Email</label>
+            <input
+              type='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Confirm Password</label>
+            <input
+              type='password'
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button className='signup-button' type='submit'>Sign Up</button>
+        </form>
+      </div>
+      <p className='signup-p'>Do you already have an account? <a className='signup-a' href='/login'>Log in!</a></p>
     </div>
   )
 }

@@ -1,12 +1,12 @@
 .homepage {
     color: #3f3230;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: space-between;
 }
+
 .homepage .quote {
-    /* background-color: rgb(212, 192, 164); */
-    /* background-image: url(../../assets/note-paper.png); */
-    /* background-repeat: no-repeat; */
-    /* background-size: 40%; */
-    /* background-position: center; */
     padding-right: 50px;
     padding-left: 50px;
     font-weight: 400;
@@ -15,10 +15,29 @@
     padding-bottom: 0;
     padding-top: 0;
     margin-top: 0;
+    text-align: center;
 }
 
-.homepage .bestsellers {
-    font-weight: 400;
+.homepage .column {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    /* border: 1px solid #ccc; */
+    margin: 5px;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.homepage .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.homepage .bestsellers .title {
+    font-family: "Libre Baskerville", serif;
 }
 
 .homepage .miniature {
@@ -48,7 +67,6 @@
 .homepage .bestsellers-shelf {
     margin-bottom: 0;
     padding-bottom: 0;
-
 }
 
 .homepage .title {
@@ -66,7 +84,6 @@
 
 .homepage p > a:hover {
     color: #ddbfa9;
-
 }
 
 .homepage .button {

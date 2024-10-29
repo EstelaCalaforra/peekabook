@@ -8,7 +8,7 @@ export function HomePage () {
   const { bestsellersData, loadingBestsellersData } = useBestSellers()
 
   return (
-    <div className='homepage container'>
+    <div className='homepage'>
       <div className='column'>
         <div className='column'>
           <Quote />

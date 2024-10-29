@@ -42,7 +42,7 @@ export function Header () {
   }
 
   return (
-    <header>
+    <header className='header'>
       <div className='row'>
         <img src={bookLogo} alt='Company Logo' className='logo' />
         <nav>
@@ -55,7 +55,7 @@ export function Header () {
       <form id={searchBookFormId} onSubmit={handleSubmit} className='header-form'>
         <input id={searchBookInputId} type='text' onChange={handleChange} value={bookQuery} placeholder='Search book...' />
       </form>
-      <div className=''>
+      <div className='column'>
         <img src={userIcon} alt='Company Logo' onMouseEnter={handleMouseEnter} className='user-icon' />
         {showPopup && (
           <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='header-popup-login'>

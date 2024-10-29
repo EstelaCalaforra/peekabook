@@ -5,11 +5,14 @@ import bodyParser from 'body-parser'
 import * as dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
 import { getBestsellers, getBooksDB, getQuote, getBooksGoogleAPI } from './functions.js'
+// Routers
+import { loginRouter } from './controllers/login.js'
 
-// Important consts
+// Starting the server
 const app = express()
 const port = 5000
 
+// Hashed password info
 const saltRounds = 10
 
 dotenv.config()
@@ -17,11 +20,10 @@ dotenv.config()
 // Database
 const db = new pg.Client({
   user: process.env.DB_USER,
-  host: 'localhost',
-  database: 'pickabook',
-  password: 'estelacodes',
-  // password: 'administrador',
-  port: 5432
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT
 })
 db.connect()
 
@@ -52,36 +54,36 @@ app.post('/signup', async (req, res) => {
   }
 })
 
+app.use('/login', loginRouter)
+
 // Login
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body
+// app.post('/login', async (req, res) => {
+//   const { email, password } = req.body
 
-  try {
-    // consult to the database
-    const result = await db.query(
-      'SELECT * FROM users WHERE email = $1',
-      [email]
-    )
+//   try {
+//     // consult to the database
+//     const result = await db.query(
+//       'SELECT * FROM users WHERE email = $1',
+//       [email]
+//     )
 
-    if (result.rows.length > 0) {
-      // user found, check if hashed password matches form password
-      const hashedPassword = result.rows[0].password
-      bcrypt.compare(password, hashedPassword, async (_err, same) => {
-        if (same) {
-          res.json({ success: true, message: 'Login successful!', userId: result.rows[0].id })
-        } else {
-          res.json({ success: false, message: 'Wrong password. Please try again.' })
-        }
-      })
-    } else {
-      // user not found
-      res.json({ success: false, message: 'Invalid email. Please try again.' })
-    }
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ success: false, message: 'Server error' })
-  }
-})
+//     if (result.rows.length > 0) {
+//       // user found, check if hashed password matches form password
+//       const hashedPassword = result.rows[0].password
+//       bcrypt.compare(password, hashedPassword, async (_err, same) => {
+//         if (same) {
+//           res.status(200).json({ success: true, message: 'Login successful!', userId: result.rows[0].id })
+//         } else {
+//           // we dont want to give the user (potential hacker) too much info (though we now only the password is wrong)
+//           res.status(401).json({ success: false, message: 'Wrong email or password. Please try again.' })
+//         }
+//       })
+//     }
+//   } catch (error) {
+//     console.error(error)
+//     res.status(500).json({ success: false, message: 'Server error' })
+//   }
+// })
 
 // Add book to user (database)
 app.post('/api/add-books/user/:id', async (req, res) => {
