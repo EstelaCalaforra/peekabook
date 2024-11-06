@@ -5,7 +5,6 @@ import { Router } from 'express'
 
 dotenv.config()
 
-
 // Database
 const db = new pg.Client({
   user: process.env.DB_USER,

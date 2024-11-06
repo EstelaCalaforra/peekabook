@@ -100,7 +100,7 @@ input[type=text]:focus {
   top: 7%;
   left: 80%; 
   /* transform: translateX(-50%); */
-  background-color: #333;
+  background-color: #3f3230;
   color: #fff;
   padding: 10px;
   border-radius: 5px;
