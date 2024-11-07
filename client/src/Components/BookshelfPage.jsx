@@ -5,11 +5,13 @@ import Shelf from '../assets/shelf.png'
 import RightArrow from '../assets/right-arrow.png'
 import Divider from '../assets/botanical-divider-crop.png'
 import { BookSearchContext } from '../context/bookSearchContext'
+import { useAuth } from '../context/AuthContext'
 
 export function BookshelfPage () {
   // fetch the get-bookshelf route (database)
   const [bookshelfData, setBookshelfData] = useState([{}])
   const { categories, setCategories } = useContext(BookSearchContext)
+  const { userId } = useAuth()
 
   async function getCategories (response) {
     const allCategories = response.map((element) => element.category)
@@ -21,7 +23,8 @@ export function BookshelfPage () {
   useEffect(() => {
     const fetchBookshelfData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/get-bookshelf')
+        console.log({ userId })
+        const response = await axios.get('http://localhost:5000/get-bookshelf/user/' + userId)
         const resDataGetBooks = response.data
         console.log({ resDataGetBooks })
         setBookshelfData(response.data)

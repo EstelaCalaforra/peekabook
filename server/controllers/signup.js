@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv'
 import { Router } from 'express'
 
 dotenv.config()
+const saltRounds = 10
 
 // Database
 const db = new pg.Client({

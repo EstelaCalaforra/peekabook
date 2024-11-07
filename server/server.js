@@ -39,7 +39,7 @@ app.use('/get-books-google-api', getBooksFromAPIRouter)
 
 app.use('/get-bestsellers', getBestsellersRouter)
 
-app.use('/get-bookshelf', getBookshelfRouter)
+app.use('/get-bookshelf/user', getBookshelfRouter)
 
 app.use('/api', getBookshelfRouter)
 

@@ -80,19 +80,6 @@ export function IndividualBookPage () {
     }
   }
 
-  // const node = useRef()
-  // function handleClickOutsideClick (event) {
-  //   if (node && node.current && !node.current.contains(event.target)) {
-  //     console.log('Clicked outside.')
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   document.addEventListener('click', handleClickOutsideClick)
-
-  //   return () => document.removeEventListener('click', handleClickOutsideClick)
-  // }, [])
-
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const openPopup = () => setIsPopupOpen(true)
   const closePopup = () => setIsPopupOpen(false)

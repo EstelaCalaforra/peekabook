@@ -55,25 +55,6 @@ export function useBookSearch () {
   }
 
   async function fetchBooksGoogleAPI (bookQuery) {
-  //   try {
-  //     const params = {
-  //       q: bookQuery,
-  //       orderBy: 'relevance',
-  //       printType: 'books',
-  //       langRestrict: 'en',
-  //       maxResults: 10
-  //     }
-  //     const response = await axios.get('https://www.googleapis.com/books/v1/volumes', { params })
-  //     const { items } = response.data
-  //     setBookSearch(items)
-  //     setLoading(false)
-  //     console.log({ bookSearch })
-  //     addToDatabase(items)
-  //   } catch (error) {
-  //     console.log(error)
-  //     setLoading(false)
-  //   }
-  // }
     try {
       const response = await axios.get('http://localhost:5000/get-books-google-api', {
         params: {
