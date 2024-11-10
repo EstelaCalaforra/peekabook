@@ -1,6 +1,7 @@
 import pg from 'pg'
 import * as dotenv from 'dotenv'
 import { Router } from 'express'
+import jwt from 'jsonwebtoken'
 
 dotenv.config()
 
@@ -19,6 +20,15 @@ export const addBookRouter = Router()
 addBookRouter.post('/', async (req, res) => {
   const { userId, book } = req.body
 
+  const authorization = req.get('authorization')
+  let token = null
+  if (authorization && authorization.toLowerCase().startsWith('bearer')) {
+    token = authorization.substring(7)
+  }
+  const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
+  if (!token || !decodedToken.id) {
+    return res.status(401).json({ error: 'token missing or invalid' })
+  }
   try {
     // insert book into books table
     const response = await db.query('INSERT INTO books (title, cover) VALUES ($1, $2) RETURNING id', [book.title, book.cover])

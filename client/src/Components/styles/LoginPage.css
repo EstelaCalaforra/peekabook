@@ -22,7 +22,6 @@
   
   .login-h2 {
     color: #3f3230;
-    font-family: "Libre Baskerville", serif;
     font-weight: bold;
   }
 
@@ -38,23 +37,23 @@
   .login-form {
     display: flex;
     flex-direction: column;
-    text-align: center;
     align-items: center;
     gap: 20px;
     margin-bottom: 15px;
-    text-align: center;
-    padding-right: 20px;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0;
   }
   
-  label {
+  .login-form label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
   }
   
-  input {
-    width: 100%;
+  .login-form input {
+    width: 75%; 
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ceab8c;
@@ -69,6 +68,7 @@
   }
   
   .login-button {
+    font-family: 'Newsreader', serif;
     width: 50%;
     padding: 10px;
     background-color: #3f3230;

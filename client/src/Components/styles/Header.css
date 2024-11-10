@@ -1,6 +1,5 @@
 header {
   background-color: #3f3230;
-  font-family: "Libre Baskerville", serif;
   font-weight: 700;
   font-style: normal;
   width: 100%;
@@ -55,6 +54,7 @@ header a:hover {
   height: 40px;
   padding: 10px;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 .logo {
@@ -80,7 +80,7 @@ header a:hover {
 }
 
 input[type=text] {
-  font-family: "Libre Baskerville", serif;
+  font-family: "Newsreader", serif;
   padding: 10px;
   border: 2px solid #85644d;
   border-radius: 5px;
@@ -88,6 +88,7 @@ input[type=text] {
   background-color: whitesmoke;
   width: 20dvw;
   color:#3f3230;
+  margin: 0;
 }
 
 input[type=text]:focus {

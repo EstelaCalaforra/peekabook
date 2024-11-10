@@ -5,10 +5,25 @@ export const AuthContext = createContext()
 
 // Context Provider
 export function AuthProvider ({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [userId, setUserId] = useState('')
-  const login = () => setIsAuthenticated(true)
-  const logout = () => setIsAuthenticated(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    () => JSON.parse(localStorage.getItem('isAuthenticated')) || false
+  )
+  const [userId, setUserId] = useState(localStorage.getItem('userId') || '')
+  // Función para iniciar sesión y almacenar en localStorage
+  const login = async (userId) => {
+    setIsAuthenticated(true)
+    setUserId(userId)
+    localStorage.setItem('isAuthenticated', true)
+    localStorage.setItem('userId', userId)
+  }
+
+  // Función para cerrar sesión y limpiar localStorage
+  const logout = async () => {
+    setIsAuthenticated(false)
+    setUserId('')
+    localStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('userId')
+  }
 
   return (
     <AuthContext.Provider value={{

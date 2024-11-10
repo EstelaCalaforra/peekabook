@@ -11,7 +11,7 @@ export const ProtectedRoute = ({ children }) => {
       // Redirige a la página de inicio de sesión
       navigate('/login')
     }
-  }, [isAuthenticated, navigate])
+  }, [])
 
   // Renderiza los componentes hijos solo si está autenticado
   return isAuthenticated ? children : null

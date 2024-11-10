@@ -52,16 +52,18 @@ export function Header () {
           </ul>
         </nav>
       </div>
-      <form id={searchBookFormId} onSubmit={handleSubmit} className='header-form'>
-        <input id={searchBookInputId} type='text' onChange={handleChange} value={bookQuery} placeholder='Search book...' />
-      </form>
-      <div className='column'>
-        <img src={userIcon} alt='Company Logo' onMouseEnter={handleMouseEnter} className='user-icon' />
-        {showPopup && (
-          <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='header-popup-login'>
-            <a href='/login' className=''>Log in</a>
-          </div>
-        )}
+      <div className='searchbar-user row'>
+        <form id={searchBookFormId} onSubmit={handleSubmit} className='header-form'>
+          <input id={searchBookInputId} type='text' onChange={handleChange} value={bookQuery} placeholder='Search book...' />
+        </form>
+        <div className='column'>
+          <img src={userIcon} alt='Company Logo' onMouseEnter={handleMouseEnter} className='user-icon' />
+          {showPopup && (
+            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='header-popup-login'>
+              <a href='/login' className=''>Log in</a>
+            </div>
+          )}
+        </div>
       </div>
 
     </header>

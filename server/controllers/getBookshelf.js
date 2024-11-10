@@ -1,6 +1,7 @@
 import pg from 'pg'
 import * as dotenv from 'dotenv'
 import { Router } from 'express'
+import jwt from 'jsonwebtoken'
 
 dotenv.config()
 
@@ -18,6 +19,18 @@ export const getBookshelfRouter = Router()
 
 getBookshelfRouter.get('/:id', async (req, res) => {
   const id = req.params.id
+
+  // const authorization = req.get('authorization')
+  // console.log({ authorization })
+  // let token = ''
+  // if (authorization && authorization.toLowerCase().startsWith('bearer')) {
+  //   token = authorization.substring(7)
+  // }
+  // const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
+  // if (!token || !decodedToken.id) {
+  //   return res.status(401).json({ error: 'token missing or invalid' })
+  // }
+
   console.log(id)
   try {
     // eslint-disable-next-line no-multi-str

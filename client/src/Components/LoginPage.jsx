@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import './styles/LoginPage.css' // Archivo de estilos
+import './styles/LoginPage.css'
 
 export function LoginPage () {
   const [email, setEmail] = useState('')
@@ -9,8 +9,8 @@ export function LoginPage () {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
-  const { isAuthenticated, setIsAuthenticated, setUserId } = useAuth()
-
+  const { isAuthenticated, setIsAuthenticated, userId, setUserId, login } = useAuth()
+  console.log({ isAuthenticated })
   // handle the info submitted in the form
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -26,16 +26,18 @@ export function LoginPage () {
     const data = await response.json()
     console.log(data)
 
-    if (data.success) { // there's a field in the json response called success (true or false)
+    if (data.success) {
       setMessage('Login successful! Redirecting...')
-      setUserId(data.userId)
       setError('')
-      setIsAuthenticated(true)
-      console.log({ isAuthenticated })
-      setTimeout(() => { navigate('/bookshelf/' + data.userId) }, 2000)
+      await login(data.userId) // Llama a login en vez de setIsAuthenticated
+      const isAuthenticatedFromLocalStorage = localStorage.getItem('isAuthenticated')
+      console.log({ isAuthenticatedFromLocalStorage })
+      setTimeout(() => {
+        navigate('/bookshelf/' + data.userId)
+      }, 2000)
     } else {
       setMessage('')
-      setError(data.message || 'Login failed. Please try again.') // there's a field in the json response called message
+      setError(data.message || 'Login failed. Please try again.')
     }
   }
 
