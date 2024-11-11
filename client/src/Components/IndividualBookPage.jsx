@@ -48,22 +48,24 @@ export function IndividualBookPage () {
       body: JSON.stringify({ userId, book }) // apis handle data in json format
     })
 
-  //   const data = await response.json()
+    //   const data = await response.json()
 
-  //   if (data.success) { // there's a field in the json response called success (true or false)
-  //     setMessage('Added successful! Redirecting...')
-  //     setError('')
-  //     setTimeout(() => { navigate('/bookshelf/' + data.userId) }, 2000)
-  //   } else {
-  //     setMessage('Something wrong happened.')
-  //     setError(data.message || 'Please try again.') // there's a field in the json response called message
-  //   }
+    //   if (data.success) { // there's a field in the json response called success (true or false)
+    //     setMessage('Added successful! Redirecting...')
+    //     setError('')
+    //     setTimeout(() => { navigate('/bookshelf/' + data.userId) }, 2000)
+    //   } else {
+    //     setMessage('Something wrong happened.')
+    //     setError(data.message || 'Please try again.') // there's a field in the json response called message
+    //   }
+
+    closePopup()
   }
 
   const [categoriesSelected, setCategoriesSelected] = useState([])
   function handleChangeCategoriesSelected (event) {
     const { value, checked } = event.target
-
+    console.log({ value })
     if (checked) {
       setCategoriesSelected([...categoriesSelected, value])
     } else {
@@ -106,39 +108,41 @@ export function IndividualBookPage () {
           <a className={`button ${added ? 'added' : ''}`} onClick={handleClickAddToShelves}>{added ? 'On shelves' : 'Add to shelves'}</a>
           {isPopupOpen && (
             <div className='popup-overlay'>
-              <div className='popup-content'>
-                <form action={'http://localhost:5000/api/add-books/user/' + userId} method='post' onSubmit={handleAdd}>
-                  {/* trying to make the popup close when clicking outside */}
-                  <fieldset className=''>
-                    <legend>Choose the shelves:</legend>
-                    {categories.map((category, key) => {
-                      return (
-                        <div className='individual-book-page-row' key={key}>
-                          <input
-                            type='checkbox'
-                            id={category}
-                            name={category}
-                            value={category}
-                            checked={categoriesSelected.includes(category)}
-                            onChange={handleChangeCategoriesSelected}
-                          />
-                          <label htmlFor={category}>{category}</label>
-                        </div>
-                      )
-                    })}
-                    <div className='individual-book-page-row'>
-                      <input
-                        placeholder='Add new category'
-                        name='newCategory'
-                        value={newCategory}
-                        onChange={handleChangeNewCategory}
-                      />
-                      <button className='' onClick={handleAddNewCategory}>+</button>
-                    </div>
-                  </fieldset>
-                  <input type='submit' value='Add book' />
-                  <button className='popup-button' onClick={closePopup}>Close</button>
-                </form>
+              <div className='close-button-and-popup'>
+                <button className='popup-button' onClick={closePopup}>✖</button>
+                <div className='popup-content'>
+                  <form action={'http://localhost:5000/api/add-books/user/' + userId} method='post' onSubmit={handleAdd}>
+                    {/* trying to make the popup close when clicking outside */}
+                    <fieldset className=''>
+                      <legend>Choose the shelves:</legend>
+                      {categories.map((category, key) => {
+                        return (
+                          <div className='individual-book-page-row' key={key}>
+                            <input
+                              type='checkbox'
+                              id={category}
+                              name={category}
+                              value={category}
+                              checked={categoriesSelected.includes(category)}
+                              onChange={handleChangeCategoriesSelected}
+                            />
+                            <label htmlFor={category}>{category}</label>
+                          </div>
+                        )
+                      })}
+                      <div className='individual-book-page-row'>
+                        <input
+                          placeholder='Add new category'
+                          name='newCategory'
+                          value={newCategory}
+                          onChange={handleChangeNewCategory}
+                        />
+                        <button className='' onClick={handleAddNewCategory}>➕</button>
+                      </div>
+                    </fieldset>
+                    <input type='submit' value='Add book' />
+                  </form>
+                </div>
               </div>
             </div>
           )}
