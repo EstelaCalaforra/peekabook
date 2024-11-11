@@ -9,28 +9,38 @@ import { useAuth } from '../context/AuthContext'
 
 export function BookshelfPage () {
   // fetch the get-bookshelf route (database)
-  const [bookshelfData, setBookshelfData] = useState([{}])
+  const [bookshelfData, setBookshelfData] = useState([])
+  const [hasData, setHasData] = useState(false)
   const { categories, setCategories } = useContext(BookSearchContext)
   const { userId } = useAuth()
 
-  async function getCategories (response) {
+  async function getCategories(response) {
     const allCategories = response.map((element) => element.category)
     const allCategoriesFiltered = [...new Set(allCategories)]
     return allCategoriesFiltered
   }
 
-  // fetch books in database first time the component is rendered
+  // fetch books in database the first time the component is rendered
   useEffect(() => {
     const fetchBookshelfData = async () => {
       try {
         console.log({ userId })
+
         const response = await axios.get('http://localhost:5000/get-bookshelf/user/' + userId)
         const resDataGetBooks = response.data
+
         console.log({ resDataGetBooks })
-        setBookshelfData(response.data)
-        const allCategories = await getCategories(response.data)
-        setCategories(allCategories)
-        console.log({ allCategories })
+
+        // If there are books in the response, set the bookshelf data and update hasData
+        if (resDataGetBooks && resDataGetBooks.length > 0) {
+          setBookshelfData(resDataGetBooks)
+          setHasData(true) // Update hasData only if there is valid data
+          const allCategories = await getCategories(resDataGetBooks)
+          setCategories(allCategories)
+          console.log({ allCategories })
+        } else {
+          setHasData(false) // Ensure hasData is false if no data is received
+        }
       } catch (error) {
         console.log(error)
       }
@@ -39,32 +49,46 @@ export function BookshelfPage () {
   }, [])
 
   return (
-    <div className='bookshelf-shelves'>
-      {[...new Set(categories)].map((category) => {
-        // filter books that match current category
-        const booksInCategory = bookshelfData.filter((book) => book.category === category)
+    <div>
+      {hasData ? (
+        <div className="bookshelf-shelves">
+          {[...new Set(categories)].map((category) => {
+            // Filter books that match the current category
+            const booksInCategory = bookshelfData.filter(
+              (book) => book.category === category
+            );
 
-        // no render if no books in category
-        if (booksInCategory.length === 0) {
-          return null
-        }
+            // No render if no books in category
+            if (booksInCategory.length === 0) {
+              return null;
+            }
 
-        return (
-          <div key={category} className='bookshelf-column'>
-            <h3>{category}</h3>
-            <img src={Divider} className='bookshelf-divider' />
-            <div className='bookshelf-row'>
-              {booksInCategory.map((book) => (
-                <a key={book.id} href='/ind-book'>
-                  <img key={book.id} className='bookshelf-cover' src={book.cover} />
-                </a>
-              ))}
-              <img src={RightArrow} className='bookshelf-arrow' />
-            </div>
-            <img src={Shelf} className='bookshelf-shelf' />
-          </div>
-        )
-      })}
+            return (
+              <div key={category} className="bookshelf-column">
+                <h3>{category}</h3>
+                <img src={Divider} className="bookshelf-divider" />
+                <div className="bookshelf-row">
+                  {booksInCategory.map((book) => (
+                    <a key={book.id} href="/ind-book">
+                      <img
+                        className="bookshelf-cover"
+                        src={book.cover}
+                        alt={book.title}
+                      />
+                    </a>
+                  ))}
+                  <img src={RightArrow} className="bookshelf-arrow" />
+                </div>
+                <img src={Shelf} className="bookshelf-shelf" />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className='no-books'>
+          <p>You haven&apos;t added any books yet. Search for one!</p>
+        </div>
+      )}
     </div>
-  )
+  );
 }

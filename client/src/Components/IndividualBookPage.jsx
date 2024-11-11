@@ -9,9 +9,8 @@ import { useAuth } from '../context/AuthContext'
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function IndividualBookPage () {
-  const { bookSearch, setBookId, bookId, categories } = useContext(BookSearchContext)
+  const { bookSearch, setBookId, bookId, categories, setCategories } = useContext(BookSearchContext)
   const { isAuthenticated, userId } = useAuth()
-  const [categoriesSelected, setCategoriesSelected] = useState([])
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
 
@@ -39,6 +38,8 @@ export function IndividualBookPage () {
       readDate: new Date()
     }
 
+    console.log({ book })
+
     const response = await fetch('http://localhost:5000/api/add-books/user/' + userId, {
       method: 'POST',
       headers: {
@@ -47,19 +48,20 @@ export function IndividualBookPage () {
       body: JSON.stringify({ userId, book }) // apis handle data in json format
     })
 
-    const data = await response.json()
+  //   const data = await response.json()
 
-    if (data.success) { // there's a field in the json response called success (true or false)
-      setMessage('Added successful! Redirecting...')
-      setError('')
-      setTimeout(() => { navigate('/bookshelf/' + data.userId) }, 2000)
-    } else {
-      setMessage('Something wrong happened.')
-      setError(data.message || 'Please try again.') // there's a field in the json response called message
-    }
+  //   if (data.success) { // there's a field in the json response called success (true or false)
+  //     setMessage('Added successful! Redirecting...')
+  //     setError('')
+  //     setTimeout(() => { navigate('/bookshelf/' + data.userId) }, 2000)
+  //   } else {
+  //     setMessage('Something wrong happened.')
+  //     setError(data.message || 'Please try again.') // there's a field in the json response called message
+  //   }
   }
 
-  function handleChange (event) {
+  const [categoriesSelected, setCategoriesSelected] = useState([])
+  function handleChangeCategoriesSelected (event) {
     const { value, checked } = event.target
 
     if (checked) {
@@ -67,6 +69,18 @@ export function IndividualBookPage () {
     } else {
       setCategoriesSelected(categoriesSelected.filter(option => option !== value))
     }
+  }
+
+  const [newCategory, setNewCategory] = useState('')
+  function handleChangeNewCategory (event) {
+    const { value } = event.target
+    console.log({ value })
+    setNewCategory(value)
+  }
+  function handleAddNewCategory (event) {
+    event.preventDefault()
+    setCategories((prevCategories) => ([...prevCategories, newCategory]))
+    console.log(categories)
   }
 
   const [added, setAdded] = useState(false)
@@ -106,18 +120,23 @@ export function IndividualBookPage () {
                             name={category}
                             value={category}
                             checked={categoriesSelected.includes(category)}
-                            onChange={handleChange}
+                            onChange={handleChangeCategoriesSelected}
                           />
                           <label htmlFor={category}>{category}</label>
                         </div>
                       )
                     })}
                     <div className='individual-book-page-row'>
-                      <p>+</p>
-                      <p>Add new category</p>
+                      <input
+                        placeholder='Add new category'
+                        name='newCategory'
+                        value={newCategory}
+                        onChange={handleChangeNewCategory}
+                      />
+                      <button className='' onClick={handleAddNewCategory}>+</button>
                     </div>
                   </fieldset>
-                  <input type='submit' value='Add' />
+                  <input type='submit' value='Add book' />
                   <button className='popup-button' onClick={closePopup}>Close</button>
                 </form>
               </div>
@@ -127,7 +146,7 @@ export function IndividualBookPage () {
         </div>
         <div className='individual-book-page-column'>
           <h1>{bookInList ? bookSearch[findedIndex].volumeInfo.title : 'Loading title...'}</h1>
-          <h2>by {bookInList ? bookSearch[findedIndex].volumeInfo.authors[0] : 'Loading author...'}</h2>
+          <h2>by {bookInList ? bookSearch[findedIndex]?.volumeInfo?.authors[0] : 'Loading author...'}</h2>
           <img className='divider' src={Divider} />
           <p>{bookInList ? bookSearch[findedIndex].volumeInfo.publishedDate.split('-')[0] : 'Loading date...'}</p>
           <p>{bookInList ? bookSearch[findedIndex].volumeInfo.description : 'Loading description...'}</p>

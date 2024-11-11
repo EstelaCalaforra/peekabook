@@ -18,7 +18,7 @@ export const addResultsToDBRouter = Router()
 
 addResultsToDBRouter.post('/', async (req, res) => {
   const { bookData } = req.body
-
+  console.log({ bookData })
   try {
     // Insert book into books table
     const bResponse = await db.query(
