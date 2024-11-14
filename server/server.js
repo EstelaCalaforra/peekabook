@@ -10,6 +10,9 @@ import { getRandomQuoteRouter } from './controllers/getRandomQuote.js'
 import { getBooksFromAPIRouter } from './controllers/getBooksFromAPI.js'
 import { getBestsellersRouter } from './controllers/getBestsellers.js'
 import { getBookshelfRouter } from './controllers/getBookshelf.js'
+import { addBooksIfNotOnDBRouter } from './controllers/addBooksIfNotOnDB.js'
+import { getBookFromDBRouter } from './controllers/getBookFromDB.js'
+import { bookRouter } from './routes/bookRoutes.js'
 
 // Starting the server
 const app = express()
@@ -37,11 +40,18 @@ app.use('/get-random-quote', getRandomQuoteRouter)
 // Google Books API (external api)
 app.use('/get-books-google-api', getBooksFromAPIRouter)
 
+app.use('/api/add-search-to-db', addBooksIfNotOnDBRouter)
+
+app.use('/api/get-book', getBookFromDBRouter)
+
 app.use('/get-bestsellers', getBestsellersRouter)
 
 app.use('/get-bookshelf/user', getBookshelfRouter)
 
-app.use('/api', getBookshelfRouter)
+// app.use('/api', getBookshelfRouter)
+
+// prueba con router aparte
+app.use('/api/books', bookRouter)
 
 app.listen(port, function (err) {
   if (err) console.log(err)

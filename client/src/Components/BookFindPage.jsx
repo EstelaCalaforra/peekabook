@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
 import FiveStarsRatingIcon from '../assets/five-stars-rating.png'
 import { getFirst80Characters } from '../services/getFirst80Characters'
-import axios from 'axios'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
@@ -17,6 +16,23 @@ export function BookFindPage () {
     setBookId(id)
     navigate('/ind-book/' + id)
   }
+
+  useEffect(() => {
+    console.log({ bookSearch })
+
+    async function addSearchToDB (bookSearch) {
+      console.log({ bookSearch })
+      const response = await fetch('http://localhost:5000/api/add-search-to-db', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ bookSearch }) // apis handle data in json format
+      })
+    }
+
+    addSearchToDB(bookSearch)
+  }, [bookSearch])
 
   return (
     <div className='page'>

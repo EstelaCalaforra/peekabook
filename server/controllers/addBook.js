@@ -18,9 +18,9 @@ db.connect()
 export const addBookRouter = Router()
 
 addBookRouter.post('/', async (req, res) => {
-  const { userId, book } = req.body
+  const { userId, bookAdded } = req.body
   console.log({ userId })
-  console.log({ book })
+  console.log({ bookAdded })
 
   // const authorization = req.get('authorization')
   // let token = null
@@ -34,33 +34,17 @@ addBookRouter.post('/', async (req, res) => {
   try {
     // insert book into books table
     const bookResult = await db.query(`
-      INSERT INTO books (title, cover, id_api)
-      VALUES ($1, $2, $3)
-      RETURNING id
-    `, [book.title, book.cover, book.id])
+      SELECT id FROM books WHERE (id_api)=$1
+    `, [bookAdded.id])
 
-    const bookId = bookResult.rows[0]?.id || (await db.query('SELECT id FROM books WHERE title = $1', [book.title])).rows[0].id
-
-    // insert author into authors table
-    const authorResult = await db.query(`
-    INSERT INTO authors (fullname)
-    VALUES ($1)
-    RETURNING id
-  `, [book.author])
-
-    const authorId = authorResult.rows[0]?.id || (await db.query('SELECT id FROM authors WHERE fullname = $1', [book.author])).rows[0].id
-
-    // insert relation into book_authors table
-    await db.query(`
-    INSERT INTO book_authors (book_id, author_id)
-    VALUES ($1, $2)
-  `, [bookId, authorId])
+    const bookId = bookResult.rows[0]?.id || (await db.query('SELECT id FROM books WHERE title = $1', [bookAdded.title])).rows[0].id
 
     // insert relation into user_books
     await db.query(`
     INSERT INTO user_books (user_id, book_id, read_date, categories)
     VALUES ($1, $2, $3, $4)
-  `, [userId, bookId, book.readDate, book.categories])
+  `, [userId, bookId, bookAdded.readDate, bookAdded.categories])
+    console.log(`Relationship inserted between book ID ${bookId} and user ID ${userId}`)
     res.status(200).json({ success: true, message: 'Book sucessfully added.' })
   } catch (error) {
     console.log(error)

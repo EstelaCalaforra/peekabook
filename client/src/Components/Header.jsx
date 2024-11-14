@@ -41,6 +41,10 @@ export function Header () {
     setShowPopup(false)
   }
 
+  const isAuthenticatedFromLocalStorage = localStorage.getItem('isAuthenticated')
+  console.log({ isAuthenticatedFromLocalStorage })
+  const { logout } = useAuth()
+
   return (
     <header className='header'>
       <div className='row'>
@@ -60,7 +64,17 @@ export function Header () {
           <img src={userIcon} alt='Company Logo' onMouseEnter={handleMouseEnter} className='user-icon' />
           {showPopup && (
             <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='header-popup-login'>
-              <a href='/login' className=''>Log in</a>
+              {
+              isAuthenticatedFromLocalStorage
+                ? <div className='column'>
+                  <a onClick={() => logout()}>Log out</a>
+                  <a href='' className=''>Profile</a>
+                  <a href='' className=''>Settings</a>
+                  </div>
+                : <div className='column'>
+                  <a href='/login'>Log in</a>
+                </div>
+                }
             </div>
           )}
         </div>

@@ -1,21 +1,30 @@
 import './styles/IndividualBookPage.css'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
-import { useBookSearch } from '../hooks/useBookSearch'
 import Divider from '../assets/botanical-divider-crop.png'
 import { useAuth } from '../context/AuthContext'
+import axios from 'axios'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function IndividualBookPage () {
   const { bookSearch, setBookId, bookId, categories, setCategories } = useContext(BookSearchContext)
   const { isAuthenticated, userId } = useAuth()
-  const [error, setError] = useState('')
-  const [message, setMessage] = useState('')
+  const [book, setBook] = useState({})
 
-  const { findedIndex } = useBookSearch()
-  const bookInList = typeof findedIndex === 'number'
+  async function getBookFromDB () {
+    try {
+      const response = await axios.get('http://localhost:5000/api/get-book/' + bookId)
+      const resDataGetBook = response.data[0]
+      setBook(resDataGetBook)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    getBookFromDB()
+  }, [])
 
   const navigate = useNavigate()
 
@@ -28,37 +37,29 @@ export function IndividualBookPage () {
   async function handleAdd (event) {
     event.preventDefault()
     console.log('Checkboxes selected:', categoriesSelected)
-    const book = {
-      id: bookId,
-      title: bookInList ? bookSearch[findedIndex].volumeInfo.title : null,
-      author: bookInList ? bookSearch[findedIndex].volumeInfo.authors[0] : null,
+    const bookAdded = {
+      id: book.id_api,
+      title: book.title,
       categories: categoriesSelected,
-      description: bookInList ? bookSearch[findedIndex].volumeInfo.description : null,
-      cover: bookInList ? bookSearch[findedIndex].volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl : null,
       readDate: new Date()
     }
 
     console.log({ book })
 
-    const response = await fetch('http://localhost:5000/api/add-books/user/' + userId, {
+    // const response = await fetch('http://localhost:5000/api/add-books/user/' + userId, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({ userId, bookAdded }) // apis handle data in json format
+    // })
+    const response = await fetch('http://localhost:5000/api/books/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ userId, book }) // apis handle data in json format
+      body: JSON.stringify({ userId, bookAdded }) // apis handle data in json format
     })
-
-    //   const data = await response.json()
-
-    //   if (data.success) { // there's a field in the json response called success (true or false)
-    //     setMessage('Added successful! Redirecting...')
-    //     setError('')
-    //     setTimeout(() => { navigate('/bookshelf/' + data.userId) }, 2000)
-    //   } else {
-    //     setMessage('Something wrong happened.')
-    //     setError(data.message || 'Please try again.') // there's a field in the json response called message
-    //   }
-
     closePopup()
   }
 
@@ -104,7 +105,7 @@ export function IndividualBookPage () {
     <div className='individual-book-page'>
       <section className='individual-book-page-row'>
         <div className='individual-book-page-column'>
-          <img className='cover' src={bookInList ? bookSearch[findedIndex].volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl : 'Loading cover...'} />
+          <img className='cover' src={book.cover || defaultImageUrl} alt={book.title || 'No title available'} />
           <a className={`button ${added ? 'added' : ''}`} onClick={handleClickAddToShelves}>{added ? 'On shelves' : 'Add to shelves'}</a>
           {isPopupOpen && (
             <div className='popup-overlay'>
@@ -112,7 +113,6 @@ export function IndividualBookPage () {
                 <button className='popup-button' onClick={closePopup}>✖</button>
                 <div className='popup-content'>
                   <form action={'http://localhost:5000/api/add-books/user/' + userId} method='post' onSubmit={handleAdd}>
-                    {/* trying to make the popup close when clicking outside */}
                     <fieldset className=''>
                       <legend>Choose the shelves:</legend>
                       {categories.map((category, key) => {
@@ -149,15 +149,14 @@ export function IndividualBookPage () {
           <a className='button buy'>Buy on Amazon</a>
         </div>
         <div className='individual-book-page-column'>
-          <h1>{bookInList ? bookSearch[findedIndex].volumeInfo.title : 'Loading title...'}</h1>
-          <h2>by {bookInList ? bookSearch[findedIndex]?.volumeInfo?.authors[0] : 'Loading author...'}</h2>
+          <h1>{book.title || 'No title available'}</h1>
+          <h2>by {book.authors?.[0] || 'Unknown author'}</h2>
           <img className='divider' src={Divider} />
-          <p>{bookInList ? bookSearch[findedIndex].volumeInfo.publishedDate.split('-')[0] : 'Loading date...'}</p>
-          <p>{bookInList ? bookSearch[findedIndex].volumeInfo.description : 'Loading description...'}</p>
+          <p>{book.description || 'No description available.'}</p>
         </div>
       </section>
       <section className='similar-books'>
-        <h2>Similar books</h2>
+        <h2>Books by same author</h2>
         <div className='individual-book-page-row'>
           {(bookSearch).map(book => (
             <li key={book.id} className='book'>

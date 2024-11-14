@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './styles/BookshelfPage.css'
 import axios from 'axios'
 import Shelf from '../assets/shelf.png'
@@ -11,7 +12,7 @@ export function BookshelfPage () {
   // fetch the get-bookshelf route (database)
   const [bookshelfData, setBookshelfData] = useState([])
   const [hasData, setHasData] = useState(false)
-  const { categories, setCategories } = useContext(BookSearchContext)
+  const { categories, setCategories, setBookId } = useContext(BookSearchContext)
   const { userId } = useAuth()
 
   async function getCategories (response) {
@@ -64,8 +65,19 @@ export function BookshelfPage () {
     fetchBookshelfData()
   }, [])
 
+  const navigate = useNavigate()
+  function handleClickOnCover (idApi) {
+    setBookId(idApi)
+    navigate('/ind-book/' + idApi)
+  }
+
+  function handleClickOnCategory ({ category }) {
+    console.log({ category })
+    navigate(`/bookshelf/${userId}/${category}`, { state: category })
+  }
+
   return (
-    <div>
+    <div className='bookshelf-page'>
       {hasData && (
         <div className='bookshelf-shelves'>
           {[...new Set(categories)].map((category) => {
@@ -81,19 +93,21 @@ export function BookshelfPage () {
 
             return (
               <div key={category} className='bookshelf-column'>
-                <h3>{category}</h3>
+                <a onClick={() => handleClickOnCategory({ category })}><h3>{category}</h3></a>
                 <img src={Divider} className='bookshelf-divider' alt='divider' />
                 <div className='bookshelf-row'>
                   {booksInCategory.map((book) => (
-                    <a key={book.id_api} href={'/ind-book/' + book.id_api}>
+                    <a key={book.id_api}>
                       <img
                         className='bookshelf-cover'
                         src={book.cover}
                         alt={book.title}
+                        onClick={() => handleClickOnCover(book.id_api)}
                       />
                     </a>
                   ))}
-                  <img src={RightArrow} className='bookshelf-arrow' alt='arrow' />
+                  {/* <a href={`/bookshelf/${userId}/${category}`}><img src={RightArrow} className='bookshelf-arrow' alt='arrow' /></a> */}
+                  <a onClick={() => handleClickOnCategory({ category })}><img src={RightArrow} className='bookshelf-arrow' alt='arrow' /></a>
                 </div>
                 <img src={Shelf} className='bookshelf-shelf' alt='shelf' />
               </div>

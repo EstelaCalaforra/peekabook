@@ -8,52 +8,6 @@ export function useBookSearch () {
   const [loading, setLoading] = useState(true)
   const { setBookSearch, bookSearch, bookId } = useContext(BookSearchContext)
 
-  // async function addToDatabase (bookSearch) {
-  //   try {
-  //     const response = await axios.get('http://localhost:5000/get-bookshelf')
-  //     const consult = response.data // Lista de libros en la base de datos
-  //     console.log({ consult })
-  //     console.log({ bookSearch })
-
-  //     // Filtra los libros que no están en la base de datos
-  //     const booksToAdd = bookSearch.filter(book =>
-  //       !consult.some(dbBook => dbBook.id_api === book.id)
-  //     )
-
-  //     // Crea un array de promesas para añadir libros en paralelo
-  //     const addPromises = booksToAdd.map(async (book) => {
-  //       const bookData = {
-  //         id: book.id,
-  //         title: book.volumeInfo.title,
-  //         pubYear: book.volumeInfo.publishedDate ? book.volumeInfo.publishedDate : null,
-  //         authors: book.volumeInfo.authors ? book.volumeInfo.authors : 'Unknown Author',
-  //         description: book.volumeInfo.description || 'No description available',
-  //         cover: book.volumeInfo.imageLinks?.smallThumbnail || defaultImageUrl
-  //       }
-  //       console.log('bookData', { bookData })
-
-  //       // Inserta el libro en la base de datos
-  //       const addResponse = await fetch('http://localhost:5000/api/add-results-to-db', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json'
-  //         },
-  //         body: JSON.stringify({ bookData })
-  //       })
-
-  //       const result = await addResponse.json()
-  //       console.log({ result })
-  //       return result
-  //     })
-
-  //     // Ejecuta todas las promesas en paralelo
-  //     const results = await Promise.all(addPromises)
-  //     console.log('Libros añadidos:', results)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
   async function fetchBooksGoogleAPI (bookQuery) {
     try {
       const response = await axios.get('http://localhost:5000/get-books-google-api', {

@@ -9,7 +9,7 @@ export function LoginPage () {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
-  const { isAuthenticated, setIsAuthenticated, userId, setUserId, login } = useAuth()
+  const { isAuthenticated, login } = useAuth()
   console.log({ isAuthenticated })
   // handle the info submitted in the form
   const handleSubmit = async (e) => {

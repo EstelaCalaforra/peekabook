@@ -11,6 +11,7 @@ import { AuthProvider } from '../context/AuthContext'
 import { ProtectedRoute } from '../services/ProtectedRoute'
 import { LoginPage } from './LoginPage'
 import { SignUpPage } from './SignUpPage'
+import { CategoryPage } from './categoryPage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 const customTheme = createTheme({
@@ -47,6 +48,7 @@ function App () {
                 <Route path='/signup' element={<SignUpPage />} />
                 {/* Protected Routes */}
                 <Route path='/bookshelf/:id' element={<ProtectedRoute> <BookshelfPage /> </ProtectedRoute>} />
+                <Route path='/bookshelf/:userid/:category' element={<ProtectedRoute> <CategoryPage /> </ProtectedRoute>} />
               </Routes>
               <Footer />
             </ThemeProvider>
