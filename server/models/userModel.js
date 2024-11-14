@@ -1,25 +1,63 @@
-import { query } from '../config/dbConfig'
+import { db } from '../config/dbConfig.js'
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
-export const findAll = async () => {
+const saltRounds = 10
+
+export const getUserByEmail = async (email) => {
   try {
-    const result = await query('SELECT * FROM users')
-    return result.rows
+    const result = await db.query('SELECT * FROM users WHERE email = $1', [email])
+    return result.rows[0]
   } catch (error) {
-    console.error('Error en findAll:', error)
+    console.error('Error fetching user:', error)
     throw error
   }
 }
 
-export const createUser = async (data) => {
-  const { email, password } = data
+export const comparePassword = async (password, hashedPassword) => {
+  return await bcrypt.compare(password, hashedPassword)
+}
+
+export const generateToken = (user) => {
+  return jwt.sign(
+    { id: user.id, email: user.email },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  )
+}
+
+export const authenticateUser = async (email, password) => {
+  const user = await getUserByEmail(email)
+  if (!user) {
+    return null
+  }
+
+  const isPasswordValid = await comparePassword(password, user.password)
+  if (!isPasswordValid) {
+    return null
+  }
+
+  // If everything ok, generate auth token
+  const token = generateToken(user)
+  return { user, token }
+}
+
+export const registerUser = async (email, password) => {
+  const existingUser = await getUserByEmail(email)
+  if (existingUser) {
+    return null
+  }
+
+  const hashedPassword = await bcrypt.hash(password, saltRounds)
+
   try {
-    const result = await query(
-      'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *',
-      [email, password]
+    const result = await db.query(
+      'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id',
+      [email, hashedPassword]
     )
-    return result.rows[0]
+    return { id: result.rows[0].id, email }
   } catch (error) {
-    console.error('Error en createUser:', error)
+    console.error('Error registering user:', error)
     throw error
   }
 }

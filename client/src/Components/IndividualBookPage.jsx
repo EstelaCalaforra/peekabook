@@ -13,6 +13,48 @@ export function IndividualBookPage () {
   const { isAuthenticated, userId } = useAuth()
   const [book, setBook] = useState({})
 
+  async function getCategories (response) {
+    const cleanedData = response.map(book => {
+      // Limpiamos y convertimos el campo `categories` en un array
+      if (book.categories) {
+        book.categories = book.categories
+          .replace(/^{|}$/g, '') // Eliminar las llaves `{}` al inicio y final
+          .split(',') // Dividir en elementos individuales
+          .map(category => category.trim().replace(/^"|"$/g, '')) // Eliminar comillas
+          .filter(category => category) // Eliminar categorías vacías
+      } else {
+        book.categories = [] // Si es `null`, lo convertimos en un array vacío
+      }
+      return book
+    })
+    console.log({ cleanedData })
+    const allCategories = [
+      ...new Set(cleanedData.flatMap(book => book.categories))
+    ]
+    console.log({ allCategories })
+    return allCategories
+  }
+  useEffect(() => {
+    const fetchBookshelfData = async () => {
+      try {
+        console.log({ userId })
+
+        const response = await axios.get('http://localhost:5000/get-bookshelf/user/' + userId)
+        const resDataGetBooks = response.data
+
+        // If there are books in the response, set the bookshelf data and update hasData
+        if (resDataGetBooks && resDataGetBooks.length > 0) {
+          const allCategories = await getCategories(resDataGetBooks)
+          setCategories(allCategories)
+          console.log({ allCategories })
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchBookshelfData()
+  }, [])
+
   async function getBookFromDB () {
     try {
       const response = await axios.get('http://localhost:5000/api/get-book/' + bookId)
@@ -46,14 +88,7 @@ export function IndividualBookPage () {
 
     console.log({ book })
 
-    // const response = await fetch('http://localhost:5000/api/add-books/user/' + userId, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({ userId, bookAdded }) // apis handle data in json format
-    // })
-    const response = await fetch('http://localhost:5000/api/books/add', {
+    await fetch('http://localhost:5000/api/books/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

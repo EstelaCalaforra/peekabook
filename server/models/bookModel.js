@@ -17,3 +17,47 @@ export const addUserBookRelation = async (userId, bookId, readDate, categories) 
       [userId, bookId, readDate, categories]
   )
 }
+
+export const insertBook = async (book) => {
+  const insertBookQuery = `
+    INSERT INTO books (title, id_api, cover, description)
+    VALUES ($1, $2, $3, $4)
+    ON CONFLICT (id_api) DO NOTHING
+    RETURNING id;
+  `
+  const result = await db.query(insertBookQuery, [
+    book.title,
+    book.id,
+    book.cover,
+    book.description
+  ])
+  return result.rows[0]?.id
+}
+
+export const insertAuthor = async (authorName) => {
+  const insertAuthorQuery = `
+    INSERT INTO authors (fullname)
+    VALUES ($1)
+    RETURNING id;
+  `
+  const result = await db.query(insertAuthorQuery, [authorName])
+  return result.rows[0]?.id
+}
+
+export const getExistingAuthor = async (authorName) => {
+  const result = await db.query(
+    'SELECT id FROM authors WHERE fullname = $1',
+    [authorName]
+  )
+  return result.rows[0]?.id
+}
+
+export const insertBookAuthorRelation = async (bookId, authorId) => {
+  const insertRelationQuery = `
+    INSERT INTO book_authors (book_id, author_id)
+    VALUES ($1, $2)
+    ON CONFLICT (book_id, author_id) DO NOTHING;
+  `
+  await db.query(insertRelationQuery, [bookId, authorId])
+  console.log(`Relationship inserted between book ID ${bookId} and author ID ${authorId}`)
+}

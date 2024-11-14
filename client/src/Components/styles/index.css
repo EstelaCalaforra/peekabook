@@ -23,6 +23,8 @@ body {
   background-color: antiquewhite; 
   /* background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png"); */
   /* justify-content: space-between; */
+  /* background-image: url('../../assets/bg-books-trans20.png');
+  background-size: cover; */
 }
 
 a:hover {

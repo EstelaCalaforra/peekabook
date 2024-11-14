@@ -1,4 +1,4 @@
-import { findBookByIdApi, addUserBookRelation } from '../models/bookModel.js'
+import { findBookByIdApi, addUserBookRelation, insertBook, insertAuthor, getExistingAuthor, insertBookAuthorRelation } from '../models/bookModel.js'
 
 export const addBookToUser = async (req, res) => {
   const { userId, bookAdded } = req.body
@@ -20,5 +20,39 @@ export const addBookToUser = async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({ success: false, message: 'Server error' })
+  }
+}
+
+export const addBooksIfNotOnDB = async (req, res) => {
+  const { bookSearch } = req.body
+  const books = bookSearch.map(book => ({
+    id: book.id,
+    title: book.volumeInfo?.title,
+    authors: book.volumeInfo?.authors || [],
+    description: book.volumeInfo?.description,
+    cover: book.volumeInfo?.imageLinks?.smallThumbnail
+  }))
+
+  try {
+    for (const book of books) {
+      const bookId = await insertBook(book)
+      if (!bookId) {
+        console.log(`The book with id_api ${book.id} already exists.`)
+      } else {
+        console.log(`Book inserted with ID: ${bookId}`)
+      }
+
+      for (const authorName of book.authors) {
+        let authorId = await insertAuthor(authorName)
+        if (!authorId) {
+          authorId = await getExistingAuthor(authorName)
+        }
+        await insertBookAuthorRelation(bookId, authorId)
+      }
+    }
+    res.status(200).send('Books and authors inserted successfully')
+  } catch (error) {
+    console.error('Error inserting books and authors:', error)
+    res.status(500).send('Error inserting books and authors')
   }
 }

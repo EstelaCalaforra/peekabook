@@ -22,7 +22,7 @@ export function BookFindPage () {
 
     async function addSearchToDB (bookSearch) {
       console.log({ bookSearch })
-      const response = await fetch('http://localhost:5000/api/add-search-to-db', {
+      const response = await fetch('http://localhost:5000/api/books/add-search', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
