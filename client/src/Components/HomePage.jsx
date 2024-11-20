@@ -12,7 +12,6 @@ export function HomePage () {
       <div className='column'>
         <div className='column'>
           <Quote />
-          <img className='divider' src={Divider} />
         </div>
         <div className='bestsellers column'>
           <h3 className='title'>Weekly Bestsellers</h3>
@@ -36,7 +35,8 @@ export function HomePage () {
       </div>
       <div className='column center'>
         <a className='button' href='/signup'>START YOUR LIBRARY</a>
-        <p className='login'>Already a member? <a href='/login'>Log in</a></p>
+        <img className='divider' src={Divider} />
+        <p>Already a member? <a className='login' href='/login'>Log in</a></p>
       </div>
 
     </div>

@@ -35,6 +35,24 @@ header a:hover {
   color: #ceab8c;
 }
 
+.dropdown div:hover {
+  color: #ceab8c;
+}
+
+.header .login {
+  background-color:#85644d !important; 
+  color: antiquewhite !important;
+  margin: 0;
+}
+
+.header .signup {
+  margin: 0;
+}
+
+.login:hover {
+  color: #ceab8c !important;
+}
+
 .header-form {
   display: flex;
   flex-direction: row;
@@ -48,6 +66,10 @@ header a:hover {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.dropdown .username {
+  cursor: pointer;
 }
 
 .user-icon  {

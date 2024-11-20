@@ -1,6 +1,6 @@
 .bookshelf-page {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -10,15 +10,26 @@
     padding: 0;
   
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
-    max-width: 1500px;
-    gap: 10px 100px;
+    max-width: 50vw;
+    gap: 5px 50px;
+    
+    padding: 30px;
+}
+
+.bookshelf-reviews {
+    min-height: 100vh;
+    min-width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: flex-start;
 }
 
 .bookshelf-cover {
-    width: 80px;
-    height: 120px;
+    width: 40px;
+    height: 60px;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
 }
@@ -28,8 +39,8 @@
 }
 
 .bookshelf-shelf {
-    width: 18vw;
-    min-width: 300px;
+    width: 10vw;
+    min-width: 200px;
 }
 
 h2, h3 {
@@ -39,12 +50,11 @@ h2, h3 {
 }
 
 .bookshelf-row {
-    /* min-width: 270px; */
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    justify-content: left;
+    gap: 5px;
 }
 
 .bookshelf-column {
@@ -54,7 +64,18 @@ h2, h3 {
     margin: 5px;
     border-radius: 5px;
     align-items: center;
-    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.bookshelf-column-shelf {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: left;
+}
+
+.bookshelf-column-shelf a {
+    font-size:small;
 }
 
 .bookshelf-arrow {
@@ -66,12 +87,12 @@ h2, h3 {
 }
 
 .bookshelf-divider {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     padding: 0;
     height: 20px;
 }
 
-.no-books p {
+.empty p {
     margin-top: 50px;
     text-align: center;
     color: #3f3230;

@@ -89,16 +89,8 @@
 }
 
 .homepage .login {
-    color: #3f3230;
-}
-
-.homepage p > a {
     color: #85644d;
     text-decoration: none;
-}
-
-.homepage p > a:hover {
-    color: #ddbfa9;
 }
 
 .homepage .button {

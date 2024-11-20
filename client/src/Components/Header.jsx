@@ -1,7 +1,7 @@
 import './styles/Header.css'
 import bookLogo from '../assets/other-logo.png'
 import userIcon from '../assets/user-icon.png'
-import { useId, useContext, useState } from 'react'
+import { useId, useContext, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
 import { useAuth } from '../context/AuthContext'
@@ -32,7 +32,7 @@ export function Header () {
   const [showPopup, setShowPopup] = useState(false)
 
   // Función para manejar el mouse sobre el logo
-  const handleMouseEnter = () => {
+  const handleClick = () => {
     setShowPopup(true)
   }
 
@@ -42,7 +42,9 @@ export function Header () {
   }
 
   const isAuthenticatedFromLocalStorage = localStorage.getItem('isAuthenticated')
+  const userEmail = localStorage.getItem('userEmail')
   console.log({ isAuthenticatedFromLocalStorage })
+  console.log({ userEmail })
   const { logout } = useAuth()
 
   return (
@@ -60,23 +62,36 @@ export function Header () {
         <form id={searchBookFormId} onSubmit={handleSubmit} className='header-form'>
           <input id={searchBookInputId} type='text' onChange={handleChange} value={bookQuery} placeholder='Search book...' />
         </form>
-        <div className='column'>
-          <img src={userIcon} alt='Company Logo' onMouseEnter={handleMouseEnter} className='user-icon' />
-          {showPopup && (
-            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='header-popup-login'>
-              {
+        {
+              isAuthenticatedFromLocalStorage &&
+                <div onClick={handleClick} className='dropdown'>
+                  <div className='username'>{userEmail?.split('@')[0] || 'useremail'} ▼</div>
+                  {showPopup && (
+                    <div onMouseEnter={handleClick} onMouseLeave={handleMouseLeave} className='header-popup-login'>
+                      {
               isAuthenticatedFromLocalStorage
                 ? <div className='column'>
                   <a onClick={() => logout()}>Log out</a>
                   <a href='' className=''>Profile</a>
                   <a href='' className=''>Settings</a>
-                  </div>
+                </div>
                 : <div className='column'>
                   <a href='/login'>Log in</a>
                 </div>
                 }
-            </div>
-          )}
+                    </div>
+                  )}
+                </div>
+            }
+        {
+              !isAuthenticatedFromLocalStorage &&
+                <div className='row'>
+                  <a className='button login' href='/login'>Login</a>
+                  <a className='button signup' href='/signup'>Signup</a>
+                </div>
+            }
+        <div className='column'>
+          <img src={userIcon} alt='Company Logo' className='user-icon' />
         </div>
       </div>
 

@@ -24,14 +24,12 @@ export function LoginPage () {
     })
 
     const data = await response.json()
-    console.log(data)
+    console.log({ data })
 
     if (data.success) {
       setMessage('Login successful! Redirecting...')
       setError('')
-      await login(data.userId) // Llama a login en vez de setIsAuthenticated
-      const isAuthenticatedFromLocalStorage = localStorage.getItem('isAuthenticated')
-      console.log({ isAuthenticatedFromLocalStorage })
+      await login(data.userId, data.userEmail)
       setTimeout(() => {
         navigate('/bookshelf/' + data.userId)
       }, 2000)

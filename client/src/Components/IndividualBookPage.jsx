@@ -4,71 +4,22 @@ import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
 import Divider from '../assets/botanical-divider-crop.png'
 import { useAuth } from '../context/AuthContext'
-import axios from 'axios'
+import { useBookshelf } from '../hooks/useBookshelf'
+import { useBook } from '../hooks/useBook'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function IndividualBookPage () {
-  const { bookSearch, setBookId, bookId, categories, setCategories } = useContext(BookSearchContext)
+  const { bookSearch, setBookId, setCategories } = useContext(BookSearchContext)
   const { isAuthenticated, userId } = useAuth()
-  const [book, setBook] = useState({})
+  const { categories } = useBookshelf()
+  const { book, getBookFromDB } = useBook()
+  const [review, setReview] = useState('')
+  const navigate = useNavigate()
 
-  async function getCategories (response) {
-    const cleanedData = response.map(book => {
-      // Limpiamos y convertimos el campo `categories` en un array
-      if (book.categories) {
-        book.categories = book.categories
-          .replace(/^{|}$/g, '') // Eliminar las llaves `{}` al inicio y final
-          .split(',') // Dividir en elementos individuales
-          .map(category => category.trim().replace(/^"|"$/g, '')) // Eliminar comillas
-          .filter(category => category) // Eliminar categorías vacías
-      } else {
-        book.categories = [] // Si es `null`, lo convertimos en un array vacío
-      }
-      return book
-    })
-    console.log({ cleanedData })
-    const allCategories = [
-      ...new Set(cleanedData.flatMap(book => book.categories))
-    ]
-    console.log({ allCategories })
-    return allCategories
-  }
-  useEffect(() => {
-    const fetchBookshelfData = async () => {
-      try {
-        console.log({ userId })
-
-        const response = await axios.get('http://localhost:5000/get-bookshelf/user/' + userId)
-        const resDataGetBooks = response.data
-
-        // If there are books in the response, set the bookshelf data and update hasData
-        if (resDataGetBooks && resDataGetBooks.length > 0) {
-          const allCategories = await getCategories(resDataGetBooks)
-          setCategories(allCategories)
-          console.log({ allCategories })
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    fetchBookshelfData()
-  }, [])
-
-  async function getBookFromDB () {
-    try {
-      const response = await axios.get('http://localhost:5000/api/get-book/' + bookId)
-      const resDataGetBook = response.data[0]
-      setBook(resDataGetBook)
-    } catch (error) {
-      console.log(error)
-    }
-  }
   useEffect(() => {
     getBookFromDB()
   }, [])
-
-  const navigate = useNavigate()
 
   function handleClick (event, id) {
     event.preventDefault()
@@ -85,9 +36,7 @@ export function IndividualBookPage () {
       categories: categoriesSelected,
       readDate: new Date()
     }
-
-    console.log({ book })
-
+    console.log(event.target)
     await fetch('http://localhost:5000/api/books/add', {
       method: 'POST',
       headers: {
@@ -140,7 +89,7 @@ export function IndividualBookPage () {
     <div className='individual-book-page'>
       <section className='individual-book-page-row'>
         <div className='individual-book-page-column'>
-          <img className='cover' src={book.cover || defaultImageUrl} alt={book.title || 'No title available'} />
+          <img className='cover' src={book?.cover || defaultImageUrl} alt={book?.title || 'No title available'} />
           <a className={`button ${added ? 'added' : ''}`} onClick={handleClickAddToShelves}>{added ? 'On shelves' : 'Add to shelves'}</a>
           {isPopupOpen && (
             <div className='popup-overlay'>
@@ -149,7 +98,7 @@ export function IndividualBookPage () {
                 <div className='popup-content'>
                   <form action={'http://localhost:5000/api/add-books/user/' + userId} method='post' onSubmit={handleAdd}>
                     <fieldset className=''>
-                      <legend>Choose the shelves:</legend>
+                      <legend>Choose the shelves</legend>
                       {categories.map((category, key) => {
                         return (
                           <div className='individual-book-page-row' key={key}>
@@ -172,9 +121,13 @@ export function IndividualBookPage () {
                           value={newCategory}
                           onChange={handleChangeNewCategory}
                         />
-                        <button className='' onClick={handleAddNewCategory}>➕</button>
+                        <button className='' onClick={handleAddNewCategory}>+</button>
                       </div>
                     </fieldset>
+                    <div className='individual-book-page-review'>
+                      <label htmlFor='review'>Write a review</label>
+                      <textarea id='review' name='review' value={review} rows='10' cols='50' placeholder='' />
+                    </div>
                     <input type='submit' value='Add book' />
                   </form>
                 </div>
@@ -184,10 +137,10 @@ export function IndividualBookPage () {
           <a className='button buy'>Buy on Amazon</a>
         </div>
         <div className='individual-book-page-column'>
-          <h1>{book.title || 'No title available'}</h1>
-          <h2>by {book.authors?.[0] || 'Unknown author'}</h2>
+          <h1>{book?.title || 'No title available'}</h1>
+          <h2>by {book?.authors?.[0] || 'Unknown author'}</h2>
           <img className='divider' src={Divider} />
-          <p>{book.description || 'No description available.'}</p>
+          <p>{book?.description || 'No description available.'}</p>
         </div>
       </section>
       <section className='similar-books'>

@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url('../../assets/bg-books-trans20.png');
+    background-size: cover;
+    height: 100vh;
   }
   
 .signup-container {
