@@ -10,27 +10,25 @@ export function HomePage () {
   return (
     <div className='homepage'>
       <div className='column'>
+        <Quote />
+      </div>
+      <div className='bestsellers column'>
+        <h3 className='title'>Weekly Bestsellers</h3>
         <div className='column'>
-          <Quote />
-        </div>
-        <div className='bestsellers column'>
-          <h3 className='title'>Weekly Bestsellers</h3>
-          <div className='column'>
-            <div className='row'>
-              {loadingBestsellersData
-                ? (
-                  <p>Loading bestsellers...</p>
-                  )
-                : (
-                    bestsellersData.map((bookInfo, index) => (
-                      <div className='column bestsellers-shelf' key={index}>
-                        <a href='amazon.com'><img className='miniature' src={bookInfo.book_image} /></a>
-                      </div>
-                    ))
-                  )}
-            </div>
-            <img src={Shelf} className='home-shelf' />
+          <div className='row'>
+            {loadingBestsellersData
+              ? (
+                <p>Loading bestsellers...</p>
+                )
+              : (
+                  bestsellersData.map((bookInfo, index) => (
+                    <div className='column bestsellers-shelf' key={index}>
+                      <a href='amazon.com'><img className='miniature' src={bookInfo.book_image} /></a>
+                    </div>
+                  ))
+                )}
           </div>
+          <img src={Shelf} className='home-shelf' />
         </div>
       </div>
       <div className='column center'>

@@ -46,7 +46,7 @@ export function SignUpPage () {
   return (
     <div className='signup-page'>
       <div className='signup-container'>
-        <h2 className='signup-h2'>⋆ ˚｡⋆ Sign Up ⋆ ˚｡⋆</h2>
+        <h2 className='signup-h2'>「 Sign Up 」</h2>
         {message && <p style={{ color: 'green' }}>{message}</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <form className='signup-form' onSubmit={handleSubmit}>

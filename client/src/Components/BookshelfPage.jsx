@@ -9,7 +9,7 @@ export function BookshelfPage () {
 
   return (
     <div className='bookshelf-page'>
-      <div className='bookshelf-column'>
+      <div className='bookshelf-column-shelves'>
         <h3>Bookshelves</h3>
         <img src={Divider} className='bookshelf-divider' alt='divider' />
         {hasBooks && (

@@ -42,7 +42,7 @@ export function LoginPage () {
   return (
     <div className='login-page'>
       <div className='login-container'>
-        <h2 className='login-h2'>⋆ ˚｡⋆ Login ⋆ ˚｡⋆</h2>
+        <h2 className='login-h2'>「 Login 」 </h2>
         {message && <p style={{ color: 'green' }}>{message}</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <form onSubmit={handleSubmit} className='login-form'>
