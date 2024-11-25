@@ -51,6 +51,7 @@ export const addBooksIfNotOnDB = async (req, res) => {
       const bookId = await insertBook(book)
       if (!bookId) {
         console.log(`The book with id_api ${book.id} already exists.`)
+        return
       } else {
         console.log(`Book inserted with ID: ${bookId}`)
       }

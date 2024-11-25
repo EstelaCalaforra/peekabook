@@ -6,12 +6,12 @@ import axios from 'axios'
 
 export function useBookshelf () {
   const [bookshelfData, setBookshelfData] = useState([])
-
   const { userId } = useAuth()
   const [hasBooks, setHasBooks] = useState(false)
   const [hasReviews, setHasReviews] = useState(false)
-
+  const [reviews, setReviews] = useState({})
   const { categories, setCategories, setBookId } = useContext(BookSearchContext)
+
   useEffect(() => {
     const fetchBookshelfData = async () => {
       try {
@@ -26,6 +26,11 @@ export function useBookshelf () {
           const allCategories = await getCategories(resDataGetBooks)
           setCategories(allCategories)
           console.log({ allCategories })
+          const allReviews = await getReviews(resDataGetBooks)
+          if (allReviews) {
+            setHasReviews(true)
+            setReviews(allReviews)
+          }
         } else {
           setHasBooks(false) // Ensure hasData is false if no data is received
         }
@@ -50,7 +55,6 @@ export function useBookshelf () {
       }
       return book
     })
-    console.log({ cleanedData })
     setBookshelfData(cleanedData)
     const allCategories = [
       ...new Set(cleanedData.flatMap(book => book.categories))
@@ -58,6 +62,21 @@ export function useBookshelf () {
     console.log({ allCategories })
     console.log({ bookshelfData })
     return allCategories
+  }
+
+  async function getReviews (response) {
+    const allReviews = response.map(book => {
+      return {
+        id_api: book.id_api,
+        cover: book.cover,
+        title: book.title,
+        authors: book.authors[0],
+        review: book.review,
+        review_date: book.review_date
+      }
+    })
+    console.log({ allReviews })
+    return allReviews
   }
 
   const navigate = useNavigate()
@@ -71,5 +90,5 @@ export function useBookshelf () {
     navigate(`/bookshelf/${userId}/${category}`, { state: category })
   }
 
-  return { categories, getCategories, handleClickOnCover, handleClickOnCategory, bookshelfData, hasBooks, hasReviews }
+  return { categories, getCategories, reviews, handleClickOnCover, handleClickOnCategory, bookshelfData, hasBooks, hasReviews }
 }

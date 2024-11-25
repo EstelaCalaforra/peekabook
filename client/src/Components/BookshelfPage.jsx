@@ -3,9 +3,11 @@ import Shelf from '../assets/shelf.png'
 import RightArrow from '../assets/right-arrow.png'
 import Divider from '../assets/botanical-divider-crop.png'
 import { useBookshelf } from '../hooks/useBookshelf'
+import FiveStarsRatingIcon from '../assets/five-stars-rating.png'
+import EditIcon from '../assets/edit-icon.png'
 
 export function BookshelfPage () {
-  const { bookshelfData, hasBooks, hasReviews, handleClickOnCover, handleClickOnCategory, categories } = useBookshelf()
+  const { bookshelfData, hasBooks, hasReviews, handleClickOnCover, handleClickOnCategory, categories, reviews } = useBookshelf()
   console.log({ bookshelfData })
   return (
     <div className='bookshelf-page'>
@@ -58,9 +60,17 @@ export function BookshelfPage () {
         <h3>Recent reviews</h3>
         <img src={Divider} className='bookshelf-divider' alt='divider' />
         {hasReviews && (
-          <div className=''>
-            <p>hola</p>
-          </div>
+          <ul className='reviews-container'>
+            {reviews.map((review) => (
+              <li className='review' key={review.id_api}>
+                <p className='title'>{review.title}</p>
+                <p className='authors'>by {review.authors}</p>
+                <img className='five-stars-icon' src={FiveStarsRatingIcon} />
+                <p className='review-text'>{review.review}</p>
+                <button className='edit-icon' />
+              </li>
+            ))}
+          </ul>
         )}
         {!hasReviews && (
           <div className='empty'>

@@ -151,11 +151,11 @@ export function IndividualBookPage () {
         </div>
       </section>
       <section className='similar-books'>
-        <h2>Other books by {book.authors[0]}</h2>
+        <h2>Other books by {book?.authors?.[0]}</h2>
         <div className='individual-book-page-row'>
           {(bookSearch).map(book => (
             <li key={book.id} className='book'>
-              <a onClick={handleClick}><img className='cover' src={book.volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl} /></a>
+              <a onClick={handleClick}><img className='cover' src={book?.volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl} /></a>
             </li>
           ))}
         </div>

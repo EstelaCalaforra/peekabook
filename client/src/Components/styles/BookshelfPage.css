@@ -44,8 +44,8 @@
 }
 
 .bookshelf-cover {
-    width: 40px;
-    height: 60px;
+    width: 55px;
+    height: 90px;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
 }
@@ -114,8 +114,70 @@ h2, h3 {
     color: #3f3230;
 }
 
-.bookshelf-page a {
-    text-decoration: none;
+.bookshelf-page .review {
+    color: #3f3230;
+    background-color: #ceab8c;
+    border-radius: 10px;
+    padding: 5px 20px 5px 20px;
+    border: 1px solid #3f3230;
 }
+
+.bookshelf-page .reviews-container {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+    padding: 5px;
+
+    max-width: 50vw;
+    gap: 30px 30px;
+}
+
+.bookshelf-page .reviews-container .title {
+    font-weight: bold;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.bookshelf-page .reviews-container .authors {
+    font-size: small;
+    padding: 0px;
+    margin: 0px;
+}
+
+.bookshelf-page .five-stars-icon {
+    width: 100px;
+    margin: 0px;
+    padding-top: 5px;
+}
+
+.edit-icon {
+    width: 20px;
+}
+
+.bookshelf-page .edit-icon {
+    background: url('../../assets/edit-icon-dark.png');
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    outline: none;
+    padding: 0;
+}
+
+.bookshelf-page .edit-icon:hover {
+    background: url('../../assets/edit-icon-light.png');
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    outline: none;
+    padding: 0;
+}
+
+
+
 
 
