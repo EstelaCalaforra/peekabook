@@ -14,7 +14,6 @@ export function IndividualBookPage () {
   const { isAuthenticated, userId } = useAuth()
   const { categories } = useBookshelf()
   const { book, getBookFromDB } = useBook()
-  const [review, setReview] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -33,10 +32,10 @@ export function IndividualBookPage () {
     const bookAdded = {
       id: book.id_api,
       title: book.title,
+      reviewText: review,
       categories: categoriesSelected,
       readDate: new Date()
     }
-    console.log(event.target)
     await fetch('http://localhost:5000/api/books/add', {
       method: 'POST',
       headers: {
@@ -79,6 +78,14 @@ export function IndividualBookPage () {
     } else {
       navigate('/login')
     }
+  }
+
+  const [review, setReview] = useState('')
+  function handleReviewChange (event) {
+    const { value } = event.target
+    console.log({ value })
+    setReview(value)
+    console.log({ review })
   }
 
   const [isPopupOpen, setIsPopupOpen] = useState(false)
@@ -126,7 +133,7 @@ export function IndividualBookPage () {
                     </fieldset>
                     <div className='individual-book-page-review'>
                       <label htmlFor='review'>Write a review</label>
-                      <textarea id='review' name='review' value={review} rows='10' cols='50' placeholder='' />
+                      <textarea id='review' name='review' value={review} onChange={handleReviewChange} rows='10' cols='50' placeholder='' />
                     </div>
                     <input type='submit' value='Add book' />
                   </form>
@@ -144,7 +151,7 @@ export function IndividualBookPage () {
         </div>
       </section>
       <section className='similar-books'>
-        <h2>Books by same author</h2>
+        <h2>Other books by {book.authors[0]}</h2>
         <div className='individual-book-page-row'>
           {(bookSearch).map(book => (
             <li key={book.id} className='book'>

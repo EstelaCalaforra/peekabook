@@ -69,14 +69,16 @@
 .added {
     background-color: gray;
 }
-
 .similar-books .individual-book-page-row {
     flex-wrap: wrap;
 }
 
 .similar-books h2 {
     margin-bottom: 10px;
+}
 
+.similar-books li {
+    border: none;
 }
 
 .similar-books .cover {
@@ -86,8 +88,8 @@
 
 .similar-books a:hover {
     filter: brightness(50%);
+    border: none;
 }
-
 
 .popup-overlay {
     position: fixed;
@@ -99,9 +101,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
   
-  /* Contenido del popup */
 .popup-content {
     background-color: white;
     padding: 20px;
@@ -115,20 +116,6 @@
     display: flex;
     flex-direction: column;
 }
-  
-/* .popup-button {
-margin-top: 10px;
-padding: 10px 15px;
-background-color: #007bff;
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-}
-  
-.popup-buttonbutton:hover {
-background-color: #0056b3;
-} */
 
 .popup-content .individual-book-page-row {
     align-items: center;

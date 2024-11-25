@@ -1,6 +1,4 @@
-import { useEffect, useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useState, useContext } from 'react'
 import { BookSearchContext } from '../context/bookSearchContext'
 import axios from 'axios'
 

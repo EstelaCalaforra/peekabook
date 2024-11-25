@@ -35,8 +35,9 @@ export function BookFindPage () {
   }, [bookSearch])
 
   return (
-    <div className='page'>
+    <div className='bookfind-page'>
       <ul className='books-info'>
+        <p className='results'>10 of 100 results</p>
         {bookSearch.map(book => (
           <li key={book.id} className='book'>
             <img className='bookinfo-cover' src={book.volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl} />
@@ -47,15 +48,15 @@ export function BookFindPage () {
                   {book.volumeInfo?.authors?.[0] || 'Unknown author.'}
                 </p>
                 <img className='bookinfo-five-stars-icon' src={FiveStarsRatingIcon} />
-                <p className='bookfindpage-description'>
+                {/* <p className='bookfindpage-description'>
                   {book.volumeInfo?.description ? getFirst80Characters(book.volumeInfo?.description) : 'No description available.'}
-                </p>
+                </p> */}
               </div>
               <a onClick={(event) => handleClick(event, book.id)} className='button'>Read more</a>
             </div>
-
           </li>
         ))}
+        <hr/>
       </ul>
     </div>
   )

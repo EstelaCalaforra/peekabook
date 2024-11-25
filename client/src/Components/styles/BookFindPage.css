@@ -1,46 +1,48 @@
-.page {
-    margin: 40px;
+.bookfind-page {
     color: #3f3230;
+    background-image: url('../../assets/bg-books-trans20.png');
+    background-size: cover;
+}
+
+.bookfind-page .results {
+    font-weight: bold;
+    margin: 0px;
 }
 
 .books-info {
     list-style: none;
     margin: 0;
     padding: 0;
-    padding-bottom: 40px;
+    padding: 40px;
   
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(800px, 0.5fr));
    
-    width: 100%;
     gap: 32px;
   }
 
 .bookinfo-cover {
-    height: 256px;
-    width: 160px;
+    height: 11em;
+    width: 7em;
     border-radius: 10px;
-    margin-top: 16px;
-    border: 2px solid #3f3230;
+    /* border: 2px solid #3f3230; */
 }
 
 .book {
     display: flex;
     flex-direction: row;
-    
-    /* align-items: center; */
-    /* justify-content: space-between; */
-
+    background-color: antiquewhite;
+    border-radius: 10px;
+    border: 2px solid #3f3230;
     gap: 10px;
-  }
+}
 
 .bookinfo-info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    /* padding-top: 10px; */
-    /* margin-bottom: 5px; */
+    padding: 10px 0px 10px 0px;
 }
 
 .bookinfo-title-author {
@@ -50,14 +52,14 @@
 }
 
 .book h2 {
-    font-size: 18px;
+    font-size: 1.1em;
     font-weight: bold;
-    margin-bottom: 0;
+    margin: 0;
 }
 
 p.bookfindpage-author {
-    font-size: 16px;
-    font-weight: 300;
+    font-size: 0.9em;
+    font-weight: bold;
 }
 
 p.bookfindpage-description {

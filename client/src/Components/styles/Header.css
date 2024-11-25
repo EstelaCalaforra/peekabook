@@ -68,6 +68,11 @@ header a:hover {
   justify-content: center;
 }
 
+.username {
+  min-width: 100px;
+  text-align: right;
+}
+
 .dropdown .username {
   cursor: pointer;
 }
@@ -120,19 +125,13 @@ input[type=text]:focus {
 
 .header-popup-login {
   position: absolute;
-  /* top: 7%;
-  left: 85%; */
   border: 5px solid #85644d; 
-  /* transform: translateX(-50%); */
+  transform: translateY(12%) translateX(-10%);
   background-color: #3f3230;
   color: #fff;
   padding: 20px 0px 20px 0px;
   border-radius: 5px;
-  white-space: nowrap;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1;
-  margin-top: 10px;
-
-  width: 200px;
+  width: 150px;
 }
 

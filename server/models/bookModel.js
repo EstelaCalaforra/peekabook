@@ -61,3 +61,13 @@ export const insertBookAuthorRelation = async (bookId, authorId) => {
   await db.query(insertRelationQuery, [bookId, authorId])
   console.log(`Relationship inserted between book ID ${bookId} and author ID ${authorId}`)
 }
+
+export const insertReview = async (userId, bookId, reviewText, rating) => {
+  const insertReviewQuery = `
+    INSERT INTO reviews (user_id, book_id, review, rating)
+    VALUES ($1, $2, $3, $4)
+    RETURNING id;
+  `
+  const result = await db.query(insertReviewQuery, [userId, bookId, reviewText, rating])
+  return result.rows[0]?.id
+}

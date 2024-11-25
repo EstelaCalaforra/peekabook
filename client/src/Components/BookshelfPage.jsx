@@ -6,10 +6,10 @@ import { useBookshelf } from '../hooks/useBookshelf'
 
 export function BookshelfPage () {
   const { bookshelfData, hasBooks, hasReviews, handleClickOnCover, handleClickOnCategory, categories } = useBookshelf()
-
+  console.log({ bookshelfData })
   return (
     <div className='bookshelf-page'>
-      <div className='bookshelf-column-shelves'>
+      <div className='bookshelf-books'>
         <h3>Bookshelves</h3>
         <img src={Divider} className='bookshelf-divider' alt='divider' />
         {hasBooks && (

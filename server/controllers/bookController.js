@@ -1,4 +1,11 @@
-import { findBookByIdApi, addUserBookRelation, insertBook, insertAuthor, getExistingAuthor, insertBookAuthorRelation } from '../models/bookModel.js'
+import {
+  findBookByIdApi,
+  addUserBookRelation,
+  insertBook, insertAuthor,
+  getExistingAuthor,
+  insertBookAuthorRelation,
+  insertReview
+} from '../models/bookModel.js'
 
 export const addBookToUser = async (req, res) => {
   const { userId, bookAdded } = req.body
@@ -16,6 +23,12 @@ export const addBookToUser = async (req, res) => {
 
     await addUserBookRelation(userId, bookId, bookAdded.readDate, bookAdded.categories)
     console.log(`Relationship inserted between book ID ${bookId} and user ID ${userId}`)
+
+    if (bookAdded.reviewText || bookAdded.rating) {
+      await insertReview(userId, bookId, bookAdded.reviewText, bookAdded.rating)
+      console.log(`Review inserted for book ID ${bookId} and user ID ${userId}`)
+    }
+
     res.status(200).json({ success: true, message: 'Book successfully added.' })
   } catch (error) {
     console.error(error)
