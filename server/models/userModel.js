@@ -26,6 +26,13 @@ export const generateToken = (user) => {
   )
 }
 
+export const verifyToken = (token) => {
+  return jwt.verify(
+    token,
+    process.env.JWT_SECRET
+  )
+}
+
 export const authenticateUser = async (email, password) => {
   const user = await getUserByEmail(email)
   if (!user) {

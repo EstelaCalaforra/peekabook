@@ -6,6 +6,8 @@ import Divider from '../assets/botanical-divider-crop.png'
 import { useAuth } from '../context/AuthContext'
 import { useBookshelf } from '../hooks/useBookshelf'
 import { useBook } from '../hooks/useBook'
+import { useReview } from '../hooks/useReview'
+import FiveStarsRatingIcon from '../assets/five-stars-rating.png'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
@@ -13,7 +15,8 @@ export function IndividualBookPage () {
   const { bookSearch, setBookId, setCategories } = useContext(BookSearchContext)
   const { isAuthenticated, userId } = useAuth()
   const { categories } = useBookshelf()
-  const { book, getBookFromDB, getReviewsFromDB, allReviews } = useBook()
+  const { book, getBookFromDB } = useBook()
+  const { allReviews, getReviewsFromDB } = useReview()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -68,6 +71,7 @@ export function IndividualBookPage () {
     event.preventDefault()
     setCategories((prevCategories) => ([...prevCategories, newCategory]))
     console.log(categories)
+    setNewCategory('')
   }
 
   const [added, setAdded] = useState(false)
@@ -151,19 +155,20 @@ export function IndividualBookPage () {
           <p>{book?.description || 'No description available.'}</p>
         </div>
       </section>
-      {/* <section className='reviews'>
+      <section className='reviews'>
         <h2>Reviews</h2>
         <div className='individual-book-page-row'>
-          {allReviews && (allReviews).map(review => (
-            <li key={review.id} className='review'>
-              <p>{review.user}</p>
-              <p>{review.review}</p>
-            </li>
-          ))}
-          {!allReviews &&
-            <p>No reviews.</p>}
+          {(allReviews.length > 0)
+            ? (allReviews)?.map(review => (
+              <li key={review.id} className='review'>
+                <p className='username'>{review.email.split('@')[0]}</p>
+                <img className='five-stars-icon' src={FiveStarsRatingIcon} />
+                <p className='review-text'>{review.review}</p>
+              </li>
+              ))
+            : <p>No reviews.</p>}
         </div>
-      </section> */}
+      </section>
       <section className='similar-books'>
         <h2>Other books by {book?.authors?.[0]}</h2>
         <div className='individual-book-page-row'>

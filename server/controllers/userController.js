@@ -1,4 +1,4 @@
-import { authenticateUser, registerUser } from '../models/userModel.js'
+import { authenticateUser, registerUser, verifyToken } from '../models/userModel.js'
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body
@@ -15,6 +15,15 @@ export const loginUser = async (req, res) => {
     }
 
     const { user, token } = result
+
+    // let token = ''
+    // const authorization = req.get('authorization')
+    // if (authorization && authorization.toLowerCase().startsWith('bearer')) {
+    //   token = authorization.substring(7)
+    // }
+
+    // const decodedToken = verifyToken(token)
+
     return res.status(200).json({
       success: true,
       message: 'Login successful',

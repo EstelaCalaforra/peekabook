@@ -73,6 +73,10 @@
     flex-wrap: wrap;
 }
 
+.similar-books {
+    margin-top: 20px;
+}
+
 .similar-books h2 {
     margin-bottom: 10px;
 }
@@ -139,3 +143,40 @@ fieldset {
 .individual-book-page .close-button-and-popup button:hover {
     background-color: #85644d;
 }
+
+.individual-book-page .reviews {
+    margin-top: 20px;
+}
+
+.individual-book-page .reviews .username {
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    min-width: none;
+    font-size: small;
+    color: #85644d;
+}
+
+.individual-book-page .reviews .review-text {
+    padding-top: 5px;
+}
+
+.individual-book-page .reviews .review {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 20px;
+    border: 2px solid #85644d;
+    width: 180px;
+}
+
+.individual-book-page .five-stars-icon {
+    width: 80px;
+    margin: 0px;
+    padding-top: 5px;
+}
+

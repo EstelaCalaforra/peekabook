@@ -1,5 +1,6 @@
 import { Router } from 'express'
-import { addBookToUser, addBooksIfNotOnDB, getReviews } from '../controllers/bookController.js'
+import { addBookToUser, addBooksIfNotOnDB } from '../controllers/bookController.js'
+import { getReviews } from '../controllers/reviewController.js'
 
 export const bookRouter = Router()
 

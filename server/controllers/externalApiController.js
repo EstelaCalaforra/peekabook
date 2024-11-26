@@ -21,3 +21,16 @@ export const fetchBooks = async (req, res) => {
     res.status(500).render('error', { message: 'Error fetching books.' })
   }
 }
+
+export const getBestsellers = async (req, res) => {
+  try {
+    const params = {
+      'api-key': 'WdGDKFTLRAMvyfPT3LVHZAAUiEaImG0W'
+    }
+    const response = await axios.get('https://api.nytimes.com/svc/books/v3/lists/overview.json', { params })
+    const bestSellers = response.data
+    res.json(bestSellers)
+  } catch (error) {
+    console.log(error)
+  }
+}

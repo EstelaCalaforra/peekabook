@@ -10,7 +10,7 @@ export function useBestSellers () {
 
     const fetchBestsellersData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/get-bestsellers')
+        const response = await axios.get('http://localhost:5000/api/external/bestsellers')
         const { books } = response.data.results.lists[0]
         setBestsellersData(books)
       } catch (error) {

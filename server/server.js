@@ -3,7 +3,6 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 // Routers
 import { getRandomQuoteRouter } from './controllers/getRandomQuote.js'
-import { getBestsellersRouter } from './controllers/getBestsellers.js'
 import { getBookshelfRouter } from './controllers/getBookshelf.js'
 import { getBookFromDBRouter } from './controllers/getBookFromDB.js'
 import { bookRouter } from './routes/bookRoutes.js'
@@ -22,8 +21,6 @@ app.use(bodyParser.json())
 app.use('/get-random-quote', getRandomQuoteRouter)
 
 app.use('/api/get-book', getBookFromDBRouter)
-
-app.use('/get-bestsellers', getBestsellersRouter)
 
 app.use('/get-bookshelf/user', getBookshelfRouter)
 
