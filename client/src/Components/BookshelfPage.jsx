@@ -31,7 +31,7 @@ export function BookshelfPage () {
                   <a onClick={() => handleClickOnCategory({ category })}><h3>✿ {category}</h3></a>
                   {/* <img src={Divider} className='bookshelf-divider' alt='divider' /> */}
                   <div className='bookshelf-row'>
-                    {booksInCategory.map((book) => (
+                    {booksInCategory.slice(-4).map((book) => (
                       <a key={book.id_api}>
                         <img
                           className='bookshelf-cover'
@@ -61,14 +61,16 @@ export function BookshelfPage () {
         <img src={Divider} className='bookshelf-divider' alt='divider' />
         {hasReviews && (
           <ul className='reviews-container'>
-            {reviews.map((review) => (
-              <li className='review' key={review.id_api}>
-                <p className='title'>{review.title}</p>
-                <p className='authors'>by {review.authors}</p>
-                <img className='five-stars-icon' src={FiveStarsRatingIcon} />
-                <p className='review-text'>{review.review}</p>
-                <button className='edit-icon' />
-              </li>
+            {reviews.slice(-8).map((review) => (
+              <div key={review.id_api}>
+                <li className='review'>
+                  <p className='title'>{review.title}</p>
+                  <p className='authors'>by {review?.authors || 'Uknown author'}</p>
+                  <img className='five-stars-icon' src={FiveStarsRatingIcon} />
+                  <p className='review-text'>{review.review}</p>
+                  <button className='edit-icon' />
+                </li>
+              </div>
             ))}
           </ul>
         )}

@@ -1,10 +1,12 @@
 import {
   findBookByIdApi,
   addUserBookRelation,
-  insertBook, insertAuthor,
+  insertBook,
+  insertAuthor,
   getExistingAuthor,
   insertBookAuthorRelation,
-  insertReview
+  insertReview,
+  getReviewsByBookId
 } from '../models/bookModel.js'
 
 export const addBookToUser = async (req, res) => {
@@ -51,7 +53,6 @@ export const addBooksIfNotOnDB = async (req, res) => {
       const bookId = await insertBook(book)
       if (!bookId) {
         console.log(`The book with id_api ${book.id} already exists.`)
-        return
       } else {
         console.log(`Book inserted with ID: ${bookId}`)
       }
@@ -68,5 +69,24 @@ export const addBooksIfNotOnDB = async (req, res) => {
   } catch (error) {
     console.error('Error inserting books and authors:', error)
     res.status(500).send('Error inserting books and authors')
+  }
+}
+
+export const getReviews = async (req, res) => {
+  const { userId, bookAdded } = req.body
+  console.log({ bookAdded })
+  console.log({ userId })
+  const bookId = bookAdded.id
+  console.log({ bookId })
+  try {
+    const reviews = await getReviewsByBookId(bookId)
+    res.status(201).json({
+      success: true,
+      message: 'Reviews fetched successfully',
+      reviews
+    })
+  } catch (error) {
+    console.error('Error fetching reviews:', error)
+    res.status(500).send('Error fetching reviews.')
   }
 }

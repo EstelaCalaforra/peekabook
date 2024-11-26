@@ -13,11 +13,12 @@ export function IndividualBookPage () {
   const { bookSearch, setBookId, setCategories } = useContext(BookSearchContext)
   const { isAuthenticated, userId } = useAuth()
   const { categories } = useBookshelf()
-  const { book, getBookFromDB } = useBook()
+  const { book, getBookFromDB, getReviewsFromDB, allReviews } = useBook()
   const navigate = useNavigate()
 
   useEffect(() => {
     getBookFromDB()
+    getReviewsFromDB()
   }, [])
 
   function handleClick (event, id) {
@@ -150,6 +151,19 @@ export function IndividualBookPage () {
           <p>{book?.description || 'No description available.'}</p>
         </div>
       </section>
+      {/* <section className='reviews'>
+        <h2>Reviews</h2>
+        <div className='individual-book-page-row'>
+          {allReviews && (allReviews).map(review => (
+            <li key={review.id} className='review'>
+              <p>{review.user}</p>
+              <p>{review.review}</p>
+            </li>
+          ))}
+          {!allReviews &&
+            <p>No reviews.</p>}
+        </div>
+      </section> */}
       <section className='similar-books'>
         <h2>Other books by {book?.authors?.[0]}</h2>
         <div className='individual-book-page-row'>

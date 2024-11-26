@@ -55,8 +55,8 @@
 }
 
 .homepage .bestsellers .miniature {
-    width: 9vw;
-    height: 15vw;
+    width: 6vw;
+    height: 10vw;
     border: 4px solid #85644d;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
@@ -67,7 +67,7 @@
 }
 
 .homepage .home-shelf {
-    width: 60vw;
+    width: 40vw;
     min-width: 100px;
 }
 

@@ -3,7 +3,6 @@ import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../context/bookSearchContext'
 import FiveStarsRatingIcon from '../assets/five-stars-rating.png'
-import { getFirst80Characters } from '../services/getFirst80Characters'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
@@ -18,8 +17,6 @@ export function BookFindPage () {
   }
 
   useEffect(() => {
-    console.log({ bookSearch })
-
     async function addSearchToDB (bookSearch) {
       console.log({ bookSearch })
       const response = await fetch('http://localhost:5000/api/books/add-search', {

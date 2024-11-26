@@ -2,14 +2,13 @@ import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 // Routers
-import { addResultsToDBRouter } from './controllers/addResultsToDB.js'
 import { getRandomQuoteRouter } from './controllers/getRandomQuote.js'
-import { getBooksFromAPIRouter } from './controllers/getBooksFromAPI.js'
 import { getBestsellersRouter } from './controllers/getBestsellers.js'
 import { getBookshelfRouter } from './controllers/getBookshelf.js'
 import { getBookFromDBRouter } from './controllers/getBookFromDB.js'
 import { bookRouter } from './routes/bookRoutes.js'
 import { userRouter } from './routes/userRoutes.js'
+import { externalAPIRouter } from './routes/externalAPIRoutes.js'
 
 // Starting the server
 const app = express()
@@ -19,14 +18,8 @@ const port = 5000
 app.use(cors())
 app.use(bodyParser.json())
 
-// Add book search results to database if not already on it (database)
-app.use('/api/add-results-to-db', addResultsToDBRouter)
-
 // Recite API (external api) IT IS NOT CORRECT
 app.use('/get-random-quote', getRandomQuoteRouter)
-
-// Google Books API (external api)
-app.use('/get-books-google-api', getBooksFromAPIRouter)
 
 app.use('/api/get-book', getBookFromDBRouter)
 
@@ -34,7 +27,10 @@ app.use('/get-bestsellers', getBestsellersRouter)
 
 app.use('/get-bookshelf/user', getBookshelfRouter)
 
-// GET, POST books
+// Google Books API (external api)
+app.use('/api/external', externalAPIRouter)
+
+// GET, POST books related info
 app.use('/api/books', bookRouter)
 
 // Login and Signup
