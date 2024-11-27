@@ -72,6 +72,29 @@ export const insertReview = async (userId, bookId, reviewText, rating) => {
   return result.rows[0]?.id
 }
 
+export const getBookDetailsByIdApi = async (idApi) => {
+  const selectQuery = `
+    SELECT 
+      b.title, 
+      b.id_api, 
+      b.cover, 
+      b.description, 
+      array_agg(DISTINCT a.fullname) AS authors
+    FROM books b
+    LEFT JOIN book_authors ba ON b.id = ba.book_id
+    LEFT JOIN authors a ON ba.author_id = a.id
+    WHERE b.id_api = $1
+    GROUP BY b.id
+  `
+  try {
+    const result = await db.query(selectQuery, [idApi])
+    return result.rows
+  } catch (error) {
+    console.error('Error fetching book details by id_api:', error)
+    throw error
+  }
+}
+
 export const getReviewsByBookId = async (bookId) => {
   const result = await db.query(
     `
@@ -83,4 +106,33 @@ export const getReviewsByBookId = async (bookId) => {
     [bookId]
   )
   return result.rows
+}
+
+export const getBookshelfByUserId = async (userId) => {
+  const selectQuery = `
+    SELECT 
+      b.title, 
+      b.id_api, 
+      b.cover, 
+      array_agg(DISTINCT a.fullname) AS authors, 
+      ub.categories, 
+      r.review, 
+      r.rating, 
+      r.date AS review_date
+    FROM books b
+    LEFT JOIN book_authors ba ON b.id = ba.book_id
+    LEFT JOIN authors a ON ba.author_id = a.id
+    LEFT JOIN user_books ub ON b.id = ub.book_id
+    LEFT JOIN reviews r ON b.id = r.book_id AND ub.user_id = r.user_id
+    WHERE ub.user_id = $1
+    GROUP BY b.id, ub.categories, r.review, r.rating, r.date
+  `
+
+  try {
+    const result = await db.query(selectQuery, [userId])
+    return result.rows
+  } catch (error) {
+    console.error('Error fetching bookshelf data from database:', error)
+    throw error
+  }
 }

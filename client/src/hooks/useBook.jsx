@@ -8,7 +8,7 @@ export function useBook () {
 
   async function getBookFromDB () {
     try {
-      const response = await axios.get('http://localhost:5000/api/get-book/' + bookId)
+      const response = await axios.get('http://localhost:5000/api/books/book/' + bookId)
       const resDataGetBook = response.data[0]
       setBook(resDataGetBook)
     } catch (error) {

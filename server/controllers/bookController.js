@@ -5,7 +5,9 @@ import {
   insertAuthor,
   getExistingAuthor,
   insertBookAuthorRelation,
-  insertReview
+  insertReview,
+  getBookshelfByUserId,
+  getBookDetailsByIdApi
 } from '../models/bookModel.js'
 
 export const addBookToUser = async (req, res) => {
@@ -69,5 +71,33 @@ export const addBooksIfNotOnDB = async (req, res) => {
   } catch (error) {
     console.error('Error inserting books and authors:', error)
     res.status(500).send('Error inserting books and authors')
+  }
+}
+
+export const getBookFromDB = async (req, res) => {
+  const idApi = req.params.id
+  console.log({ idApi })
+
+  try {
+    const book = await getBookDetailsByIdApi(idApi)
+    console.log(book)
+    res.status(200).json(book)
+  } catch (error) {
+    console.error('Error fetching book details:', error)
+    res.status(500).json({ error: 'An error occurred while fetching book details.' })
+  }
+}
+
+export const getUserBookshelf = async (req, res) => {
+  const userId = req.params.id
+  console.log({ userId })
+
+  try {
+    const books = await getBookshelfByUserId(userId)
+    console.log(books)
+    res.status(200).json(books)
+  } catch (error) {
+    console.error('Error fetching bookshelf data:', error)
+    res.status(500).json({ error: 'An error occurred while fetching bookshelf data.' })
   }
 }

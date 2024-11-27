@@ -34,3 +34,13 @@ export const getBestsellers = async (req, res) => {
     console.log(error)
   }
 }
+
+export const getRandomQuote = async (req, res) => {
+  try {
+    const response = await axios.get('https://recite.onrender.com/api/v1/random')
+    const quote = response.data
+    res.json(quote)
+  } catch (error) {
+    console.log(error)
+  }
+}

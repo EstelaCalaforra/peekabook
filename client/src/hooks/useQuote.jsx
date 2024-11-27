@@ -11,7 +11,7 @@ export function useQuote () {
 
     const fetchQuoteData = async () => {
       try {
-        const response = await axios.get('https://recite.onrender.com/api/v1/random')
+        const response = await axios.get('http://localhost:5000/api/external/random-quote')
         const { quote, author, book } = response.data
         setQuoteData({
           quote,

@@ -1,12 +1,24 @@
-import jwt from 'jsonwebtoken'
+import { verifyToken } from '../models/userModel.js'
 
-export const authenticateToken = (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1]
-  if (!token) return res.status(401).json({ success: false, message: 'Access token required' })
+export const verifyAuthToken = (req, res, next) => {
+  const authHeader = req.headers.authorization
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.status(403).json({ success: false, message: 'Invalid token' })
-    req.user = user
+  if (!authHeader) {
+    return res.status(401).json({ success: false, message: 'Authorization header missing' })
+  }
+
+  const token = authHeader.split(' ')[1]
+
+  if (!token) {
+    return res.status(401).json({ success: false, message: 'Token missing' })
+  }
+
+  try {
+    const decoded = verifyToken(token)
+    req.user = decoded
     next()
-  })
+  } catch (error) {
+    console.error('Token verification error:', error)
+    return res.status(403).json({ success: false, message: 'Invalid or expired token' })
+  }
 }

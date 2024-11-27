@@ -4,7 +4,6 @@ import RightArrow from '../assets/right-arrow.png'
 import Divider from '../assets/botanical-divider-crop.png'
 import { useBookshelf } from '../hooks/useBookshelf'
 import FiveStarsRatingIcon from '../assets/five-stars-rating.png'
-import EditIcon from '../assets/edit-icon.png'
 
 export function BookshelfPage () {
   const { bookshelfData, hasBooks, hasReviews, handleClickOnCover, handleClickOnCategory, categories, reviews } = useBookshelf()

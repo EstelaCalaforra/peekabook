@@ -17,7 +17,7 @@ export function useBookshelf () {
       try {
         console.log({ userId })
 
-        const response = await axios.get('http://localhost:5000/get-bookshelf/user/' + userId)
+        const response = await axios.get('http://localhost:5000/api/books/bookshelf/' + userId)
         const resDataGetBooks = response.data
 
         // If there are books in the response, set the bookshelf data and update hasData

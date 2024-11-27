@@ -2,9 +2,6 @@ import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 // Routers
-import { getRandomQuoteRouter } from './controllers/getRandomQuote.js'
-import { getBookshelfRouter } from './controllers/getBookshelf.js'
-import { getBookFromDBRouter } from './controllers/getBookFromDB.js'
 import { bookRouter } from './routes/bookRoutes.js'
 import { userRouter } from './routes/userRoutes.js'
 import { externalAPIRouter } from './routes/externalAPIRoutes.js'
@@ -17,17 +14,10 @@ const port = 5000
 app.use(cors())
 app.use(bodyParser.json())
 
-// Recite API (external api) IT IS NOT CORRECT
-app.use('/get-random-quote', getRandomQuoteRouter)
-
-app.use('/api/get-book', getBookFromDBRouter)
-
-app.use('/get-bookshelf/user', getBookshelfRouter)
-
-// Google Books API (external api)
+// Google Books, Recite, NYT Bestsellers
 app.use('/api/external', externalAPIRouter)
 
-// GET, POST books related info
+// GET, POST books in DDBB
 app.use('/api/books', bookRouter)
 
 // Login and Signup
