@@ -8,6 +8,7 @@ export const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     if (!isAuthenticated) {
+      console.log({ isAuthenticated })
       // Redirige a la página de inicio de sesión
       navigate('/login')
     }

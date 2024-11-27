@@ -10,9 +10,8 @@ import { useBookSearch } from '../hooks/useBookSearch'
 export function Header () {
   const { bookQuery, setBookQuery } = useContext(BookSearchContext)
   const { setBooksGoogleAPI } = useBookSearch()
-  const { userId } = useAuth()
+  const { userId, userEmail, isAuthenticated, logout } = useAuth()
 
-  // const dropdownSearchId = useId()
   const searchBookFormId = useId()
   const searchBookInputId = useId()
 
@@ -41,11 +40,10 @@ export function Header () {
     setShowPopup(false)
   }
 
-  const isAuthenticatedFromLocalStorage = localStorage.getItem('isAuthenticated')
-  const userEmail = localStorage.getItem('userEmail')
-  console.log({ isAuthenticatedFromLocalStorage })
-  console.log({ userEmail })
-  const { logout } = useAuth()
+  // const isAuthenticatedFromLocalStorage = localStorage.getItem('isAuthenticated')
+  // const userEmail = localStorage.getItem('userEmail')
+  // console.log({ isAuthenticatedFromLocalStorage })
+  // console.log({ userEmail })
 
   return (
     <header className='header'>
@@ -63,13 +61,13 @@ export function Header () {
           <input id={searchBookInputId} type='text' onChange={handleChange} value={bookQuery} placeholder='Search book...' />
         </form>
         {
-              isAuthenticatedFromLocalStorage &&
+              isAuthenticated &&
                 <div onClick={handleClick} className='dropdown'>
                   <div className='username'>{userEmail?.split('@')[0] || 'useremail'} ▼</div>
                   {showPopup && (
                     <div onMouseEnter={handleClick} onMouseLeave={handleMouseLeave} className='header-popup-login'>
                       {
-              isAuthenticatedFromLocalStorage &&
+              isAuthenticated &&
                 (
                   <div className='column'>
                     <a onClick={() => logout()}>Log out</a>
@@ -83,7 +81,7 @@ export function Header () {
                 </div>
             }
         {
-              !isAuthenticatedFromLocalStorage &&
+              !isAuthenticated &&
                 <div className='row'>
                   <a className='button login' href='/login'>Login</a>
                   <a className='button signup' href='/signup'>Signup</a>
