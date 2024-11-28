@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, authToken } = useAuth()
+  console.log({ isAuthenticated })
+  console.log({ authToken })
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -14,6 +17,5 @@ export const ProtectedRoute = ({ children }) => {
     }
   }, [])
 
-  // Renderiza los componentes hijos solo si está autenticado
   return isAuthenticated ? children : null
 }

@@ -6,7 +6,7 @@ import axios from 'axios'
 
 export function useBookshelf () {
   const [bookshelfData, setBookshelfData] = useState([])
-  const { userId } = useAuth()
+  const { userId, authToken, isAuthenticated } = useAuth()
   const [hasBooks, setHasBooks] = useState(false)
   const [hasReviews, setHasReviews] = useState(false)
   const [reviews, setReviews] = useState({})
@@ -16,8 +16,12 @@ export function useBookshelf () {
     const fetchBookshelfData = async () => {
       try {
         console.log({ userId })
+        console.log({ authToken })
+        console.log({ isAuthenticated })
 
-        const response = await axios.get('http://localhost:5000/api/books/bookshelf/' + userId)
+        const response = await axios.get('http://localhost:5000/api/books/bookshelf/' + userId, {
+          headers: { Authorization: `Bearer ${authToken}` }
+        })
         const resDataGetBooks = response.data
 
         // If there are books in the response, set the bookshelf data and update hasData

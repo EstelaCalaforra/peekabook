@@ -1,20 +1,30 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-import axios from 'axios'
+import { createContext, useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-// Crete context
+// Create context
 export const AuthContext = createContext()
 
 // Context provider
 export function AuthProvider ({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [userId, setUserId] = useState('')
-  const [userEmail, setUserEmail] = useState('')
+  const [userId, setUserId] = useState(() => {
+    return localStorage.getItem('userId') || ''
+  })
+  const [userEmail, setUserEmail] = useState(() => {
+    return localStorage.getItem('userEmail') || ''
+  })
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const token = localStorage.getItem('authToken')
+    return !!token
+  })
+  const [authToken, setAuthToken] = useState(() => {
+    return localStorage.getItem('authToken') || ''
+  })
 
   // Login function
   const login = async (userId, userEmail, token) => {
+    setAuthToken(token)
     localStorage.setItem('authToken', token)
     localStorage.setItem('userId', userId)
     localStorage.setItem('userEmail', userEmail)
@@ -37,45 +47,11 @@ export function AuthProvider ({ children }) {
     navigate('/login')
   }
 
-  const validateToken = async () => {
-    console.log('enter validate')
-    const token = localStorage.getItem('authToken') // Obtener el token desde localStorage
-
-    if (!token) {
-      console.log('enter validate !token')
-      setIsAuthenticated(false)
-      setLoading(false)
-      return
-    }
-
-    try {
-      console.log('enter validate token exists')
-      const response = await axios.get('/api/users/verify', {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-
-      const { user } = response.data
-      console.log({ user })
-      setIsAuthenticated(true)
-      setUserId(user.id)
-      setUserEmail(user.email)
-    } catch (error) {
-      console.error('Token validation failed:', error)
-      logout() // Si el token no es válido, cerrar sesión
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  // Validar el token cuando se monta el proveedor
-  useEffect(() => {
-    validateToken()
-  }, [])
-
   return (
     <AuthContext.Provider
       value={{
         isAuthenticated,
+        authToken,
         login,
         logout,
         userId,

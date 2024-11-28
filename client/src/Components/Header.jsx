@@ -1,49 +1,31 @@
 import './styles/Header.css'
 import bookLogo from '../assets/other-logo.png'
 import userIcon from '../assets/user-icon.png'
-import { useId, useContext, useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useId, useContext, useState } from 'react'
 import { BookSearchContext } from '../context/bookSearchContext'
 import { useAuth } from '../context/AuthContext'
 import { useBookSearch } from '../hooks/useBookSearch'
 
 export function Header () {
-  const { bookQuery, setBookQuery } = useContext(BookSearchContext)
-  const { setBooksGoogleAPI } = useBookSearch()
+  const { bookQuery } = useContext(BookSearchContext)
+  const { handleSubmit, handleChange } = useBookSearch()
   const { userId, userEmail, isAuthenticated, logout } = useAuth()
+  console.log({ userEmail })
 
   const searchBookFormId = useId()
   const searchBookInputId = useId()
 
-  const navigate = useNavigate()
-
-  function handleSubmit (event) {
-    event.preventDefault()
-    setBooksGoogleAPI(bookQuery)
-    navigate('/book-search')
-  }
-
-  function handleChange (event) {
-    const newBookQuery = event.target.value
-    setBookQuery(newBookQuery)
-  }
-
   const [showPopup, setShowPopup] = useState(false)
 
-  // Función para manejar el mouse sobre el logo
+  // Handle mouse click on username
   const handleClick = () => {
     setShowPopup(true)
   }
 
-  // Función para manejar cuando el mouse sale del logo
+  // Handle mouse leave popup
   const handleMouseLeave = () => {
     setShowPopup(false)
   }
-
-  // const isAuthenticatedFromLocalStorage = localStorage.getItem('isAuthenticated')
-  // const userEmail = localStorage.getItem('userEmail')
-  // console.log({ isAuthenticatedFromLocalStorage })
-  // console.log({ userEmail })
 
   return (
     <header className='header'>

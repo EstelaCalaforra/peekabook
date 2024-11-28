@@ -5,18 +5,15 @@
     /* align-items: center; */
     width: 100vw;
     min-height: 100vh;
-
 }
+
 .bookshelf-shelves {
     list-style: none;
   
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 
-    /* gap: 5px 10px; */
     width: 100%;
-    padding-left: 50px;
-
 }
 
 .bookshelf-books {
@@ -35,8 +32,8 @@
     flex-direction: column;
     align-items: center;
     width: 50vw;
-    padding: 0px;
-    margin: 0px;
+    /* padding: 0px;
+    margin: 0px; */
 
     box-sizing: border-box;
     overflow-y: auto;
@@ -57,35 +54,42 @@
     width: 270px;
 }
 
-h2, h3 {
+.bookshelf-page .shelf-title {
+    background-color: #ceab8c;
+    width: auto;
+    text-align: center;
+    padding: 0px 10px 0px 10px;
+}
+
+.bookshelf-page h2 {
     color: #3f3230;
     font-weight: bold;
-    margin-block-end: 0;
+    margin-block-end: 0; 
+}
+
+.bookshelf-page h3 {
+    /* margin: 0px; */
+    margin-bottom: 10px;
+    padding: 0px;
+    color: #3f3230;
+    font-weight: bold;
+    border: 1px solid #3f3230;
 }
 
 .bookshelf-row {
     display: flex;
     flex-direction: row;
+    width: 270px;
     align-items: center;
     justify-content: left;
     gap: 5px;
     padding-left: 12px;
 }
 
-.bookshelf-column {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-    align-items: center;
-    min-height: 100vh;
-}
-
 .bookshelf-column-shelf {
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    align-items: center;
 }
 
 .bookshelf-column-shelf a {
@@ -101,7 +105,6 @@ h2, h3 {
 }
 
 .bookshelf-divider {
-    /* margin-bottom: 10px; */
     padding: 0;
     height: 20px;
 }
@@ -133,6 +136,22 @@ h2, h3 {
     gap: 20px 20px;
 }
 
+.reviews-and-button {
+    /* margin: 0px; */
+    /* padding: 20px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reviews-and-button a {
+    color: #3f3230;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+}
+
 .bookshelf-page .reviews-container .title {
     font-weight: bold;
     padding-bottom: 0px;
@@ -143,6 +162,13 @@ h2, h3 {
     font-size: small;
     padding: 0px;
     margin: 0px;
+}
+
+
+.bookshelf-page .reviews-container .review-text {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 5px;
 }
 
 .bookshelf-page .five-stars-icon {
@@ -178,7 +204,7 @@ h2, h3 {
 }
 
 .bookshelf-page .review-info {
-    padding: 10px 20px 0px 20px;
+    /* padding: 0px 0px 0px 20px; */
 }
 
 

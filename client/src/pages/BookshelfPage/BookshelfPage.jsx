@@ -11,7 +11,7 @@ export function BookshelfPage () {
   return (
     <div className='bookshelf-page'>
       <div className='bookshelf-books'>
-        <h3>Bookshelves</h3>
+        <h2>Bookshelves</h2>
         <img src={Divider} className='bookshelf-divider' alt='divider' />
         {hasBooks && (
           <div className='bookshelf-shelves'>
@@ -27,7 +27,7 @@ export function BookshelfPage () {
 
               return (
                 <div key={category} className='bookshelf-column-shelf'>
-                  <a onClick={() => handleClickOnCategory({ category })}><h3>✿ {category}</h3></a>
+                  <a onClick={() => handleClickOnCategory({ category })}><h3 className='shelf-title'>{category}</h3></a>
                   {/* <img src={Divider} className='bookshelf-divider' alt='divider' /> */}
                   <div className='bookshelf-row'>
                     {booksInCategory.slice(-4).map((book) => (
@@ -56,22 +56,25 @@ export function BookshelfPage () {
       </div>
 
       <div className='bookshelf-reviews'>
-        <h3>Recent reviews</h3>
+        <h2>Recent reviews</h2>
         <img src={Divider} className='bookshelf-divider' alt='divider' />
         {hasReviews && (
-          <ul className='reviews-container'>
-            {reviews.slice(-8).map((review) => (
-              <div key={review.id_api}>
-                <li className='review'>
-                  <p className='title'>{review.title}</p>
-                  <p className='authors'>by {review?.authors || 'Uknown author'}</p>
-                  <img className='five-stars-icon' src={FiveStarsRatingIcon} />
-                  <p className='review-text'>{review.review}</p>
-                  <button className='edit-icon' />
-                </li>
-              </div>
-            ))}
-          </ul>
+          <div className='reviews-and-button'>
+            <ul className='reviews-container'>
+              {reviews.slice(-6).map((review) => (
+                <div key={review.id_api}>
+                  <li className='review'>
+                    <p className='title'>{review.title}</p>
+                    <p className='authors'>by {review?.authors || 'Uknown author'}</p>
+                    <img className='five-stars-icon' src={FiveStarsRatingIcon} />
+                    <p className='review-text'>{review.review}</p>
+                    <button className='edit-icon' />
+                  </li>
+                </div>
+              ))}
+            </ul>
+            <a>See more</a>
+          </div>
         )}
         {!hasReviews && (
           <div className='empty'>

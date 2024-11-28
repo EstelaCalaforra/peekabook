@@ -13,7 +13,7 @@ const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this i
 
 export function IndividualBookPage () {
   const { bookSearch, setBookId, setCategories } = useContext(BookSearchContext)
-  const { isAuthenticated, userId } = useAuth()
+  const { isAuthenticated, userId, authToken } = useAuth()
   const { categories } = useBookshelf()
   const { book, getBookFromDB } = useBook()
   const { allReviews, getReviewsFromDB } = useReview()
@@ -43,7 +43,8 @@ export function IndividualBookPage () {
     await fetch('http://localhost:5000/api/books/add', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`
       },
       body: JSON.stringify({ userId, bookAdded }) // apis handle data in json format
     })
