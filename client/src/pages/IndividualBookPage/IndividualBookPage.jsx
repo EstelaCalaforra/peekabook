@@ -17,6 +17,7 @@ export function IndividualBookPage () {
   const { categories } = useBookshelf()
   const { book, getBookFromDB } = useBook()
   const { allReviews, getReviewsFromDB } = useReview()
+  const [added, setAdded] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -48,6 +49,8 @@ export function IndividualBookPage () {
       },
       body: JSON.stringify({ userId, bookAdded }) // apis handle data in json format
     })
+    const isAdded = added
+    setAdded(!isAdded)
     closePopup()
   }
 
@@ -75,11 +78,9 @@ export function IndividualBookPage () {
     setNewCategory('')
   }
 
-  const [added, setAdded] = useState(false)
   function handleClickAddToShelves () {
     if (isAuthenticated) {
       const isAdded = added
-      setAdded(!isAdded)
       if (isAdded === false) openPopup()
     } else {
       navigate('/login')
@@ -147,7 +148,7 @@ export function IndividualBookPage () {
               </div>
             </div>
           )}
-          <a className='button buy'>Buy on Amazon</a>
+          <a className='button buy' src=''>Buy</a>
         </div>
         <div className='individual-book-page-column'>
           <h1>{book?.title || 'No title available'}</h1>

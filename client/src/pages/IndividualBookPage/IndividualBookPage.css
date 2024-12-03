@@ -54,7 +54,29 @@
 }
 
 .individual-book-page .button {
-    width: 100px;
+    width: 200px;
+    background-color:#ceab8c;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: #3f3230;
+    font-weight: bold;
+    line-height: 12px;
+    border: 1px solid #3f3230;
+    text-decoration: none;
+    width: 70px;
+    font-size: 12px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.individual-book-page .added {
+    background-color:#85644d;
+    color:antiquewhite; 
+}
+
+.individual-book-page .button:hover {
+    background-color:#b8957c;
 }
 
 .individual-book-page .button .buy {

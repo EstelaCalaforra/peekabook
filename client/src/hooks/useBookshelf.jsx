@@ -36,10 +36,13 @@ export function useBookshelf () {
             setReviews(allReviews)
           }
         } else {
-          setHasBooks(false) // Ensure hasData is false if no data is received
+          setHasBooks(false)
         }
       } catch (error) {
         console.log(error)
+        if (error.response && error.response.status === 403) {
+          navigate('/login')
+        }
       }
     }
     fetchBookshelfData()

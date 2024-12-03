@@ -2,6 +2,10 @@
     color: #3f3230;
     background-image: url('../../assets/bg-books-trans20.png');
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* padding-bottom: 50px; */
 }
 
 .bookfind-page .results {
@@ -70,8 +74,7 @@ p.bookfindpage-description {
     font-weight: 300;
 }
 
-.button {
-    /* margin-top: 10px; */
+.bookfind-page .button {
     background-color:#ceab8c;
     padding: 10px;
     text-align: center;
@@ -93,4 +96,13 @@ p.bookfindpage-description {
 
 .bookinfo-five-stars-icon {
     width: 100px;
+}
+
+
+.bookfind-page .pagination-controls {
+    width: 100%;
+    padding-bottom: 50px;
+    text-align: right;
+    padding-top: 0px;
+    margin: 0px;
 }
