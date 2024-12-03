@@ -1,4 +1,4 @@
-import { useQuote } from '../hooks/useQuote'
+import { useQuote } from '../../hooks/useQuote'
 
 export function Quote () {
   const { quoteData, loadingQuoteData } = useQuote()

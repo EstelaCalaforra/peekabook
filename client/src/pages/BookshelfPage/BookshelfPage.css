@@ -2,12 +2,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* align-items: center; */
     width: 100vw;
     min-height: 100vh;
+    gap: 20px;
 }
 
-.bookshelf-shelves {
+.bookshelf-page .shelves {
     list-style: none;
   
     display: grid;
@@ -16,41 +16,40 @@
     width: 100%;
 }
 
-.bookshelf-books {
+.bookshelf-page .books {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 50vw;
     padding: 0px;
-    padding-bottom: 50px;
     overflow-y: auto;
     margin: 0px;
 }
 
-.bookshelf-reviews {
+.bookshelf-page .reviews {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 50vw;
-    /* padding: 0px;
-    margin: 0px; */
-
-    box-sizing: border-box;
-    overflow-y: auto;
 }
 
-.bookshelf-cover {
+.bookshelf-page .books,
+.bookshelf-page .reviews {
+    padding-bottom: 100px;
+}
+
+.bookshelf-page .cover {
     width: 55px;
     height: 90px;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
 }
 
-.bookshelf-cover:hover {
+.bookshelf-page .cover:hover {
     transform: scale(1.1); 
 }
 
-.bookshelf-shelf {
+.bookshelf-page .shelf {
     width: 270px;
 }
 
@@ -68,7 +67,6 @@
 }
 
 .bookshelf-page h3 {
-    /* margin: 0px; */
     margin-bottom: 10px;
     padding: 0px;
     color: #3f3230;
@@ -76,7 +74,7 @@
     border: 1px solid #3f3230;
 }
 
-.bookshelf-row {
+.bookshelf-page .row {
     display: flex;
     flex-direction: row;
     width: 270px;
@@ -96,20 +94,20 @@
     font-size:small;
 }
 
-.bookshelf-arrow {
+.bookshelf-page .arrow {
     height: 20px;
 }
 
-.bookshelf-arrow:hover {
+.bookshelf-page .arrow:hover {
     transform: scale(1.1); 
 }
 
-.bookshelf-divider {
+.bookshelf-page .bookshelf-divider {
     padding: 0;
     height: 20px;
 }
 
-.empty p {
+.bookshelf-page .empty p {
     margin-top: 50px;
     text-align: center;
     color: #3f3230;
@@ -121,35 +119,40 @@
     border-radius: 10px;
     padding: 5px 20px 5px 20px;
     border: 1px solid #3f3230;
+    width: 300px;
 }
 
 .bookshelf-page .reviews-container {
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
     padding: 0px;
     margin: 0px;
     margin-top: 20px;
-
-    width: 80%;
-    gap: 20px 20px;
+    gap: 10px;
+    width: 100%;
 }
 
-.reviews-and-button {
-    /* margin: 0px; */
-    /* padding: 20px; */
+.bookshelf-page .reviews-and-button {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 90%;
 }
 
-.reviews-and-button a {
+.bookshelf-page .reviews-and-button a {
     color: #3f3230;
     width: 100%;
     cursor: pointer;
     text-align: center;
     margin-top: 20px;
+}
+
+.bookshelf-page .reviews-and-button a:hover {
+    color: #ceab8c;
 }
 
 .bookshelf-page .reviews-container .title {
@@ -164,7 +167,6 @@
     margin: 0px;
 }
 
-
 .bookshelf-page .reviews-container .review-text {
     padding: 0px;
     margin: 0px;
@@ -177,19 +179,15 @@
     padding-top: 5px;
 }
 
-.edit-icon {
-    width: 20px;
-}
-
 .bookshelf-page .edit-icon {
     background: url('../../assets/edit-icon-dark.png');
     background-size: contain;
     border: none;
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     outline: none;
-    padding: 0;
+    padding: 0px;
 }
 
 .bookshelf-page .edit-icon:hover {
@@ -197,14 +195,10 @@
     background-size: contain;
     border: none;
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     outline: none;
     padding: 0px;
-}
-
-.bookshelf-page .review-info {
-    /* padding: 0px 0px 0px 20px; */
 }
 
 

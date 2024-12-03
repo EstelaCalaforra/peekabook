@@ -1,10 +1,10 @@
-import './styles/Header.css'
-import bookLogo from '../assets/other-logo.png'
-import userIcon from '../assets/user-icon.png'
+import './Header.css'
+import bookLogo from '../../assets/other-logo.png'
+import userIcon from '../../assets/user-icon.png'
 import { useId, useContext, useState } from 'react'
-import { BookSearchContext } from '../context/bookSearchContext'
-import { useAuth } from '../context/AuthContext'
-import { useBookSearch } from '../hooks/useBookSearch'
+import { BookSearchContext } from '../../context/bookSearchContext'
+import { useAuth } from '../../context/AuthContext'
+import { useBookSearch } from '../../hooks/useBookSearch'
 
 export function Header () {
   const { bookQuery } = useContext(BookSearchContext)

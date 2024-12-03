@@ -1,8 +1,8 @@
-import './styles/BookFindPage.css'
+import './BookFindPage.css'
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BookSearchContext } from '../context/bookSearchContext'
-import FiveStarsRatingIcon from '../assets/five-stars-rating.png'
+import { BookSearchContext } from '../../context/bookSearchContext'
+import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 

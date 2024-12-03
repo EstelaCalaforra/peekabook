@@ -1,0 +1,9 @@
+.category-page {
+    display: flex;
+    /* align-content: center; */
+    justify-content: center;
+}
+
+.category-page h2 {
+    color: #3f3230;
+}

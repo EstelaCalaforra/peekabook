@@ -1,13 +1,13 @@
-import './styles/IndividualBookPage.css'
+import './IndividualBookPage.css'
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BookSearchContext } from '../context/bookSearchContext'
-import Divider from '../assets/botanical-divider-crop.png'
-import { useAuth } from '../context/AuthContext'
-import { useBookshelf } from '../hooks/useBookshelf'
-import { useBook } from '../hooks/useBook'
-import { useReview } from '../hooks/useReview'
-import FiveStarsRatingIcon from '../assets/five-stars-rating.png'
+import { BookSearchContext } from '../../context/bookSearchContext'
+import Divider from '../../assets/botanical-divider-crop.png'
+import { useAuth } from '../../context/AuthContext'
+import { useBookshelf } from '../../hooks/useBookshelf'
+import { useBook } from '../../hooks/useBook'
+import { useReview } from '../../hooks/useReview'
+import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 

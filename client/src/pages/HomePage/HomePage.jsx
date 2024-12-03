@@ -1,8 +1,8 @@
-import './styles/HomePage.css'
-import Shelf from '../assets/shelf.png'
-import Divider from '../assets/botanical-divider-crop.png'
-import { useBestSellers } from '../hooks/useBestSellers'
-import { Quote } from './Quote'
+import './HomePage.css'
+import Shelf from '../../assets/shelf.png'
+import Divider from '../../assets/botanical-divider-crop.png'
+import { useBestSellers } from '../../hooks/useBestSellers'
+import { Quote } from '../../components/Quote/Quote.jsx'
 
 export function HomePage () {
   const { bestsellersData, loadingBestsellersData } = useBestSellers()
