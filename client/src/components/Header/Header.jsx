@@ -10,7 +10,6 @@ export function Header () {
   const { bookQuery } = useContext(BookSearchContext)
   const { handleSubmit, handleChange } = useBookSearch()
   const { userId, userEmail, isAuthenticated, logout } = useAuth()
-  console.log({ userEmail })
 
   const searchBookFormId = useId()
   const searchBookInputId = useId()
@@ -47,7 +46,7 @@ export function Header () {
                 <div onClick={handleClick} className='dropdown'>
                   <div className='username'>{userEmail?.split('@')[0] || 'useremail'} ▼</div>
                   {showPopup && (
-                    <div onMouseEnter={handleClick} onMouseLeave={handleMouseLeave} className='header-popup-login'>
+                    <div onMouseEnter={handleClick} onMouseLeave={handleMouseLeave} className='popup-login'>
                       {
               isAuthenticated &&
                 (

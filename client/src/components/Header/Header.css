@@ -35,7 +35,7 @@ header a:hover {
   color: #ceab8c;
 }
 
-.dropdown div:hover {
+.header .dropdown div:hover {
   color: #ceab8c;
 }
 
@@ -49,11 +49,11 @@ header a:hover {
   margin: 0;
 }
 
-.login:hover {
+.header .login:hover {
   color: #ceab8c !important;
 }
 
-.header-form {
+.header .header-form {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -61,30 +61,30 @@ header a:hover {
   margin-right: 20px;
 }
 
-.img-and-nav {
+.header .img-and-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-.username {
+.header .username {
   min-width: 100px;
   text-align: right;
 }
 
-.dropdown .username {
+.header .dropdown .username {
   cursor: pointer;
 }
 
-.user-icon  {
+.header .user-icon  {
   height: 40px;
   padding: 10px;
   cursor: pointer;
   margin-right: 20px;
 }
 
-.logo {
+.header .logo {
   width: 100px;
   margin-left: 10px;
 }
@@ -106,7 +106,7 @@ header a:hover {
   gap: 10px;
 }
 
-input[type=text] {
+.header input[type=text] {
   font-family: "Newsreader", serif;
   padding: 10px;
   border: 2px solid #85644d;
@@ -118,12 +118,12 @@ input[type=text] {
   margin: 0;
 }
 
-input[type=text]:focus {
+.header input[type=text]:focus {
   color:#3f3230;
   background-color: whitesmoke;
 }
 
-.header-popup-login {
+.header .popup-login {
   position: absolute;
   border: 5px solid #85644d; 
   transform: translateY(12%) translateX(-10%);
@@ -135,3 +135,32 @@ input[type=text]:focus {
   width: 150px;
 }
 
+.header .button {
+  width: 60px;
+  text-align: center;
+  height: auto;
+  font-weight: bold;
+  padding: 5px;
+  margin: 0px;
+  border-radius: 10px;
+  border: 2px solid #85644d;
+  text-decoration: none;
+}
+
+.header .login {
+  background-color: #85644d;
+  color: antiquewhite;
+}
+
+.header .signup {
+  background-color: antiquewhite;
+  color: #3f3230;
+}
+
+.header .login:hover {
+  color: rgb(174, 150, 128);
+}
+
+.header .signup:hover {
+  background-color: rgb(174, 150, 128);
+}

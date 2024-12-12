@@ -11,7 +11,7 @@ export function useBookSearch () {
     try {
       const maxResults = 10 // Results per page
       const startIndex = (page - 1) * maxResults // Calculate initial index
-
+      console.log({ bookQuery })
       const response = await axios.get('http://localhost:5000/api/external/search', {
         params: {
           bookQuery,
@@ -68,5 +68,5 @@ export function useBookSearch () {
     setBookQuery(newBookQuery)
   }
 
-  return { handleSubmit, handleChange, handlePageChange, renderPageNumbers }
+  return { handleSubmit, handleChange, handlePageChange, renderPageNumbers, fetchBooksGoogleAPI }
 }

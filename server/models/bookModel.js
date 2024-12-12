@@ -110,23 +110,24 @@ export const getReviewsByBookId = async (bookId) => {
 
 export const getBookshelfByUserId = async (userId) => {
   const selectQuery = `
-    SELECT 
-      b.title, 
-      b.id_api, 
-      b.cover, 
-      array_agg(DISTINCT a.fullname) AS authors, 
-      ub.categories, 
-      r.review, 
-      r.rating, 
-      r.date AS review_date
-    FROM books b
-    LEFT JOIN book_authors ba ON b.id = ba.book_id
-    LEFT JOIN authors a ON ba.author_id = a.id
-    LEFT JOIN user_books ub ON b.id = ub.book_id
-    LEFT JOIN reviews r ON b.id = r.book_id AND ub.user_id = r.user_id
-    WHERE ub.user_id = $1
-    GROUP BY b.id, ub.categories, r.review, r.rating, r.date
-  `
+  SELECT 
+    b.title, 
+    b.id_api, 
+    b.cover, 
+    array_agg(DISTINCT a.fullname) AS authors, 
+    ub.categories,
+    r.id AS review_id, 
+    r.review, 
+    r.rating, 
+    r.date AS review_date
+  FROM books b
+  LEFT JOIN book_authors ba ON b.id = ba.book_id
+  LEFT JOIN authors a ON ba.author_id = a.id
+  LEFT JOIN user_books ub ON b.id = ub.book_id
+  LEFT JOIN reviews r ON b.id = r.book_id AND ub.user_id = r.user_id
+  WHERE ub.user_id = $1
+  GROUP BY b.id, ub.categories, r.id, r.review, r.rating, r.date
+`
 
   try {
     const result = await db.query(selectQuery, [userId])

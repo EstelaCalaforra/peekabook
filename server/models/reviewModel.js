@@ -15,3 +15,15 @@ export const getReviewsByBookId = async (bookId) => {
   )
   return result.rows
 }
+
+export const deleteReviewById = async (reviewId) => {
+  const result = await db.query(
+    `
+    DELETE FROM reviews
+    WHERE id = $1
+    RETURNING *;
+    `,
+    [reviewId]
+  )
+  return result.rows[0]
+}

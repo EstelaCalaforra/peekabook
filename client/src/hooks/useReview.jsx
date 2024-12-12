@@ -16,6 +16,15 @@ export function useReview () {
       console.log(error)
     }
   }
-  console.log({ allReviews })
+
+  // async function deleteReviewFromDB (reviewId) {
+  //   try {
+  //     await axios.delete(`http://localhost:5000/api/books/reviews/${reviewId}`)
+  //     setAllReviews(allReviews.filter(review => review.review_id !== reviewId))
+  //     console.log(`Review with ID ${reviewId} deleted successfully`)
+  //   } catch (error) {
+  //     console.error('Error deleting review:', error)
+  //   }
+  // }
   return { allReviews, getReviewsFromDB }
 }

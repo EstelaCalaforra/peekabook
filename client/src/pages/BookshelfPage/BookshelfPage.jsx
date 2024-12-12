@@ -6,8 +6,17 @@ import { useBookshelf } from '../../hooks/useBookshelf'
 import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
 
 export function BookshelfPage () {
-  const { bookshelfData, hasBooks, hasReviews, handleClickOnCover, handleClickOnCategory, categories, reviews } = useBookshelf()
-  console.log({ bookshelfData })
+  const {
+    bookshelfData,
+    hasBooks,
+    hasReviews,
+    handleClickOnCover,
+    handleClickOnCategory,
+    categories,
+    reviews,
+    deleteReviewFromDB
+  } = useBookshelf()
+
   return (
     <div className='bookshelf-page'>
       <div className='books'>
@@ -62,13 +71,15 @@ export function BookshelfPage () {
           <div className='reviews-and-button'>
             <ul className='reviews-container'>
               {reviews.slice(-6).map((review) => (
-                <li className='review' key={review.id_api}>
-                  <p className='title'>{review.title}</p>
-                  <p className='authors'>by {review?.authors || 'Uknown author'}</p>
-                  <img className='five-stars-icon' src={FiveStarsRatingIcon} />
-                  <p className='review-text'>{review.review}</p>
-                  <button className='edit-icon' />
-                </li>
+                review.review &&
+                  <li className='review' key={review.id_api}>
+                    <p className='title'>{review.title}</p>
+                    <p className='authors'>by {review?.authors || 'Uknown author'}</p>
+                    <img className='five-stars-icon' src={FiveStarsRatingIcon} />
+                    <p className='review-text'>{review.review}</p>
+                    <button className='edit-icon' />
+                    <button className='delete-icon' onClick={() => deleteReviewFromDB(review.review_id)} />
+                  </li>
               ))}
             </ul>
             <a>See more</a>

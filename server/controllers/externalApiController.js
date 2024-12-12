@@ -14,12 +14,13 @@ export const fetchBooks = async (req, res) => {
       maxResults: parseInt(maxResults) // results per page
     }
     const response = await axios.get('https://www.googleapis.com/books/v1/volumes', { params })
+    console.log({ response })
     // const books = response.data.map(transformAndValidateProduct)
     const { items, totalItems } = response.data
     res.json({ items, totalItems }) // send total items to calculate the total pages
   } catch (error) {
     console.log(error.message)
-    res.status(500).render('error', { message: 'Error fetching books.' })
+    res.status(500).json({ error, message: 'Error fetching books.' })
   }
 }
 

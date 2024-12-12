@@ -158,9 +158,9 @@
     margin-top: 20px;
 }
 
-.bookshelf-page .reviews-and-button a:hover {
+/* .bookshelf-page .reviews-and-button a:hover {
     color: #ceab8c;
-}
+} */
 
 .bookshelf-page .reviews-container .title {
     font-weight: bold;
@@ -197,6 +197,17 @@
     padding: 0px;
 }
 
+.bookshelf-page .delete-icon {
+    background: url('../../assets/delete-icon-dark.png');
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    outline: none;
+    padding: 0px;
+}
+
 .bookshelf-page .edit-icon:hover {
     background: url('../../assets/edit-icon-light.png');
     background-size: contain;
@@ -208,4 +219,14 @@
     padding: 0px;
 }
 
+.bookshelf-page .delete-icon:hover {
+    background: url('../../assets/delete-icon-light.png');
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    outline: none;
+    padding: 0px;
+}
 

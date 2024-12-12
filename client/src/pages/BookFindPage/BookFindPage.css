@@ -54,6 +54,7 @@
     display: flex;
     flex-direction: column;
     text-align: left;
+    justify-content: space-between;
 }
 
 .book h2 {
@@ -64,7 +65,9 @@
 
 p.bookfindpage-author {
     font-size: 0.9em;
-    font-weight: bold;
+    /* font-weight: bold; */
+    margin: 0px;
+    color:#6b6261;
 }
 
 p.bookfindpage-description {
