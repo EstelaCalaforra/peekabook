@@ -8,52 +8,46 @@ import { useBookshelf } from '../../hooks/useBookshelf'
 import { useBook } from '../../hooks/useBook'
 import { useReview } from '../../hooks/useReview'
 import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
-import { useBookSearch } from '../../hooks/useBookSearch'
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function IndividualBookPage () {
-  const { bookSearch, setBookId, setCategories } = useContext(BookSearchContext)
+  const { bookId, setBookId, setCategories } = useContext(BookSearchContext)
   const { isAuthenticated, userId, authToken } = useAuth()
-  const { categories, handleClickOnCover } = useBookshelf()
+  const { categories } = useBookshelf()
   const { book, getBookFromDB, booksBySameAuthor, getBooksBySameAuthor } = useBook()
   const { allReviews, getReviewsFromDB } = useReview()
   const [added, setAdded] = useState(false)
   const navigate = useNavigate()
-  const location = useLocation()
-  const idApi = location.idApi
-  console.log({ bookSearch })
-  console.log({ bookSearch })
 
   useEffect(() => {
     getBookFromDB()
     getReviewsFromDB()
-  }, [])
+  }, [bookId])
 
   useEffect(() => {
     getBooksBySameAuthor(book?.authors?.[0])
     console.log({ booksBySameAuthor })
   }, [book])
 
-  // useEffect(() => {
-  //   async function addSearchToDB (booksBySameAuthor) {
-  //     console.log({ booksBySameAuthor })
-  //     const response = await fetch('http://localhost:5000/api/books/add-search', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({ bookSearch: booksBySameAuthor }) // apis handle data in json format
-  //     })
-  //   }
+  useEffect(() => {
+    async function addSearchToDB (booksBySameAuthor) {
+      if (booksBySameAuthor) {
+        console.log({ booksBySameAuthor })
+        const response = await fetch('http://localhost:5000/api/books/add-search', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ bookSearch: booksBySameAuthor }) // apis handle data in json format
+        })
+      }
+    }
+    addSearchToDB(booksBySameAuthor)
+  }, [booksBySameAuthor])
 
-  //   addSearchToDB(booksBySameAuthor)
-  // }, [booksBySameAuthor])
-
-  function handleClick (event, id) {
-    // event.preventDefault()
-    console.log({ id })
-    setBookId(id)
-    navigate('/ind-book/' + id)
+  function handleClick (idApi) {
+    setBookId(idApi)
+    navigate(`/ind-book/${idApi}`, { state: idApi })
   }
 
   async function handleAdd (event) {
@@ -202,7 +196,7 @@ export function IndividualBookPage () {
           {booksBySameAuthor
             ? (booksBySameAuthor).map(book => (
               <li key={book.id} className='book'>
-                <a onClick={(event) => handleClick(event, book.id)}><img className='cover' src={book?.volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl} /></a>
+                <a onClick={() => handleClick(book.id)}><img className='cover' src={book?.volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl} /></a>
               </li>
               ))
             : <p>Loading...</p>}
