@@ -162,10 +162,20 @@
     color: #ceab8c;
 } */
 
+.bookshelf-page .reviews-container .date {
+    padding: 0px;
+    margin: 0px;
+    margin-top: 5px;
+    font-size: small;
+    color: #85644d;
+}
+
+
 .bookshelf-page .reviews-container .title {
     font-weight: bold;
     padding-bottom: 0px;
     margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .bookshelf-page .reviews-container .authors {

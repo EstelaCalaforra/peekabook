@@ -5,6 +5,7 @@ import { useId, useContext, useState } from 'react'
 import { BookSearchContext } from '../../context/bookSearchContext'
 import { useAuth } from '../../context/AuthContext'
 import { useBookSearch } from '../../hooks/useBookSearch'
+import { UserPopup } from '../../components/UserPopup/UserPopup.jsx'
 
 export function Header () {
   const { bookQuery } = useContext(BookSearchContext)
@@ -14,14 +15,14 @@ export function Header () {
   const searchBookFormId = useId()
   const searchBookInputId = useId()
 
-  const [showPopup, setShowPopup] = useState(false)
+  const [showPopup, setShowPopup] = useState(false) // Estado para manejar la visibilidad del popup
 
-  // Handle mouse click on username
-  const handleClick = () => {
+  // Manejar cuando el mouse entra en la zona del dropdown (username + popup)
+  const handleMouseEnter = () => {
     setShowPopup(true)
   }
 
-  // Handle mouse leave popup
+  // Manejar cuando el mouse sale de la zona del dropdown
   const handleMouseLeave = () => {
     setShowPopup(false)
   }
@@ -42,37 +43,32 @@ export function Header () {
           <input id={searchBookInputId} type='text' onChange={handleChange} value={bookQuery} placeholder='Search book...' />
         </form>
         {
-              isAuthenticated &&
-                <div onClick={handleClick} className='dropdown'>
-                  <div className='username'>{userEmail?.split('@')[0] || 'useremail'} ▼</div>
-                  {showPopup && (
-                    <div onMouseEnter={handleClick} onMouseLeave={handleMouseLeave} className='popup-login'>
-                      {
-              isAuthenticated &&
-                (
-                  <div className='column'>
-                    <a onClick={() => logout()}>Log out</a>
-                    <a href='' className=''>Profile</a>
-                    <a href='' className=''>Settings</a>
-                  </div>
-                )
-                }
-                    </div>
-                  )}
-                </div>
-            }
+          isAuthenticated &&
+            <div
+              className='dropdown'
+              onMouseEnter={handleMouseEnter} // Activamos el popup cuando el mouse entra en el contenedor
+              onMouseLeave={handleMouseLeave} // Desactivamos el popup cuando el mouse sale de todo el contenedor
+            >
+              <div className='username'>{userEmail?.split('@')[0] || 'useremail'} ▼</div>
+              {showPopup && (
+                <UserPopup
+                  logout={logout}
+                  isAuthenticated={isAuthenticated}
+                />
+              )}
+            </div>
+        }
         {
-              !isAuthenticated &&
-                <div className='row'>
-                  <a className='button login' href='/login'>Login</a>
-                  <a className='button signup' href='/signup'>Signup</a>
-                </div>
-            }
+          !isAuthenticated &&
+            <div className='row'>
+              <a className='button login' href='/login'>Login</a>
+              <a className='button signup' href='/signup'>Signup</a>
+            </div>
+        }
         <div className='column'>
-          <img src={userIcon} alt='Company Logo' className='user-icon' />
+          <img src={userIcon} alt='User Icon' className='user-icon' />
         </div>
       </div>
-
     </header>
   )
 }

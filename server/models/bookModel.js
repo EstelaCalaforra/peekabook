@@ -137,3 +137,47 @@ export const getBookshelfByUserId = async (userId) => {
     throw error
   }
 }
+
+export const updateUserBookRelation = async (userId, bookId, readDate, categories, reviewText, rating) => {
+  // Verificar si ya existe una relación entre el usuario y el libro
+  const userBookRelation = await db.query(
+    'SELECT 1 FROM user_books WHERE user_id = $1 AND book_id = $2',
+    [userId, bookId]
+  )
+
+  if (userBookRelation.rows.length > 0) {
+    // Si la relación existe, actualizar los campos
+    await db.query(
+      `UPDATE user_books
+       SET categories = $3
+       WHERE user_id = $1 AND book_id = $2`,
+      [userId, bookId, categories]
+    )
+
+    if (reviewText || rating) {
+      // Actualizar la reseña si existe un texto o una calificación
+      await db.query(
+        `UPDATE reviews
+         SET review = $3, rating = $4, date = CURRENT_TIMESTAMP
+         WHERE user_id = $1 AND book_id = $2`,
+        [userId, bookId, reviewText, rating]
+      )
+    }
+  } else {
+    // Si la relación no existe, insertarla
+    await db.query(
+      `INSERT INTO user_books (user_id, book_id, read_date, categories)
+       VALUES ($1, $2, $3, $4)`,
+      [userId, bookId, readDate, categories]
+    )
+
+    if (reviewText || rating) {
+      // Insertar la reseña si existe un texto o una calificación
+      await db.query(
+        `INSERT INTO reviews (user_id, book_id, review, rating)
+         VALUES ($1, $2, $3, $4)`,
+        [userId, bookId, reviewText, rating]
+      )
+    }
+  }
+}

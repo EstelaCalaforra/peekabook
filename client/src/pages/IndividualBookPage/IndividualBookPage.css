@@ -54,7 +54,7 @@
 }
 
 .individual-book-page .button {
-    width: 100%;
+    width: 90%;
     background-color:#ceab8c;
     padding: 10px;
     text-align: center;
@@ -64,7 +64,7 @@
     line-height: 12px;
     border: 2px solid #3f3230;
     text-decoration: none;
-    width: 70px;
+    /* width: 70px; */
     font-size: 14px;
     margin-bottom: 5px;
     cursor: pointer;
@@ -178,6 +178,16 @@
     font-size: small;
     color: #85644d;
 }
+
+.individual-book-page .reviews .date {
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    min-width: none;
+    font-size: smaller;
+    color: #85644d;
+}
+
 
 .individual-book-page .reviews .review-text {
     padding-top: 5px;

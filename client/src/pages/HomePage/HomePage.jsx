@@ -3,6 +3,7 @@ import Shelf from '../../assets/shelf.png'
 import Divider from '../../assets/botanical-divider-crop.png'
 import { useBestSellers } from '../../hooks/useBestSellers'
 import { Quote } from '../../components/Quote/Quote.jsx'
+import { BestsellersShelf } from '../../components/BestsellersShelf/BestsellersShelf.jsx' // Importa el nuevo componente
 
 export function HomePage () {
   const { bestsellersData, loadingBestsellersData } = useBestSellers()
@@ -15,19 +16,10 @@ export function HomePage () {
       <div className='bestsellers column'>
         <h3 className='title'>Weekly Bestsellers</h3>
         <div className='column'>
-          <div className='row'>
-            {loadingBestsellersData
-              ? (
-                <p>Loading bestsellers...</p>
-                )
-              : (
-                  bestsellersData.map((bookInfo, index) => (
-                    <div className='column bestsellers-shelf' key={index}>
-                      <a href='amazon.com'><img className='miniature' src={bookInfo.book_image} /></a>
-                    </div>
-                  ))
-                )}
-          </div>
+          <BestsellersShelf
+            bestsellersData={bestsellersData}
+            loadingBestsellersData={loadingBestsellersData}
+          />
           <img src={Shelf} className='home-shelf' />
         </div>
       </div>
@@ -36,8 +28,6 @@ export function HomePage () {
         <img className='divider' src={Divider} />
         <p>Already a member? <a className='login' href='/login'>Log in</a></p>
       </div>
-
     </div>
-
   )
 }

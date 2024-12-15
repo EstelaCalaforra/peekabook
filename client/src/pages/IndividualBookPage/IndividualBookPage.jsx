@@ -1,6 +1,6 @@
 import './IndividualBookPage.css'
 import { useContext, useEffect, useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../../context/bookSearchContext'
 import Divider from '../../assets/botanical-divider-crop.png'
 import { useAuth } from '../../context/AuthContext'
@@ -13,10 +13,11 @@ const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this i
 export function IndividualBookPage () {
   const { bookId, setBookId, setCategories } = useContext(BookSearchContext)
   const { isAuthenticated, userId, authToken } = useAuth()
-  const { categories } = useBookshelf()
+  const { categories, bookshelfData = [], setBookshelfData } = useBookshelf()
   const { book, getBookFromDB, booksBySameAuthor, getBooksBySameAuthor } = useBook()
   const { allReviews, getReviewsFromDB } = useReview()
   const [added, setAdded] = useState(false)
+  const [isInBookshelf, setIsInBookshelf] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -45,6 +46,14 @@ export function IndividualBookPage () {
     addSearchToDB(booksBySameAuthor)
   }, [booksBySameAuthor])
 
+  useEffect(() => {
+    if (book && Array.isArray(bookshelfData)) {
+      const bookExists = bookshelfData.some(item => item.id_api === book.id_api)
+      setIsInBookshelf(bookExists)
+      setAdded(bookExists)
+    }
+  }, [book, bookshelfData])
+
   function handleClick (idApi) {
     setBookId(idApi)
     navigate(`/ind-book/${idApi}`, { state: idApi })
@@ -52,24 +61,62 @@ export function IndividualBookPage () {
 
   async function handleAdd (event) {
     event.preventDefault()
-    console.log('Checkboxes selected:', categoriesSelected)
-    const bookAdded = {
-      id: book.id_api,
-      title: book.title,
-      reviewText: review,
-      categories: categoriesSelected,
-      readDate: new Date()
+
+    if (categoriesSelected.length === 0) {
+      // Eliminar el libro si no hay categorías seleccionadas
+      await fetch(`http://localhost:5000/api/books/remove/${userId}/${book.id_api}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${authToken}`
+        }
+      })
+      setBookshelfData(bookshelfData.filter(item => item.id_api !== book.id_api))
+      setIsInBookshelf(false)
+      setAdded(false)
+    } else {
+      // Construir el cuerpo de la solicitud dinámicamente
+      const bookData = {
+        id: book.id_api,
+        title: book.title,
+        reviewText: review,
+        categories: categoriesSelected,
+        readDate: new Date()
+      }
+
+      const method = isInBookshelf ? 'PUT' : 'POST'
+      const url = isInBookshelf
+        ? `http://localhost:5000/api/books/update-bookshelf/${userId}`
+        : 'http://localhost:5000/api/books/add'
+
+      const bodyKey = isInBookshelf ? 'bookUpdated' : 'bookAdded'
+      const requestBody = {
+        userId,
+        [bodyKey]: bookData // Usar la clave dinámica
+      }
+
+      try {
+        const response = await fetch(url, {
+          method,
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken}`
+          },
+          body: JSON.stringify(requestBody)
+        })
+
+        if (response.ok) {
+          const updatedBookshelfData = await response.json()
+          setBookshelfData(updatedBookshelfData)
+          setIsInBookshelf(true)
+          setAdded(true)
+        } else {
+          console.error('Failed to update bookshelf:', await response.json())
+        }
+      } catch (error) {
+        console.error('Error updating bookshelf:', error)
+      }
     }
-    await fetch('http://localhost:5000/api/books/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${authToken}`
-      },
-      body: JSON.stringify({ userId, bookAdded }) // apis handle data in json format
-    })
-    const isAdded = added
-    setAdded(!isAdded)
+
     closePopup()
   }
 
@@ -99,8 +146,13 @@ export function IndividualBookPage () {
 
   function handleClickAddToShelves () {
     if (isAuthenticated) {
-      const isAdded = added
-      if (isAdded === false) openPopup()
+      const currentBook = bookshelfData.find(item => item.id_api === book.id_api)
+      if (currentBook) {
+        setCategoriesSelected(currentBook.categories || [])
+      } else {
+        setCategoriesSelected([])
+      }
+      openPopup()
     } else {
       navigate('/login')
     }
@@ -123,7 +175,7 @@ export function IndividualBookPage () {
       <section className='individual-book-page-row'>
         <div className='individual-book-page-column'>
           <img className='cover' src={book?.cover || defaultImageUrl} alt={book?.title || 'No title available'} />
-          <a className={`button ${added ? 'added' : ''}`} onClick={handleClickAddToShelves}>{added ? 'On shelves' : 'Add to shelves'}</a>
+          <a className={`button ${added ? 'added' : ''}`} onClick={handleClickAddToShelves}>{isInBookshelf ? 'On bookshelf' : 'Add to bookshelf'}</a>
           {isPopupOpen && (
             <div className='popup-overlay'>
               <div className='close-button-and-popup'>
@@ -161,7 +213,7 @@ export function IndividualBookPage () {
                       <label htmlFor='review'>Write a review</label>
                       <textarea id='review' name='review' value={review} onChange={handleReviewChange} rows='10' cols='50' placeholder='' />
                     </div>
-                    <input type='submit' value='Add book' />
+                    <input type='submit' value={isInBookshelf ? 'Edit' : 'Add'} />
                   </form>
                 </div>
               </div>
@@ -182,6 +234,7 @@ export function IndividualBookPage () {
           {(allReviews.length > 0)
             ? (allReviews)?.map(review => (
               <li key={review.id} className='review'>
+                <p className='date'>{review.date.split('T')[0]}</p>
                 <p className='username'>{review.email.split('@')[0]}</p>
                 <img className='five-stars-icon' src={FiveStarsRatingIcon} />
                 <p className='review-text'>{review.review}</p>

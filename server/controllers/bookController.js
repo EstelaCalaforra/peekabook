@@ -7,7 +7,8 @@ import {
   insertBookAuthorRelation,
   insertReview,
   getBookshelfByUserId,
-  getBookDetailsByIdApi
+  getBookDetailsByIdApi,
+  updateUserBookRelation
 } from '../models/bookModel.js'
 
 export const addBookToUser = async (req, res) => {
@@ -99,5 +100,34 @@ export const getUserBookshelf = async (req, res) => {
   } catch (error) {
     console.error('Error fetching bookshelf data:', error)
     res.status(500).json({ error: 'An error occurred while fetching bookshelf data.' })
+  }
+}
+
+export const updateUserBookshelf = async (req, res) => {
+  const { userId } = req.params
+  const { bookUpdated } = req.body
+  console.log({ userId, bookUpdated })
+
+  try {
+    const book = await findBookByIdApi(bookUpdated.id)
+    const bookId = book?.id
+    if (!bookId) {
+      return res.status(500).json({ success: false, message: 'Book not found in database.' })
+    }
+
+    // Llamar a la función que maneja la lógica de actualización en el modelo
+    await updateUserBookRelation(
+      userId,
+      bookId,
+      bookUpdated.readDate,
+      bookUpdated.categories,
+      bookUpdated.reviewText,
+      bookUpdated.rating
+    )
+
+    res.status(200).json({ success: true, message: 'Bookshelf successfully updated.' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ success: false, message: 'Server error' })
   }
 }

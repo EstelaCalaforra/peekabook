@@ -6,27 +6,22 @@ import axios from 'axios'
 
 export function useBookshelf () {
   const [bookshelfData, setBookshelfData] = useState([])
-  const { userId, authToken, isAuthenticated, logout } = useAuth()
+  const { userId, authToken, logout } = useAuth()
   const [hasBooks, setHasBooks] = useState(false)
   const [hasReviews, setHasReviews] = useState(false)
-  const [reviews, setReviews] = useState({})
+  const [reviews, setReviews] = useState([])
   const { categories, setCategories, setBookId } = useContext(BookSearchContext)
 
   useEffect(() => {
     const fetchBookshelfData = async () => {
       try {
-        console.log({ userId })
-        console.log({ authToken })
-        console.log({ isAuthenticated })
-
         const response = await axios.get('http://localhost:5000/api/books/bookshelf/' + userId, {
           headers: { Authorization: `Bearer ${authToken}` }
         })
         const resDataGetBooks = response.data
 
-        // If there are books in the response, set the bookshelf data and update hasData
         if (resDataGetBooks && resDataGetBooks.length > 0) {
-          setHasBooks(true) // Update hasData only if there is valid data
+          setHasBooks(true)
           const allCategories = await getCategories(resDataGetBooks)
           setCategories(allCategories)
           const allReviews = await getReviews(resDataGetBooks)
@@ -45,26 +40,23 @@ export function useBookshelf () {
       }
     }
     fetchBookshelfData()
-  }, [])
+  }, [userId, authToken, logout, setCategories])
 
   async function getCategories (response) {
     const cleanedData = response.map(book => {
-      // Clean and turn field 'catgories' into an array
       if (book.categories) {
         book.categories = book.categories
-          .replace(/^{|}$/g, '') // Remove `{}`
-          .split(',') // Divide in individual elements
-          .map(category => category.trim().replace(/^"|"$/g, '')) // Remove ""
-          .filter(category => category) // Remove empty categories
+          .replace(/^{|}$/g, '')
+          .split(',')
+          .map(category => category.trim().replace(/^"|"$/g, ''))
+          .filter(category => category)
       } else {
-        book.categories = [] // If 'null', turn into an empty array
+        book.categories = []
       }
       return book
     })
     setBookshelfData(cleanedData)
-    const allCategories = [
-      ...new Set(cleanedData.flatMap(book => book.categories))
-    ]
+    const allCategories = [...new Set(cleanedData.flatMap(book => book.categories))]
     return allCategories
   }
 
@@ -83,7 +75,39 @@ export function useBookshelf () {
     return allReviews
   }
 
+  const updateReviewInDB = async (updatedReview) => {
+    try {
+      const token = localStorage.getItem('authToken')
+
+      if (!token) {
+        console.error('No token found. Please log in again.')
+        return
+      }
+
+      const response = await axios.put(
+        `http://localhost:5000/api/books/reviews/${updatedReview.review_id}`,
+        { reviewText: updatedReview.review },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`
+          }
+        }
+      )
+
+      if (response.status === 200) {
+        const updatedReviews = reviews.map(review =>
+          review.review_id === updatedReview.review_id ? updatedReview : review
+        )
+        setReviews(updatedReviews)
+        console.log(`Review with ID ${updatedReview.review_id} updated successfully`)
+      }
+    } catch (error) {
+      console.error('Error updating review:', error)
+    }
+  }
+
   const navigate = useNavigate()
+
   function handleClickOnCover (idApi) {
     setBookId(idApi)
     navigate(`/ind-book/${idApi}`, { state: idApi })
@@ -109,9 +133,11 @@ export function useBookshelf () {
     reviews,
     handleClickOnCover,
     handleClickOnCategory,
+    setBookshelfData,
     bookshelfData,
     hasBooks,
     hasReviews,
-    deleteReviewFromDB
+    deleteReviewFromDB,
+    updateReviewInDB
   }
 }
