@@ -49,7 +49,7 @@ export function SignUpPage () {
         <h2 className='signup-h2'>「 Sign Up 」</h2>
         {message && <p style={{ color: 'green' }}>{message}</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form className='signup-form' onSubmit={handleSubmit}>
+        <form autoComplete='off' className='signup-form' onSubmit={handleSubmit}>
           <div>
             <label>Email</label>
             <input
@@ -57,6 +57,7 @@ export function SignUpPage () {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              autoComplete='false'
             />
           </div>
           <div>
@@ -66,6 +67,7 @@ export function SignUpPage () {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              autoComplete='new-password'
             />
           </div>
           <div>

@@ -4,7 +4,7 @@ import { BookSearchContext } from '../context/bookSearchContext'
 import { useNavigate } from 'react-router-dom'
 
 export function useBookSearch () {
-  const { bookQuery, setBookSearch, setBookQuery, currentPage, setCurrentPage, totalPages, setTotalPages } = useContext(BookSearchContext)
+  const { bookQuery, setBookSearch, setBookQuery, setCurrentPage, setTotalPages, setBookId } = useContext(BookSearchContext)
   const navigate = useNavigate()
 
   async function fetchBooksGoogleAPI (bookQuery, page = 1) {
@@ -22,35 +22,26 @@ export function useBookSearch () {
       const { items, totalItems } = response.data
       setBookSearch(items)
       setTotalPages(Math.ceil(totalItems / maxResults)) // Calculate total pages
+      addSearchToDB(items)
     } catch (error) {
       console.log(error)
     }
   }
 
+  async function addSearchToDB (bookSearch) {
+    console.log({ bookSearch })
+    const response = await fetch('http://localhost:5000/api/books/add-search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ bookSearch })
+    })
+  }
+
   function handlePageChange (newPage) {
     setCurrentPage(newPage)
     fetchBooksGoogleAPI(bookQuery, newPage) // Call api with new page
-  }
-
-  function renderPageNumbers () {
-    const maxVisiblePages = 5 // Maximum number of page buttons to display
-    const pages = []
-    const startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2))
-    const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1)
-
-    for (let i = startPage; i <= endPage; i++) {
-      pages.push(
-        <button
-          key={i}
-          className={`page-number ${i === currentPage ? 'active' : ''}`}
-          onClick={() => handlePageChange(i)}
-        >
-          {i}
-        </button>
-      )
-    }
-
-    return pages
   }
 
   async function setBooksGoogleAPI (bookQuery) {
@@ -68,5 +59,11 @@ export function useBookSearch () {
     setBookQuery(newBookQuery)
   }
 
-  return { handleSubmit, handleChange, handlePageChange, renderPageNumbers, fetchBooksGoogleAPI }
+  function handleClickReadMore (event, id) {
+    event.preventDefault()
+    setBookId(id)
+    navigate('/ind-book/' + id)
+  }
+
+  return { handleSubmit, handleChange, handlePageChange, fetchBooksGoogleAPI, handleClickReadMore }
 }

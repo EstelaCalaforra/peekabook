@@ -52,13 +52,14 @@ export const addBooksIfNotOnDB = async (req, res) => {
 
   try {
     for (const book of books) {
-      const bookId = await insertBook(book)
-      if (!bookId) {
+      const existingBook = await findBookByIdApi(book.id)
+      if (existingBook) {
         console.log(`The book with id_api ${book.id} already exists.`)
-        return
-      } else {
-        console.log(`Book inserted with ID: ${bookId}`)
+        continue
       }
+
+      const bookId = await insertBook(book)
+      console.log(`Book inserted with ID: ${bookId}`)
 
       for (const authorName of book.authors) {
         let authorId = await insertAuthor(authorName)
@@ -68,6 +69,7 @@ export const addBooksIfNotOnDB = async (req, res) => {
         await insertBookAuthorRelation(bookId, authorId)
       }
     }
+
     res.status(200).send('Books and authors inserted successfully')
   } catch (error) {
     console.error('Error inserting books and authors:', error)

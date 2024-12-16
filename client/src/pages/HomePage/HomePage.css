@@ -86,10 +86,7 @@
 }
 
 .homepage .button {
-    width: auto;
-    height: auto;
     padding: 10px;
-    font-size: 1.2rem;
     font-weight: bold;
     margin: 0px;
     background-color: antiquewhite;
@@ -98,9 +95,9 @@
     color: #3f3230;
     text-decoration: none;
     text-align: center;
-    /* line-height: 28px; */
 }
 
 .homepage .button:hover {
-    color: #85644d;
+   background-color:rgb(212, 199, 182);
+   color: #3f3230;
 }

@@ -73,7 +73,7 @@ export function BookshelfPage () {
                   )
                 ))}
               </ul>
-              <a>See more</a>
+              <a className='see-more'>See more</a>
             </div>
             )
           : (

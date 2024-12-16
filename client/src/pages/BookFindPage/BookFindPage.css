@@ -101,11 +101,32 @@ p.bookfindpage-description {
     width: 100px;
 }
 
-
 .bookfind-page .pagination-controls {
     width: 100%;
     padding-bottom: 50px;
     text-align: right;
     padding-top: 0px;
     margin: 0px;
+}
+
+.bookfind-page .pagination-controls button {
+    color: antiquewhite;
+    border: none;
+    border-radius: 3px;
+    margin-right: 2px;
+}
+
+.bookfind-page .previous, .bookfind-page .next {
+    background-color: #3f3230;
+    cursor: pointer;
+}
+
+.page-number {
+    background-color: #3f3230;
+    cursor: pointer;
+}
+
+.page-number.active {
+    background-color: #6b6261;
+    cursor: auto;
 }
