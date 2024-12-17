@@ -8,7 +8,8 @@ import {
   insertReview,
   getBookshelfByUserId,
   getBookDetailsByIdApi,
-  updateUserBookRelation
+  updateUserBookRelation,
+  deleteUserBookRelation
 } from '../models/bookModel.js'
 
 export const addBookToUser = async (req, res) => {
@@ -131,5 +132,23 @@ export const updateUserBookshelf = async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({ success: false, message: 'Server error' })
+  }
+}
+
+export const deleteBookFromUserBookshelf = async (req, res) => {
+  const { userId, bookId } = req.params
+
+  try {
+    // Eliminar la relación entre el libro y el usuario
+    const deletedBookId = await deleteUserBookRelation(userId, bookId)
+
+    if (!deletedBookId) {
+      return res.status(404).json({ success: false, message: 'Book not found in user bookshelf.' })
+    }
+
+    res.status(200).json({ success: true, message: 'Book successfully removed from bookshelf.' })
+  } catch (error) {
+    console.error('Error removing book from bookshelf:', error)
+    res.status(500).json({ success: false, message: 'An error occurred while removing the book.' })
   }
 }

@@ -78,7 +78,7 @@ export function IndividualBookPage () {
       const bookData = {
         id: book.id_api,
         title: book.title,
-        reviewText: review,
+        reviewText: review || '',
         categories: categoriesSelected,
         readDate: new Date()
       }

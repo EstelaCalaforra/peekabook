@@ -28,6 +28,7 @@ export const generateToken = (user) => {
 }
 
 export const verifyToken = (token) => {
+  // Verify both sign
   return jwt.verify(
     token,
     process.env.JWT_SECRET
@@ -47,6 +48,7 @@ export const authenticateUser = async (email, password) => {
 
   // If everything ok, generate auth token
   const token = generateToken(user)
+  console.log({ token })
   return { user, token }
 }
 

@@ -181,3 +181,11 @@ export const updateUserBookRelation = async (userId, bookId, readDate, categorie
     }
   }
 }
+
+export const deleteUserBookRelation = async (userId, bookId) => {
+  const result = await db.query(
+    'DELETE FROM user_books WHERE user_id = $1 AND book_id = $2 RETURNING book_id',
+    [userId, bookId]
+  )
+  return result.rows[0]?.book_id
+}

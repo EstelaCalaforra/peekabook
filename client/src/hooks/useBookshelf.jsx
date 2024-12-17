@@ -127,6 +127,23 @@ export function useBookshelf () {
     }
   }
 
+  async function deleteBookFromBookshelf (book) {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/books/remove/${userId}/${book.id_api}`,
+        {
+          headers: { Authorization: `Bearer ${authToken}` }
+        }
+      )
+      if (response.status === 200) {
+        setBookshelfData(bookshelfData.filter(item => item.id_api !== book.id_api))
+        console.log(`Book with ID ${book.id_api} removed from bookshelf`)
+      }
+    } catch (error) {
+      console.error('Error deleting book from bookshelf:', error)
+    }
+  }
+
   return {
     categories,
     getCategories,
@@ -138,6 +155,7 @@ export function useBookshelf () {
     hasBooks,
     hasReviews,
     deleteReviewFromDB,
-    updateReviewInDB
+    updateReviewInDB,
+    deleteBookFromBookshelf
   }
 }

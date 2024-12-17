@@ -43,3 +43,20 @@ export const updateReviewById = async (reviewId, reviewText) => {
   )
   return result.rows[0] // Devuelve la reseña actualizada
 }
+
+export const createReviewByBookId = async (bookId, reviewText, userId) => {
+  const result = await db.query(
+    `
+    INSERT INTO reviews (book_id, review, user_id, date)
+    VALUES (
+      (SELECT id FROM books WHERE id_api = $1),
+      $2, 
+      $3, 
+      CURRENT_TIMESTAMP
+    )
+    RETURNING *;
+    `,
+    [bookId, reviewText, userId]
+  )
+  return result.rows[0] // Devuelve la nueva reseña creada
+};

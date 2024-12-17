@@ -1,26 +1,28 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-// Create context
+// Crear contexto
 export const AuthContext = createContext()
 
-// Context provider
 export function AuthProvider ({ children }) {
-  const [userId, setUserId] = useState(() => {
-    return localStorage.getItem('userId') || ''
-  })
-  const [userEmail, setUserEmail] = useState(() => {
-    return localStorage.getItem('userEmail') || ''
-  })
+  const [userId, setUserId] = useState(() => localStorage.getItem('userId') || '')
+  const [userEmail, setUserEmail] = useState(() => localStorage.getItem('userEmail') || '')
+  const [authToken, setAuthToken] = useState(() => localStorage.getItem('authToken') || '')
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const token = localStorage.getItem('authToken')
-    return !!token
-  })
-  const [authToken, setAuthToken] = useState(() => {
-    return localStorage.getItem('authToken') || ''
-  })
+
+  // Función para limpiar el estado del usuario
+  const clearUserData = () => {
+    localStorage.removeItem('authToken')
+    localStorage.removeItem('userId')
+    localStorage.removeItem('userEmail')
+
+    setIsAuthenticated(false)
+    setUserId('')
+    setUserEmail('')
+    setAuthToken('')
+  }
 
   // Login function
   const login = async (userId, userEmail, token) => {
@@ -36,16 +38,62 @@ export function AuthProvider ({ children }) {
 
   // Logout function
   const logout = async () => {
-    localStorage.removeItem('authToken')
-    localStorage.removeItem('userId')
-    localStorage.removeItem('userEmail')
-
-    setIsAuthenticated(false)
-    setUserId('')
-    setUserEmail('')
-
-    navigate('/login')
+    clearUserData()
+    navigate('/login') // Navegar a la página de login
   }
+
+  // Verifica si el token es válido en todas las peticiones
+  const verifyToken = async (token) => {
+    console.log({ token })
+    try {
+      const response = await fetch('http://localhost:5000/api/users/verify-token', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      const data = await response.json()
+
+      // Si el token es inválido o expirado, se ejecuta el logout
+      if (response.status === 403) {
+        console.log('entrado en clearuserdata')
+        clearUserData() // Limpiar los datos del usuario
+        navigate('/login') // Redirigir al login
+        return false
+      }
+
+      return true
+    } catch (error) {
+      console.error('Error al verificar el token:', error)
+      clearUserData()
+      navigate('/login')
+      return false
+    }
+  }
+
+  // Verificar token al cargar el contexto
+  useEffect(() => {
+    const token = localStorage.getItem('authToken')
+
+    if (token) {
+      console.log('Token in useEffect', token)
+      verifyToken(token).then((isValid) => {
+        if (isValid) {
+          console.log('Enter in isvalid')
+          setIsAuthenticated(true)
+          setUserId(localStorage.getItem('userId'))
+          console.log(localStorage.getItem('userId'))
+          setUserEmail(localStorage.getItem('userEmail'))
+          console.log(localStorage.getItem('userEmail'))
+        }
+      })
+    } else {
+      clearUserData()
+    }
+
+    setLoading(false)
+  }, [])
 
   return (
     <AuthContext.Provider
@@ -63,5 +111,6 @@ export function AuthProvider ({ children }) {
     </AuthContext.Provider>
   )
 }
-// Hook to use the context
+
+// Hook para usar el contexto
 export const useAuth = () => useContext(AuthContext)
