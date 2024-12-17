@@ -39,8 +39,9 @@ export const getBestsellers = async (req, res) => {
 
 export const getRandomQuote = async (req, res) => {
   try {
-    const response = await axios.get('https://recite.onrender.com/api/v1/random')
+    const response = await axios.get('https://zenquotes.io/api/today ')
     const quote = response.data
+    console.log({ quote })
     res.json(quote)
   } catch (error) {
     console.log(error)

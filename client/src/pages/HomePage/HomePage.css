@@ -1,16 +1,20 @@
 .homepage {
-    color: #3f3230;
     display: flex;
     height: 90vh;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     gap: 20px;
-    background-image: url('../../assets/bg-books-trans20.png');
-    background-size: cover;
+    /* background-image: url('../../assets/bg-books-trans20.png');
+    background-size: cover; */
+}
+
+.homepage .landing-img {
+    width: 100%;
 }
 
 .homepage .quote {
-    font-family: "Newsreader", serif;
+    font-family: "Sour Gummy Light", sans-serif;
+    color: #AB886D;
     padding-right: 50px;
     padding-left: 50px;
     gap: 10px;
@@ -19,18 +23,16 @@
     padding-top: 0;
     margin-top: 0;
     text-align: center;
-    font-weight: bold;
-    background-color:antiquewhite;
-    border-radius: 10px;
-    border: 3px solid #85644d;
-    max-width: 500px;
+    /* max-width: 500px; */
+}
+
+.homepage .quote img {
+    width: 80px;
 }
 
 .homepage .column {
     display: flex;
     flex-direction: column;
-    /* padding: 10px; */
-    /* border: 1px solid #ccc; */
     margin: 5px;
     border-radius: 5px;
     align-items: center;
@@ -45,14 +47,15 @@
 }
 
 .homepage .bestsellers .title {
-    font-family: 'Newsreader', serif;
+    font-family: "Sour Gummy", sans-serif;
+    color: #AB886D;
     font-size: larger;
 }
 
 .homepage .bestsellers .miniature {
     width: 6vw;
     height: 10vw;
-    border: 4px solid #85644d;
+    /* border: 4px solid #85644d; */
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
 }

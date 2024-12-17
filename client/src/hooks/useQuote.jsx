@@ -12,11 +12,10 @@ export function useQuote () {
     const fetchQuoteData = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/external/random-quote')
-        const { quote, author, book } = response.data
+        const { q, a } = response.data[0]
         setQuoteData({
-          quote,
-          author,
-          book
+          quote: q,
+          author: a
         })
       } catch (error) {
         console.log(error)

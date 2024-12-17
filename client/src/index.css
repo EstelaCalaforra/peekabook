@@ -1,11 +1,10 @@
 :root {
-  font-family: "Newsreader", serif;
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: "Sour Gummy Light", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* color: rgba(255, 255, 255, 0.87); */
+  /* background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,11 +19,7 @@ body {
   min-width: 300px;
   min-height: 100vh;
   margin: 0;
-  background-color: antiquewhite; 
-  /* background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png"); */
-  /* justify-content: space-between; */
-  /* background-image: url('../../assets/bg-books-trans20.png');
-  background-size: cover; */
+  /* background-color: white;  */
 }
 
 p {
