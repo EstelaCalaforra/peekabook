@@ -15,7 +15,7 @@ export function IndividualBookPage () {
   const { isAuthenticated, userId, authToken } = useAuth()
   const { categories, bookshelfData = [], setBookshelfData } = useBookshelf()
   const { book, getBookFromDB, booksBySameAuthor, getBooksBySameAuthor } = useBook()
-  const { allReviews, getReviewsFromDB } = useReview()
+  const { allReviewsFromBook, getReviewsFromDB } = useReview()
   const [added, setAdded] = useState(false)
   const [isInBookshelf, setIsInBookshelf] = useState(false)
   const navigate = useNavigate()
@@ -231,8 +231,8 @@ export function IndividualBookPage () {
       <section className='reviews'>
         <h2>Reviews</h2>
         <div className='individual-book-page-row'>
-          {(allReviews.length > 0)
-            ? (allReviews)?.map(review => (
+          {(allReviewsFromBook.length > 0)
+            ? (allReviewsFromBook)?.map(review => (
               <li key={review.id} className='review'>
                 <p className='date'>{review.date.split('T')[0]}</p>
                 <p className='username'>{review.email.split('@')[0]}</p>

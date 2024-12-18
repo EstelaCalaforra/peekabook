@@ -4,6 +4,7 @@ import axios from 'axios'
 
 export function useReview () {
   const [allReviewsFromBook, setAllReviewsFromBook] = useState([])
+  const [allReviews, setAllReviews] = useState([])
   const { bookId } = useContext(BookSearchContext)
 
   async function getReviewsFromDB () {
