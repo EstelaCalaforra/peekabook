@@ -1,9 +1,8 @@
-/* Estilos para el contenedor de login */
 .login-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('../../assets/bg-books-trans20.png');
+  background-image: url('../../assets/bg-books-2.jpg');
   background-size: cover;
   height: 90vh;
 }
@@ -15,29 +14,33 @@
     justify-items: center;
     align-items: center;
     gap: 30px;
-    max-width: 300px;
-    background-color: #ceab8c;
+    width: 300px;
+    background-color: white;
     border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 8px rgba(87, 67, 35, 0.4);
     margin-top: 100px;
     padding: 30px;
   }
   
   .login-h2 {
-    color: #3f3230;
-    font-weight: bold;
+    color: #AB886D;
+    margin: 0px;
   }
 
   .login-p {
-    color: #3f3230;
+    color: #AB886D;
   }
 
   .login-a {
-    color: #85644d;
-    text-decoration: none;
+    color: #AB886D;
+  }
+
+  .login-a:hover {
+    color: #D6C0B3;
   }
   
   .login-form {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,38 +54,40 @@
   .login-form label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
+    color: #AB886D;
   }
   
   .login-form input {
+    /* font-family: "Sour Gummy", sans-serif; */
     width: 75%; 
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ceab8c;
+    border: 1px solid #D6C0B3;
     border-radius: 4px;
-    background-color: #3f3230;
+    background-color: #E4E0E1;
+    color: #493628;
   }
   
   input:focus {
-    outline: none !important;
-    border-color: #3f3230;
-    background-color: #515050;
+    box-shadow: none !important;
+    outline: none;
+    border-color: #D6C0B3 !important;
+    background-color: #E4E0E1 !important;
   }
   
   .login-button {
-    font-family: 'Newsreader', serif;
+    font-family: 'Sour Gummy', sans-serif;
     width: 50%;
     padding: 10px;
-    background-color: #3f3230;
-    color: antiquewhite;
+    background-color: #D6C0B3;
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
   
   .login-button:hover {
-    background-color: #85644d;
+    background-color: #E4E0E1;
   }
   
   .error {

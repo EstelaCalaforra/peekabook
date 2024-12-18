@@ -59,4 +59,36 @@ export const createReviewByBookId = async (bookId, reviewText, userId) => {
     [bookId, reviewText, userId]
   )
   return result.rows[0] // Devuelve la nueva reseña creada
-};
+}
+
+export const updateOrCreateReview = async (bookId, reviewText, userId) => {
+  // Primero, intentamos obtener la reseña asociada al libro
+  const existingReview = await db.query(
+    'SELECT * FROM reviews WHERE book_id = (SELECT id FROM books WHERE id_api = $1) AND user_id = $2',
+    [bookId, userId]
+  )
+
+  if (existingReview.rows.length > 0) {
+    // Si existe una reseña, actualizamos la reseña existente
+    const updatedReview = await updateReviewById(existingReview.rows[0].id, reviewText)
+    return updatedReview // Devuelve la reseña actualizada
+  } else {
+    // Si no existe reseña, creamos una nueva
+    const newReview = await createReviewByBookId(bookId, reviewText, userId)
+    return newReview // Devuelve la nueva reseña creada
+  }
+}
+
+export const getAllReviews = async () => {
+  const result = await db.query(
+    `
+    SELECT reviews.id, reviews.user_id, reviews.book_id, reviews.review, reviews.rating, reviews.date, 
+           users.email AS user_email, books.title AS book_title
+    FROM reviews
+    JOIN users ON reviews.user_id = users.id
+    JOIN books ON reviews.book_id = books.id
+    ORDER BY reviews.date DESC;
+    `
+  )
+  return result.rows // Devuelve todas las reseñas
+}

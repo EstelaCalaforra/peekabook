@@ -96,7 +96,7 @@
 }
 
 .header input[type=text] {
-  font-family: "Newsreader", serif;
+  font-family: "Sour Gummy", sans-serif;
   padding: 10px;
   border: 2px solid #E4E0E1;
   border-radius: 5px;
@@ -148,7 +148,6 @@
   width: 60px;
   text-align: center;
   height: auto;
-  font-weight: bold;
   padding: 5px;
   margin: 0px;
   border-radius: 10px;

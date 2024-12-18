@@ -1,7 +1,8 @@
 import {
   getReviewsByBookId,
   deleteReviewById,
-  updateReviewById
+  updateReviewById,
+  getAllReviews
 } from '../models/reviewModel.js'
 
 export const getReviews = async (req, res) => {
@@ -45,7 +46,6 @@ export const deleteReview = async (req, res) => {
   }
 }
 
-// Nueva función para actualizar una reseña
 export const updateReview = async (req, res) => {
   const { reviewText } = req.body // Nuevo texto de la reseña
   const reviewId = req.params.id // ID de la reseña a actualizar
@@ -68,6 +68,24 @@ export const updateReview = async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Error updating review'
+    })
+  }
+}
+
+export const getAllReviewsController = async (req, res) => {
+  try {
+    const allReviews = await getAllReviews()
+    res.status(200).json({
+      success: true,
+      message: 'All reviews fetched successfully',
+      reviews: allReviews
+    })
+    console.log({ allReviews })
+  } catch (error) {
+    console.error('Error fetching all reviews:', error)
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching all reviews'
     })
   }
 }
