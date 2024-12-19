@@ -29,10 +29,8 @@ export const addBookToUser = async (req, res) => {
     await addUserBookRelation(userId, bookId, bookAdded.readDate, bookAdded.categories)
     console.log(`Relationship inserted between book ID ${bookId} and user ID ${userId}`)
 
-    if (bookAdded.reviewText || bookAdded.rating) {
-      await insertReview(userId, bookId, bookAdded.reviewText, bookAdded.rating)
-      console.log(`Review inserted for book ID ${bookId} and user ID ${userId}`)
-    }
+    await insertReview(userId, bookId, bookAdded.reviewText, bookAdded.rating)
+    console.log(`Review inserted for book ID ${bookId} and user ID ${userId}`)
 
     res.status(200).json({ success: true, message: 'Book successfully added.' })
   } catch (error) {
@@ -117,8 +115,9 @@ export const updateUserBookshelf = async (req, res) => {
     if (!bookId) {
       return res.status(500).json({ success: false, message: 'Book not found in database.' })
     }
+    const bookUpdatedReviewText = bookUpdated.reviewText
+    console.log({ bookUpdatedReviewText }) // esta llegando texto
 
-    // Llamar a la función que maneja la lógica de actualización en el modelo
     await updateUserBookRelation(
       userId,
       bookId,
@@ -139,8 +138,9 @@ export const deleteBookFromUserBookshelf = async (req, res) => {
   const { userId, bookId } = req.params
 
   try {
-    // Eliminar la relación entre el libro y el usuario
+    console.log({ userId, bookId })
     const deletedBookId = await deleteUserBookRelation(userId, bookId)
+    console.log({ deletedBookId })
 
     if (!deletedBookId) {
       return res.status(404).json({ success: false, message: 'Book not found in user bookshelf.' })

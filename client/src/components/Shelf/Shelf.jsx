@@ -22,7 +22,7 @@ export function Shelf ({ category, booksInCategory, handleClickOnCategory, handl
           <img src={RightArrow} className='arrow' alt='arrow' />
         </a>
       </div>
-      <img src={ShelfImg} className='shelf' alt='shelf' />
+      {/* <img src={ShelfImg} className='shelf' alt='shelf' /> */}
     </div>
   )
 }

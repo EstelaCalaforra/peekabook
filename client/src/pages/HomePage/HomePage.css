@@ -6,7 +6,6 @@
     align-items: center;
     gap: 10px;
     background-image: url('../../assets/bg-books-2.jpg');
-    /* opacity: 0.6; */
     background-size: cover;
 }
 

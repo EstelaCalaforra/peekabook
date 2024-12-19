@@ -26,7 +26,7 @@ export function BookshelfPage () {
       {/* Shelves section */}
       <div className='books'>
         <h2>Bookshelves</h2>
-        <img src={Divider} className='bookshelf-divider' alt='divider' />
+        {/* <img src={Divider} className='bookshelf-divider' alt='divider' /> */}
         {hasBooks && (
           <div className='shelves'>
             {[...new Set(categories)].map((category) => {
@@ -57,7 +57,7 @@ export function BookshelfPage () {
       {/* Reviews section */}
       <div className='reviews'>
         <h2>Recent reviews</h2>
-        <img src={Divider} className='bookshelf-divider' alt='divider' />
+        {/* <img src={Divider} className='bookshelf-divider' alt='divider' /> */}
         {hasReviews
           ? (
             <div className='reviews-and-button'>

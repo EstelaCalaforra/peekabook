@@ -63,7 +63,7 @@ export function IndividualBookPage () {
     event.preventDefault()
 
     if (categoriesSelected.length === 0) {
-      // Eliminar el libro si no hay categorías seleccionadas
+      // Delete book if no categories selected
       await fetch(`http://localhost:5000/api/books/remove/${userId}/${book.id_api}`, {
         method: 'DELETE',
         headers: {
@@ -78,6 +78,7 @@ export function IndividualBookPage () {
       const bookData = {
         id: book.id_api,
         title: book.title,
+        rating: 0,
         reviewText: review || '',
         categories: categoriesSelected,
         readDate: new Date()

@@ -41,7 +41,7 @@ export const updateReviewById = async (reviewId, reviewText) => {
     `,
     [reviewText, reviewId]
   )
-  return result.rows[0] // Devuelve la reseña actualizada
+  return result.rows[0]
 }
 
 export const createReviewByBookId = async (bookId, reviewText, userId) => {
@@ -58,24 +58,21 @@ export const createReviewByBookId = async (bookId, reviewText, userId) => {
     `,
     [bookId, reviewText, userId]
   )
-  return result.rows[0] // Devuelve la nueva reseña creada
+  return result.rows[0]
 }
 
 export const updateOrCreateReview = async (bookId, reviewText, userId) => {
-  // Primero, intentamos obtener la reseña asociada al libro
   const existingReview = await db.query(
     'SELECT * FROM reviews WHERE book_id = (SELECT id FROM books WHERE id_api = $1) AND user_id = $2',
     [bookId, userId]
   )
 
   if (existingReview.rows.length > 0) {
-    // Si existe una reseña, actualizamos la reseña existente
     const updatedReview = await updateReviewById(existingReview.rows[0].id, reviewText)
-    return updatedReview // Devuelve la reseña actualizada
+    return updatedReview
   } else {
-    // Si no existe reseña, creamos una nueva
     const newReview = await createReviewByBookId(bookId, reviewText, userId)
-    return newReview // Devuelve la nueva reseña creada
+    return newReview
   }
 }
 
