@@ -5,10 +5,10 @@ export function Shelf ({ category, booksInCategory, handleClickOnCategory, handl
   return (
     <div className='bookshelf-column-shelf'>
       <a onClick={() => handleClickOnCategory({ category })}>
-        <h3 className='shelf-title'>{category}</h3>
+        <h3 className='shelf-title'>⚪{category}</h3>
       </a>
       <div className='row'>
-        {booksInCategory.slice(-4).map((book) => (
+        {booksInCategory.slice(-6).map((book) => (
           <a key={book.id_api}>
             <img
               className='cover'

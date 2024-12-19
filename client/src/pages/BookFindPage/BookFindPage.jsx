@@ -15,10 +15,11 @@ export function BookFindPage () {
 
   return (
     <div className='bookfind-page'>
-      <ul className='books-info'>
-        <p className='results'>
+      <div className='container'>
+      <p className='results'>
           Page {currentPage} of {totalPages}
-        </p>
+      </p>
+      <ul className='books-info'>
         {bookSearch.map((book) => (
           <BookCard
             key={book.id}
@@ -26,13 +27,13 @@ export function BookFindPage () {
             onClickReadMore={handleClickReadMore}
           />
         ))}
-        <hr />
-        <PaginationControls
+      </ul>
+      <PaginationControls
           currentPage={currentPage}
           totalPages={totalPages}
           handlePageChange={handlePageChange}
         />
-      </ul>
+      </div>
     </div>
   )
 }

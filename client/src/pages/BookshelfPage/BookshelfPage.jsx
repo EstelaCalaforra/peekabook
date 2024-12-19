@@ -45,6 +45,7 @@ export function BookshelfPage () {
                 />
               )
             })}
+            <a className='see-more'>See more</a>
           </div>
         )}
         {!hasBooks && (
@@ -56,7 +57,7 @@ export function BookshelfPage () {
 
       {/* Reviews section */}
       <div className='reviews'>
-        <h2>Recent reviews</h2>
+        <h2 className='recent-reviews'>Recent reviews</h2>
         {/* <img src={Divider} className='bookshelf-divider' alt='divider' /> */}
         {hasReviews
           ? (

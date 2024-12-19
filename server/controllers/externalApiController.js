@@ -2,7 +2,7 @@ import axios from 'axios'
 import { transformProduct } from '../helpers/externalAPIHelper.js'
 
 export const fetchBooks = async (req, res) => {
-  const { bookQuery, startIndex = 0, maxResults = 10 } = req.query
+  const { bookQuery, startIndex = 0, maxResults = 12 } = req.query
   console.log({ bookQuery, startIndex, maxResults })
   try {
     const params = {

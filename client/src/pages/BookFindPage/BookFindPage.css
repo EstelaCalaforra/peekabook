@@ -1,28 +1,31 @@
 .bookfind-page {
-    color: #3f3230;
-    background-image: url('../../assets/bg-books-trans20.png');
+    background-image: url('../../assets/bg-books-2.jpg');
     background-size: cover;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* padding-bottom: 50px; */
+    justify-items: center;
+}
+
+.bookfind-page .container {
+    margin: 20px 50px;
 }
 
 .bookfind-page .results {
     font-weight: bold;
-    margin: 0px;
+    color: #AB886D;
+    margin-bottom: 10px;
 }
 
 .books-info {
     list-style: none;
-    margin: 0;
-    padding: 0;
-    padding: 40px;
+    margin: 0px;
+    padding: 0px;
   
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(800px, 0.5fr));
-   
-    width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
     gap: 32px;
   }
 
@@ -30,19 +33,22 @@
     height: 11em;
     width: 7em;
     border-radius: 10px;
-    /* border: 2px solid #3f3230; */
 }
 
 .book {
     display: flex;
     flex-direction: row;
-    background-color: antiquewhite;
+    background-color: white;
     border-radius: 10px;
-    border: 2px solid #3f3230;
+    border: 1px dotted #D6C0B3;
+
     gap: 10px;
+    padding: 10px;
+    width: 520px;
 }
 
 .bookinfo-info {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -61,6 +67,7 @@
     font-size: 1.1em;
     font-weight: bold;
     margin: 0;
+    color: #493628;
 }
 
 p.bookfindpage-author {
@@ -77,24 +84,26 @@ p.bookfindpage-description {
     font-weight: 300;
 }
 
+.bookfind-page .read-more {
+    width: 100%;
+    text-align: right;
+}
+
 .bookfind-page .button {
-    background-color:#ceab8c;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-    color: #3f3230;
-    font-weight: bold;
-    line-height: 12px;
-    border: 1px solid #3f3230;
-    text-decoration: none;
-    width: 70px;
-    font-size: 12px;
-    margin-bottom: 5px;
+    color: #AB886D;
+    background-color: white;
+    width: 95px;
     cursor: pointer;
+    text-align: center;
+    border: 2px solid #D6C0B3;
+    font-size: smaller;
+    border-radius: 10px;
+    padding: 2px 5px;
+    font-weight: bold;
 }
 
 .button:hover {
-    color: antiquewhite;
+    background-color: #E4E0E1;
 }
 
 .bookinfo-five-stars-icon {
@@ -103,10 +112,10 @@ p.bookfindpage-description {
 
 .bookfind-page .pagination-controls {
     width: 100%;
-    padding-bottom: 50px;
-    text-align: right;
-    padding-top: 0px;
-    margin: 0px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    text-align: left;
+    margin-top: 20px;
 }
 
 .bookfind-page .pagination-controls button {

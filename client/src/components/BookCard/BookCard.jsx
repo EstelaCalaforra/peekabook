@@ -18,9 +18,11 @@ export function BookCard ({ book, onClickReadMore }) {
           </p>
           <img className='bookinfo-five-stars-icon' src={FiveStarsRatingIcon} alt='Rating' />
         </div>
-        <a onClick={(event) => onClickReadMore(event, book.id)} className='button'>
-          Read more
-        </a>
+        <div className='read-more'>
+          <a onClick={(event) => onClickReadMore(event, book.id)} className='button'>
+            Read more
+          </a>
+        </div>
       </div>
     </li>
   )

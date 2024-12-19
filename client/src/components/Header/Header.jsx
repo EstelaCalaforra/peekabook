@@ -2,7 +2,7 @@ import './Header.css'
 import bookLogo from '../../assets/logo-peekabook.png'
 import userIcon from '../../assets/user-icon.png'
 import { useAuth } from '../../context/AuthContext'
-import { UserPopup } from '../../components/UserPopup/UserPopup.jsx'
+import { UserDropDown } from '../../components/UserPopup/UserPopup.jsx'
 import { SearchForm } from '../../components/SearchForm/SearchForm.jsx'
 
 export function Header () {
@@ -22,7 +22,7 @@ export function Header () {
         </div>
         <div className='searchbar-user row'>
           <SearchForm />
-          <UserPopup
+          <UserDropDown
             userEmail={userEmail}
             logout={logout}
             isAuthenticated={isAuthenticated}

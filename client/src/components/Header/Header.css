@@ -77,21 +77,12 @@
 .header .username {
   min-width: 100px;
   text-align: right;
+  color: #493628;
+  cursor: pointer;
 }
 
 .header .dropdown .username {
   cursor: pointer;
-}
-
-.header .dropdown div:hover {
-  color: #D6C0B3;
-}
-
-.header .user-icon  {
-  height: 40px;
-  padding: 10px;
-  cursor: pointer;
-  margin-right: 20px;
 }
 
 .header input[type=text] {
@@ -113,14 +104,29 @@
 
 .header .popup-login {
   position: absolute;
-  border: 5px solid #85644d; 
-  transform: translateY(12%) translateX(-10%);
-  background-color: #3f3230;
-  color: #fff;
-  padding: 20px 0px 20px 0px;
+  /* border: 2px solid #E4E0E1;  */
+  transform: translateY(12%) translateX(-22%);
+  background-color: white;
+  color: #AB886D;
+  /* padding: 20px 0px 20px 0px; */
   border-radius: 5px;
   z-index: 1;
   width: 150px;
+}
+
+.header .popup-login .column {
+  gap: 0px;
+}
+
+.header .popup-login a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.header .popup-login a:hover {
+  background-color: #E4E0E1;
 }
 
 .header .login {

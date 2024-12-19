@@ -9,7 +9,7 @@ export function useBookSearch () {
 
   async function fetchBooksGoogleAPI (bookQuery, page = 1) {
     try {
-      const maxResults = 10 // Results per page
+      const maxResults = 12 // Results per page
       const startIndex = (page - 1) * maxResults // Calculate initial index
       console.log({ bookQuery })
       const response = await axios.get('http://localhost:5000/api/external/search', {
