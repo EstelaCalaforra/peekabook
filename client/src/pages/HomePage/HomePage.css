@@ -1,6 +1,6 @@
 .homepage {
     display: flex;
-    height: 90vh;
+    height: 100vh;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -16,19 +16,13 @@
 .homepage .quote {
     background-color: white;
     border: 1px dotted #D6C0B3;
-    /* background-image: url('../../assets/cloud-quote.png'); */
-    /* background-size: 370px; */
-    /* height: 300px; */
-    /* background-repeat: no-repeat; */
-    /* background-position: center; */
-    /* height: 300px; */
     font-family: "Sour Gummy", sans-serif;
     color: #AB886D;
-    padding-right: 50px;
-    padding-left: 50px;
+    padding-right: 20px;
+    padding-left: 20px;
     padding-bottom: 0;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin: 0px;
     text-align: center;
     width: 500px;
@@ -36,11 +30,11 @@
 
 .homepage .title {
     font-family: "Sour Gummy", sans-serif;
-    color: #AB886D;
-    margin: 0px;
+    color: #7c5b44;
+    margin-bottom: 10px;
 }
 
-.homepage .bestsellers .title {
+.homepage .title {
     margin-bottom: 10px;
 }
 
@@ -48,40 +42,30 @@
     display: flex;
     flex-direction: column;
     margin: 0px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     border-radius: 5px;
     align-items: center;
     justify-content: center;
 }
 
 .homepage .bestsellers-container {
-    background-color: white;
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     margin: 0px;
-    margin-top: 20px;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    border: 1px dotted #D6C0B3;
 }
 
-.homepage .bestsellers-column {
+.homepage .bestsellers-row {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px dotted #D6C0B3;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    margin: 5px;
     border-radius: 5px;
     align-items: center;
     justify-content: center;
-}
-
-.homepage .quote-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
 }
 
 .homepage .bestsellers-row {
@@ -139,4 +123,10 @@
 .homepage .button:hover {
    background-color:rgb(212, 199, 182);
    color: #3f3230;
+}
+
+.homepage .reviews-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

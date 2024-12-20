@@ -33,7 +33,9 @@ export function CategoryPage () {
                       {book.volumeInfo?.description ? getFirst80Characters(book.volumeInfo?.description) : 'No description available.'}
                     </p> */}
                   </div>
-                  <a onClick={() => handleClickOnCover(book.id_api)} className='button'>Read more</a>
+                  <div className='read-more'>
+                    <a onClick={() => handleClickOnCover(book.id_api)} className='button'>Read more</a>
+                  </div>
                 </div>
               </li>
             ))}

@@ -5,6 +5,7 @@ import Divider from '../../assets/botanical-divider-crop.png'
 import { useBestSellers } from '../../hooks/useBestSellers'
 import { Quote } from '../../components/Quote/Quote.jsx'
 import { BestsellersShelf } from '../../components/BestsellersShelf/BestsellersShelf.jsx'
+import { ReviewsCarrousel } from '../../components/ReviewsCarrousel/ReviewsCarrousel.jsx'
 
 export function HomePage () {
   const { bestsellersData, loadingBestsellersData } = useBestSellers()
@@ -15,18 +16,17 @@ export function HomePage () {
       <div className='quote-column'>
         <Quote />
       </div>
-      <div className='bestsellers bestsellers-container'>
-        <h3 className='title'>Weekly Bestsellers</h3>
-        <div className='bestsellers-column'>
+
+        <div className='bestsellers bestsellers-container'>
+          <h3 className='title'>Weekly Bestsellers</h3>
           <BestsellersShelf
             bestsellersData={bestsellersData}
             loadingBestsellersData={loadingBestsellersData}
           />
-          {/* <img src={Shelf} className='home-shelf' /> */}
         </div>
-      </div>
-      <div className='reviews reviews-container'>
+      <div className='reviews-container'>
         <h3 className='title'>Gossip what your friends are reading</h3>
+        <ReviewsCarrousel />
       </div>
       {/* <div className='column center'>
         <a className='button' href='/signup'>START YOUR LIBRARY</a>

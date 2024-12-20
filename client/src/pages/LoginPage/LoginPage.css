@@ -58,7 +58,6 @@
   }
   
   .login-form input {
-    /* font-family: "Sour Gummy", sans-serif; */
     width: 75%; 
     padding: 10px;
     margin-bottom: 10px;
@@ -66,6 +65,7 @@
     border-radius: 4px;
     background-color: #E4E0E1;
     color: #493628;
+    font-family: "Inconsolata", serif;
   }
   
   input:focus {

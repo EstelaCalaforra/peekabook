@@ -29,5 +29,5 @@ export function useReview () {
     }
   }
 
-  return { allReviewsFromBook, getReviewsFromDB, getAllReviewsFromDB }
+  return { allReviewsFromBook, getReviewsFromDB, getAllReviewsFromDB, allReviews }
 }

@@ -1,0 +1,51 @@
+.review-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Oculta las reseñas fuera de la vista */
+  width: 100%; /* Asegura que el carrusel ocupe todo el ancho disponible */
+  max-width: 1200px;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.reviews-group {
+  display: flex;
+  animation: scrollReviews 50s linear infinite; /* Animación continua */
+}
+
+.review-card {
+  min-width: 250px; /* Ajustar el tamaño mínimo de cada tarjeta */
+  max-width: 300px; /* Limitar el tamaño máximo de las tarjetas */
+  padding: 15px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px dotted #d6c0b3;
+  color: #ab886d;
+  margin-right: 15px; /* Espaciado entre las tarjetas */
+  flex-shrink: 0; /* Impide que las tarjetas se encojan */
+}
+
+strong {
+  color: #7c5b44;
+}
+
+.review-card h4 {
+  margin-bottom: 10px;
+  color: #7c5b44;
+}
+
+.rating {
+  width: 100px;
+}
+
+@keyframes scrollReviews {
+  0% {
+    transform: translateX(0); /* Comienza desde la posición inicial */
+  }
+  100% {
+    transform: translateX(-50%); /* Se mueve al 50% del contenedor (que es la mitad del ancho de las reseñas) */
+  }
+}
+
+

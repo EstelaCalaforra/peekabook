@@ -67,14 +67,14 @@
     font-size: 1.1em;
     font-weight: bold;
     margin: 0;
-    color: #493628;
+    color: #7c5b44;
 }
 
 p.bookfindpage-author {
     font-size: 0.9em;
     /* font-weight: bold; */
     margin: 0px;
-    color:#6b6261;
+    color:#AB886D;
 }
 
 p.bookfindpage-description {
@@ -119,6 +119,8 @@ p.bookfindpage-description {
 }
 
 .bookfind-page .pagination-controls button {
+    font-family: "Sour Gummy", sans-serif;
+    font-size: small;
     color: antiquewhite;
     border: none;
     border-radius: 3px;
@@ -126,16 +128,24 @@ p.bookfindpage-description {
 }
 
 .bookfind-page .previous, .bookfind-page .next {
-    background-color: #3f3230;
+    background-color: #AB886D;
     cursor: pointer;
+}
+
+.bookfind-page .previous:hover, .bookfind-page .next:hover {
+    background-color: #7c5b44;
 }
 
 .page-number {
-    background-color: #3f3230;
+    background-color: #AB886D;
     cursor: pointer;
 }
 
+.page-number:hover {
+    background-color: #7c5b44;
+}
+
 .page-number.active {
-    background-color: #6b6261;
+    background-color: #D6C0B3;
     cursor: auto;
 }

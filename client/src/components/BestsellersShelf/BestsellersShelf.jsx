@@ -7,7 +7,7 @@ export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
           )
         : (
             bestsellersData.map((bookInfo, index) => (
-              <div className='bestsellers-column bestsellers-shelf' key={index}>
+              <div className='bestsellers-shelf' key={index}>
                 <a href='amazon.com'>
                   <img className='miniature' src={bookInfo.book_image} alt={bookInfo.title} />
                 </a>

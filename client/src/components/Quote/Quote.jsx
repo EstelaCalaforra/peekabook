@@ -6,24 +6,26 @@ export function Quote () {
   const { quoteData, loadingQuoteData } = useQuote()
 
   return (
-    <div className='quote quote-column'>
+    <>
       <h3 className='title'>Daily quote</h3>
-      <div>
-        {loadingQuoteData
-          ? (
-            <p>Loading quote...</p>
-            )
-          : (
-            <div className='quote-row'>
-              {/* <img src={RightBrace} /> */}
-              <div>
-                <p>&quot;{quoteData.quote}&quot;</p>
-                <p>{quoteData.author}</p>
+      <div className='quote quote-column'>
+        <div>
+          {loadingQuoteData
+            ? (
+              <p>Loading quote...</p>
+              )
+            : (
+              <div className='quote-row'>
+                {/* <img src={RightBrace} /> */}
+                <div>
+                  <p>&quot;{quoteData.quote}&quot;</p>
+                  <p>{quoteData.author}</p>
+                </div>
+                {/* <img src={LeftBrace} /> */}
               </div>
-              {/* <img src={LeftBrace} /> */}
-            </div>
-            )}
+              )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

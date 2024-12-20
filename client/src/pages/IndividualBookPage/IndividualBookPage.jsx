@@ -173,89 +173,93 @@ export function IndividualBookPage () {
 
   return (
     <div className='individual-book-page'>
-      <section className='individual-book-page-row'>
-        <div className='individual-book-page-column'>
-          <img className='cover' src={book?.cover || defaultImageUrl} alt={book?.title || 'No title available'} />
-          <a className={`button ${added ? 'added' : ''}`} onClick={handleClickAddToShelves}>{isInBookshelf ? 'On bookshelf' : 'Add to bookshelf'}</a>
-          {isPopupOpen && (
-            <div className='popup-overlay'>
-              <div className='close-button-and-popup'>
-                <button className='popup-button' onClick={closePopup}>✖</button>
-                <div className='popup-content'>
-                  <form action={'http://localhost:5000/api/add-books/user/' + userId} method='post' onSubmit={handleAdd}>
-                    <fieldset className=''>
-                      <legend>Choose the shelves</legend>
-                      {categories.map((category, key) => {
-                        return (
-                          <div className='individual-book-page-row' key={key}>
-                            <input
-                              type='checkbox'
-                              id={category}
-                              name={category}
-                              value={category}
-                              checked={categoriesSelected.includes(category)}
-                              onChange={handleChangeCategoriesSelected}
-                            />
-                            <label htmlFor={category}>{category}</label>
-                          </div>
-                        )
-                      })}
-                      <div className='individual-book-page-row'>
-                        <input
-                          placeholder='Add new category'
-                          name='newCategory'
-                          value={newCategory}
-                          onChange={handleChangeNewCategory}
-                        />
-                        <button className='' onClick={handleAddNewCategory}>+</button>
+      <div className='container'>
+        <section className='info-buttons'>
+          <div className='cover-buttons'>
+            <img className='cover' src={book?.cover || defaultImageUrl} alt={book?.title || 'No title available'} />
+            <a className={`button ${added ? 'added' : ''}`} onClick={handleClickAddToShelves}>{isInBookshelf ? 'On bookshelf' : 'Add to bookshelf'}</a>
+            {isPopupOpen && (
+              <div className='popup-overlay'>
+                <div className='close-button-and-popup'>
+                  <button className='popup-button' onClick={closePopup}>✖</button>
+                  <div className='popup-content'>
+                    <form action={'http://localhost:5000/api/add-books/user/' + userId} method='post' onSubmit={handleAdd}>
+                      <fieldset className=''>
+                        <legend>Choose the shelves</legend>
+                        {categories.map((category, key) => {
+                          return (
+                            <div className='individual-book-page-row' key={key}>
+                              <input
+                                type='checkbox'
+                                id={category}
+                                name={category}
+                                value={category}
+                                checked={categoriesSelected.includes(category)}
+                                onChange={handleChangeCategoriesSelected}
+                              />
+                              <label htmlFor={category}>{category}</label>
+                            </div>
+                          )
+                        })}
+                        <div className='individual-book-page-row'>
+                          <input
+                            placeholder='Add new category'
+                            name='newCategory'
+                            value={newCategory}
+                            onChange={handleChangeNewCategory}
+                          />
+                          <button className='' onClick={handleAddNewCategory}>+</button>
+                        </div>
+                      </fieldset>
+                      <div className='individual-book-page-review'>
+                        <label htmlFor='review'>Write a review</label>
+                        <textarea id='review' name='review' value={review} onChange={handleReviewChange} rows='10' cols='50' placeholder='' />
                       </div>
-                    </fieldset>
-                    <div className='individual-book-page-review'>
-                      <label htmlFor='review'>Write a review</label>
-                      <textarea id='review' name='review' value={review} onChange={handleReviewChange} rows='10' cols='50' placeholder='' />
-                    </div>
-                    <input type='submit' value={isInBookshelf ? 'Edit' : 'Add'} />
-                  </form>
+                      <input type='submit' value={isInBookshelf ? 'Edit' : 'Add'} />
+                    </form>
+                  </div>
                 </div>
               </div>
+            )}
+            <a className='button buy' src=''>Buy</a>
+          </div>
+          <div className='title-author-desc'>
+            <div className='title-author'>
+              <h1>{book?.title || 'No title available'}</h1>
+              <p>by {book?.authors?.[0] || 'Unknown author'}</p>
             </div>
-          )}
-          <a className='button buy' src=''>Buy</a>
-        </div>
-        <div className='individual-book-page-column'>
-          <h1>{book?.title || 'No title available'}</h1>
-          <h2>by {book?.authors?.[0] || 'Unknown author'}</h2>
-          <img className='divider' src={Divider} />
-          <p>{book?.description || 'No description available.'}</p>
-        </div>
-      </section>
-      <section className='reviews'>
-        <h2>Reviews</h2>
-        <div className='individual-book-page-row'>
-          {(allReviewsFromBook.length > 0)
-            ? (allReviewsFromBook)?.map(review => (
-              <li key={review.id} className='review'>
-                <p className='date'>{review.date.split('T')[0]}</p>
-                <p className='username'>{review.email.split('@')[0]}</p>
-                <img className='five-stars-icon' src={FiveStarsRatingIcon} />
-                <p className='review-text'>{review.review}</p>
-              </li>
-              ))
-            : <p>No reviews.</p>}
-        </div>
-      </section>
-      <section className='similar-books'>
-        <h2>Other books by {book?.authors?.[0]}</h2>
-        <div className='individual-book-page-row'>
-          {booksBySameAuthor
-            ? (booksBySameAuthor).map(book => (
-              <li key={book.id} className='book'>
-                <a onClick={() => handleClick(book.id)}><img className='cover' src={book?.volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl} /></a>
-              </li>
-              ))
-            : <p>Loading...</p>}
-        </div>
-      </section>
+            {/* <img className='divider' src={Divider} /> */}
+            <p>{book?.description || 'No description available.'}</p>
+          </div>
+        </section>
+        <section className='reviews-container'>
+          <h2>Reviews</h2>
+          <div className='reviews-row'>
+            {(allReviewsFromBook.length > 0)
+              ? (allReviewsFromBook)?.map(review => (
+                <li key={review.id} className='review'>
+                  <p className='date'>{review.date.split('T')[0]}</p>
+                  <p className='username'>{review.email.split('@')[0]}</p>
+                  <img className='five-stars-icon' src={FiveStarsRatingIcon} />
+                  <p className='review-text'>{review.review}</p>
+                </li>
+                ))
+              : <p>No reviews.</p>}
+          </div>
+        </section>
+        <section className='other-books-container'>
+          <h2>Other books by {book?.authors?.[0]}</h2>
+          <div className='other-books'>
+            {booksBySameAuthor
+              ? (booksBySameAuthor).map(book => (
+                <li key={book.id} className='book'>
+                  <a onClick={() => handleClick(book.id)}><img className='cover' src={book?.volumeInfo?.imageLinks?.smallThumbnail || defaultImageUrl} /></a>
+                </li>
+                ))
+              : <p>Loading...</p>}
+          </div>
+        </section>
+      </div>
     </div>
   )
 }
