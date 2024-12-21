@@ -11,7 +11,7 @@
 
 .reviews-group {
   display: flex;
-  animation: scrollReviews 50s linear infinite; /* Animación continua */
+  animation: scrollReviews 20s linear infinite; /* Animación continua */
 }
 
 .review-card {
@@ -39,12 +39,13 @@ strong {
   width: 100px;
 }
 
+/* Animación ajustada */
 @keyframes scrollReviews {
   0% {
     transform: translateX(0); /* Comienza desde la posición inicial */
   }
   100% {
-    transform: translateX(-50%); /* Se mueve al 50% del contenedor (que es la mitad del ancho de las reseñas) */
+    transform: translateX(calc(-100% / 2)); /* Se mueve exactamente la mitad del contenido */
   }
 }
 

@@ -28,25 +28,27 @@ export function BookshelfPage () {
         <h2>Bookshelves</h2>
         {/* <img src={Divider} className='bookshelf-divider' alt='divider' /> */}
         {hasBooks && (
-          <div className='shelves'>
-            {[...new Set(categories)].map((category) => {
-              const booksInCategory = bookshelfData.filter((book) =>
-                book.categories && book.categories.includes(category)
-              )
-              if (booksInCategory.length === 0) return null
+          <>
+            <div className='shelves'>
+              {[...new Set(categories)].map((category) => {
+                const booksInCategory = bookshelfData.filter((book) =>
+                  book.categories && book.categories.includes(category)
+                )
+                if (booksInCategory.length === 0) return null
 
-              return (
-                <Shelf
-                  key={category}
-                  category={category}
-                  booksInCategory={booksInCategory}
-                  handleClickOnCategory={handleClickOnCategory}
-                  handleClickOnCover={handleClickOnCover}
-                />
-              )
-            })}
+                return (
+                  <Shelf
+                    key={category}
+                    category={category}
+                    booksInCategory={booksInCategory}
+                    handleClickOnCategory={handleClickOnCategory}
+                    handleClickOnCover={handleClickOnCover}
+                  />
+                )
+              })}
+            </div>
             <a className='see-more'>See more</a>
-          </div>
+          </>
         )}
         {!hasBooks && (
           <div className='empty'>

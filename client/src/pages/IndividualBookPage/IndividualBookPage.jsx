@@ -188,7 +188,7 @@ export function IndividualBookPage () {
                         <legend>Choose the shelves</legend>
                         {categories.map((category, key) => {
                           return (
-                            <div className='individual-book-page-row' key={key}>
+                            <div className='category' key={key}>
                               <input
                                 type='checkbox'
                                 id={category}
@@ -201,7 +201,7 @@ export function IndividualBookPage () {
                             </div>
                           )
                         })}
-                        <div className='individual-book-page-row'>
+                        <div className='new-category'>
                           <input
                             placeholder='Add new category'
                             name='newCategory'
@@ -211,11 +211,11 @@ export function IndividualBookPage () {
                           <button className='' onClick={handleAddNewCategory}>+</button>
                         </div>
                       </fieldset>
-                      <div className='individual-book-page-review'>
+                      <div className='review'>
                         <label htmlFor='review'>Write a review</label>
                         <textarea id='review' name='review' value={review} onChange={handleReviewChange} rows='10' cols='50' placeholder='' />
                       </div>
-                      <input type='submit' value={isInBookshelf ? 'Edit' : 'Add'} />
+                      <input className='add-button' type='submit' value={isInBookshelf ? 'Edit' : 'Add'} />
                     </form>
                   </div>
                 </div>
