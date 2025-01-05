@@ -11,7 +11,6 @@ export function useBookSearch () {
     try {
       const maxResults = 12 // Results per page
       const startIndex = (page - 1) * maxResults // Calculate initial index
-      console.log({ bookQuery })
       const response = await axios.get('http://localhost:5000/api/external/search', {
         params: {
           bookQuery,
@@ -29,8 +28,7 @@ export function useBookSearch () {
   }
 
   async function addSearchToDB (bookSearch) {
-    console.log({ bookSearch })
-    const response = await fetch('http://localhost:5000/api/books/add-search', {
+    await fetch('http://localhost:5000/api/books/add-search', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

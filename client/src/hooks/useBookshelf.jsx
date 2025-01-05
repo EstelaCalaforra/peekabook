@@ -77,7 +77,7 @@ export function useBookshelf () {
 
   const updateReviewInDB = async (updatedReview) => {
     try {
-      const token = localStorage.getItem('authToken')
+      const token = window.localStorage.getItem('authToken')
 
       if (!token) {
         console.error('No token found. Please log in again.')
@@ -99,7 +99,7 @@ export function useBookshelf () {
           review.review_id === updatedReview.review_id ? updatedReview : review
         )
         setReviews(updatedReviews)
-        console.log(`Review with ID ${updatedReview.review_id} updated successfully`)
+        console.log(`Review with ID ${updatedReview.review_id} updated successfully.`)
       }
     } catch (error) {
       console.error('Error updating review:', error)
@@ -121,7 +121,7 @@ export function useBookshelf () {
     try {
       await axios.delete(`http://localhost:5000/api/books/reviews/${reviewId}`)
       setReviews(reviews.filter(review => review.review_id !== reviewId))
-      console.log(`Review with ID ${reviewId} deleted successfully`)
+      console.log(`Review with ID ${reviewId} deleted successfully.`)
     } catch (error) {
       console.error('Error deleting review:', error)
     }
@@ -137,7 +137,7 @@ export function useBookshelf () {
       )
       if (response.status === 200) {
         setBookshelfData(bookshelfData.filter(item => item.id_api !== book.id_api))
-        console.log(`Book with ID ${book.id_api} removed from bookshelf`)
+        console.log(`Book with ID ${book.id_api} removed from bookshelf.`)
       }
     } catch (error) {
       console.error('Error deleting book from bookshelf:', error)

@@ -3,7 +3,7 @@
     background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    justify-items: center;  
 }
 
 .bookfind-page .container {
@@ -72,7 +72,6 @@
 
 p.bookfindpage-author {
     font-size: 0.9em;
-    /* font-weight: bold; */
     margin: 0px;
     color:#AB886D;
 }

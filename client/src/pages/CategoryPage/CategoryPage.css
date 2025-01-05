@@ -88,3 +88,14 @@
 .category-page .five-stars-icon {
     width: 100px;
 }
+
+.category-page .delete-icon {
+    background: url('../../assets/delete-icon-dark.png');
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    outline: none;
+    padding: 0px;
+}

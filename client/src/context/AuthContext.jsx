@@ -5,18 +5,18 @@ import { useNavigate } from 'react-router-dom'
 export const AuthContext = createContext()
 
 export function AuthProvider ({ children }) {
-  const [userId, setUserId] = useState(() => localStorage.getItem('userId') || '')
-  const [userEmail, setUserEmail] = useState(() => localStorage.getItem('userEmail') || '')
-  const [authToken, setAuthToken] = useState(() => localStorage.getItem('authToken') || '')
+  const [userId, setUserId] = useState(() => window.localStorage.getItem('userId') || '')
+  const [userEmail, setUserEmail] = useState(() => window.localStorage.getItem('userEmail') || '')
+  const [authToken, setAuthToken] = useState(() => window.localStorage.getItem('authToken') || '')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
-  // Función para limpiar el estado del usuario
+  // Function to clear user data when logout or session token expired
   const clearUserData = () => {
-    localStorage.removeItem('authToken')
-    localStorage.removeItem('userId')
-    localStorage.removeItem('userEmail')
+    window.localStorage.removeItem('authToken')
+    window.localStorage.removeItem('userId')
+    window.localStorage.removeItem('userEmail')
 
     setIsAuthenticated(false)
     setUserId('')
@@ -27,9 +27,9 @@ export function AuthProvider ({ children }) {
   // Login function
   const login = async (userId, userEmail, token) => {
     setAuthToken(token)
-    localStorage.setItem('authToken', token)
-    localStorage.setItem('userId', userId)
-    localStorage.setItem('userEmail', userEmail)
+    window.localStorage.setItem('authToken', token)
+    window.localStorage.setItem('userId', userId)
+    window.localStorage.setItem('userEmail', userEmail)
 
     setIsAuthenticated(true)
     setUserId(userId)
@@ -39,12 +39,11 @@ export function AuthProvider ({ children }) {
   // Logout function
   const logout = async () => {
     clearUserData()
-    navigate('/login') // Navegar a la página de login
+    navigate('/login')
   }
 
-  // Verifica si el token es válido en todas las peticiones
+  // Verify if token valid in all petitions
   const verifyToken = async (token) => {
-    console.log({ token })
     try {
       const response = await fetch('http://localhost:5000/api/users/verify-token', {
         method: 'GET',
@@ -53,39 +52,34 @@ export function AuthProvider ({ children }) {
         }
       })
 
-      const data = await response.json()
-
-      // Si el token es inválido o expirado, se ejecuta el logout
+      // If token invalid or expired, logout
       if (response.status === 403) {
-        console.log('entrado en clearuserdata')
-        clearUserData() // Limpiar los datos del usuario
-        navigate('/login') // Redirigir al login
+        clearUserData()
+        navigate('/login')
         return false
       }
 
       return true
     } catch (error) {
-      console.error('Error al verificar el token:', error)
+      console.error('Error verifying token:', error)
       clearUserData()
       navigate('/login')
       return false
     }
   }
 
-  // Verificar token al cargar el contexto
+  // Verify token when context mounted
   useEffect(() => {
-    const token = localStorage.getItem('authToken')
+    const token = window.localStorage.getItem('authToken')
 
     if (token) {
-      console.log('Token in useEffect', token)
       verifyToken(token).then((isValid) => {
         if (isValid) {
-          console.log('Enter in isvalid')
           setIsAuthenticated(true)
-          setUserId(localStorage.getItem('userId'))
-          console.log(localStorage.getItem('userId'))
-          setUserEmail(localStorage.getItem('userEmail'))
-          console.log(localStorage.getItem('userEmail'))
+          setUserId(window.localStorage.getItem('userId'))
+          console.log(window.localStorage.getItem('userId'))
+          setUserEmail(window.localStorage.getItem('userEmail'))
+          console.log(window.localStorage.getItem('userEmail'))
         }
       })
     } else {
@@ -112,5 +106,4 @@ export function AuthProvider ({ children }) {
   )
 }
 
-// Hook para usar el contexto
 export const useAuth = () => useContext(AuthContext)

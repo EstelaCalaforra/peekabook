@@ -1,4 +1,3 @@
-import ShelfImg from '../../assets/shelf.png'
 import RightArrow from '../../assets/right-arrow.png'
 
 export function Shelf ({ category, booksInCategory, handleClickOnCategory, handleClickOnCover }) {
@@ -8,7 +7,7 @@ export function Shelf ({ category, booksInCategory, handleClickOnCategory, handl
         <h3 className='shelf-title'>⚪{category}</h3>
       </a>
       <div className='row'>
-        {booksInCategory.slice(-6).map((book) => (
+        {booksInCategory.slice(-5).map((book) => (
           <a key={book.id_api}>
             <img
               className='cover'
@@ -22,7 +21,6 @@ export function Shelf ({ category, booksInCategory, handleClickOnCategory, handl
           <img src={RightArrow} className='arrow' alt='arrow' />
         </a>
       </div>
-      {/* <img src={ShelfImg} className='shelf' alt='shelf' /> */}
     </div>
   )
 }

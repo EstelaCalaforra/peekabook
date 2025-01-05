@@ -1,6 +1,13 @@
+@font-face {
+    font-family: 'Smooth Marker';
+    src: url('./assets/fonts/SmoothMarker-45d6.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .homepage {
     display: flex;
-    height: 100vh;
+    height: 90vh;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -11,6 +18,19 @@
 
 .homepage .landing-img {
     width: 100%;
+}
+
+.homepage .quote .title {
+    font-family: 'Smooth Marker', sans-serif;
+}
+
+.homepage .quote-bestsellers-container {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .homepage .quote {
@@ -32,10 +52,15 @@
     font-family: "Sour Gummy", sans-serif;
     color: #7c5b44;
     margin-bottom: 10px;
-}
+    font-size: 50px;
+    width: 100%;
+    z-index: 1;
+    text-align: left;
 
-.homepage .title {
-    margin-bottom: 10px;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    margin: 0;
 }
 
 .homepage .quote-column {
@@ -45,6 +70,21 @@
     border-radius: 5px;
     align-items: center;
     justify-content: center;
+    margin-top: 50px;
+
+    position: relative;
+}
+
+.homepage .quote-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.homepage .quote img{
+    width: 140px;
+    border-radius: 100px;
 }
 
 .homepage .bestsellers-container {
@@ -53,18 +93,8 @@
     margin: 0px;
     align-items: center;
     justify-content: center;
-}
 
-.homepage .bestsellers-row {
-    background-color: white;
-    border-radius: 10px;
-    border: 1px dotted #D6C0B3;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
+    position: relative;
 }
 
 .homepage .bestsellers-row {
@@ -73,17 +103,30 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+
+    background-color: white;
+    border-radius: 10px;
+    border: 1px dotted #D6C0B3;
+    padding: 20px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.homepage .bestsellers-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 .homepage .bestsellers .miniature {
-    width: 6vw;
-    height: 10vw;
+    width: 120px;
+    height: 190px;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
-}
-
-.homepage .bestsellers .miniature:hover {
-    transform: scale(1.1); 
 }
 
 .homepage .home-shelf {
@@ -107,24 +150,41 @@
 }
 
 .homepage .button {
-    padding: 10px;
-    font-weight: bold;
-    margin: 0px;
-    background-color: antiquewhite;
-    border-radius: 10px;
-    border: 3px solid #85644d;
-    color: #3f3230;
-    text-decoration: none;
+    color: #AB886D;
+    background-color: white;
+    width: 95px;
+    cursor: pointer;
     text-align: center;
+    border: 2px solid #D6C0B3;
+    font-size: smaller;
+    border-radius: 10px;
+    padding: 2px 5px;
+    font-weight: bold;
 }
 
 .homepage .button:hover {
-   background-color:rgb(212, 199, 182);
-   color: #3f3230;
+    background-color: #E4E0E1;
 }
 
 .homepage .reviews-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 70%;
+
+    position: relative;
+}
+
+@media (max-width: 1700px) {
+    .quote-bestsellers-container {
+      flex-direction: column !important;
+    }
+    
+  }
+
+@media (max-width: 500px) {
+.bestsellers-row {
+    flex-direction: column !important;
+}
+
 }

@@ -2,7 +2,6 @@ import './IndividualBookPage.css'
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookSearchContext } from '../../context/bookSearchContext'
-import Divider from '../../assets/botanical-divider-crop.png'
 import { useAuth } from '../../context/AuthContext'
 import { useBookshelf } from '../../hooks/useBookshelf'
 import { useBook } from '../../hooks/useBook'
@@ -27,19 +26,17 @@ export function IndividualBookPage () {
 
   useEffect(() => {
     getBooksBySameAuthor(book?.authors?.[0])
-    console.log({ booksBySameAuthor })
   }, [book])
 
   useEffect(() => {
     async function addSearchToDB (booksBySameAuthor) {
       if (booksBySameAuthor) {
-        console.log({ booksBySameAuthor })
-        const response = await fetch('http://localhost:5000/api/books/add-search', {
+        await fetch('http://localhost:5000/api/books/add-search', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ bookSearch: booksBySameAuthor }) // apis handle data in json format
+          body: JSON.stringify({ bookSearch: booksBySameAuthor })
         })
       }
     }
@@ -74,7 +71,6 @@ export function IndividualBookPage () {
       setIsInBookshelf(false)
       setAdded(false)
     } else {
-      // Construir el cuerpo de la solicitud dinámicamente
       const bookData = {
         id: book.id_api,
         title: book.title,
@@ -92,7 +88,7 @@ export function IndividualBookPage () {
       const bodyKey = isInBookshelf ? 'bookUpdated' : 'bookAdded'
       const requestBody = {
         userId,
-        [bodyKey]: bookData // Usar la clave dinámica
+        [bodyKey]: bookData
       }
 
       try {
@@ -124,7 +120,6 @@ export function IndividualBookPage () {
   const [categoriesSelected, setCategoriesSelected] = useState([])
   function handleChangeCategoriesSelected (event) {
     const { value, checked } = event.target
-    console.log({ value })
     if (checked) {
       setCategoriesSelected([...categoriesSelected, value])
     } else {
@@ -135,13 +130,12 @@ export function IndividualBookPage () {
   const [newCategory, setNewCategory] = useState('')
   function handleChangeNewCategory (event) {
     const { value } = event.target
-    console.log({ value })
     setNewCategory(value)
   }
+
   function handleAddNewCategory (event) {
     event.preventDefault()
     setCategories((prevCategories) => ([...prevCategories, newCategory]))
-    console.log(categories)
     setNewCategory('')
   }
 
@@ -162,9 +156,7 @@ export function IndividualBookPage () {
   const [review, setReview] = useState('')
   function handleReviewChange (event) {
     const { value } = event.target
-    console.log({ value })
     setReview(value)
-    console.log({ review })
   }
 
   const [isPopupOpen, setIsPopupOpen] = useState(false)
@@ -228,7 +220,6 @@ export function IndividualBookPage () {
               <h1>{book?.title || 'No title available'}</h1>
               <p>by {book?.authors?.[0] || 'Unknown author'}</p>
             </div>
-            {/* <img className='divider' src={Divider} /> */}
             <p>{book?.description || 'No description available.'}</p>
           </div>
         </section>

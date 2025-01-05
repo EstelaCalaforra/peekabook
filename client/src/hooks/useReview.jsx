@@ -12,7 +12,6 @@ export function useReview () {
       const response = await axios.get('http://localhost:5000/api/books/reviews/' + bookId)
       const resDataGetReviews = response.data.reviews
       setAllReviewsFromBook(resDataGetReviews)
-      console.log({ resDataGetReviews })
     } catch (error) {
       console.log(error)
     }
@@ -23,7 +22,6 @@ export function useReview () {
       const response = await axios.get('http://localhost:5000/api/books/reviews')
       const resData = response.data.reviews
       setAllReviews(resData)
-      console.log('All Reviews:', resData)
     } catch (error) {
       console.error('Error fetching all reviews:', error)
     }

@@ -7,7 +7,7 @@ export function useLogin () {
   const [message, setMessage] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login } = useAuth() // Accedemos al contexto de autenticación
+  const { login } = useAuth()
   const navigate = useNavigate()
 
   // Handle the info submitted in the form
@@ -31,11 +31,10 @@ export function useLogin () {
         const user = data.userId
         console.log({ user })
 
-        // Llamamos al método login del contexto con el userId, userEmail y el token
         await login(data.userId, data.userEmail, data.token)
 
         setTimeout(() => {
-          navigate('/bookshelf/' + data.userId) // Redirigimos a la página del usuario
+          navigate('/bookshelf/' + data.userId)
         }, 2000)
       } else {
         setMessage('')

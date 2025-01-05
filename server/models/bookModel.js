@@ -164,14 +164,11 @@ export const updateUserBookRelation = async (userId, bookId, readDate, categorie
       [userId, bookId, readDate, categories]
     )
 
-    if (reviewText || rating) {
-      // Insertar la reseña si existe un texto o una calificación
-      await db.query(
+    await db.query(
         `INSERT INTO reviews (user_id, book_id, review, rating)
          VALUES ($1, $2, $3, $4)`,
         [userId, bookId, reviewText, rating]
-      )
-    }
+    )
   }
 }
 export const deleteUserBookRelation = async (userId, bookIdApi) => {

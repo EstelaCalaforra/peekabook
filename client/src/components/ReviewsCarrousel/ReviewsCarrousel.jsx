@@ -3,7 +3,7 @@ import { useReview } from '../../hooks/useReview'
 import './ReviewsCarrousel.css'
 import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
 
-export function ReviewsCarrousel() {
+export function ReviewsCarrousel () {
   const { allReviews, getAllReviewsFromDB } = useReview()
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export function ReviewsCarrousel() {
         {reviewsDuplicated.map((review, index) => (
           <div key={`${review.id || index}-${index}`} className='review-card'>
             <p>
-              <strong>{review.user_email}</strong> on {review.date.split('T')[0]} reviewed:
+              <strong>{review.user_email.split('@')[0]}</strong> on {review.date.split('T')[0]} reviewed:
             </p>
             <h4>{review.book_title}</h4>
             <img className='rating' src={FiveStarsRatingIcon} alt='rating' />

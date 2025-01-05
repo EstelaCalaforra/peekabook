@@ -2,11 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Oculta las reseñas fuera de la vista */
-  width: 100%; /* Asegura que el carrusel ocupe todo el ancho disponible */
-  max-width: 1200px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1560px;
   margin-bottom: 60px;
-  position: relative;
+  margin-top: 50px;
 }
 
 .reviews-group {

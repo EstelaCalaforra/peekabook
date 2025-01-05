@@ -16,7 +16,7 @@ export function SignUpPage () {
     e.preventDefault()
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match')
+      setError('Passwords do not match. Please try again.')
       return
     }
 
@@ -32,11 +32,8 @@ export function SignUpPage () {
 
     if (data.success) {
       setMessage('Signup successful! Login and redirecting...')
-      const loggedUser = data.userId
-      console.log({ loggedUser })
       setUserId(data.userId)
       setIsAuthenticated(true)
-      console.log('authenticated: true')
       navigate('/bookshelf/' + data.userId)
     } else {
       setError(data.message || 'Signup failed')

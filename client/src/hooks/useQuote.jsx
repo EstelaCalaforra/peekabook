@@ -3,9 +3,9 @@ import axios from 'axios'
 
 export function useQuote () {
   const [quoteData, setQuoteData] = useState({ quote: '', author: '', book: '' })
-  const [loadingQuoteData, setLoadingQuoteData] = useState(true) // Controla el estado de carga
+  const [loadingQuoteData, setLoadingQuoteData] = useState(true)
 
-  // fetch the random quote API
+  // Fetch the random quote API
   useEffect(() => {
     if (!loadingQuoteData) return
 

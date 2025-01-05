@@ -1,5 +1,4 @@
 import './BookshelfPage.css'
-import Divider from '../../assets/botanical-divider-crop.png'
 import { useBookshelf } from '../../hooks/useBookshelf'
 import { Shelf } from '../../components/Shelf/Shelf.jsx'
 import { ReviewCard } from '../../components/ReviewCard/ReviewCard.jsx'
@@ -24,9 +23,8 @@ export function BookshelfPage () {
   return (
     <div className='bookshelf-page'>
       {/* Shelves section */}
-      <div className='books'>
+      <div className='bookshelves'>
         <h2>Bookshelves</h2>
-        {/* <img src={Divider} className='bookshelf-divider' alt='divider' /> */}
         {hasBooks && (
           <>
             <div className='shelves'>
@@ -47,7 +45,7 @@ export function BookshelfPage () {
                 )
               })}
             </div>
-            <a className='see-more'>See more</a>
+            {/* <a className='see-more'>See more</a> */}
           </>
         )}
         {!hasBooks && (
@@ -60,7 +58,6 @@ export function BookshelfPage () {
       {/* Reviews section */}
       <div className='reviews'>
         <h2 className='recent-reviews'>Recent reviews</h2>
-        {/* <img src={Divider} className='bookshelf-divider' alt='divider' /> */}
         {hasReviews
           ? (
             <div className='reviews-and-button'>
@@ -76,7 +73,7 @@ export function BookshelfPage () {
                   )
                 ))}
               </ul>
-              <a className='see-more'>See more</a>
+              {/* <a className='see-more'>See more</a> */}
             </div>
             )
           : (

@@ -1,6 +1,5 @@
 import './Header.css'
 import bookLogo from '../../assets/logo-peekabook.png'
-import userIcon from '../../assets/user-icon.png'
 import { useAuth } from '../../context/AuthContext'
 import { UserDropDown } from '../../components/UserPopup/UserPopup.jsx'
 import { SearchForm } from '../../components/SearchForm/SearchForm.jsx'
@@ -27,9 +26,6 @@ export function Header () {
             logout={logout}
             isAuthenticated={isAuthenticated}
           />
-          {/* <div className='column'>
-          <img src={userIcon} alt='User Icon' className='user-icon' />
-        </div> */}
         </div>
       </div>
     </header>

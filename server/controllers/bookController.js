@@ -116,7 +116,7 @@ export const updateUserBookshelf = async (req, res) => {
       return res.status(500).json({ success: false, message: 'Book not found in database.' })
     }
     const bookUpdatedReviewText = bookUpdated.reviewText
-    console.log({ bookUpdatedReviewText }) // esta llegando texto
+    console.log({ bookUpdatedReviewText })
 
     await updateUserBookRelation(
       userId,

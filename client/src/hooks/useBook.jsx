@@ -11,16 +11,14 @@ export function useBook () {
     try {
       const response = await axios.get('http://localhost:5000/api/books/book/' + bookId)
       const resDataGetBook = response.data[0]
-      console.log({ resDataGetBook })
       setBook(resDataGetBook)
-      // setBooksBySameAuthor()
     } catch (error) {
       console.log(error)
     }
   }
+
   async function getBooksBySameAuthor (author, page = 1) {
     try {
-      console.log({ author })
       const maxResults = 10 // Results per page
       const startIndex = (page - 1) * maxResults // Calculate initial index
 
