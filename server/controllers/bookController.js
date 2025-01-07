@@ -14,8 +14,6 @@ import {
 
 export const addBookToUser = async (req, res) => {
   const { userId, bookAdded } = req.body
-  console.log({ bookAdded })
-  console.log({ userId })
 
   try {
     const book = await findBookByIdApi(bookAdded.id)
@@ -46,7 +44,8 @@ export const addBooksIfNotOnDB = async (req, res) => {
     title: book.volumeInfo?.title,
     authors: book.volumeInfo?.authors || [],
     description: book.volumeInfo?.description,
-    cover: book.volumeInfo?.imageLinks?.smallThumbnail
+    cover: book.volumeInfo?.imageLinks?.smallThumbnail,
+    buyLink: book.saleInfo?.buyLink
   }))
 
   try {

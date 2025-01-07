@@ -1,5 +1,5 @@
 import { useQuote } from '../../hooks/useQuote'
-import AuthorPhoto from '../../assets/haruki-murakami-pfp.png'
+// import AuthorPhoto from '../../assets/haruki-murakami-pfp.png'
 
 export function Quote () {
   const { quoteData, loadingQuoteData } = useQuote()
@@ -19,7 +19,7 @@ export function Quote () {
                   <p>&quot;{quoteData.quote}&quot;</p>
                   <p>{quoteData.author}</p>
                 </div>
-                <img src={AuthorPhoto} />
+                {/* <img src={AuthorPhoto} /> */}
               </div>
               )}
         </div>

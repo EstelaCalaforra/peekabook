@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken'
 import { authenticateUser, registerUser } from '../models/userModel.js'
 
 export const loginUser = async (req, res) => {
@@ -40,14 +39,18 @@ export const signupUser = async (req, res) => {
   try {
     const result = await registerUser(email, password)
 
-    if (result === null) {
+    if (!result) {
       return res.status(400).json({ success: false, message: 'User already exists' })
     }
+
+    const { user, token } = result
 
     return res.status(201).json({
       success: true,
       message: 'User registered successfully',
-      userId: result.id
+      userId: user.id,
+      userEmail: user.email,
+      token
     })
   } catch (error) {
     console.error('Signup error:', error)

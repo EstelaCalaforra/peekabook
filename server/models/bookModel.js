@@ -96,6 +96,7 @@ export const insertBook = async (book) => {
   ])
   return result.rows[0]?.id
 }
+
 export const insertAuthor = async (authorName) => {
   const insertAuthorQuery = `
     INSERT INTO authors (fullname)
@@ -105,6 +106,7 @@ export const insertAuthor = async (authorName) => {
   const result = await db.query(insertAuthorQuery, [authorName])
   return result.rows[0]?.id
 }
+
 export const insertReview = async (userId, bookId, reviewText, rating) => {
   const insertReviewQuery = `
     INSERT INTO reviews (user_id, book_id, review, rating)
@@ -123,6 +125,7 @@ export const addUserBookRelation = async (userId, bookId, readDate, categories) 
       [userId, bookId, readDate, categories]
   )
 }
+
 export const updateUserBookRelation = async (userId, bookId, readDate, categories, reviewText, rating) => {
   // Verify if already exists a user_book relation
   const userBookRelation = await db.query(
@@ -171,9 +174,14 @@ export const updateUserBookRelation = async (userId, bookId, readDate, categorie
     )
   }
 }
+
 export const deleteUserBookRelation = async (userId, bookIdApi) => {
   const book = await findBookByIdApi(bookIdApi)
   const bookId = book.id
+  await db.query(
+    'DELETE FROM reviews WHERE user_id = $1 AND book_id = $2',
+    [userId, bookId]
+  )
   const result = await db.query(
     'DELETE FROM user_books WHERE user_id = $1 AND book_id = $2 RETURNING book_id',
     [userId, bookId]

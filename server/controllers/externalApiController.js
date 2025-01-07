@@ -9,7 +9,7 @@ export const fetchBooks = async (req, res) => {
       q: bookQuery,
       orderBy: 'relevance',
       printType: 'books',
-      // langRestrict: 'en',
+      langRestrict: 'en',
       startIndex: parseInt(startIndex), // initial index for pagination
       maxResults: parseInt(maxResults) // results per page
     }

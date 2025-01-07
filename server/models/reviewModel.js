@@ -1,6 +1,5 @@
 import { db } from '../config/dbConfig.js'
 
-// Obtener las reseñas por ID del libro
 export const getReviewsByBookId = async (bookId) => {
   const result = await db.query(
     `
@@ -17,7 +16,6 @@ export const getReviewsByBookId = async (bookId) => {
   return result.rows
 }
 
-// Eliminar una reseña por ID
 export const deleteReviewById = async (reviewId) => {
   const result = await db.query(
     `
@@ -30,7 +28,6 @@ export const deleteReviewById = async (reviewId) => {
   return result.rows[0]
 }
 
-// Nueva función para actualizar una reseña
 export const updateReviewById = async (reviewId, reviewText) => {
   const result = await db.query(
     `
@@ -61,21 +58,6 @@ export const createReviewByBookId = async (bookId, reviewText, userId) => {
   return result.rows[0]
 }
 
-export const updateOrCreateReview = async (bookId, reviewText, userId) => {
-  const existingReview = await db.query(
-    'SELECT * FROM reviews WHERE book_id = (SELECT id FROM books WHERE id_api = $1) AND user_id = $2',
-    [bookId, userId]
-  )
-
-  if (existingReview.rows.length > 0) {
-    const updatedReview = await updateReviewById(existingReview.rows[0].id, reviewText)
-    return updatedReview
-  } else {
-    const newReview = await createReviewByBookId(bookId, reviewText, userId)
-    return newReview
-  }
-}
-
 export const getAllReviews = async () => {
   const result = await db.query(
     `
@@ -87,5 +69,5 @@ export const getAllReviews = async () => {
     ORDER BY reviews.date DESC;
     `
   )
-  return result.rows // Devuelve todas las reseñas
+  return result.rows
 }

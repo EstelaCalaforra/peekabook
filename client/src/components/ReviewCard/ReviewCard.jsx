@@ -21,30 +21,33 @@ export function ReviewCard ({ review, deleteReviewFromDB, handleEditReview }) {
 
   return (
     <li className='review'>
-      <p className='date'>{review.review_date.split('T')[0]}</p>
-      <p className='title'>{review.title}</p>
-      <p className='authors'>by {review?.authors || 'Unknown author'}</p>
-      <img className='five-stars-icon' src={FiveStarsRatingIcon} alt='rating' />
+      <div>
+        <p className='date'>{review.review_date.split('T')[0]}</p>
+        <p className='title'>{review.title}</p>
+        <p className='authors'>by {review?.authors || 'Unknown author'}</p>
+        <img className='five-stars-icon' src={FiveStarsRatingIcon} alt='rating' />
 
-      {isEditing
-        ? (
-          <div className='edit-review'>
-            <textarea
-              value={editedReview}
-              onChange={handleChange}
-              rows='4'
-              className='edit-textarea'
-            />
-            <button className='save-edit' onClick={handleSaveEdit}>Save</button>
-            <button className='cancel-edit' onClick={handleCancelEdit}>Cancel</button>
-          </div>
-          )
-        : (
-          <p className='review-text'>{review.review}</p>
-          )}
-
-      {!isEditing && <button className='edit-icon' onClick={() => setIsEditing(true)} />}
-      <button className='delete-icon' onClick={() => deleteReviewFromDB(review.review_id)} />
+        {isEditing
+          ? (
+            <div className='edit-review'>
+              <textarea
+                value={editedReview}
+                onChange={handleChange}
+                rows='4'
+                className='edit-textarea'
+              />
+              <button className='save-edit' onClick={handleSaveEdit}>Save</button>
+              <button className='cancel-edit' onClick={handleCancelEdit}>Cancel</button>
+            </div>
+            )
+          : (
+            <p className='review-text'>{review.review}</p>
+            )}
+      </div>
+      <div className='buttons'>
+        {!isEditing && <button className='edit-icon' onClick={() => setIsEditing(true)} />}
+        <button className='delete-icon' onClick={() => deleteReviewFromDB(review.review_id)} />
+      </div>
     </li>
   )
 }

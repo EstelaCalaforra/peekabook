@@ -1,15 +1,13 @@
-import { useState, useContext } from 'react'
-import { BookSearchContext } from '../context/bookSearchContext'
+import { useState } from 'react'
 import axios from 'axios'
 
 export function useBook () {
   const [book, setBook] = useState({})
   const [booksBySameAuthor, setBooksBySameAuthor] = useState()
-  const { bookId, setTotalPages } = useContext(BookSearchContext)
 
-  async function getBookFromDB () {
+  async function getBookFromDB (id) {
     try {
-      const response = await axios.get('http://localhost:5000/api/books/book/' + bookId)
+      const response = await axios.get('http://localhost:5000/api/books/book/' + id)
       const resDataGetBook = response.data[0]
       setBook(resDataGetBook)
     } catch (error) {
@@ -17,21 +15,15 @@ export function useBook () {
     }
   }
 
-  async function getBooksBySameAuthor (author, page = 1) {
+  async function getBooksBySameAuthor (author) {
     try {
-      const maxResults = 10 // Results per page
-      const startIndex = (page - 1) * maxResults // Calculate initial index
-
       const response = await axios.get('http://localhost:5000/api/external/search', {
         params: {
-          bookQuery: author,
-          startIndex,
-          maxResults
+          bookQuery: author
         }
       })
-      const { items, totalItems } = response.data
+      const { items } = response.data
       setBooksBySameAuthor(items)
-      setTotalPages(Math.ceil(totalItems / maxResults)) // Calculate total pages
     } catch (error) {
       console.log(error)
     }

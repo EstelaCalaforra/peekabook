@@ -7,7 +7,7 @@
 
 .homepage {
     display: flex;
-    height: 90vh;
+    height: 100vh;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -150,6 +150,7 @@
 }
 
 .homepage .button {
+    text-decoration: none;
     color: #AB886D;
     background-color: white;
     width: 95px;
@@ -178,13 +179,14 @@
 @media (max-width: 1700px) {
     .quote-bestsellers-container {
       flex-direction: column !important;
+      gap: 100px !important;
+    }
+    .homepage {
+        flex-direction: column !important;
+        justify-content: start !important;
+        gap: 100px;
+
+        height: 100% !important;
     }
     
   }
-
-@media (max-width: 500px) {
-.bestsellers-row {
-    flex-direction: column !important;
-}
-
-}

@@ -2,8 +2,7 @@ import {
   getReviewsByBookId,
   deleteReviewById,
   updateReviewById,
-  getAllReviews,
-  updateOrCreateReview
+  getAllReviews
 } from '../models/reviewModel.js'
 
 export const getReviews = async (req, res) => {
@@ -69,26 +68,6 @@ export const updateReview = async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Error updating review'
-    })
-  }
-}
-
-export const updateOrCreateReviewController = async (req, res) => {
-  const { reviewText, userId } = req.body // userId debería venir del cuerpo de la solicitud o sesión
-  const bookId = req.params.bookId
-
-  try {
-    const review = await updateOrCreateReview(bookId, reviewText, userId)
-    res.status(200).json({
-      success: true,
-      message: 'Review created or updated successfully',
-      review
-    })
-  } catch (error) {
-    console.error('Error creating or updating review:', error)
-    res.status(500).json({
-      success: false,
-      message: 'Error creating or updating review'
     })
   }
 }

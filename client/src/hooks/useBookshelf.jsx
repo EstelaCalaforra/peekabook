@@ -12,35 +12,32 @@ export function useBookshelf () {
   const [reviews, setReviews] = useState([])
   const { categories, setCategories, setBookId } = useContext(BookSearchContext)
 
-  useEffect(() => {
-    const fetchBookshelfData = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/books/bookshelf/' + userId, {
-          headers: { Authorization: `Bearer ${authToken}` }
-        })
-        const resDataGetBooks = response.data
+  async function fetchBookshelfData () {
+    try {
+      const response = await axios.get('http://localhost:5000/api/books/bookshelf/' + userId, {
+        headers: { Authorization: `Bearer ${authToken}` }
+      })
+      const resDataGetBooks = response.data
 
-        if (resDataGetBooks && resDataGetBooks.length > 0) {
-          setHasBooks(true)
-          const allCategories = await getCategories(resDataGetBooks)
-          setCategories(allCategories)
-          const allReviews = await getReviews(resDataGetBooks)
-          if (allReviews) {
-            setHasReviews(true)
-            setReviews(allReviews)
-          }
-        } else {
-          setHasBooks(false)
+      if (resDataGetBooks && resDataGetBooks.length > 0) {
+        setHasBooks(true)
+        const allCategories = await getCategories(resDataGetBooks)
+        setCategories(allCategories)
+        const allReviews = await getReviews(resDataGetBooks)
+        if (allReviews) {
+          setHasReviews(true)
+          setReviews(allReviews)
         }
-      } catch (error) {
-        console.log(error)
-        if (error.response && error.response.status === 403) {
-          logout()
-        }
+      } else {
+        setHasBooks(false)
+      }
+    } catch (error) {
+      console.log(error)
+      if (error.response && error.response.status === 403) {
+        logout()
       }
     }
-    fetchBookshelfData()
-  }, [userId, authToken, logout, setCategories])
+  }
 
   async function getCategories (response) {
     const cleanedData = response.map(book => {
@@ -107,7 +104,6 @@ export function useBookshelf () {
   }
 
   const navigate = useNavigate()
-
   function handleClickOnCover (idApi) {
     setBookId(idApi)
     navigate(`/ind-book/${idApi}`, { state: idApi })
@@ -145,6 +141,7 @@ export function useBookshelf () {
   }
 
   return {
+    fetchBookshelfData,
     categories,
     getCategories,
     reviews,

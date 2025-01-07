@@ -10,13 +10,17 @@ export function SignUpPage () {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
-  const { setIsAuthenticated, setUserId } = useAuth()
+  const { setIsAuthenticated, setUserId, setAuthToken } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (password !== confirmPassword) {
       setError('Passwords do not match. Please try again.')
+      setTimeout(() => {
+        setError('')
+      }, 2000)
+
       return
     }
 
@@ -31,10 +35,14 @@ export function SignUpPage () {
     const data = await response.json()
 
     if (data.success) {
+      console.log({ data })
       setMessage('Signup successful! Login and redirecting...')
       setUserId(data.userId)
+      setAuthToken(data.token)
       setIsAuthenticated(true)
-      navigate('/bookshelf/' + data.userId)
+      setTimeout(() => {
+        navigate('/bookshelf/' + data.userId)
+      }, 2000)
     } else {
       setError(data.message || 'Signup failed')
     }

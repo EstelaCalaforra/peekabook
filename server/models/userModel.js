@@ -62,10 +62,15 @@ export const registerUser = async (email, password) => {
 
   try {
     const result = await db.query(
-      'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id',
+      'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id, email',
       [email, hashedPassword]
     )
-    return { id: result.rows[0].id, email }
+
+    const user = result.rows[0]
+
+    const token = generateToken(user)
+
+    return { user, token }
   } catch (error) {
     console.error('Error registering user:', error)
     throw error

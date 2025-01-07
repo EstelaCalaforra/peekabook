@@ -73,6 +73,7 @@
     outline: none;
     border-color: #D6C0B3 !important;
     background-color: #E4E0E1 !important;
+    caret-color: auto;
   }
   
   .login-button {

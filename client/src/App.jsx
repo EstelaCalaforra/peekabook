@@ -41,7 +41,8 @@ function App () {
               <Routes>
                 {/* Public Routes */}
                 <Route exact path='/' element={<HomePage />} />
-                <Route path='/book-search' element={<BookFindPage />} />
+                {/* <Route path='/book-search' element={<BookFindPage />} /> */}
+                <Route path='/book-search/:bookQuery' element={<BookFindPage />} />
                 <Route path='/ind-book/:id' element={<IndividualBookPage />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/signup' element={<SignUpPage />} />

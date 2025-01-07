@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { addBookToUser, addBooksIfNotOnDB, getUserBookshelf, getBookFromDB, updateUserBookshelf, deleteBookFromUserBookshelf } from '../controllers/bookController.js'
-import { getReviews, deleteReview, updateReview, getAllReviewsController, updateOrCreateReviewController } from '../controllers/reviewController.js'
+import { getReviews, deleteReview, updateReview, getAllReviewsController } from '../controllers/reviewController.js'
 import { verifyAuthToken } from '../middleware/authMiddleware.js'
 
 export const bookRouter = Router()
@@ -15,7 +15,6 @@ bookRouter.delete('/reviews/:id', deleteReview)
 bookRouter.delete('/remove/:userId/:bookId', verifyAuthToken, deleteBookFromUserBookshelf)
 
 bookRouter.put('/reviews/:id', verifyAuthToken, updateReview)
-bookRouter.post('/reviews/update/:bookId', verifyAuthToken, updateOrCreateReviewController)
 
 // Users
 bookRouter.get('/bookshelf/:id', verifyAuthToken, getUserBookshelf)

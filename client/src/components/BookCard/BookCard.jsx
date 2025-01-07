@@ -1,5 +1,5 @@
 import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
-
+import { Link } from 'react-router-dom'
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png'
 
 export function BookCard ({ book, onClickReadMore }) {
@@ -19,9 +19,9 @@ export function BookCard ({ book, onClickReadMore }) {
           <img className='bookinfo-five-stars-icon' src={FiveStarsRatingIcon} alt='Rating' />
         </div>
         <div className='read-more'>
-          <a onClick={(event) => onClickReadMore(event, book.id)} className='button'>
+          <Link onClick={(event) => onClickReadMore(event, book.id)} className='button'>
             Read more
-          </a>
+          </Link>
         </div>
       </div>
     </li>

@@ -1,28 +1,52 @@
 import './IndividualBookPage.css'
 import { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { BookSearchContext } from '../../context/bookSearchContext'
 import { useAuth } from '../../context/AuthContext'
 import { useBookshelf } from '../../hooks/useBookshelf'
 import { useBook } from '../../hooks/useBook'
 import { useReview } from '../../hooks/useReview'
+import { useIndividualBook } from '../../hooks/useIndividualBook'
 import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png' // this img is not free use oopsie
 
 export function IndividualBookPage () {
-  const { bookId, setBookId, setCategories } = useContext(BookSearchContext)
-  const { isAuthenticated, userId, authToken } = useAuth()
-  const { categories, bookshelfData = [], setBookshelfData } = useBookshelf()
+  const { setBookId } = useContext(BookSearchContext)
+  const { userId } = useAuth()
+  const { categories, bookshelfData = [] } = useBookshelf()
   const { book, getBookFromDB, booksBySameAuthor, getBooksBySameAuthor } = useBook()
   const { allReviewsFromBook, getReviewsFromDB } = useReview()
   const [added, setAdded] = useState(false)
   const [isInBookshelf, setIsInBookshelf] = useState(false)
-  const navigate = useNavigate()
+  const { id } = useParams()
+  const {
+    handleClick,
+    handleAdd,
+    handleChangeCategoriesSelected,
+    handleChangeNewCategory,
+    handleAddNewCategory,
+    handleClickAddToShelves,
+    handleReviewChange,
+    isPopupOpen,
+    closePopup,
+    categoriesSelected,
+    newCategory,
+    review
+  } = useIndividualBook()
 
   useEffect(() => {
-    getBookFromDB()
-    getReviewsFromDB()
-  }, [bookId])
+    if (id) {
+      console.log({ id })
+      setBookId(id)
+      getBookFromDB(id)
+      getReviewsFromDB()
+    }
+  }, [id])
+
+  // useEffect(() => {
+  //   getBookFromDB()
+  //   getReviewsFromDB()
+  // }, [bookId])
 
   useEffect(() => {
     getBooksBySameAuthor(book?.authors?.[0])
@@ -50,118 +74,6 @@ export function IndividualBookPage () {
       setAdded(bookExists)
     }
   }, [book, bookshelfData])
-
-  function handleClick (idApi) {
-    setBookId(idApi)
-    navigate(`/ind-book/${idApi}`, { state: idApi })
-  }
-
-  async function handleAdd (event) {
-    event.preventDefault()
-
-    if (categoriesSelected.length === 0) {
-      // Delete book if no categories selected
-      await fetch(`http://localhost:5000/api/books/remove/${userId}/${book.id_api}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${authToken}`
-        }
-      })
-      setBookshelfData(bookshelfData.filter(item => item.id_api !== book.id_api))
-      setIsInBookshelf(false)
-      setAdded(false)
-    } else {
-      const bookData = {
-        id: book.id_api,
-        title: book.title,
-        rating: 0,
-        reviewText: review || '',
-        categories: categoriesSelected,
-        readDate: new Date()
-      }
-
-      const method = isInBookshelf ? 'PUT' : 'POST'
-      const url = isInBookshelf
-        ? `http://localhost:5000/api/books/update-bookshelf/${userId}`
-        : 'http://localhost:5000/api/books/add'
-
-      const bodyKey = isInBookshelf ? 'bookUpdated' : 'bookAdded'
-      const requestBody = {
-        userId,
-        [bodyKey]: bookData
-      }
-
-      try {
-        const response = await fetch(url, {
-          method,
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${authToken}`
-          },
-          body: JSON.stringify(requestBody)
-        })
-
-        if (response.ok) {
-          const updatedBookshelfData = await response.json()
-          setBookshelfData(updatedBookshelfData)
-          setIsInBookshelf(true)
-          setAdded(true)
-        } else {
-          console.error('Failed to update bookshelf:', await response.json())
-        }
-      } catch (error) {
-        console.error('Error updating bookshelf:', error)
-      }
-    }
-
-    closePopup()
-  }
-
-  const [categoriesSelected, setCategoriesSelected] = useState([])
-  function handleChangeCategoriesSelected (event) {
-    const { value, checked } = event.target
-    if (checked) {
-      setCategoriesSelected([...categoriesSelected, value])
-    } else {
-      setCategoriesSelected(categoriesSelected.filter(option => option !== value))
-    }
-  }
-
-  const [newCategory, setNewCategory] = useState('')
-  function handleChangeNewCategory (event) {
-    const { value } = event.target
-    setNewCategory(value)
-  }
-
-  function handleAddNewCategory (event) {
-    event.preventDefault()
-    setCategories((prevCategories) => ([...prevCategories, newCategory]))
-    setNewCategory('')
-  }
-
-  function handleClickAddToShelves () {
-    if (isAuthenticated) {
-      const currentBook = bookshelfData.find(item => item.id_api === book.id_api)
-      if (currentBook) {
-        setCategoriesSelected(currentBook.categories || [])
-      } else {
-        setCategoriesSelected([])
-      }
-      openPopup()
-    } else {
-      navigate('/login')
-    }
-  }
-
-  const [review, setReview] = useState('')
-  function handleReviewChange (event) {
-    const { value } = event.target
-    setReview(value)
-  }
-
-  const [isPopupOpen, setIsPopupOpen] = useState(false)
-  const openPopup = () => setIsPopupOpen(true)
-  const closePopup = () => setIsPopupOpen(false)
 
   return (
     <div className='individual-book-page'>
@@ -213,7 +125,7 @@ export function IndividualBookPage () {
                 </div>
               </div>
             )}
-            <a className='button buy' src=''>Buy</a>
+            {/* <a className='button buy' src=''>Buy</a> */}
           </div>
           <div className='title-author-desc'>
             <div className='title-author'>

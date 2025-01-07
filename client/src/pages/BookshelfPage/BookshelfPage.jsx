@@ -2,6 +2,7 @@ import './BookshelfPage.css'
 import { useBookshelf } from '../../hooks/useBookshelf'
 import { Shelf } from '../../components/Shelf/Shelf.jsx'
 import { ReviewCard } from '../../components/ReviewCard/ReviewCard.jsx'
+import { useEffect } from 'react'
 
 export function BookshelfPage () {
   const {
@@ -13,12 +14,17 @@ export function BookshelfPage () {
     categories,
     reviews,
     deleteReviewFromDB,
-    updateReviewInDB
+    updateReviewInDB,
+    fetchBookshelfData
   } = useBookshelf()
 
   const handleEditReview = async (updatedReview) => {
     await updateReviewInDB(updatedReview)
   }
+
+  useEffect(() => {
+    fetchBookshelfData()
+  }, [])
 
   return (
     <div className='bookshelf-page'>

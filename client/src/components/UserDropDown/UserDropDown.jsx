@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
 export function UserDropDown ({ userEmail, logout, isAuthenticated }) {
-  const [showPopup, setShowPopup] = useState(false)
+  const [showDropDown, setShowDropDown] = useState(false)
 
   const handleMouseEnter = () => {
-    setShowPopup(true)
+    setShowDropDown(true)
   }
 
   const handleMouseLeave = () => {
-    setShowPopup(false)
+    setShowDropDown(false)
   }
 
   return (
@@ -16,12 +16,12 @@ export function UserDropDown ({ userEmail, logout, isAuthenticated }) {
       {isAuthenticated &&
         <div>
           <div className='username' onMouseEnter={handleMouseEnter}>{userEmail?.split('@')[0] || 'useremail'} ▼</div>
-          {showPopup &&
+          {showDropDown &&
             <div className='popup-login'>
               <div className='column' onMouseLeave={handleMouseLeave}>
                 <a onClick={logout}>Log out</a>
-                <a className=''>Profile</a>
-                <a className=''>Settings</a>
+                {/* <a className=''>Profile</a> */}
+                {/* <a className=''>Settings</a> */}
               </div>
             </div>}
         </div>}

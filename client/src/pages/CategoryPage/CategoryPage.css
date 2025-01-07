@@ -11,11 +11,13 @@
 
 .category-page h1 {
     width: 100%;
+    color: #7c5b44;
 }
 
 .category-page .row {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     align-content: start;
     gap: 30px;
@@ -44,7 +46,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 10px 0px 10px 0px;
+    padding: 0px 0px 0px 0px;
 }
 
 .category-page .title-author {
@@ -65,8 +67,13 @@
 }
 
 .category-page .read-more {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+
     width: 100%;
-    text-align: right;
 }
 
 .category-page .button {
@@ -82,7 +89,18 @@
 }
 
 .category-page .button:hover {
-    color: antiquewhite;
+    background-color: #E4E0E1;
+}
+
+.category-page .delete-icon:hover {
+    background: url('../../assets/delete-icon-light.png');
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    outline: none;
+    padding: 0px;
 }
 
 .category-page .five-stars-icon {

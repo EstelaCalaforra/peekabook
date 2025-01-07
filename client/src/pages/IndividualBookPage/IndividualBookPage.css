@@ -14,10 +14,12 @@
 
 .individual-book-page h1 {
     margin: 0;
+    color: #7c5b44;
 }
 
 .individual-book-page h2 {
     margin: 0;
+    color: #7c5b44;
 }
 
 .individual-book-page p {
@@ -61,6 +63,7 @@
 .individual-book-page .cover {
     height: 256px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .individual-book-page .button {

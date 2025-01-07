@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
-// Crear contexto
 export const AuthContext = createContext()
 
 export function AuthProvider ({ children }) {
@@ -11,6 +10,7 @@ export function AuthProvider ({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
+  const location = useLocation()
 
   // Function to clear user data when logout or session token expired
   const clearUserData = () => {
@@ -54,6 +54,9 @@ export function AuthProvider ({ children }) {
 
       // If token invalid or expired, logout
       if (response.status === 403) {
+        if (location.pathname === '/') {
+          return true
+        }
         clearUserData()
         navigate('/login')
         return false
@@ -93,10 +96,13 @@ export function AuthProvider ({ children }) {
     <AuthContext.Provider
       value={{
         isAuthenticated,
+        setIsAuthenticated,
         authToken,
+        setAuthToken,
         login,
         logout,
         userId,
+        setUserId,
         userEmail,
         loading
       }}
