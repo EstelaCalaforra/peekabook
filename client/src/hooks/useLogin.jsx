@@ -23,13 +23,10 @@ export function useLogin () {
       })
 
       const data = await response.json()
-      console.log({ data })
 
       if (data.success) {
         setMessage('Login successful! Redirecting...')
         setError('')
-        const user = data.userId
-        console.log({ user })
 
         await login(data.userId, data.userEmail, data.token)
 

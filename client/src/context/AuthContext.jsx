@@ -80,9 +80,7 @@ export function AuthProvider ({ children }) {
         if (isValid) {
           setIsAuthenticated(true)
           setUserId(window.localStorage.getItem('userId'))
-          console.log(window.localStorage.getItem('userId'))
           setUserEmail(window.localStorage.getItem('userEmail'))
-          console.log(window.localStorage.getItem('userEmail'))
         }
       })
     } else {

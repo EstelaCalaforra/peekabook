@@ -27,7 +27,6 @@ export function useIndividualBook () {
 
   async function handleAdd (event, id) {
     event.preventDefault()
-    console.log({ id })
 
     if (categoriesSelected.length === 0) {
       // Delete book if no categories selected
@@ -41,7 +40,7 @@ export function useIndividualBook () {
       setIsInBookshelf(false)
     } else {
       const bookData = {
-        id: id,
+        id,
         title: book.title,
         rating: 0,
         reviewText: review || '',
@@ -54,7 +53,6 @@ export function useIndividualBook () {
         ? `http://localhost:5000/api/books/update-bookshelf/${userId}`
         : 'http://localhost:5000/api/books/add'
       const bodyKey = isInBookshelf ? 'bookUpdated' : 'bookAdded'
-      console.log({ bookData })
       const requestBody = {
         userId,
         [bodyKey]: bookData
@@ -84,7 +82,7 @@ export function useIndividualBook () {
 
     closePopup()
   }
-  
+
   function handleChangeCategoriesSelected (event) {
     const { value, checked } = event.target
     if (checked) {
@@ -105,14 +103,10 @@ export function useIndividualBook () {
     setNewCategory('')
   }
 
-  async function handleClickAddToShelves(id) {
-    
+  async function handleClickAddToShelves (id) {
     if (isAuthenticated) {
       openPopup()
       const currentBook = await bookshelfData.find(item => item.id_api === id)
-      console.log({ book })
-      console.log({ currentBook })
-      console.log({bookshelfData })
       setCategoriesSelected(currentBook?.categories || [])
     } else {
       navigate('/login')

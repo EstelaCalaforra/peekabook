@@ -19,8 +19,6 @@ export function CategoryPage () {
     fetchBookshelfData()
   }, [])
 
-  console.log({ bookshelfData })
-
   return (
     <main className='category-page'>
       <h1>{category?.charAt(0).toUpperCase() + category?.slice(1)} Shelf</h1>

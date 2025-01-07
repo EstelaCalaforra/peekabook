@@ -49,7 +49,6 @@ export function IndividualBookPage() {
       const bookExists = bookshelfData.some(item => item.id_api === book.id_api)
       setIsInBookshelf(bookExists)
     }
-    console.log({ bookshelfData })
   }, [loading, book, bookshelfData])
 
   useEffect(() => {

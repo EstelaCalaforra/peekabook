@@ -1,10 +1,7 @@
-import { useAuth } from '../../context/AuthContext'
 import './LoginPage.css'
 import { useLogin } from '../../hooks/useLogin'
 
 export function LoginPage () {
-  const { isAuthenticated } = useAuth()
-  console.log({ isAuthenticated })
   const { handleSubmit, error, message, email, setEmail, password, setPassword } = useLogin()
 
   return (

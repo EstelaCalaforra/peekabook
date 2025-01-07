@@ -16,7 +16,7 @@ export function Quote () {
             : (
               <div className='quote-row'>
                 <div>
-                  <p>&quot;{quoteData.quote}&quot;</p>
+                  <p className='quote-text'>&quot;{quoteData.quote}&quot;</p>
                   <p>{quoteData.author}</p>
                 </div>
                 {/* <img src={AuthorPhoto} /> */}

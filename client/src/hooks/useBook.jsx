@@ -16,7 +16,6 @@ export function useBook () {
   }
 
   async function getBooksBySameAuthor (author) {
-    console.log({ author })
     if (author) {
       try {
         const response = await axios.get('http://localhost:5000/api/external/search', {

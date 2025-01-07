@@ -17,7 +17,6 @@ export const addBookToUser = async (req, res) => {
 
   try {
     const book = await findBookByIdApi(bookAdded.id)
-    console.log({ book })
     const bookId = book?.id
 
     if (!bookId) {
@@ -77,11 +76,9 @@ export const addBooksIfNotOnDB = async (req, res) => {
 
 export const getBookFromDB = async (req, res) => {
   const idApi = req.params.id
-  console.log({ idApi })
 
   try {
     const book = await getBookDetailsByIdApi(idApi)
-    console.log(book)
     res.status(200).json(book)
   } catch (error) {
     console.error('Error fetching book details:', error)
@@ -91,11 +88,9 @@ export const getBookFromDB = async (req, res) => {
 
 export const getUserBookshelf = async (req, res) => {
   const userId = req.params.id
-  console.log({ userId })
 
   try {
     const books = await getBookshelfByUserId(userId)
-    console.log(books)
     res.status(200).json(books)
   } catch (error) {
     console.error('Error fetching bookshelf data:', error)
@@ -106,7 +101,6 @@ export const getUserBookshelf = async (req, res) => {
 export const updateUserBookshelf = async (req, res) => {
   const { userId } = req.params
   const { bookUpdated } = req.body
-  console.log({ userId, bookUpdated })
 
   try {
     const book = await findBookByIdApi(bookUpdated.id)
@@ -114,8 +108,6 @@ export const updateUserBookshelf = async (req, res) => {
     if (!bookId) {
       return res.status(500).json({ success: false, message: 'Book not found in database.' })
     }
-    const bookUpdatedReviewText = bookUpdated.reviewText
-    console.log({ bookUpdatedReviewText })
 
     await updateUserBookRelation(
       userId,
@@ -137,9 +129,7 @@ export const deleteBookFromUserBookshelf = async (req, res) => {
   const { userId, bookId } = req.params
 
   try {
-    console.log({ userId, bookId })
     const deletedBookId = await deleteUserBookRelation(userId, bookId)
-    console.log({ deletedBookId })
 
     if (!deletedBookId) {
       return res.status(404).json({ success: false, message: 'Book not found in user bookshelf.' })

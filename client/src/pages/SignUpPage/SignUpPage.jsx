@@ -1,4 +1,4 @@
-import { useSignup } from '../../hooks/useSignUp'
+import { useSignup } from '../../hooks/useSignup'
 
 import './SignUpPage.css'
 

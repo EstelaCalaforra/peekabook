@@ -48,7 +48,6 @@ export function useBookSearch () {
 
   function handleSubmit (event) {
     event.preventDefault()
-    console.log('render handle submit')
     setBooksGoogleAPI(bookQuery)
     navigate('/book-search/' + bookQuery)
   }

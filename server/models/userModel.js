@@ -48,7 +48,6 @@ export const authenticateUser = async (email, password) => {
 
   // If everything ok, generate auth token
   const token = generateToken(user)
-  console.log({ token })
   return { user, token }
 }
 

@@ -130,6 +130,7 @@
 
 .individual-book-page .popup-content fieldset input, .individual-book-page .popup-content textarea {
     font-family: "Inconsolata", serif;
+    caret-color: auto;
 }
 
 .individual-book-page .popup-content textarea {

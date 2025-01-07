@@ -3,9 +3,10 @@ import RightArrow from '../../assets/right-arrow.png'
 export function Shelf ({ category, booksInCategory, handleClickOnCategory, handleClickOnCover }) {
   return (
     <div className='bookshelf-column-shelf'>
-      <a onClick={() => handleClickOnCategory({ category })}>
+      <div className='title-row'>
         <h3 className='shelf-title'>⚪{category}</h3>
-      </a>
+        <a className='full-shelf' onClick={() => handleClickOnCategory({ category })}>Full shelf</a>
+      </div>
       <div className='row'>
         {booksInCategory.slice(-5).map((book) => (
           <a key={book.id_api}>

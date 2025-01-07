@@ -144,20 +144,13 @@ export const updateUserBookRelation = async (userId, bookId, readDate, categorie
 
     if (reviewText || rating) {
       // Update review fields if there is reviewText or rating
-      console.log({ reviewText }) // debug: has text
-      console.log({ userId })
-      console.log({ bookId })
-      // esta intentando editar una review que no existe porque aunque se añadio el libro, nunca se
-      // añadio la review y la relacion no existe
-      const response = await db.query(
+      await db.query(
         `UPDATE reviews
          SET review = $3, rating = $4, date = CURRENT_TIMESTAMP
          WHERE user_id = $1 AND book_id = $2
          RETURNING *`,
         [userId, bookId, reviewText, rating]
       )
-      const res = response.rows
-      console.log({ res })
     }
   } else {
     // If there is no user_book relation

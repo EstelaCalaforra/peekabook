@@ -53,11 +53,12 @@
     display: flex;
     flex-direction: column;
     text-align: left;
-    color: #3f3230;
+    color:#7c5b44;
 }
 
 .category-page .author {
     margin: 0px;
+    color: #AB886D;
 }
 
 .category-page .book h2 {

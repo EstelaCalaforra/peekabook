@@ -16,7 +16,6 @@ export function BookFindPage () {
   const { bookQuery } = useParams()
 
   useEffect(() => {
-    console.log('render useeffect bookfindpage')
     if (bookQuery) {
       fetchBooksGoogleAPI(bookQuery)
     }
