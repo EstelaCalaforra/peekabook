@@ -247,3 +247,56 @@
     padding: 0px;
 }
 
+.bookshelf-page .edit-review {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bookshelf-page .edit-textarea {
+    border: 1px dotted #7c5b44;
+    padding: 5px;
+}
+
+.bookshelf-page .edit-textarea:focus {
+    outline: none !important;
+    caret-color: auto;
+}
+
+.bookshelf-page .save-cancel-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    margin-bottom: 5px;
+}
+
+.bookshelf-page .save-edit {
+    color: #AB886D;
+    background-color: white;
+    width: 80px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid #D6C0B3;
+    font-size: smaller;
+    border-radius: 10px;
+    padding: 2px 5px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.bookshelf-page .cancel-edit {
+    color: #AB886D;
+    background-color: white;
+    width: 80px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid #D6C0B3;
+    font-size: smaller;
+    border-radius: 10px;
+    padding: 2px 5px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+

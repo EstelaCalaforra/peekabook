@@ -17,7 +17,7 @@ export const addBookToUser = async (req, res) => {
 
   try {
     const book = await findBookByIdApi(bookAdded.id)
-
+    console.log({ book })
     const bookId = book?.id
 
     if (!bookId) {

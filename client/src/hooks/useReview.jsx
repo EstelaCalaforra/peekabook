@@ -5,11 +5,10 @@ import axios from 'axios'
 export function useReview () {
   const [allReviewsFromBook, setAllReviewsFromBook] = useState([])
   const [allReviews, setAllReviews] = useState([])
-  const { bookId } = useContext(BookSearchContext)
 
-  async function getReviewsFromDB () {
+  async function getReviewsFromDB (id) {
     try {
-      const response = await axios.get('http://localhost:5000/api/books/reviews/' + bookId)
+      const response = await axios.get('http://localhost:5000/api/books/reviews/' + id)
       const resDataGetReviews = response.data.reviews
       setAllReviewsFromBook(resDataGetReviews)
     } catch (error) {

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useBookshelf } from './useBookshelf'
 import { useBook } from './useBook'
@@ -10,36 +10,38 @@ export function useIndividualBook () {
   const { isAuthenticated, userId, authToken } = useAuth()
   const { bookshelfData = [], setBookshelfData } = useBookshelf()
   const { book } = useBook()
-  const [added, setAdded] = useState(false)
   const [isInBookshelf, setIsInBookshelf] = useState(false)
   const navigate = useNavigate()
 
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const openPopup = () => setIsPopupOpen(true)
   const closePopup = () => setIsPopupOpen(false)
+  const [categoriesSelected, setCategoriesSelected] = useState([])
+  const [newCategory, setNewCategory] = useState('')
+  const [review, setReview] = useState('')
 
   async function handleClick (idApi) {
     setBookId(idApi)
     navigate(`/ind-book/${idApi}`, { state: idApi })
   }
 
-  async function handleAdd (event) {
+  async function handleAdd (event, id) {
     event.preventDefault()
+    console.log({ id })
 
     if (categoriesSelected.length === 0) {
       // Delete book if no categories selected
-      await fetch(`http://localhost:5000/api/books/remove/${userId}/${book.id_api}`, {
+      await fetch(`http://localhost:5000/api/books/remove/${userId}/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${authToken}`
         }
       })
-      setBookshelfData(bookshelfData.filter(item => item.id_api !== book.id_api))
+      setBookshelfData(bookshelfData.filter(item => item.id_api !== id))
       setIsInBookshelf(false)
-      setAdded(false)
     } else {
       const bookData = {
-        id: book.id_api,
+        id: id,
         title: book.title,
         rating: 0,
         reviewText: review || '',
@@ -51,8 +53,8 @@ export function useIndividualBook () {
       const url = isInBookshelf
         ? `http://localhost:5000/api/books/update-bookshelf/${userId}`
         : 'http://localhost:5000/api/books/add'
-
       const bodyKey = isInBookshelf ? 'bookUpdated' : 'bookAdded'
+      console.log({ bookData })
       const requestBody = {
         userId,
         [bodyKey]: bookData
@@ -71,8 +73,7 @@ export function useIndividualBook () {
         if (response.ok) {
           const updatedBookshelfData = await response.json()
           setBookshelfData(updatedBookshelfData)
-          setIsInBookshelf(true)
-          setAdded(true)
+          setIsInBookshelf(categoriesSelected.length > 0)
         } else {
           console.error('Failed to update bookshelf:', await response.json())
         }
@@ -83,8 +84,7 @@ export function useIndividualBook () {
 
     closePopup()
   }
-
-  const [categoriesSelected, setCategoriesSelected] = useState([])
+  
   function handleChangeCategoriesSelected (event) {
     const { value, checked } = event.target
     if (checked) {
@@ -94,7 +94,6 @@ export function useIndividualBook () {
     }
   }
 
-  const [newCategory, setNewCategory] = useState('')
   function handleChangeNewCategory (event) {
     const { value } = event.target
     setNewCategory(value)
@@ -106,21 +105,20 @@ export function useIndividualBook () {
     setNewCategory('')
   }
 
-  function handleClickAddToShelves () {
+  async function handleClickAddToShelves(id) {
+    
     if (isAuthenticated) {
-      const currentBook = bookshelfData.find(item => item.id_api === book.id_api)
-      if (currentBook) {
-        setCategoriesSelected(currentBook.categories || [])
-      } else {
-        setCategoriesSelected([])
-      }
       openPopup()
+      const currentBook = await bookshelfData.find(item => item.id_api === id)
+      console.log({ book })
+      console.log({ currentBook })
+      console.log({bookshelfData })
+      setCategoriesSelected(currentBook?.categories || [])
     } else {
       navigate('/login')
     }
   }
 
-  const [review, setReview] = useState('')
   function handleReviewChange (event) {
     const { value } = event.target
     setReview(value)
@@ -139,6 +137,8 @@ export function useIndividualBook () {
     closePopup,
     categoriesSelected,
     newCategory,
-    review
+    review,
+    isInBookshelf,
+    setIsInBookshelf
   }
 }

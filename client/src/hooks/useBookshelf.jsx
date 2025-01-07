@@ -6,6 +6,7 @@ import axios from 'axios'
 
 export function useBookshelf () {
   const [bookshelfData, setBookshelfData] = useState([])
+  const [loading, setLoading] = useState(true) // Nuevo estado
   const { userId, authToken, logout } = useAuth()
   const [hasBooks, setHasBooks] = useState(false)
   const [hasReviews, setHasReviews] = useState(false)
@@ -13,6 +14,7 @@ export function useBookshelf () {
   const { categories, setCategories, setBookId } = useContext(BookSearchContext)
 
   async function fetchBookshelfData () {
+    setLoading(true)
     try {
       const response = await axios.get('http://localhost:5000/api/books/bookshelf/' + userId, {
         headers: { Authorization: `Bearer ${authToken}` }
@@ -30,12 +32,15 @@ export function useBookshelf () {
         }
       } else {
         setHasBooks(false)
+        setBookshelfData([])
       }
     } catch (error) {
       console.log(error)
       if (error.response && error.response.status === 403) {
         logout()
       }
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -58,49 +63,16 @@ export function useBookshelf () {
   }
 
   async function getReviews (response) {
-    const allReviews = response.map(book => {
-      return {
-        id_api: book.id_api,
-        cover: book.cover,
-        title: book.title,
-        authors: book.authors[0],
-        review_id: book.review_id,
-        review: book.review,
-        review_date: book.review_date
-      }
-    })
+    const allReviews = response.map(book => ({
+      id_api: book.id_api,
+      cover: book.cover,
+      title: book.title,
+      authors: book.authors[0],
+      review_id: book.review_id,
+      review: book.review,
+      review_date: book.review_date
+    }))
     return allReviews
-  }
-
-  const updateReviewInDB = async (updatedReview) => {
-    try {
-      const token = window.localStorage.getItem('authToken')
-
-      if (!token) {
-        console.error('No token found. Please log in again.')
-        return
-      }
-
-      const response = await axios.put(
-        `http://localhost:5000/api/books/reviews/${updatedReview.review_id}`,
-        { reviewText: updatedReview.review },
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`
-          }
-        }
-      )
-
-      if (response.status === 200) {
-        const updatedReviews = reviews.map(review =>
-          review.review_id === updatedReview.review_id ? updatedReview : review
-        )
-        setReviews(updatedReviews)
-        console.log(`Review with ID ${updatedReview.review_id} updated successfully.`)
-      }
-    } catch (error) {
-      console.error('Error updating review:', error)
-    }
   }
 
   const navigate = useNavigate()
@@ -111,16 +83,6 @@ export function useBookshelf () {
 
   function handleClickOnCategory ({ category }) {
     navigate(`/bookshelf/${userId}/${category}`, { state: category })
-  }
-
-  async function deleteReviewFromDB (reviewId) {
-    try {
-      await axios.delete(`http://localhost:5000/api/books/reviews/${reviewId}`)
-      setReviews(reviews.filter(review => review.review_id !== reviewId))
-      console.log(`Review with ID ${reviewId} deleted successfully.`)
-    } catch (error) {
-      console.error('Error deleting review:', error)
-    }
   }
 
   async function deleteBookFromBookshelf (book) {
@@ -140,10 +102,15 @@ export function useBookshelf () {
     }
   }
 
+  useEffect(() => {
+    if (userId && authToken) {
+      fetchBookshelfData()
+    }
+  }, [userId, authToken])
+
   return {
     fetchBookshelfData,
     categories,
-    getCategories,
     reviews,
     handleClickOnCover,
     handleClickOnCategory,
@@ -151,8 +118,8 @@ export function useBookshelf () {
     bookshelfData,
     hasBooks,
     hasReviews,
-    deleteReviewFromDB,
-    updateReviewInDB,
-    deleteBookFromBookshelf
+    deleteBookFromBookshelf,
+    loading // Devuelve el estado de carga
   }
 }
+

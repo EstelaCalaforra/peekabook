@@ -16,16 +16,19 @@ export function useBook () {
   }
 
   async function getBooksBySameAuthor (author) {
-    try {
-      const response = await axios.get('http://localhost:5000/api/external/search', {
-        params: {
-          bookQuery: author
-        }
-      })
-      const { items } = response.data
-      setBooksBySameAuthor(items)
-    } catch (error) {
-      console.log(error)
+    console.log({ author })
+    if (author) {
+      try {
+        const response = await axios.get('http://localhost:5000/api/external/search', {
+          params: {
+            bookQuery: author
+          }
+        })
+        const { items } = response.data
+        setBooksBySameAuthor(items)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 

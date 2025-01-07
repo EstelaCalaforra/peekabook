@@ -1,52 +1,9 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext'
+import { useSignup } from '../../hooks/useSignUp'
+
 import './SignUpPage.css'
 
 export function SignUpPage () {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [error, setError] = useState('')
-  const [message, setMessage] = useState('')
-  const navigate = useNavigate()
-  const { setIsAuthenticated, setUserId, setAuthToken } = useAuth()
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match. Please try again.')
-      setTimeout(() => {
-        setError('')
-      }, 2000)
-
-      return
-    }
-
-    const response = await fetch('http://localhost:5000/api/users/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email, password })
-    })
-
-    const data = await response.json()
-
-    if (data.success) {
-      console.log({ data })
-      setMessage('Signup successful! Login and redirecting...')
-      setUserId(data.userId)
-      setAuthToken(data.token)
-      setIsAuthenticated(true)
-      setTimeout(() => {
-        navigate('/bookshelf/' + data.userId)
-      }, 2000)
-    } else {
-      setError(data.message || 'Signup failed')
-    }
-  }
+  const { handleSubmit, message, error, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword } = useSignup()
 
   return (
     <div className='signup-page'>

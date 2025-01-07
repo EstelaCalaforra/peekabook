@@ -152,9 +152,26 @@
 }
 
 .individual-book-page .add-button {
-  font-family: "Sour Gummy", sans-serif;
-  margin-top: 10px;
+    font-family: "Sour Gummy", sans-serif;
+    margin-top: 10px;
+
+    color: #AB886D;
+    background-color: white;
+    width: 50px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid #D6C0B3;
+    font-size: smaller;
+    border-radius: 10px;
+    padding: 2px 5px;
+    font-weight: bold;
+    text-decoration: none;
 }
+
+.individual-book-page .add-button:hover {
+    background-color: #E4E0E1;
+}
+
 
 .individual-book-page .reviews-container {
     margin-top: 20px;

@@ -36,8 +36,10 @@ export function ReviewCard ({ review, deleteReviewFromDB, handleEditReview }) {
                 rows='4'
                 className='edit-textarea'
               />
-              <button className='save-edit' onClick={handleSaveEdit}>Save</button>
-              <button className='cancel-edit' onClick={handleCancelEdit}>Cancel</button>
+              <div className='save-cancel-buttons'>
+                <button className='save-edit' onClick={handleSaveEdit}>Save</button>
+                <button className='cancel-edit' onClick={handleCancelEdit}>Cancel</button>
+              </div>
             </div>
             )
           : (
@@ -46,7 +48,7 @@ export function ReviewCard ({ review, deleteReviewFromDB, handleEditReview }) {
       </div>
       <div className='buttons'>
         {!isEditing && <button className='edit-icon' onClick={() => setIsEditing(true)} />}
-        <button className='delete-icon' onClick={() => deleteReviewFromDB(review.review_id)} />
+        {!isEditing && <button className='delete-icon' onClick={() => deleteReviewFromDB(review.review_id)} />}
       </div>
     </li>
   )
