@@ -1,16 +1,10 @@
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-// import * as path from 'path'
-import { fileURLToPath } from 'url'
-import { dirname, join } from 'path'
 // Routers
 import { bookRouter } from './routes/bookRoutes.js'
 import { userRouter } from './routes/userRoutes.js'
 import { externalAPIRouter } from './routes/externalAPIRoutes.js'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
 
 // Starting the server
 const app = express()
@@ -28,11 +22,6 @@ app.use('/api/books', bookRouter)
 
 // Login and Signup
 app.use('/api/users', userRouter)
-
-// Redirect all not found paths to index.html
-app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, '../../client/dist', 'index.html'))
-})
 
 app.listen(port, function (err) {
   if (err) console.log(err)

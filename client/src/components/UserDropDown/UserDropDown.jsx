@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export function UserDropDown ({ userEmail, logout, isAuthenticated }) {
   const [showDropDown, setShowDropDown] = useState(false)
@@ -28,8 +29,8 @@ export function UserDropDown ({ userEmail, logout, isAuthenticated }) {
       {
         !isAuthenticated &&
           <div className='row'>
-            <a className='button login' href='/login'>Login</a>
-            <a className='button signup' href='/signup'>Signup</a>
+            <Link className='button login' to='/login'>Login</Link>
+            <Link className='button signup' to='/signup'>Signup</Link>
           </div>
       }
     </>
