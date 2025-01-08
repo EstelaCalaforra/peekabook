@@ -12,7 +12,7 @@ export function Quote () {
           {loadingQuoteData
             ? (
               <p>Loading quote...</p>
-              )
+            )
             : (
               <div className='quote-row'>
                 <div>
@@ -21,7 +21,7 @@ export function Quote () {
                 </div>
                 {/* <img src={AuthorPhoto} /> */}
               </div>
-              )}
+            )}
         </div>
       </div>
     </>

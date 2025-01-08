@@ -13,10 +13,12 @@ export function useBookshelf () {
   const [reviews, setReviews] = useState([])
   const { categories, setCategories, setBookId } = useContext(BookSearchContext)
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   async function fetchBookshelfData () {
     setLoading(true)
     try {
-      const response = await axios.get('http://localhost:5000/api/books/bookshelf/' + userId, {
+      const response = await axios.get(apiUrl + '/api/books/bookshelf/' + userId, {
         headers: { Authorization: `Bearer ${authToken}` }
       })
       const resDataGetBooks = response.data
@@ -88,7 +90,7 @@ export function useBookshelf () {
   async function deleteBookFromBookshelf (book) {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/books/remove/${userId}/${book.id_api}`,
+        `${apiUrl}/api/books/remove/${userId}/${book.id_api}`,
         {
           headers: { Authorization: `Bearer ${authToken}` }
         }
@@ -119,7 +121,7 @@ export function useBookshelf () {
     hasBooks,
     hasReviews,
     deleteBookFromBookshelf,
-    loading // Devuelve el estado de carga
+    loading
   }
 }
 

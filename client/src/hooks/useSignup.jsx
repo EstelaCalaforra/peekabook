@@ -2,6 +2,8 @@ import { useAuth } from '../context/AuthContext'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export function useSignup () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -23,7 +25,7 @@ export function useSignup () {
       return
     }
 
-    const response = await fetch('http://localhost:5000/api/users/signup', {
+    const response = await fetch(apiUrl + '/api/users/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

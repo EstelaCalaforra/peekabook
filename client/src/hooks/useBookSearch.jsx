@@ -3,6 +3,8 @@ import axios from 'axios'
 import { BookSearchContext } from '../context/bookSearchContext'
 import { useNavigate } from 'react-router-dom'
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export function useBookSearch () {
   const { bookQuery, setBookSearch, setBookQuery, setCurrentPage, setTotalPages, setBookId } = useContext(BookSearchContext)
   const navigate = useNavigate()
@@ -11,7 +13,7 @@ export function useBookSearch () {
     try {
       const maxResults = 12 // Results per page
       const startIndex = (page - 1) * maxResults // Calculate initial index
-      const response = await axios.get('http://localhost:5000/api/external/search', {
+      const response = await axios.get(apiUrl + '/api/external/search', {
         params: {
           bookQuery,
           startIndex,
@@ -28,7 +30,7 @@ export function useBookSearch () {
   }
 
   async function addSearchToDB (bookSearch) {
-    await fetch('http://localhost:5000/api/books/add-search', {
+    await fetch(apiUrl + '/api/books/add-search', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

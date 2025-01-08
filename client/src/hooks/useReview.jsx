@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react'
-import { BookSearchContext } from '../context/bookSearchContext'
 import axios from 'axios'
+
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export function useReview () {
   const [allReviewsFromBook, setAllReviewsFromBook] = useState([])
@@ -8,7 +9,7 @@ export function useReview () {
 
   async function getReviewsFromDB (id) {
     try {
-      const response = await axios.get('http://localhost:5000/api/books/reviews/' + id)
+      const response = await axios.get(apiUrl + '/api/books/reviews/' + id)
       const resDataGetReviews = response.data.reviews
       setAllReviewsFromBook(resDataGetReviews)
     } catch (error) {
@@ -18,7 +19,7 @@ export function useReview () {
 
   async function getAllReviewsFromDB () {
     try {
-      const response = await axios.get('http://localhost:5000/api/books/reviews')
+      const response = await axios.get(apiUrl + '/api/books/reviews')
       const resData = response.data.reviews
       setAllReviews(resData)
     } catch (error) {

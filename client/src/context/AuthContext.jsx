@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export const AuthContext = createContext()
 
 export function AuthProvider ({ children }) {
@@ -45,7 +47,7 @@ export function AuthProvider ({ children }) {
   // Verify if token valid in all petitions
   const verifyToken = async (token) => {
     try {
-      const response = await fetch('http://localhost:5000/api/users/verify-token', {
+      const response = await fetch(apiUrl + '/api/users/verify-token', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`

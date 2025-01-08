@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
+
 export function useQuote () {
   const [quoteData, setQuoteData] = useState({ quote: '', author: '', book: '' })
   const [loadingQuoteData, setLoadingQuoteData] = useState(true)
@@ -11,7 +14,7 @@ export function useQuote () {
 
     const fetchQuoteData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/external/random-quote')
+        const response = await axios.get(apiUrl + '/api/external/random-quote')
         const { q, a } = response.data[0]
         setQuoteData({
           quote: q,

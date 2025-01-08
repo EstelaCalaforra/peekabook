@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import axios from 'axios'
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export function useBook () {
   const [book, setBook] = useState({})
   const [booksBySameAuthor, setBooksBySameAuthor] = useState()
 
   async function getBookFromDB (id) {
     try {
-      const response = await axios.get('http://localhost:5000/api/books/book/' + id)
+      const response = await axios.get(apiUrl + '/api/books/book/' + id)
       const resDataGetBook = response.data[0]
       setBook(resDataGetBook)
     } catch (error) {
@@ -18,7 +20,7 @@ export function useBook () {
   async function getBooksBySameAuthor (author) {
     if (author) {
       try {
-        const response = await axios.get('http://localhost:5000/api/external/search', {
+        const response = await axios.get(apiUrl + '/api/external/search', {
           params: {
             bookQuery: author
           }

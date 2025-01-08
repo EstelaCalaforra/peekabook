@@ -5,6 +5,8 @@ import { useBook } from './useBook'
 import { useAuth } from '../context/AuthContext'
 import { BookSearchContext } from '../context/bookSearchContext'
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export function useIndividualBook () {
   const { setBookId, setCategories } = useContext(BookSearchContext)
   const { isAuthenticated, userId, authToken } = useAuth()
@@ -30,7 +32,7 @@ export function useIndividualBook () {
 
     if (categoriesSelected.length === 0) {
       // Delete book if no categories selected
-      await fetch(`http://localhost:5000/api/books/remove/${userId}/${id}`, {
+      await fetch(`${apiUrl}/api/books/remove/${userId}/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${authToken}`
@@ -50,8 +52,8 @@ export function useIndividualBook () {
 
       const method = isInBookshelf ? 'PUT' : 'POST'
       const url = isInBookshelf
-        ? `http://localhost:5000/api/books/update-bookshelf/${userId}`
-        : 'http://localhost:5000/api/books/add'
+        ? `${apiUrl}/api/books/update-bookshelf/${userId}`
+        : `${apiUrl}/api/books/add`
       const bodyKey = isInBookshelf ? 'bookUpdated' : 'bookAdded'
       const requestBody = {
         userId,

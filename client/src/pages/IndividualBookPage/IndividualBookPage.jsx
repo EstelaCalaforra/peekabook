@@ -9,6 +9,7 @@ import { useIndividualBook } from '../../hooks/useIndividualBook'
 import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png'
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export function IndividualBookPage() {
   const { userId } = useAuth()
@@ -54,7 +55,7 @@ export function IndividualBookPage() {
   useEffect(() => {
     async function addSearchToDB(booksBySameAuthor) {
       if (booksBySameAuthor) {
-        await fetch('http://localhost:5000/api/books/add-search', {
+        await fetch(apiUrl + '/api/books/add-search', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -80,7 +81,7 @@ export function IndividualBookPage() {
                 <div className='close-button-and-popup'>
                   <button className='popup-button' onClick={closePopup}>✖</button>
                   <div className='popup-content'>
-                    <form action={'http://localhost:5000/api/add-books/user/' + userId} method='post' onSubmit={(event) => handleAdd(event, id)}>
+                    <form action={apiUrl + '/api/add-books/user/' + userId} method='post' onSubmit={(event) => handleAdd(event, id)}>
                       <fieldset>
                         <legend>Choose the shelves</legend>
                         {categories.map((category, key) => (

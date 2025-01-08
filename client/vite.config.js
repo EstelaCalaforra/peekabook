@@ -7,5 +7,5 @@ export default defineConfig({
   server: {
     // Developer server config
     historyApiFallback: true
-}
+  }
 })

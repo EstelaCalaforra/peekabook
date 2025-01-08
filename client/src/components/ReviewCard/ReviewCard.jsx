@@ -41,10 +41,10 @@ export function ReviewCard ({ review, deleteReviewFromDB, handleEditReview }) {
                 <button className='cancel-edit' onClick={handleCancelEdit}>Cancel</button>
               </div>
             </div>
-            )
+          )
           : (
             <p className='review-text'>{review.review}</p>
-            )}
+          )}
       </div>
       <div className='buttons'>
         {!isEditing && <button className='edit-icon' onClick={() => setIsEditing(true)} />}
