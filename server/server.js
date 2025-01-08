@@ -31,7 +31,7 @@ app.use('/api/users', userRouter)
 
 // Redirect all not found paths to index.html
 app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, 'build', 'index.html'))
+  res.sendFile(join(__dirname, '../client/dist', 'index.html'))
 })
 
 app.listen(port, function (err) {
