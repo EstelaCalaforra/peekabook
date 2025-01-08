@@ -11,7 +11,11 @@ export function ReviewsCarrousel () {
   }, [])
 
   if (allReviews.length === 0) {
-    return <p>Loading reviews...</p>
+    return (
+      <div className='loading-container'>
+        <p className='loading'>Loading reviews...</p>
+      </div>
+    )
   }
 
   // Duplicate reviews for infinite looping effect

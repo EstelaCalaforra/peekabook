@@ -1,10 +1,3 @@
-@font-face {
-    font-family: 'Smooth Marker';
-    src: url('./assets/fonts/SmoothMarker-45d6.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 .homepage {
     display: flex;
     height: 100vh;
@@ -18,10 +11,6 @@
 
 .homepage .landing-img {
     width: 100%;
-}
-
-.homepage .quote .title {
-    font-family: 'Smooth Marker', sans-serif;
 }
 
 .homepage .quote-bestsellers-container {
@@ -49,7 +38,6 @@
 }
 
 .homepage .title {
-    font-family: "Sour Gummy", sans-serif;
     color: #7c5b44;
     margin-bottom: 10px;
     font-size: 50px;
@@ -112,6 +100,11 @@
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+
+    min-height: 100px;
+    min-width: 500px;
+
+    color: #85644d;
 }
 
 .homepage .bestsellers-column {
@@ -174,6 +167,10 @@
     width: 70%;
 
     position: relative;
+}
+
+.homepage .reviews-container .loading {
+    color: #85644d;
 }
 
 @media (max-width: 1700px) {

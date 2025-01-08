@@ -1,4 +1,7 @@
 export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
+
+  console.log({ loadingBestsellersData })
+
   return (
     <div className='bestsellers-row'>
       {loadingBestsellersData

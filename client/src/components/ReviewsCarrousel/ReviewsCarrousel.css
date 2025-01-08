@@ -39,6 +39,21 @@ strong {
   width: 100px;
 }
 
+.loading-container {
+  background-color: white;
+  border-radius: 10px;
+  border: 1px dotted #D6C0B3;
+  padding: 20px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+
+  text-align: center;
+
+  min-width: 500px;
+}
+
 /* Animación ajustada */
 @keyframes scrollReviews {
   0% {
