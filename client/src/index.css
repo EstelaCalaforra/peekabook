@@ -10,12 +10,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   font-style: normal;
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  min-height: 100vh;
+  height: 100vh;
   margin: 0;
   caret-color: transparent;
 }

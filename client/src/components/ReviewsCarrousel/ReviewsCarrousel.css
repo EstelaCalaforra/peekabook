@@ -1,67 +1,56 @@
 .review-carousel {
   display: flex;
+  justify-content: center;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   width: 100%;
-  max-width: 1560px;
   margin-bottom: 60px;
   margin-top: 50px;
+  position: relative;
 }
 
-.reviews-group {
+.slick-slider {
+  max-width: 80vw;
   display: flex;
-  animation: scrollReviews 20s linear infinite; /* Animación continua */
+  flex-direction: row;
+  align-items: center;
 }
 
 .review-card {
-  min-width: 250px; /* Ajustar el tamaño mínimo de cada tarjeta */
-  max-width: 300px; /* Limitar el tamaño máximo de las tarjetas */
+  min-width: 250px;
+  max-width: 250px; 
+
   padding: 15px;
   background-color: white;
   border-radius: 10px;
   border: 1px dotted #d6c0b3;
   color: #ab886d;
-  margin-right: 15px; /* Espaciado entre las tarjetas */
-  flex-shrink: 0; /* Impide que las tarjetas se encojan */
+  flex-shrink: 0;
+
+  margin-left: 20px;
 }
 
-strong {
+.slick-prev, .slick-next {
+  font-size: 24px;
   color: #7c5b44;
 }
 
-.review-card h4 {
-  margin-bottom: 10px;
+.slick-prev {
+  left: -50px;
+  font-size: 0;
+}
+
+.slick-next {
+  right: -50px;
+  font-size: 0;
+}
+
+.slick-dots {
+  bottom: 10px;
+}
+
+.slick-dots li button:before {
+  font-size: 20px;
   color: #7c5b44;
+  content: "";
 }
-
-.rating {
-  width: 100px;
-}
-
-.loading-container {
-  background-color: white;
-  border-radius: 10px;
-  border: 1px dotted #D6C0B3;
-  padding: 20px;
-  border-radius: 5px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
-
-  text-align: center;
-
-  min-width: 500px;
-}
-
-/* Animación ajustada */
-@keyframes scrollReviews {
-  0% {
-    transform: translateX(0); /* Comienza desde la posición inicial */
-  }
-  100% {
-    transform: translateX(calc(-100% / 2)); /* Se mueve exactamente la mitad del contenido */
-  }
-}
-
-

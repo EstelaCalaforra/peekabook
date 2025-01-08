@@ -1,8 +1,10 @@
 .homepage {
     display: flex;
-    height: 100vh;
+    flex: 1;
+    min-height: 100vh;
+    width: 100vw;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     gap: 10px;
     background-image: url('../../assets/bg-books-2.jpg');
@@ -14,10 +16,9 @@
 }
 
 .homepage .quote-bestsellers-container {
-    width: 90%;
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 100px;
     justify-content: space-around;
     align-items: center;
 }
@@ -75,6 +76,11 @@
     border-radius: 100px;
 }
 
+.homepage .rating {
+    width: 100px;
+}
+
+
 .homepage .bestsellers-container {
     display: flex;
     flex-direction: column;
@@ -102,7 +108,7 @@
     margin-top: 50px;
 
     min-height: 100px;
-    min-width: 500px;
+    /* min-width: 500px; */
 
     color: #85644d;
 }
@@ -164,9 +170,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70%;
 
     position: relative;
+    max-width: 800px;
 }
 
 .homepage .reviews-container .loading {
@@ -183,7 +189,31 @@
         justify-content: start !important;
         gap: 100px;
 
-        height: 100% !important;
+        /* height: 100% !important; */
     }
-    
-  }
+}
+
+@media (max-width: 800px) {
+    .homepage .quote-column, .loading-container, .bestsellers-container  {
+        /* margin-top: 64px !important; */
+        width: 300px !important;
+    }
+
+    .homepage .bestsellers-row {
+        flex-direction: column !important;
+        min-width: none !important;
+        width: 200px !important;
+    }
+
+    .homepage .title {
+        width: 300px !important;
+    }
+
+    .homepage .bestsellers-container .bestsellers-row {
+        margin-top: 115px !important;
+    }
+
+    .homepage .quote {
+        width: 400px;
+    }
+}

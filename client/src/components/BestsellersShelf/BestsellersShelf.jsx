@@ -1,5 +1,6 @@
-export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
+import Slider from 'react-slick'
 
+export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
   console.log({ loadingBestsellersData })
 
   return (
@@ -7,15 +8,15 @@ export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
       {loadingBestsellersData
         ? (
           <p>Loading bestsellers...</p>
-        )
+          )
         : (
-          bestsellersData.map((bookInfo, index) => (
-            <div className='bestsellers-shelf bestsellers-column' key={index}>
+            bestsellersData.map((bookInfo, index) => (
+              <div className='bestsellers-shelf bestsellers-column' key={index}>
               <img className='miniature' src={bookInfo.book_image} alt={bookInfo.title} />
               <a className='button' href={bookInfo.buy_links[0].url}>Buy now</a>
             </div>
-          ))
-        )}
+            ))
+          )}
     </div>
   )
 }
