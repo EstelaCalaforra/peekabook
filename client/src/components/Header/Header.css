@@ -162,7 +162,15 @@
   background-color: rgb(174, 150, 128);
 }
 
-@media (max-width: 400px) {
+.header .login-signup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 600px) {
   .header .container {
     display: flex;
     flex-direction: column;

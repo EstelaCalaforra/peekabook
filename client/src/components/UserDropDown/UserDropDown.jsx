@@ -28,7 +28,7 @@ export function UserDropDown ({ userEmail, logout, isAuthenticated }) {
         </div>}
       {
         !isAuthenticated &&
-          <div className='row'>
+          <div className='login-signup'>
             <Link className='button login' to='/login'>Login</Link>
             <Link className='button signup' to='/signup'>Signup</Link>
           </div>
