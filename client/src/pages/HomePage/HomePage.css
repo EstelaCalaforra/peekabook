@@ -212,7 +212,7 @@
     .homepage .bestsellers-row {
         flex-direction: column !important;
         min-width: none !important;
-        width: 200px !important;
+        width: 300px !important;
     }
 
     .homepage .title {

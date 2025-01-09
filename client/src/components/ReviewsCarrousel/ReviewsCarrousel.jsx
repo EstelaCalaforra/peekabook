@@ -31,7 +31,6 @@ export function ReviewsCarrousel () {
     autoplay: true,
     slidesToShow: 4,
     slidesToScroll: 3,
-    centerMode: true, // Esto centra la diapositiva actual
     centerPadding: '0px', // Ajusta este valor según lo necesites
     draggable: true,
     swipe: true,
