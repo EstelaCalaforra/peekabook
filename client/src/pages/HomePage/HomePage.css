@@ -109,7 +109,6 @@
     margin-top: 50px;
 
     min-height: 100px;
-    /* min-width: 500px; */
 
     color: #85644d;
 }
@@ -174,7 +173,6 @@
     justify-items: center;
 
     position: relative;
-    /* max-width: 800px; */
 }
 
 .homepage .reviews-container .loading {
@@ -209,19 +207,20 @@
         justify-content: center !important;
     }
 
-    .homepage .bestsellers-row {
-        flex-direction: column !important;
-        min-width: none !important;
-        width: 300px !important;
-    }
-
     .homepage .title {
         width: 100% !important;
         text-align: center !important;
     }
 
-    .homepage .bestsellers-container .bestsellers-row {
-        margin-top: 115px !important;
+    .homepage .bestsellers-container .title {
+        line-height: 40px;
+    }
+
+    .homepage .bestsellers-row {
+        flex-direction: column !important;
+        min-width: none !important;
+        width: 300px !important;
+        margin-top: 76px !important;
     }
 
     .homepage .quote {

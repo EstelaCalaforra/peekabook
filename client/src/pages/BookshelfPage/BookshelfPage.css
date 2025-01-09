@@ -55,11 +55,6 @@
     width: 50vw;
 }
 
-.bookshelf-page .books,
-.bookshelf-page .reviews {
-    /* padding-bottom: 100px; */
-}
-
 .bookshelf-page .cover {
     width: 55px;
     height: 90px;
@@ -313,4 +308,37 @@
     text-decoration: none;
 }
 
+@media (max-width: 700px) {
+    .bookshelf-page {
+        flex-direction: column !important;
+    }
 
+    .bookshelf-page .bookshelves {
+        margin-bottom: 0px !important;   
+        width: 90vw !important;
+    }
+
+    .bookshelf-page .shelves {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: center !important;
+    }
+
+    .bookshelf-page .bookshelves, .reviews {
+        width: 90vw !important;
+        align-items: center;
+    }
+
+    .bookshelf-page .reviews-container {
+        display: flex !important;
+        flex-wrap: wrap;
+    }
+
+    .bookshelf-page .reviews-and-button {
+        align-items: center !important;
+    }
+
+    .bookshelf-page .reviews {
+        margin: 20px !important;
+    }
+}

@@ -104,6 +104,8 @@
 }
   
 .popup-content {
+    min-width: 300px;
+    min-height: 300px;
     background-color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -126,6 +128,8 @@
     display: flex;
     flex-direction: column;
     align-items: start;
+
+    gap: 10px;
 }
 
 .individual-book-page .popup-content fieldset input, .individual-book-page .popup-content textarea {
@@ -138,7 +142,8 @@
 }
 
 .individual-book-page .close-button-and-popup {
-    justify-items: right;
+    justify-items: center;
+    width: 80vw;
 }
 
 .individual-book-page .close-button-and-popup button {
@@ -265,3 +270,27 @@
     padding-top: 5px;
 }
 
+@media (max-width: 600px) {
+    .individual-book-page .info-buttons {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+
+    .individual-book-page {
+        height: 100%;
+    }
+
+    .individual-book-page .popup-content {
+        width: 80vw !important;
+    }
+
+    .individual-book-page .reviews-row {
+        flex-wrap: wrap;
+        justify-content: center !important;
+    }
+
+    .individual-book-page h2 {
+        text-align: center !important;
+    }
+  }
