@@ -9,6 +9,7 @@
     gap: 10px;
     background-image: url('../../assets/bg-books-2.jpg');
     background-size: cover;
+    padding-bottom: 50px;
 }
 
 .homepage .landing-img {
@@ -170,9 +171,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-items: center;
 
     position: relative;
-    max-width: 800px;
+    /* max-width: 800px; */
 }
 
 .homepage .reviews-container .loading {
@@ -188,15 +190,23 @@
         flex-direction: column !important;
         justify-content: start !important;
         gap: 100px;
-
-        /* height: 100% !important; */
+    }
+    .homepage .reviews-container {
+        justify-content: center !important;
+    }
+    .homepage .title {
+        text-align: center !important;
     }
 }
 
 @media (max-width: 800px) {
-    .homepage .quote-column, .loading-container, .bestsellers-container  {
+    .homepage .quote-column, .loading-container, .bestsellers-container, .reviews-container  {
         /* margin-top: 64px !important; */
         width: 300px !important;
+    }
+
+    .homepage .reviews-container {
+        justify-content: center !important;
     }
 
     .homepage .bestsellers-row {
@@ -206,7 +216,8 @@
     }
 
     .homepage .title {
-        width: 300px !important;
+        width: 100% !important;
+        text-align: center !important;
     }
 
     .homepage .bestsellers-container .bestsellers-row {

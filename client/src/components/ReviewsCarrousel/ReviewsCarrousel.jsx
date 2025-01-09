@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './ReviewsCarrousel.css'
+
 import Slider from 'react-slick'
 import { useReview } from '../../hooks/useReview'
 import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
@@ -21,49 +22,57 @@ export function ReviewsCarrousel () {
     )
   }
 
-  // Configuración de React Slick
+  // React Slick config
   const settings = {
     dots: true,
+    arrows: true,
     infinite: true,
-    speed: 6000,
+    speed: 1000,
     autoplay: true,
-    autoplaySpeed: 1,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 3,
+    centerMode: true, // Esto centra la diapositiva actual
+    centerPadding: '0px', // Ajusta este valor según lo necesites
+    draggable: true,
+    swipe: true,
+    touchMove: true,
     responsive: [
       {
-        breakpoint: 1600,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 3
-        }
-      },
-      {
-        breakpoint: 1500,
+        breakpoint: 1700,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 2
+          slidesToScroll: 2,
+          centerPadding: '50px' // Asegúrate de ajustar el padding según el tamaño de pantalla
         }
       },
       {
-        breakpoint: 1000,
+        breakpoint: 1390,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          centerPadding: '60px' // Ajusta el padding
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 1090,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          dots: false,
+          centerPadding: '20px' // Ajuste adicional para pantallas más pequeñas
+        }
+      },
+      {
+        breakpoint: 850,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          dots: false,
+          centerPadding: '0px' // En pantallas muy pequeñas, el padding es 0
         }
       }
     ]
   }
-
-  // Duplica las reseñas para lograr un efecto infinito
-  const reviewsDuplicated = [...allReviews, ...allReviews]
 
   return (
     <div className='review-carousel'>

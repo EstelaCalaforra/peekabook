@@ -161,3 +161,33 @@
 .header .signup:hover {
   background-color: rgb(174, 150, 128);
 }
+
+@media (max-width: 400px) {
+  .header .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header .searchbar-user {
+    width: 100% !important;
+  }
+
+  .header .row {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .header .searchbar-user .row {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .header input {
+    width: 130px !important;
+  }
+
+  .header-form {
+    margin-right: 0px !important;
+    margin-left: 15px !important;
+  }
+}
