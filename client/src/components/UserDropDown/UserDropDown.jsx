@@ -2,24 +2,18 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export function UserDropDown ({ userEmail, logout, isAuthenticated }) {
-  const [showDropDown, setShowDropDown] = useState(false)
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
-  const handleMouseEnter = () => {
-    setShowDropDown(true)
-  }
-
-  const handleMouseLeave = () => {
-    setShowDropDown(false)
-  }
+  const toggleMenu = () => setShowUserMenu((prev) => !prev);
 
   return (
     <>
       {isAuthenticated &&
         <div>
-          <div className='username' onMouseEnter={handleMouseEnter}>{userEmail?.split('@')[0] || 'useremail'} ▼</div>
-          {showDropDown &&
+          <div className='username' onClick={toggleMenu}>{userEmail?.split('@')[0] || 'useremail'} ▼</div>
+          {showUserMenu &&
             <div className='popup-login'>
-              <div className='column' onMouseLeave={handleMouseLeave}>
+              <div className='column'>
                 <a onClick={logout}>Log out</a>
                 {/* <a className=''>Profile</a> */}
                 {/* <a className=''>Settings</a> */}

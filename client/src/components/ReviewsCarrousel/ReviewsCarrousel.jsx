@@ -24,17 +24,15 @@ export function ReviewsCarrousel () {
 
   // React Slick config
   const settings = {
-    dots: true,
-    arrows: true,
-    infinite: true,
-    speed: 1000,
-    autoplay: true,
-    slidesToShow: 4,
-    slidesToScroll: 3,
-    centerPadding: '0px', // Ajusta este valor según lo necesites
-    draggable: true,
-    swipe: true,
-    touchMove: true,
+    infinite: true,        
+    slidesToShow: 4,       
+    slidesToScroll: 1,     
+    autoplay: true,        
+    autoplaySpeed: 0,      
+    speed: 5000,
+    cssEase: "linear",
+    pauseOnHover: false,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1700,
@@ -67,7 +65,6 @@ export function ReviewsCarrousel () {
           slidesToShow: 1,
           slidesToScroll: 1,
           dots: false,
-          centerPadding: '0px' // En pantallas muy pequeñas, el padding es 0
         }
       }
     ]

@@ -2,7 +2,7 @@ import './BookshelfPage.css'
 import { useBookshelf } from '../../hooks/useBookshelf'
 import { Shelf } from '../../components/Shelf/Shelf.jsx'
 import { ReviewCard } from '../../components/ReviewCard/ReviewCard.jsx'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export function BookshelfPage () {
   const {
@@ -26,10 +26,25 @@ export function BookshelfPage () {
     fetchBookshelfData()
   }, [])
 
+  const [activeView, setActiveView] = useState('bookshelves');
+
   return (
     <div className='bookshelf-page'>
+
+      <div className='view-toggle'>
+        <select
+          id='view-select'
+          onChange={(e) => setActiveView(e.target.value)}
+          value={activeView}
+          className='view-select'
+        >
+          <option value='bookshelves'>Bookshelves</option>
+          <option value='reviews'>Recent Reviews</option>
+        </select>
+      </div>
+
       {/* Shelves section */}
-      <div className='bookshelves'>
+      <div className={`bookshelves ${activeView  === 'bookshelves' ? 'active' : ''}`}>
         <h2>Bookshelves</h2>
         {hasBooks && (
           <>
@@ -62,7 +77,7 @@ export function BookshelfPage () {
       </div>
 
       {/* Reviews section */}
-      <div className='reviews'>
+      <div className={`reviews ${activeView  === 'reviews' ? 'active' : ''}`}>
         <h2 className='recent-reviews'>Recent reviews</h2>
         {hasReviews
           ? (
@@ -86,7 +101,7 @@ export function BookshelfPage () {
             <div className='empty'>
               <p>You haven&apos;t reviewed any book yet. Write one!</p>
             </div>
-         )}
+          )}
       </div>
     </div>
   )

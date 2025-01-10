@@ -2,7 +2,7 @@ import { useContext, useId } from 'react'
 import { BookSearchContext } from '../../context/bookSearchContext'
 import { useBookSearch } from '../../hooks/useBookSearch'
 
-export function SearchForm () {
+export function SearchForm ({ showSearch }) {
   const { bookQuery } = useContext(BookSearchContext)
   const { handleSubmit, handleChange } = useBookSearch()
 
@@ -10,7 +10,7 @@ export function SearchForm () {
   const searchBookInputId = useId()
 
   return (
-    <form id={searchBookFormId} onSubmit={handleSubmit} className='header-form'>
+    <form id={searchBookFormId} onSubmit={handleSubmit} className={`header-form ${showSearch ? 'active' : ''}`}>
       <input
         id={searchBookInputId}
         type='text'

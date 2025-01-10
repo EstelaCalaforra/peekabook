@@ -12,6 +12,7 @@ import { BookSearchProvider } from './context/bookSearchContext.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import { ProtectedRoute } from './services/ProtectedRoute.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+// import { useTranslation } from 'react-i18next'
 
 const customTheme = createTheme({
   palette: {
@@ -31,6 +32,7 @@ const customTheme = createTheme({
 })
 
 function App () {
+  // const { t } = useTranslation()
   return (
     <div>
       <Router>
