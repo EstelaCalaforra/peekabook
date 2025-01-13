@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
+import i18next from 'i18next'
 
 export function ReviewCard ({ review, deleteReviewFromDB, handleEditReview }) {
   const [isEditing, setIsEditing] = useState(false)
@@ -24,7 +25,7 @@ export function ReviewCard ({ review, deleteReviewFromDB, handleEditReview }) {
       <div>
         <p className='date'>{review.review_date.split('T')[0]}</p>
         <p className='title'>{review.title}</p>
-        <p className='authors'>by {review?.authors || 'Unknown author'}</p>
+        <p className='authors'>{i18next.t('by')} {review?.authors || 'Unknown author'}</p>
         <img className='five-stars-icon' src={FiveStarsRatingIcon} alt='rating' />
 
         {isEditing
@@ -37,8 +38,8 @@ export function ReviewCard ({ review, deleteReviewFromDB, handleEditReview }) {
                 className='edit-textarea'
               />
               <div className='save-cancel-buttons'>
-                <button className='save-edit' onClick={handleSaveEdit}>Save</button>
-                <button className='cancel-edit' onClick={handleCancelEdit}>Cancel</button>
+                <button className='save-edit' onClick={handleSaveEdit}>{i18next.t('Save')}</button>
+                <button className='cancel-edit' onClick={handleCancelEdit}>{i18next.t('Cancel')}</button>
               </div>
             </div>
           )

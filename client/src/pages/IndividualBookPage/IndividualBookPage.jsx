@@ -7,6 +7,7 @@ import { useBook } from '../../hooks/useBook'
 import { useReview } from '../../hooks/useReview'
 import { useIndividualBook } from '../../hooks/useIndividualBook'
 import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
+import i18next from 'i18next'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png'
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -83,7 +84,7 @@ export function IndividualBookPage() {
                   <div className='popup-content'>
                     <form action={apiUrl + '/api/add-books/user/' + userId} method='post' onSubmit={(event) => handleAdd(event, id)}>
                       <fieldset>
-                        <legend>Choose the shelves</legend>
+                        <legend>{i18next.t('Choose the shelves')}</legend>
                         {categories.map((category, key) => (
                           <div className='category' key={key}>
                             <input
@@ -108,7 +109,7 @@ export function IndividualBookPage() {
                         </div>
                       </fieldset>
                       <div className='review'>
-                        <label htmlFor='review'>Write a review</label>
+                        <label htmlFor='review'>{i18next.t('Write a review')}</label>
                         <textarea id='review' name='review' value={review} onChange={handleReviewChange} rows='10' cols='50' />
                       </div>
                       <input className='add-button' type='submit' value={isInBookshelf ? 'Edit' : 'Add'} />
@@ -127,7 +128,7 @@ export function IndividualBookPage() {
           </div>
         </section>
         <section className='reviews-container'>
-          <h2>Reviews</h2>
+          <h2>{i18next.t('Reviews')}</h2>
           <div className='reviews-row'>
             {allReviewsFromBook.length > 0 ? (
               allReviewsFromBook.map(review => (
@@ -139,12 +140,12 @@ export function IndividualBookPage() {
                 </li>
               ))
             ) : (
-              <p>No reviews.</p>
+              <p>{i18next.t('No reviews')}.</p>
             )}
           </div>
         </section>
         <section className='other-books-container'>
-          <h2>Other books by {book?.authors?.[0]}</h2>
+          <h2>{i18next.t('Other books by')} {book?.authors?.[0]}</h2>
           <div className='other-books'>
             {booksBySameAuthor ? (
               booksBySameAuthor.map(book => (
@@ -155,7 +156,7 @@ export function IndividualBookPage() {
                 </li>
               ))
             ) : (
-              <p>Loading...</p>
+              <p>{i18next.t('Loading')}...</p>
             )}
           </div>
         </section>

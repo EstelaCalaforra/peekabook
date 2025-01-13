@@ -1,6 +1,7 @@
 import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
 import { Link } from 'react-router-dom'
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png'
+import i18next from 'i18next'
 
 export function BookCard ({ book, onClickReadMore }) {
   return (
@@ -20,7 +21,7 @@ export function BookCard ({ book, onClickReadMore }) {
         </div>
         <div className='read-more'>
           <Link onClick={(event) => onClickReadMore(event, book.id)} className='button'>
-            Read more
+            {i18next.t('Read more')}
           </Link>
         </div>
       </div>

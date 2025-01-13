@@ -1,3 +1,5 @@
+import i18next from 'i18next'
+
 export function PaginationControls ({ currentPage, totalPages, handlePageChange }) {
   const renderPageNumbers = () => {
     const maxVisiblePages = 5
@@ -35,7 +37,8 @@ export function PaginationControls ({ currentPage, totalPages, handlePageChange 
         disabled={currentPage === totalPages}
         onClick={() => handlePageChange(currentPage + 1)}
       >
-        Next
+        {i18next.t('Next')}
+
       </button>
     </div>
   )

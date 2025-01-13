@@ -3,6 +3,7 @@ import { useBestSellers } from '../../hooks/useBestSellers'
 import { Quote } from '../../components/Quote/Quote.jsx'
 import { BestsellersShelf } from '../../components/BestsellersShelf/BestsellersShelf.jsx'
 import { ReviewsCarrousel } from '../../components/ReviewsCarrousel/ReviewsCarrousel.jsx'
+import i18next from 'i18next'
 
 export function HomePage () {
   const { bestsellersData, loadingBestsellersData } = useBestSellers()
@@ -14,7 +15,7 @@ export function HomePage () {
           <Quote />
         </div>
         <div className='bestsellers bestsellers-container'>
-          <h3 className='title'>Weekly Bestsellers</h3>
+          <h3 className='title'>{i18next.t('Weekly Bestsellers')}</h3>
           <BestsellersShelf
             bestsellersData={bestsellersData}
             loadingBestsellersData={loadingBestsellersData}
@@ -22,7 +23,7 @@ export function HomePage () {
         </div>
       </div>
       <div className='reviews-container'>
-        <h3 className='title'>Community</h3>
+        <h3 className='title'>{i18next.t('Community')}</h3>
         <ReviewsCarrousel />
       </div>
     </div>

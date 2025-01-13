@@ -12,6 +12,8 @@ module.exports = {
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
   rules: {
+    'semi': ["error", "never"],
+    'quotes': ["error", "single"],
     'indent': ["error", 2],
     'react/prop-types': 'off',
     'react/jsx-no-target-blank': 'off',

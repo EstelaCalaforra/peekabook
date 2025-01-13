@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import i18next from 'i18next'
 
 export function UserDropDown ({ userEmail, logout, isAuthenticated }) {
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -14,17 +15,15 @@ export function UserDropDown ({ userEmail, logout, isAuthenticated }) {
           {showUserMenu &&
             <div className='popup-login'>
               <div className='column'>
-                <a onClick={logout}>Log out</a>
-                {/* <a className=''>Profile</a> */}
-                {/* <a className=''>Settings</a> */}
+                <a onClick={logout}>{i18next.t('Log out')}</a>
               </div>
             </div>}
         </div>}
       {
         !isAuthenticated &&
           <div className='login-signup'>
-            <Link className='button login' to='/login'>Login</Link>
-            <Link className='button signup' to='/signup'>Signup</Link>
+            <Link className='button login' to='/login'>{i18next.t('Login')}</Link>
+            <Link className='button signup' to='/signup'>{i18next.t('Signup')}</Link>
           </div>
       }
     </>

@@ -5,6 +5,7 @@ import { BookSearchContext } from '../../context/bookSearchContext'
 import { useBookSearch } from '../../hooks/useBookSearch'
 import { BookCard } from '../../components/BookCard/BookCard.jsx'
 import { PaginationControls } from '../../components/PaginationControls/PaginationControls.jsx'
+import i18next from 'i18next'
 
 export function BookFindPage () {
   const {
@@ -25,7 +26,7 @@ export function BookFindPage () {
     <div className='bookfind-page'>
       <div className='container'>
         <p className='results'>
-          Page {currentPage} of {totalPages}
+          {i18next.t('Page')} {currentPage} {i18next.t('of')} {totalPages}
         </p>
         <ul className='books-info'>
           {bookSearch?.map((book) => (

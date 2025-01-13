@@ -1,17 +1,18 @@
 import { useQuote } from '../../hooks/useQuote'
-// import AuthorPhoto from '../../assets/haruki-murakami-pfp.png'
+import i18next from 'i18next'
 
 export function Quote () {
   const { quoteData, loadingQuoteData } = useQuote()
 
   return (
     <>
-      <h3 className='title'>Daily quote</h3>
+      <h3 className='title'>{i18next.t('Daily quote')}</h3>
       <div className='quote quote-column'>
         <div>
           {loadingQuoteData
             ? (
-              <p>Loading quote...</p>
+              
+              <p>{i18next.t('Loading quote')}...</p>
             )
             : (
               <div className='quote-row'>
@@ -19,7 +20,6 @@ export function Quote () {
                   <p className='quote-text'>&quot;{quoteData.quote}&quot;</p>
                   <p>{quoteData.author}</p>
                 </div>
-                {/* <img src={AuthorPhoto} /> */}
               </div>
             )}
         </div>

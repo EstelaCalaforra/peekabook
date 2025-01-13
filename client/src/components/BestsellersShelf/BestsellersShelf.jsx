@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Slider from 'react-slick'
 import './BestsellersShelf.css'
+import i18next from 'i18next'
 
 export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800)
@@ -29,27 +30,27 @@ export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
     <div className='bestsellers-row'>
       {loadingBestsellersData
         ? (
-          <p>Loading bestsellers...</p>
-          )
+          <p>{i18next.t('Loading bestsellers')}...</p>
+        )
         : isMobile
           ? (
             <Slider {...sliderSettings}>
               {bestsellersData.map((bookInfo, index) => (
                 <div className='bestsellers-shelf' key={index}>
                   <img className='miniature' src={bookInfo.book_image} alt={bookInfo.title} />
-                  <a className='button' href={bookInfo.buy_links[0].url}>Buy now</a>
+                  <a className='button' href={bookInfo.buy_links[0].url}>{i18next.t('Buy')}</a>
                 </div>
               ))}
             </Slider>
-            )
+          )
           : (
-              bestsellersData.map((bookInfo, index) => (
+            bestsellersData.map((bookInfo, index) => (
               <div className='bestsellers-shelf bestsellers-column' key={index}>
                 <img className='miniature' src={bookInfo.book_image} alt={bookInfo.title} />
-                <a className='button' href={bookInfo.buy_links[0].url}>Buy now</a>
+                <a className='button' href={bookInfo.buy_links[0].url}>Buy</a>
               </div>
-              ))
-            )}
+            ))
+          )}
     </div>
   )
 }

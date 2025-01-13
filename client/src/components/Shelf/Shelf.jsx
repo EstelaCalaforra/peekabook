@@ -1,11 +1,12 @@
 import RightArrow from '../../assets/right-arrow.png'
+import i18next from 'i18next'
 
 export function Shelf ({ category, booksInCategory, handleClickOnCategory, handleClickOnCover }) {
   return (
     <div className='bookshelf-column-shelf'>
       <div className='title-row'>
         <h3 className='shelf-title'>⚪{category}</h3>
-        <a className='full-shelf' onClick={() => handleClickOnCategory({ category })}>Full shelf</a>
+        <a className='full-shelf' onClick={() => handleClickOnCategory({ category })}>{i18next.t('Full shelf')}</a>
       </div>
       <div className='row'>
         {booksInCategory.slice(-5).map((book) => (
