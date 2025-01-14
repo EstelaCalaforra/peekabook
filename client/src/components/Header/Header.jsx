@@ -11,22 +11,24 @@ export function Header() {
   const { userId, userEmail, isAuthenticated, logout } = useAuth()
   const [showMenu, setShowMenu] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
-  const [langSelected, setLangSelected] = useState('en')
+  const [langSelected, setLangSelected] = useState(() => i18next.language || 'en')
 
   const toggleMenu = () => setShowMenu((prev) => !prev)
   const toggleSearch = () => setShowSearch((prev) => !prev)
 
-  function changeLang () {
+  function changeLang() {
     const newLang = langSelected === 'en' ? 'es' : 'en'
     i18next.changeLanguage(newLang, (err) => {
       if (err) {
         console.error('Error al cambiar idioma:', err)
       } else {
         console.log('Idioma cambiado a:', newLang)
+        window.localStorage.setItem('langSelected', newLang)
+        setLangSelected(newLang)
+        window.location.reload()
       }
     })
-    setLangSelected(newLang)
-  } 
+  }
 
   return (
     <header className="header">
@@ -74,7 +76,7 @@ export function Header() {
             isAuthenticated={isAuthenticated}
           />
         </div>
-        <button onClick={changeLang}>{i18next.t('Lang')}</button>
+        <button className={i18next.t('Lang')} onClick={changeLang} />
       </div>
     </header>
   )

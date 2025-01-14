@@ -8,5 +8,10 @@ export default defineConfig({
   server: {
     // Developer server config
     historyApiFallback: true
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './testSetup.js', 
   }
 })
