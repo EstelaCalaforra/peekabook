@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import i18next from 'i18next'
 
 export function UserDropDown ({ userEmail, logout, isAuthenticated }) {
-  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false)
 
-  const toggleMenu = () => setShowUserMenu((prev) => !prev);
+  const toggleMenu = () => setShowUserMenu((prev) => !prev)
 
   return (
     <>
