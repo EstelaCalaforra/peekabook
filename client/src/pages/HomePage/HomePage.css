@@ -109,6 +109,7 @@
     margin-top: 50px;
 
     min-height: 100px;
+    min-width: 300px;
 
     color: #85644d;
 }
@@ -173,10 +174,29 @@
     justify-items: center;
 
     position: relative;
+    min-width: 300px;
 }
+
+.homepage .loading-container {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px dotted #D6C0B3;
+    padding: 20px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+
+    min-height: 100px;
+    min-width: 300px;
+}
+
 
 .homepage .reviews-container .loading {
     color: #85644d;
+    text-align: center;
 }
 
 @media (max-width: 1700px) {
@@ -184,6 +204,16 @@
       flex-direction: column !important;
       gap: 100px !important;
     }
+
+    .bestsellers-row {
+        min-width: none !important;
+      }
+
+    .quote-bestsellers-container {
+        flex-direction: column !important;
+        gap: 100px !important;
+      }
+
     .homepage {
         flex-direction: column !important;
         justify-content: start !important;
@@ -201,6 +231,7 @@
     .homepage .quote-column, .loading-container, .bestsellers-container, .reviews-container  {
         /* margin-top: 64px !important; */
         width: 300px !important;
+        min-width: none !important;
     }
 
     .homepage .reviews-container {

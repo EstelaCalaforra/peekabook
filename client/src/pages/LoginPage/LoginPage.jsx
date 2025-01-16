@@ -13,8 +13,9 @@ export function LoginPage () {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <form onSubmit={handleSubmit} className='login-form'>
           <div>
-            <label>{i18next.t('Email')}</label>
+            <label htmlFor='email'>{i18next.t('Email')}</label>
             <input
+              id='email'
               type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -22,8 +23,9 @@ export function LoginPage () {
             />
           </div>
           <div>
-            <label>{i18next.t('Password')}</label>
+            <label htmlFor='password'>{i18next.t('Password')}</label>
             <input
+              id='password'
               type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
