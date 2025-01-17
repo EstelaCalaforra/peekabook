@@ -34,6 +34,7 @@ export function useLogin () {
         await login(data.userId, data.userEmail, data.token)
 
         setTimeout(() => {
+          console.log('useNavigate in useLogin')
           navigate('/bookshelf/' + data.userId)
         }, 2000)
       } else {
