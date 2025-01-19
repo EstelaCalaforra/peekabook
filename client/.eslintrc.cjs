@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true, "vitest-globals/env": true },
+  env: { browser: true, es2020: true, 'vitest-globals/env': true },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -13,9 +13,9 @@ module.exports = {
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
   rules: {
-    'semi': ["error", "never"],
-    'quotes': ["error", "single"],
-    'indent': ["error", 2],
+    semi: ['error', 'never'],
+    quotes: ['error', 'single'],
+    indent: ['error', 2],
     'react/prop-types': 'off',
     'react/jsx-no-target-blank': 'off',
     'no-unused-vars': 'off',

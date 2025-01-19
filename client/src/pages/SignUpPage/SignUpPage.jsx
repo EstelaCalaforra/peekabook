@@ -13,8 +13,9 @@ export function SignUpPage () {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <form autoComplete='off' className='signup-form' onSubmit={handleSubmit}>
           <div>
-            <label>{i18next.t('Email')}</label>
+            <label htmlFor='email'>{i18next.t('Email')}</label>
             <input
+              id='email'
               type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -23,8 +24,9 @@ export function SignUpPage () {
             />
           </div>
           <div>
-            <label>{i18next.t('Password')}</label>
+            <label htmlFor='password'>{i18next.t('Password')}</label>
             <input
+              id='password'
               type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -33,8 +35,9 @@ export function SignUpPage () {
             />
           </div>
           <div>
-            <label>{i18next.t('Confirm password')}</label>
+            <label htmlFor='confirmation-password'>{i18next.t('Confirm password')}</label>
             <input
+              id='confirmation-password'
               type='password'
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}

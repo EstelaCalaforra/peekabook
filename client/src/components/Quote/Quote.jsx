@@ -6,7 +6,7 @@ export function Quote () {
 
   return (
     <>
-      <h3 className='title'>{i18next.t('Daily quote')}</h3>
+      {/* <h3 className='title'>{i18next.t('Daily quote')}</h3> */}
       <div className='quote quote-column'>
         <div>
           {loadingQuoteData
