@@ -9,23 +9,30 @@ export function HomePage () {
   const { bestsellersData, loadingBestsellersData } = useBestSellers()
 
   return (
-    <div className='homepage'>
-      <div className='quote-bestsellers-container'>
-        <div className='quote-column'>
+    <main className='homepage'>
+      <div className='homepage-container'>
+        <section  className='quote-column'>
           <Quote />
-        </div>
-        <div className='bestsellers bestsellers-container'>
+        </section >
+        <section  className='quote-column'>
+          <p>Fill your bookshelf</p>
+        </section >
+        <section  className='quote-column'>
+          <p>Write reviews</p>
+        </section >
+        <section  className='bestsellers bestsellers-container'>
           <h3 className='title'>{i18next.t('Weekly Bestsellers')}</h3>
           <BestsellersShelf
             bestsellersData={bestsellersData}
             loadingBestsellersData={loadingBestsellersData}
           />
-        </div>
+        </section >
+
+        <section  className='reviews-container'>
+          <h3 className='title'>{i18next.t('Community')}</h3>
+          <ReviewsCarrousel />
+        </section >
       </div>
-      <div className='reviews-container'>
-        <h3 className='title'>{i18next.t('Community')}</h3>
-        <ReviewsCarrousel />
-      </div>
-    </div>
+    </main>
   )
 }
