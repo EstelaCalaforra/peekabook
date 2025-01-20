@@ -26,7 +26,6 @@ export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
     speed: 500,
     autoplaySpeed: 3000,
     cssEase: 'linear',
-    // arrows: true,
     
     responsive: [
       {
@@ -41,7 +40,6 @@ export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
       },
       {
         breakpoint: 1000,
-        dots: true,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -52,7 +50,8 @@ export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          centerPadding: '25px',
         }
       }
     ]

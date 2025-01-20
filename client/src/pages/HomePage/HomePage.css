@@ -134,7 +134,6 @@
 }
 
 .homepage .description {
-    /* width: 500px; */
     text-align: justify;
 }
 
@@ -233,10 +232,8 @@
     width: 100%;
 }
 
-/* Estilos para ventanas con anchura menor a 800px */
 @media (max-width: 1150px) {
     .homepage.container {
-        /* flex-direction: column; */
         width: 90vw !important;
     }
 }
@@ -246,5 +243,39 @@
         font-size: 35px;
     }
 }
+
+@media (max-width: 600px) {
+    .homepage .fill .title {
+        margin-left: 50px;
+    }
+    .homepage .reviews .title {
+        margin-right: 50px;
+    }
+    .homepage .community .title {
+        margin-left: 50px;
+    }
+    .homepage .container {
+        flex-direction: column;
+    }
+    .homepage .description {
+        padding: 20px;
+    }
+    .homepage .illustration {
+        padding: 0px !important;
+    }
+
+    .homepage .desc-button {
+        padding: 10px !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .homepage .description {
+        padding: 20px !important;
+    }
+    .homepage .reviews .illustration {
+        display: none;
+    }
+}
+  
   
     
