@@ -75,8 +75,9 @@ export function Header() {
             logout={logout}
             isAuthenticated={isAuthenticated}
           />
+          <button className={`lang-toggle ${i18next.t('Lang')}`} onClick={changeLang} />
         </div>
-        <button className={i18next.t('Lang')} onClick={changeLang} />
+        
       </div>
     </header>
   )

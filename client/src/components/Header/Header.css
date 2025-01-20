@@ -226,6 +226,7 @@
   .header .row {
     display: grid;
     grid-template-columns: repeat(5, 1fr) !important;
+    /* border: 1px solid black; */
     /* width: 100%;  */
   }
 
@@ -244,7 +245,9 @@
 
   .searchbar-user {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    /* border: 1px solid black; */
+
    }
 
   .search-toggle {
@@ -284,6 +287,14 @@
 
   .login-signup {
     display: grid;
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  /* --- LANG TOGGLE --- */
+
+  .lang-toggle {
+    display: grid !important;
     grid-column: 2;
     grid-row: 1;
   }
