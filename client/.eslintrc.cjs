@@ -13,6 +13,8 @@ module.exports = {
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
   rules: {
+    "no-unused-vars": ["error", {
+            "vars": "all"}],
     semi: ['error', 'never'],
     quotes: ['error', 'single'],
     indent: ['error', 2],

@@ -1,81 +1,60 @@
-.bestsellers-shelf {
+.bs-info {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.p-carrousel {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  width: 50vw;
+  border-radius: 10px;
 }
 
-.bestsellers-shelf .miniature {
-  width: 120px;
-  height: 190px;
+.bs-info .miniature {
+  margin: 20px;
+  width: 133px;
+  height: 210px;
   border-radius: 10px;
   transition: transform 0.3s ease-in-out;
+  opacity: 0.7;
 }
 
-.bestsellers-shelf .button {
-  text-decoration: none;
-  color: #AB886D;
-  background-color: white;
-  width: 95px;
-  text-align: center;
-  border: 2px solid #D6C0B3;
+.bs-info .button {
+  display: none;
+  width: 80px;
   font-size: smaller;
-  border-radius: 10px;
-  padding: 5px;
 }
 
-/* Estilos para ventanas con anchura menor a 800px */
-@media (max-width: 800px) {
-  .bestsellers-row {
-    width: 70vw !important;
-    padding: 0 10px;
-    height: 300px;
-  }
-
-  .bestsellers-shelf {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-    width: 100%;
-    height: 260px !important;
-    text-align: center;
-  
-  }
-
-  .bestsellers-shelf .miniature {
-    width: 100px;
-    height: 160px;
-    transition: transform 0.3s ease-in-out;
-    opacity: 0.7;
-  }
-
-  .slick-center .miniature {
-    width: 120px; /* Tamaño más grande */
-    height: 190px;
-    transform: scale(1.1); /* Efecto de agrandamiento */
-    opacity: 1; /* Enfatizar el libro central */
-    z-index: 2; /* Asegúrate de que esté encima de los demás */
-  }
-
-  .bestsellers-shelf .button {
-    width: 80px;
-    font-size: smaller;
-  }
-
-  .slick-slider {
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  .slick-dots {
-    margin-top: 20px;
-  }
-
-  .slick-prev, .slick-next {
-    z-index: 10;
-    color: #AB886D;
-  }
+.slick-center .miniature {
+  width: 180px / 1.2;
+  height: 285px / 1.2;
+  transform: scale(1.1);
+  opacity: 1; 
+  z-index: 2;
 }
+
+.slick-center .button {
+  display: block;
+}
+
+.slick-slider {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.slick-dots {
+  margin-top: 20px;
+}
+
+.slick-prev, .slick-next {
+  z-index: 10;
+  color: #AB886D;
+}
+
 
   

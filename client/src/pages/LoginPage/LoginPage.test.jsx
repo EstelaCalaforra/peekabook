@@ -1,6 +1,8 @@
-import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react'
 import { vi } from 'vitest'
+import userEvent from '@testing-library/user-event'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 import { LoginPage } from './LoginPage'
 
 // Mock context
@@ -16,6 +18,7 @@ vi.mock('react-router-dom', () => ({
 
 // Mock traductions
 vi.mock('i18next', () => ({
+  __esModule: true,
   default: {
     t: vi.fn((key) => key)
   },
@@ -59,24 +62,16 @@ test('<LoginPage /> handles login flow', async () => {
     })
   })
 
-    render(
-      <MemoryRouter>
-        <AuthContext.Provider value={{ login: mockLogin }}>
-          <LoginPage />
-        </AuthContext.Provider>
-      </MemoryRouter>
-    )
+  render(<LoginPage />)
 
-    const emailInput = screen.getByLabelText(/email/i)
-    const passwordInput = screen.getByLabelText(/password/i)
-    const submitButton = screen.getByRole('button', { name: /login/i })
+  const emailInput = screen.getByLabelText(/email/i)
+  const passwordInput = screen.getByLabelText(/password/i)
+  const submitButton = screen.getByRole('button', { name: /login/i })
 
-    // Simulamos que el usuario escribe en los campos
-    await userEvent.type(emailInput, 'test@example.com')
-    await userEvent.type(passwordInput, 'password123')
-
-    // Simulamos el clic en el botón de envío
-    await userEvent.click(submitButton)
+  // Mock filling and sending the form
+  await user.type(emailInput, 'test@example.com')
+  await user.type(passwordInput, 'password123')
+  await user.click(submitButton)
 
   // Validate the fetch is called with correct params
   expect(fetch).toHaveBeenCalledWith(expect.stringMatching(/\/api\/users\/login$/), {

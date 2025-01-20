@@ -1,0 +1,6 @@
+.text-author {
+    position: absolute;
+    top: 55%; /* Centra verticalmente */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

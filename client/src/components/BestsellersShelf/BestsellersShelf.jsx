@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Slider from 'react-slick'
 import './BestsellersShelf.css'
 import i18next from 'i18next'
+import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
 
 export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800)
@@ -16,41 +17,64 @@ export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
   }, [])
 
   const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    className: 'center',
     centerMode: true,
-    centerPadding: '70px',
-    autoplay: true
+    infinite: true,
+    centerPadding: '150px',
+    slidesToShow: 3,
+    autoplay: true,
+    speed: 500,
+    autoplaySpeed: 3000,
+    cssEase: 'linear',
+    // arrows: true,
+    
+    responsive: [
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          centerPadding: '0px',
+        }
+      },
+      {
+        breakpoint: 1000,
+        dots: true,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   }
 
   return (
-    <div className='bestsellers-row'>
+    <div className='p-carrousel'>
       {loadingBestsellersData
         ? (
           <p>{i18next.t('Loading bestsellers')}...</p>
         )
-        : isMobile
-          ? (
-            <Slider {...sliderSettings}>
-              {bestsellersData.map((bookInfo, index) => (
-                <div className='bestsellers-shelf' key={index}>
-                  <img className='miniature' src={bookInfo.book_image} alt={bookInfo.title} />
-                  <a className='button' href={bookInfo.buy_links[0].url}>{i18next.t('Buy')}</a>
-                </div>
-              ))}
-            </Slider>
-          )
-          : (
-            bestsellersData.map((bookInfo, index) => (
-              <div className='bestsellers-shelf bestsellers-column' key={index}>
+        : (
+          <Slider {...sliderSettings}>
+            {bestsellersData.map((bookInfo, index) => (
+              <div className='bs-info' key={index}>
                 <img className='miniature' src={bookInfo.book_image} alt={bookInfo.title} />
-                <a className='button' href={bookInfo.buy_links[0].url}>Buy</a>
+                <a className='button' href={bookInfo.buy_links[0].url}>{i18next.t('Buy')}</a>
               </div>
-            ))
-          )}
+            ))}
+          </Slider>
+        )
+      }
     </div>
   )
 }

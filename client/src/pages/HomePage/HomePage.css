@@ -8,135 +8,147 @@
     align-items: center;
 
     background-color: #d1bfb5;
-
     /* background-image: url('../../assets/bg-books-trans20.png');
     background-size: cover; */
     padding-bottom: 50px;
 }
 
-.homepage .homepage-container {
+.homepage section {
+    width: 100%;
+}
+
+.homepage .homepage.container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     align-items: center;
     gap: 50px;
 
     background-color: white;
     border-radius: 20px;
-    padding: 50px;
+    /* padding: 50px; */
+    padding-top: 0px;
     margin: 50px;
-    width: 80vw;
-    /* border: 2px solid #AB886D; */
-
-}
-
-.homepage .landing-img {
-    width: 100%;
+    width: 60vw;
 }
 
 .homepage .quote {
-    background-color: white;
-    border: 1px dotted #D6C0B3;
-    font-family: "Sour Gummy", sans-serif;
-    color: #AB886D;
-    padding-right: 20px;
-    padding-left: 20px;
-    padding-bottom: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin: 0px;
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    width: 500px;
+    align-items: center;
+    justify-content: center;
+}
+
+.homepage .quote .title {
+    width: 30%;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.homepage .rectangle {
+    max-width: 300px;
+    width: 100%;
+    /* display: block; */
+}
+
+.homepage .img-quote {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: #d1bfb5; */
+    color: #7c5b44;
+    font-weight: bold;
+    /* border: 1px dotted #D6C0B3; */
+    font-family: "Sour Gummy", sans-serif;
+    /* color: #AB886D; */
+    text-align: center;
+    /* width: 40vw; */
+    max-width: 450px;
+    padding: 20px 20px 0px 20px;
+    border-radius: 0 0 10px 10px;
 }
 
 .homepage .title {
+    background-color: #d1bfb5;
+    padding: 10px;
     color: #7c5b44;
-    margin-bottom: 10px;
-    font-size: 50px;
-    width: 100%;
-    z-index: 1;
-    text-align: left;
-
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    margin: 0;
-}
-
-.homepage .quote-column {
-    display: flex;
-    flex-direction: column;
+    font-size: 3.5rem;
+    line-height: 0.8;
     margin: 0px;
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
-    /* margin-top: 50px; */
-
-    position: relative;
 }
 
-.homepage .quote-row {
+.homepage .fill .desc-button {
+    padding-right: 50px;
+}
+
+.homepage .fill .illustration {
+    padding-left: 50px;
+}
+
+.homepage .reviews .desc-button {
+    padding-left: 50px;
+}
+
+.homepage .reviews .illustration {
+    padding-right: 50px;
+}
+
+.homepage .bestsellers .description {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.homepage .community .description {
+    padding-right: 50px;
+}
+
+.homepage .reviews .title {
+    border-radius: 0px 10px 10px 0px;
+    text-align: right;
+}
+
+.homepage .fill .title {
+    border-radius: 10px 0px 0px 10px;
+    text-align: left;
+}
+
+.homepage .bestsellers .title {
+    border-radius: 0px 10px 10px 0px;
+    text-align: right;
+    width: 50%;
+}
+
+.homepage .community .title {
+    border-radius: 10px 0px 0px 10px;
+    text-align: left;
+}
+
+.homepage .container {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
+    width: 100%;
 }
 
-.homepage .quote img{
-    width: 140px;
-    border-radius: 100px;
+.homepage .description {
+    /* width: 500px; */
+    text-align: justify;
 }
 
 .homepage .rating {
     width: 100px;
 }
 
-
-.homepage .bestsellers-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0px;
-    align-items: center;
-    justify-content: center;
-
-    position: relative;
+.homepage .illustration {
+    max-width: 350px;
+    width: 50%;
 }
 
-.homepage .bestsellers-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
-    background-color: white;
-    border-radius: 10px;
-    border: 1px dotted #D6C0B3;
-    padding: 20px;
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-
-    min-height: 100px;
-    min-width: 300px;
-
-    color: #85644d;
-}
-
-.homepage .bestsellers-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.homepage .bestsellers .miniature {
-    width: 200px;
-    height: 316px;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
+.homepage .description {
+    color: black;
 }
 
 .homepage .home-shelf {
@@ -147,11 +159,6 @@
 .homepage .divider {
     width: 40vw;
     margin-top: 10px;
-}
-
-.homepage .bestsellers-shelf {
-    margin-bottom: 0;
-    padding-bottom: 0;
 }
 
 .homepage .login {
@@ -173,21 +180,30 @@
     font-weight: bold;
 }
 
+.homepage .desc-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.homepage .desc-button .button {
+    font-size: 20px;
+}
+
+.homepage .fill .desc-button .button {
+    width: 200px;
+}
+
+.homepage .reviews .desc-button .button {
+    width: 200px;
+}
+
 .homepage .button:hover {
     background-color: #E4E0E1;
 }
 
-.homepage .reviews-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-
-    position: relative;
-    min-width: 300px;
-}
-
-.homepage .loading-container {
+.homepage .loading .container {
     display: flex;
     flex-direction: row;
     background-color: white;
@@ -203,68 +219,32 @@
     min-width: 300px;
 }
 
-
-.homepage .reviews-container .loading {
+.homepage .reviews .container .loading {
     color: #85644d;
     text-align: center;
 }
 
-@media (max-width: 1700px) {
-    .quote-bestsellers-container {
-      flex-direction: column !important;
-      gap: 100px !important;
-    }
+.homepage .bestsellers .container {
+    flex-direction: column;
+    align-items: center;
+}
 
-    .bestsellers-row {
-        min-width: none !important;
-      }
+.homepage .h3-desc-button {
+    width: 100%;
+}
 
-    .quote-bestsellers-container {
-        flex-direction: column !important;
-        gap: 100px !important;
-      }
-
-    .homepage {
-        flex-direction: column !important;
-        justify-content: start !important;
-        gap: 100px;
-    }
-    .homepage .reviews-container {
-        justify-content: center !important;
-    }
-    .homepage .title {
-        text-align: center !important;
+/* Estilos para ventanas con anchura menor a 800px */
+@media (max-width: 1150px) {
+    .homepage.container {
+        /* flex-direction: column; */
+        width: 90vw !important;
     }
 }
 
-@media (max-width: 800px) {
-    .homepage .quote-column, .loading-container, .bestsellers-container, .reviews-container  {
-        /* margin-top: 64px !important; */
-        width: 300px !important;
-        min-width: none !important;
-    }
-
-    .homepage .reviews-container {
-        justify-content: center !important;
-    }
-
+@media (max-width: 850px) {
     .homepage .title {
-        width: 100% !important;
-        text-align: center !important;
-    }
-
-    .homepage .bestsellers-container .title {
-        line-height: 40px;
-    }
-
-    .homepage .bestsellers-row {
-        flex-direction: column !important;
-        min-width: none !important;
-        width: 300px !important;
-        margin-top: 76px !important;
-    }
-
-    .homepage .quote {
-        width: 400px;
+        font-size: 35px;
     }
 }
+  
+    
