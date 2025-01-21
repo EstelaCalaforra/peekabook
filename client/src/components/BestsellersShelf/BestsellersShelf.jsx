@@ -68,7 +68,7 @@ export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
             {bestsellersData.map((bookInfo, index) => (
               <div className='bs-info' key={index}>
                 <img className='miniature' src={bookInfo.book_image} alt={bookInfo.title} />
-                <a className='button' href={bookInfo.buy_links[0].url}>{i18next.t('Buy')}</a>
+                <a className='button' href={bookInfo.buy_links[0].url} target='_blank'>{i18next.t('Buy')}</a>
               </div>
             ))}
           </Slider>

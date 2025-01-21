@@ -169,7 +169,7 @@
     text-decoration: none;
     color: #AB886D;
     background-color: white;
-    width: 95px;
+    /* width: 95px; */
     cursor: pointer;
     text-align: center;
     border: 2px solid #D6C0B3;
@@ -195,7 +195,11 @@
 }
 
 .homepage .reviews .desc-button .button {
-    width: 200px;
+    width: 150px;
+}
+
+.homepage .bestsellers .desc-button .button {
+    width: 100px;
 }
 
 .homepage .button:hover {
@@ -244,7 +248,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
     .homepage .fill .title {
         margin-left: 50px;
     }
@@ -259,6 +263,9 @@
     }
     .homepage .description {
         padding: 20px;
+    }
+    .homepage .bestsellers .description {
+        padding-bottom: 0px !important;
     }
     .homepage .illustration {
         padding: 0px !important;

@@ -4,9 +4,9 @@
 }
 
 .header .container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr) !important;
+  grid-template-rows: repeat(1, 1fr) !important;
   align-items: center;
   gap: 10px;
   padding: 10px;
@@ -38,13 +38,18 @@
 .header ul {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   gap: 30px;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
+
+.header .nav { 
+  grid-column: 2 / 4;
+  padding-left: 30px;
+} 
   
 .header .nav-item { 
   text-decoration: none; 
@@ -55,19 +60,21 @@
   color: #D6C0B3;
 }
 
+.header .form-container {
+  grid-column: 4/11;
+  grid-row: 1;
+  width: auto;
+  /* align-items: center; */
+}
+
 .header .header-form {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: right;
   gap: 20px;
-  margin-right: 20px;
-}
-
-.header .img-and-nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  /* margin-right: 20px; */
 }
 
 .header .username {
@@ -166,7 +173,7 @@
   gap: 10px;
 }
 
-.search-toggle {
+.header .search-toggle {
   display: none;
   background: none;
   border: none;
@@ -178,6 +185,11 @@
   width: 30px;
   height: 30px;
   margin-left: 10px;
+}
+
+.header .dropdown-container {
+  grid-column: 11;
+  padding-left: 20px;
 }
 
 /* Default hide button */
@@ -217,63 +229,58 @@
   border: none;
 }
 
-@media (max-width: 800px) {
-  .header .container {
-    display: flex;
-    flex-direction: column;
-  }
+.header .lang-container {
+  grid-column: 12;
+  grid-row: 1;
+  display: flex;
+  justify-content: right;
+  /* align-content: right; */
+}
 
-  .header .row {
+@media (max-width: 1000px) {
+  .header .container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr) !important;
-    /* border: 1px solid black; */
-    /* width: 100%;  */
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: repeat(2, 1fr) !important;
   }
 
   .row img {
-    grid-column: 3;
-
+    grid-column: 2 !important;
+    grid-row: 1 !important;
   }
 
   .row button {
-    grid-column: 5;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
   }
 
   /* --- SEARCH TOGGLE --- */
 
   /* Show button when dimensions */
 
-  .searchbar-user {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    /* border: 1px solid black; */
-
-   }
-
   .search-toggle {
-    display: grid;
+    display: block !important;
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
 
     background-repeat: no-repeat !important;
   }
 
   /* Hide PC search-bar when mobile dimensions */
-  .header-form {
+  .header .header-form {
     display: none !important;
     margin-right: 0px !important;
   }
 
-  .form-container {
-    display: grid !important;
-    grid-column: 1/3;
-    grid-row: 2;
+  .header .form-container {
+    grid-column: 1/4;
+    grid-row: 3;
 
     padding-left: 5px;
     padding-right: 5px;
   }
 
-  .header-form.active {
+  .header .header-form.active {
     display: flex !important;
     width: 100% !important;
     align-items: center !important;
@@ -286,24 +293,37 @@
   }
 
   .login-signup {
-    display: grid;
     grid-column: 3;
-    grid-row: 1;
+    grid-row: 2;
+  }
+
+  .dropdown-container {
+    grid-column: 2/4 !important;
+    grid-row: 2 !important;
+    padding: 0px !important;
+    display: flex;
+    justify-content: right !important;
+    padding-right: 10px;
+
   }
 
   /* --- LANG TOGGLE --- */
 
-  .lang-toggle {
-    display: grid !important;
-    grid-column: 2;
+  .lang-container {
+    grid-column: 3 !important;
     grid-row: 1;
+    padding-right: 10px;
   }
 
   /* --- MENU TOGGLE --- */
 
   /* Show button when mobile dimensions */
   .menu-toggle {
-    display: block;
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+    padding-left: 15px;
+    text-align: left;
   }
 
   /* Hide PC nav when mobile dimensions */
@@ -317,6 +337,7 @@
     flex-direction: column;
     background-color: white;
     position: absolute;
+    align-items: center;
     top: 50px;
     left: 0;
     right: 0;

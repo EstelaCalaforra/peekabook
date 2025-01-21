@@ -33,48 +33,49 @@ export function Header() {
   return (
     <header className="header">
       <div className="container">
-        <div className="row">
-          <img src={bookLogo} alt="Company Logo" className="logo" />
+        <img src={bookLogo} alt="Company Logo" className="logo" />
 
-          <button className="menu-toggle" onClick={toggleMenu}>
+        <button className="menu-toggle" onClick={toggleMenu}>
             ☰
-          </button>
+        </button>
 
-          <nav className={`nav ${showMenu ? 'active' : ''}`}>
-            <ul>
-              <li>
-                <Link className="nav-item" to="/" onClick={() => setShowMenu(false)}>
-                  {i18next.t('Home')}
+        <nav className={`nav ${showMenu ? 'active' : ''}`}>
+          <ul>
+            <li>
+              <Link className="nav-item" to="/" onClick={() => setShowMenu(false)}>
+                {i18next.t('Home')}
 
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="nav-item"
-                  to={userId ? '/bookshelf/' + userId : '/login'}
-                  onClick={() => setShowMenu(false)}
-                >
-                  {i18next.t('Bookshelf')}
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="nav-item"
+                to={userId ? '/bookshelf/' + userId : '/login'}
+                onClick={() => setShowMenu(false)}
+              >
+                {i18next.t('Bookshelf')}
+              </Link>
+            </li>
+          </ul>
+        </nav>
 
-        <div className='searchbar-user'>
-          <button className='search-toggle' onClick={toggleSearch} />
+        <button className='search-toggle' onClick={toggleSearch} />
 
-          <div className='form-container'>
-            <SearchForm
-              showSearch={showSearch}
-            />
-          </div>  
+        <div className='form-container'>
+          <SearchForm
+            showSearch={showSearch}
+          />
+        </div>  
 
+        <div className='dropdown-container'>
           <UserDropDown
             userEmail={userEmail}
             logout={logout}
             isAuthenticated={isAuthenticated}
           />
+        </div>
+
+        <div className='lang-container'>
           <button className={`lang-toggle ${i18next.t('Lang')}`} onClick={changeLang} />
         </div>
         
