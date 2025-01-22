@@ -64,7 +64,6 @@
   grid-column: 4/11;
   grid-row: 1;
   width: auto;
-  /* align-items: center; */
 }
 
 .header .header-form {
@@ -74,7 +73,6 @@
   justify-content: right;
   gap: 20px;
   width: 100%;
-  /* margin-right: 20px; */
 }
 
 .header .username {
@@ -234,7 +232,6 @@
   grid-row: 1;
   display: flex;
   justify-content: right;
-  /* align-content: right; */
 }
 
 @media (max-width: 1000px) {

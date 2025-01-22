@@ -7,7 +7,6 @@ import i18next from 'i18next'
 import BookshelfIllustration from '../../assets/bookshelf.png'
 import WritingIllustration from '../../assets/reading_2.png'
 import CommunityIllustration from '../../assets/romantic.png'
-import BestsellersIllustration from '../../assets/bestsellers.png'
 import Rectangle from '../../assets/rectangle.png'
 
 export function HomePage () {
@@ -54,7 +53,6 @@ export function HomePage () {
               <h3 className='title'>{i18next.t('Join our community')}</h3>
               <div className='desc-button'>
                 <p className='description'>{i18next.t('Connect with fellow readers who share your passion for books. Exchange recommendations, discuss your favorite stories, and explore diverse perspectives. Our community is a place to celebrate the joy of reading, build friendships, and grow together through the power of words. Dive in and become part of the conversation!')}</p>
-                {/* <a className='button'>Join us</a> */}
               </div>
             </div>
           </div>
@@ -62,7 +60,6 @@ export function HomePage () {
         </section>
         <section  className='bestsellers'>
           <div className='container'>
-            {/* <img className='illustration' src={BestsellersIllustration}></img> */}
             <div className='h3-desc-button'>
               <h3 className='title'>{i18next.t('Discover Bestsellers')}</h3>
               <div className='desc-button'>

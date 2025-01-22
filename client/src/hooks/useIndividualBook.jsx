@@ -5,7 +5,7 @@ import { useBook } from './useBook'
 import { useAuth } from '../context/AuthContext'
 import { BookSearchContext } from '../context/bookSearchContext'
 
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL
 
 export function useIndividualBook () {
   const { setBookId, setCategories } = useContext(BookSearchContext)

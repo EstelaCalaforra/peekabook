@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import './BookshelfPage.css'
 import { useBookshelf } from '../../hooks/useBookshelf'
 import { Shelf } from '../../components/Shelf/Shelf.jsx'
@@ -27,7 +28,7 @@ export function BookshelfPage () {
     fetchBookshelfData()
   }, [])
 
-  const [activeView, setActiveView] = useState('bookshelves');
+  const [activeView, setActiveView] = useState('bookshelves')
 
   return (
     <div className='bookshelf-page'>

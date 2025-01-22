@@ -6,18 +6,18 @@ import { useAuth } from '../../context/AuthContext'
 
 // Mock AuthContext
 vi.mock('../../context/AuthContext', () => ({
-    useAuth: vi.fn(() => ({
-      isAuthenticated: false,
-      setIsAuthenticated: vi.fn(),
-      authToken: '',
-      setAuthToken: vi.fn(),
-      login: vi.fn(),
-      logout: vi.fn(),
-      userId: '',
-      setUserId: vi.fn(),
-      userEmail: '',
-      setUserEmail: vi.fn(),
-    })),
+  useAuth: vi.fn(() => ({
+    isAuthenticated: false,
+    setIsAuthenticated: vi.fn(),
+    authToken: '',
+    setAuthToken: vi.fn(),
+    login: vi.fn(),
+    logout: vi.fn(),
+    userId: '',
+    setUserId: vi.fn(),
+    userEmail: '',
+    setUserEmail: vi.fn(),
+  })),
 }))
 
 // Mock react-router

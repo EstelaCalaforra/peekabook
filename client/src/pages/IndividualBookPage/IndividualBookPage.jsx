@@ -10,7 +10,7 @@ import FiveStarsRatingIcon from '../../assets/five-stars-rating.png'
 import i18next from 'i18next'
 
 const defaultImageUrl = 'https://birkhauser.com/product-not-found.png'
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL
 
 export function IndividualBookPage() {
   const { userId } = useAuth()

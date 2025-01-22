@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import './LoginPage.css'
 import { useLogin } from '../../hooks/useLogin'
 import i18next from 'i18next'

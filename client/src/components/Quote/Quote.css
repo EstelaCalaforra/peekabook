@@ -1,16 +1,14 @@
 .quote .text-author {
     position: absolute;
-    top: 55%; /* Centra verticalmente */
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* max-height: 100px; */
-    /* font-weight: normal; */
     width: 250px;
 }
 
 .quote .loading {
     position: absolute;
-    top: 55%; /* Centra verticalmente */
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: normal;

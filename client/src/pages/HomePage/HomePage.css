@@ -8,8 +8,6 @@
     align-items: center;
 
     background-color: #d1bfb5;
-    /* background-image: url('../../assets/bg-books-trans20.png');
-    background-size: cover; */
     padding-bottom: 50px;
 }
 
@@ -20,13 +18,11 @@
 .homepage .homepage.container {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
     align-items: center;
     gap: 50px;
 
     background-color: white;
     border-radius: 20px;
-    /* padding: 50px; */
     padding-top: 0px;
     margin: 50px;
     width: 60vw;
@@ -48,7 +44,6 @@
 .homepage .rectangle {
     max-width: 300px;
     width: 100%;
-    /* display: block; */
 }
 
 .homepage .img-quote {
@@ -56,14 +51,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: #d1bfb5; */
     color: #7c5b44;
     font-weight: bold;
-    /* border: 1px dotted #D6C0B3; */
     font-family: "Sour Gummy", sans-serif;
-    /* color: #AB886D; */
     text-align: center;
-    /* width: 40vw; */
     max-width: 450px;
     padding: 20px 20px 0px 20px;
     border-radius: 0 0 10px 10px;
@@ -169,7 +160,6 @@
     text-decoration: none;
     color: #AB886D;
     background-color: white;
-    /* width: 95px; */
     cursor: pointer;
     text-align: center;
     border: 2px solid #D6C0B3;

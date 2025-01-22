@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './CategoryPage.css'
 import { useBookshelf } from '../../hooks/useBookshelf'
 import i18next from 'i18next'
@@ -9,7 +9,7 @@ export function CategoryPage() {
   const category = location.state
   const { bookshelfData, hasBooks, handleClickOnCover, deleteBookFromBookshelf, fetchBookshelfData } = useBookshelf()
 
-  const defaultImageUrl = 'https://birkhauser.com/product-not-found.png';
+  const defaultImageUrl = 'https://birkhauser.com/product-not-found.png'
 
   async function handleDeleteBook(book) {
     await deleteBookFromBookshelf(book)
@@ -44,5 +44,5 @@ export function CategoryPage() {
           ))}
       </div>
     </main>
-  );
+  )
 }

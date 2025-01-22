@@ -6,14 +6,14 @@ import axios from 'axios'
 
 export function useBookshelf () {
   const [bookshelfData, setBookshelfData] = useState([])
-  const [loading, setLoading] = useState(true) // Nuevo estado
+  const [loading, setLoading] = useState(true)
   const { userId, authToken, logout } = useAuth()
   const [hasBooks, setHasBooks] = useState(false)
   const [hasReviews, setHasReviews] = useState(false)
   const [reviews, setReviews] = useState([])
   const { categories, setCategories, setBookId } = useContext(BookSearchContext)
 
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL
 
   async function fetchBookshelfData () {
     setLoading(true)

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { BookSearchContext } from '../context/bookSearchContext'
 import { useNavigate } from 'react-router-dom'
 
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL
 
 export function useBookSearch () {
   const { bookQuery, setBookSearch, setBookQuery, setCurrentPage, setTotalPages, setBookId } = useContext(BookSearchContext)
