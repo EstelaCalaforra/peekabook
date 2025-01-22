@@ -34,3 +34,7 @@
 .slick-dots li.slick-active button:before {
   transform: scale(1.2);
 }
+
+.community .loading {
+  text-align: center;
+}

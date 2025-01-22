@@ -10,7 +10,7 @@ export function Quote () {
       {loadingQuoteData
         ? (
               
-          <p>{i18next.t('Loading quote')}...</p>
+          <p className='loading'>{i18next.t('Loading quote')}...</p>
         )
         : (
           <div className='text-author'>
