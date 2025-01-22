@@ -14,10 +14,8 @@ export function Quote () {
         )
         : (
           <div className='text-author'>
-            <div>
-              <p className='text'>&quot;{quoteData.quote}&quot;</p>
-              <p>{quoteData.author}</p>
-            </div>
+            <p className='text'>&quot;{quoteData.quote}&quot;</p>
+            <p>{quoteData.author}</p>
           </div>
         )}
     </>
