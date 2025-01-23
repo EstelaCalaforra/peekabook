@@ -101,8 +101,11 @@ export function useIndividualBook () {
 
   function handleAddNewCategory (event) {
     event.preventDefault()
-    setCategories((prevCategories) => ([...prevCategories, newCategory]))
-    setNewCategory('')
+    if (newCategory && !categoriesSelected.includes(newCategory)) {
+      setCategoriesSelected(prevSelected => [...prevSelected, newCategory])
+      setCategories((prevCategories) => ([...prevCategories, newCategory]))
+      setNewCategory('')
+    }
   }
 
   async function handleClickAddToShelves (id) {
