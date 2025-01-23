@@ -46,6 +46,34 @@ export function useBookshelf () {
     }
   }
 
+  const updateReviewInDB = async (updatedReview) => {
+    try {
+      const token = localStorage.getItem('authToken')
+      if (!token) {
+        console.error('No token found. Please log in again.')
+        return
+      }
+      const response = await axios.put(
+        apiUrl + `/api/books/reviews/${updatedReview.review_id}`,
+        { reviewText: updatedReview.review },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`
+          }
+        }
+      )
+      if (response.status === 200) {
+        const updatedReviews = reviews.map(review =>
+          review.review_id === updatedReview.review_id ? updatedReview : review
+        )
+        setReviews(updatedReviews)
+        console.log(`Review with ID ${updatedReview.review_id} updated successfully`)
+      }
+    } catch (error) {
+      console.error('Error updating review:', error)
+    }
+  }
+
   async function getCategories (response) {
     const cleanedData = response.map(book => {
       if (book.categories) {
@@ -120,6 +148,7 @@ export function useBookshelf () {
     bookshelfData,
     hasBooks,
     hasReviews,
+    updateReviewInDB,
     deleteBookFromBookshelf,
     loading
   }
