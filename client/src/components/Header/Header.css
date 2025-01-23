@@ -76,7 +76,7 @@
 }
 
 .header .username {
-  min-width: 100px;
+  min-width: 150px;
   text-align: right;
   font-weight: 400;
   color: #7c5b44;
@@ -106,12 +106,12 @@
 
 .header .popup-login {
   position: absolute;
-  transform: translateY(12%) translateX(-22%);
+  transform: translateY(12%) translateX(0%);
   background-color: white;
   color: #AB886D;
   border-radius: 5px;
   z-index: 1;
-  width: 150px;
+  min-width: 150px;
 }
 
 .header .popup-login .column {
