@@ -11,7 +11,7 @@ export function useSignup () {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
-  const { setIsAuthenticated, setUserId, setAuthToken } = useAuth()
+  const { setIsAuthenticated, setUserId, setAuthToken, login } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -37,9 +37,8 @@ export function useSignup () {
 
     if (data.success) {
       setMessage('Signup successful! Login and redirecting...')
-      setUserId(data.userId)
-      setAuthToken(data.token)
-      setIsAuthenticated(true)
+      await login(data.userId, data.userEmail, data.token)
+
       setTimeout(() => {
         navigate('/bookshelf/' + data.userId)
       }, 2000)
