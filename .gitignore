@@ -1,2 +1,24 @@
+# Node.js
 node_modules
 package-lock.json
+npm-debug.log*
+yarn-error.log*
+
+# Build
+dist/
+build/
+
+# Environment
+.env
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Others
+.DS_Store

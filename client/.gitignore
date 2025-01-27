@@ -1,3 +1,8 @@
+# Client specifics
+node_modules/
+build/
+.env
+
 # Logs
 logs
 *.log
@@ -11,6 +16,9 @@ node_modules
 dist
 dist-ssr
 *.local
+
+.env.production
+.env.test
 
 # Editor directories and files
 .vscode/*
