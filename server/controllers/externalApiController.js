@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { transformProduct } from '../helpers/externalAPIHelper.js'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 export const fetchBooks = async (req, res) => {
   const { bookQuery, startIndex = 0, maxResults = 12 } = req.query
@@ -24,9 +26,10 @@ export const fetchBooks = async (req, res) => {
 export const getBestsellers = async (req, res) => {
   try {
     const params = {
-      'api-key': 'WdGDKFTLRAMvyfPT3LVHZAAUiEaImG0W'
+      'api-key': process.env.NYTBS_APIKEY
     }
     const response = await axios.get('https://api.nytimes.com/svc/books/v3/lists/overview.json', { params })
+    console.log(response)
     const bestSellers = response.data
     res.json(bestSellers)
   } catch (error) {
