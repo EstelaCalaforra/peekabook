@@ -16,7 +16,7 @@ export function HomePage () {
     <main className='homepage'>
       {
         loadingBestsellersData ?
-          <p style={{backgroundColor: 'white', color: '#85644d', borderRadius: '5px', padding: '5px'}}>{i18next.t('Note that it takes around 30s to fully load due to server latence')}.</p>
+          <p style={{backgroundColor: 'white', color: '#85644d', borderRadius: '5px', padding: '5px', marginLeft: '10px', marginRight: '10px'}}>{i18next.t('Note that it takes around 30s to fully load due to server latence')}.</p>
           : null
       }
       <div className='homepage container'>
