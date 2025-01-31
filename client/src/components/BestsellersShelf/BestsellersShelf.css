@@ -52,8 +52,8 @@
 }
 
 .slick-prev, .slick-next {
-  z-index: 10;
-  color: #AB886D;
+  z-index: 10 !important;
+  color: #AB886D !important;
 }
 
 

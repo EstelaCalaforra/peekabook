@@ -26,6 +26,7 @@ export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
     speed: 500,
     autoplaySpeed: 3000,
     cssEase: 'linear',
+    dots: true,
     
     responsive: [
       {
@@ -34,16 +35,16 @@ export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
           slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
           centerPadding: '0px',
         }
       },
       {
         breakpoint: 1000,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          centerPadding: '0px',
         }
       },
       {
@@ -51,7 +52,7 @@ export function BestsellersShelf ({ bestsellersData, loadingBestsellersData }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: '25px',
+          centerPadding: '0px',
         }
       }
     ]
