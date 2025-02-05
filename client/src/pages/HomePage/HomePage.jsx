@@ -5,7 +5,7 @@ import { BestsellersShelf } from '../../components/BestsellersShelf/BestsellersS
 import { ReviewsCarrousel } from '../../components/ReviewsCarrousel/ReviewsCarrousel.jsx'
 import i18next from 'i18next'
 import BookshelfIllustration from '../../assets/bookshelf.png'
-import WritingIllustration from '../../assets/reading_2.png'
+import WritingIllustration from '../../assets/writing_illustration.png'
 import CommunityIllustration from '../../assets/romantic.png'
 import Rectangle from '../../assets/rectangle.png'
 
