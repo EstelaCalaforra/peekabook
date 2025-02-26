@@ -8,7 +8,7 @@ import { externalAPIRouter } from './routes/externalAPIRoutes.js'
 
 // Starting the server
 const app = express()
-const port = 5000
+const port = process.env.PORT
 
 // Middleware
 app.use(cors())
