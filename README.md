@@ -12,6 +12,7 @@ Welcome to Peekabook, a web designed to simplify your book browsing and discover
 ### Book Details Page
 ![homepage](screenshots/search.png)
 ![homepage](screenshots/book.png)
+![homepage](screenshots/book_add.png)
 ### User Dashboard
 ![homepage](screenshots/user_dashboard.png)
 ## Technologies Used

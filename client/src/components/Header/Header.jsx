@@ -33,7 +33,7 @@ export function Header() {
   return (
     <header className="header">
       <div className="container">
-        <img src={bookLogo} alt="Company Logo" className="logo" />
+        <Link to="/"><img src={bookLogo} alt="Company Logo" className="logo"/></Link>
 
         <button className="menu-toggle" onClick={toggleMenu}>
             ☰
